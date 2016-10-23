@@ -1,4 +1,4 @@
-Micro Tank version 1 batch U
+Mod Version: V1U Git MASTER
 
 OpenGL render is required!
 Software doesn't support 3D models.
