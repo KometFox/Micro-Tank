@@ -48,7 +48,7 @@ str craft_list[CRAFT_MAX][3] = {
 	
 };
 int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
-	{100,5},
+	{75,10},
 
     {30},
 	{400},
