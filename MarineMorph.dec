@@ -1,0 +1,93 @@
+//
+//used as a workaround for tank players to collect important items
+//otherwise not possible due to their size
+
+ACTOR MT_MorphPlayer : PlayerPawn
+{
+  Speed 1
+  Health 200
+  Radius 16
+  Height 56
+  Mass 100
+  PainChance 255
+  +NOSKIN
+//  +CANSUPERMORPH
+  Player.DisplayName "MT_Marine"
+  Player.CrouchSprite "PLYC"
+
+  States
+  {
+  Spawn:
+    PLAY A -1
+    Loop
+  See:
+    PLAY ABCD 4 
+    Loop
+  Missile:
+    PLAY E 12 
+    Goto Spawn
+  Melee:
+    PLAY F 6 BRIGHT
+    Goto Missile
+  Pain:
+    PLAY G 4 
+    PLAY G 4 A_Pain
+    Goto Spawn
+  Death:
+    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
+  Death1:
+    PLAY H 10
+    PLAY I 10 A_PlayerScream
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N -1
+    Stop
+  XDeath:
+    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
+  XDeath1:
+    PLAY O 5
+    PLAY P 5 A_XScream
+    PLAY Q 5 A_NoBlocking
+    PLAY RSTUV 5
+    PLAY W -1
+    Stop
+  AltSkinDeath:
+    PLAY H 6
+    PLAY I 6 A_PlayerScream
+    PLAY JK 6
+    PLAY L 6 A_NoBlocking
+    PLAY MNO 6
+    PLAY P -1
+    Stop
+  AltSkinXDeath:
+    PLAY Q 5 A_PlayerScream
+    PLAY R 0 A_NoBlocking
+    PLAY R 5 A_SkullPop
+    PLAY STUVWX 5
+    PLAY Y -1
+    Stop
+  }
+}
+
+ACTOR PowerMT_MorphMarine : PowerMorph
+{
+ PowerMorph.PlayerClass "MT_MorphPlayer"
+ PowerMorph.MorphStyle (MRF_ADDSTAMINA)
+}
+
+
+ACTOR MT_MarineMorphItem : PowerupGiver 666
+{
+ Inventory.PickupMessage "--------"  
+//Inventory.PickupSound "world/thunder"
+ Powerup.Type MT_MorphMarine 
+ Powerup.Duration 500// about 120 seconds
+ -COUNTITEM
+ -FLOATBOB
+ States
+ {
+  Spawn:
+   KITT A 12
+    Loop
+ }
+}

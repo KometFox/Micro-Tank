@@ -1,0 +1,92 @@
+Credits:
+PopSoap for giving hints,suggestions and helping a bit
+ZzZombo for telling me how to make a smoke grenade and helping m
+Hexadoken for helping me out
+Nascence for ACS scripts
+DonWest
+GrimRefah
+Zedek The Plague Doctor
+
+Sounds: 
+Various source (should be replaced too, or find their author/license)
+Panzer Elite sim game (should be replaced):
+loaded
+BulHi
+Bulhit2
+ShotB
+Smoke
+Fire04
+Fire05
+HouCru
+TreCru
+GScop
+CwDe2
+CwHit2
+CwDe
+CwHit
+
+download source: opengameart.com
+Acidboom = acid burn sounds        -  mikhog/michael               - CC-BY 3.0
+Distboom = deathflash              -  CC-BY 3.0 Blender Foundation - CC-BY 3.0
+DistBoo2 = explosion somewhere far - Paulius Jurgelevičius         - PD
+Flamloo  = fire loop               - Antum Deluge                  - PD
+Click    = gun reload PD           - Paulius Jurgelevičius         - PD
+Boom10   = rock breaking           - Blender Foundation            -  CC-BY 3.0
+PlsFir   = 4 projectile launches   - Michael Bardari               - CC-BY 3.0
+LasH1    = Total Annihilation / Cavedog
+LasFir1  = Total Annihilation / Cavedog
+LasHit1  = Total Annihilation / Cavedog
+
+These sounds were created by Iwan 'qubodup' Gabovitch  CC-BY 3.0
+Ice And Electricity Spells
+Impact
+ELEC2
+ELEC1
+--
+BordHit
+Meahit1
+MeaHit2
+MeaHit3
+MeaHit4
+MetHit2
+StoneH1
+StoneH2
+WoodH1
+WoodH2
+
+War on Water SndFx, by yd - PD
+MotLoop1-7
+GFire1
+GunEmp
+GunLoa
+GunLoa2-4
+Launch
+Radar1
+ 
+Author: Lee Barkovich
+ich Creative Commons Attribution 3.0
+MecSte1-4
+
+Author:  Michel Baradari CC-BY 3.0
+GFire2
+MGFire3
+
+
+D_DM2TTL = Tension - GPL 3.0 Jobromedia
+
+
+note:  replace the other sounds which are free/attributable to
+a person and/or it is public domain. Also if I forget to credit you properly
+then it would be nice that you notify me about it.
+
+
+the source of certain explosion sprites found in Explosion3 folder
+is unknown i.e no idea who made it and originaly found
+
+source found from models/gore/blood*.png belongs to and is 
+
+
+muh mod is CC-BY-SA 4.0; for models,textures,sprites and graphics
+- DOT
+http://www.creativecommons.org/licenses/by-nc/4.0/
+

@@ -1,0 +1,15 @@
+Current:
+*Fire    
+*Acid    
+*BioChem 
+Piercing
+Explosive
+PiercingExplosive 
+Bullet
+Energy
+*Radiation
+*Nuclear 
+*Reclaim 
+
+
+* = Special Effect

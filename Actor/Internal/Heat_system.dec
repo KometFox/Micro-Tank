@@ -1,0 +1,117 @@
+
+
+//Controls the Temperature
+//When the amount is: Heat + Health /2 
+//Destroy the Actor 
+ACTOR MT_Warmth : CustomInventory
+{
++INVENTORY.UNDROPPABLE
+//  +INVENTORY.UNTOSSABLE
++INVENTORY.AUTOACTIVATE
+
+Inventory.Amount 1
+Inventory.MaxAmount 0x7FFFFFFF
+
+var int user_Warmth;
+
+States
+{
+ Use:
+ TNT1 A 0 A_SetUserVar("user_Warmth",0)
+ Goto HeldBB
+ 
+ HeldBB:
+ TNT1 A 0 A_GiveInventory("MT_WarmthDelayer")
+ TNT1 A 0 A_JumpIfInventory("MT_WarmthDelayer",1,"DoNothing")
+ TNT1 A 0 A_JumpIfInventory("MT_Warmth", 100 ,"DestroyIt")
+ TNT1 A 0 A_TakeInventory("MT_Warmth",2)
+ TNT1 A 0
+ loop
+ 
+ DoNothing:
+ TNT1 A 0
+ Goto HeldBB
+ 
+ Death:
+ TNT1 A 0 A_TakeInventory("MT_Warmth")
+ stop 
+ 
+ DestroyIt:
+ TNT1 A 0 A_CustomMissile("MT_SP_KillIt")
+ stop
+}}
+
+
+
+ACTOR MT_WarmthDelayer : MT_A_BooleanValue
+{
++INVENTORY.UNDROPPABLE
+//  +INVENTORY.UNTOSSABLE
+States
+{
+ Held:
+ TNT1 A 5
+ TNT1 A 0 A_TakeInventory("MT_WarmthDelayer",1)
+ TNT1 A 0
+ stop
+}}
+
+ACTOR MT_SP_KillIt
+{
+  Radius 6
+  Height 6
+  Speed 60
+  DamageType AP
+ // DamageFactor AP
+  Projectile
+  scale 0.4
+  -NOGRAVITY
+  +BLOODSPLATTER
+ // +FORCEPAIN
+  gravity 0.02
+  damage (random(1,1.2)*100000)
++EXTREMEDEATH
+  Deathsound ""
+  Obituary "%o was overheated by %k" 
+  States
+  {
+  Spawn:
+    37MM A 0
+   Goto Death
+  Death:
+    TNT1 A 1  A_Explode(100000,5) 
+    Stop
+  }
+}
+
+
+
+//HEAT2
+
+Actor MT_HeatTest : MT_PlayerInventory { 
+  -COUNTITEM
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: 40mm Explosive Grenade (Pod mount)"
+  Inventory.Amount 100
+  Inventory.MaxAmount 50
+  Inventory.InterHubAmount 50
+  Tag "[Grenade Pod]: Explosive Grenade"
+  Scale 1
+
+  states
+  {
+  Spawn:
+    HGAM A -1
+    stop
+  Use:  
+    N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
+    TNT1 A 0 A_Playsound("Fire04")
+    TNT1 A 0 A_FireCustomMissile("Explosion2_S0.5")
+    TNT1 A 1   
+    loop
+  Jumpy:  
+    
+  Nein:
+    TNT1 A 0
+    goto Use
+}}

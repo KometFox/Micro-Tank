@@ -1,0 +1,445 @@
+/*
+With my upcoming changes to the particles I think this will become obsolote
+as it greatly limits the flexibility
+*/
+
+/*
+********************************************************************************
+0.0625
+0.125
+0.25
+0.5
+0.75
+1.25
+1.75
+1.5
+2.0
+2.25
+4
+******************************************************************************
+*/
+
+//////--------------------------------------------------------------------------
+//0.0625
+
+ACTOR "Fire0_S0.0625" : Fire0            {Scale 0.0625}
+ACTOR "Fire0F_S0.0625" : Fire0F          {Scale 0.0625}
+ACTOR "Fire0F_D2_S0.0625" : Fire0F_D2          {Scale 0.0625}
+ACTOR "Fire1_S0.0625" : Fire1            {Scale 0.0625}
+ACTOR "Spark0_S0.0625" : Spark0          {Scale 0.0625}
+ACTOR "Spark1_S0.0625" : Spark1          {Scale 0.0625}
+ACTOR "Spark2_S0.0625" : Spark2          {Scale 0.0625}
+ACTOR "Spark3_S0.0625" : Spark3          {Scale 0.0625}
+ACTOR "Spark4_S0.0625" : Spark4          {Scale 0.0625}
+ACTOR "Smoke3_S0.0625" : Smoke3          {Scale 0.0625}
+ACTOR "Smoke2_S0.0625" : Smoke2          {Scale 0.0625}
+ACTOR "Smoke1_S0.0625" : Smoke1          {Scale 0.0625}
+ACTOR "Smoke1_1F_S0.0625" : Smoke1_1F          {Scale 0.0625}
+
+ACTOR "Dirtchunk_S0.0625" : DirtChunk       {Scale 0.0625}
+ACTOR "Splitter1_S0.0625" : Splitter1       {Scale 0.0625}
+ACTOR "Splitter2_S0.0625" : Splitter2       {Scale 0.0625}
+
+ACTOR "SmokeRed_S0.0625"   : SmokeRed       {Scale 0.0625}
+ACTOR "SmokeBlue_S0.0625"  : SmokeBlue      {Scale 0.0625}
+ACTOR "SmokeGreen_S0.0625" : SmokeGreen     {Scale 0.0625}
+
+ACTOR "Shockwave0_S0.0625" : Shockwave0  {Scale 0.0625}
+
+ACTOR "Explosion0_S0.0625" : Explosion0  {Scale 0.0625}
+ACTOR "Explosion1_S0.0625" : Explosion1  {Scale 0.0625}
+ACTOR "Explosion2_S0.0625" : Explosion2  {Scale 0.0625}
+ACTOR "Explosion3_S0.0625" : Explosion3  {Scale 0.0625}
+ACTOR "Explosion4_S0.0625" : Explosion4  {Scale 0.0625}
+ACTOR "Explosion5_S0.0625" : Explosion5  {Scale 0.0625}
+ACTOR "Explosion6_S0.0625" : Explosion6  {Scale 0.0625}
+ACTOR "Explosion7_S0.0625" : Explosion7  {Scale 0.0625}
+ACTOR "Explosion8_S0.0625" : Explosion8  {Scale 0.0625}
+ACTOR "Explosion9_S0.0625" : Explosion9  {Scale 0.0625}
+
+//////--------------------------------------------------------------------------
+//0.125
+
+ACTOR "Fire0_S0.125" : Fire0 {Scale 0.125}
+ACTOR "Fire0F_S0.125" : Fire0F {Scale 0.125}
+ACTOR "Fire0F_D2_S0.125" : Fire0F_D2 {Scale 0.125}
+ACTOR "Fire1_S0.125" : Fire1 {Scale 0.125}
+ACTOR "Spark0_S0.125" : Spark0 {Scale 0.125}
+ACTOR "Spark1_S0.125" : Spark1 {Scale 0.125}
+ACTOR "Spark2_S0.125" : Spark2 {Scale 0.125} 
+ACTOR "Spark3_S0.125" : Spark3 {Scale 0.125} 
+ACTOR "Spark4_S0.125" : Spark4 {Scale 0.125}
+ACTOR "Smoke3_S0.125" : Smoke3 {Scale 0.125}
+ACTOR "Smoke2_S0.125" : Smoke2 {Scale 0.125}
+ACTOR "Smoke1_S0.125" : Smoke1 {Scale 0.125}
+ACTOR "Smoke1_1F_S0.125" : Smoke1_1F {Scale 0.125}
+
+
+ACTOR "Dirtchunk_S0.125" : DirtChunk       {Scale 0.125}
+ACTOR "Splitter1_S0.125" : Splitter1       {Scale 0.125}
+ACTOR "Splitter2_S0.125" : Splitter2      {Scale 0.125}
+
+ACTOR "SmokeRed_S0.125"   : SmokeRed       {Scale 0.125}
+ACTOR "SmokeBlue_S0.125"  : SmokeBlue      {Scale 0.125}
+ACTOR "SmokeGreen_S0.125" : SmokeGreen     {Scale 0.125}
+
+ACTOR "Shockwave0_S0.125" : Shockwave0  {Scale 0.125}
+
+ACTOR "Explosion0_S0.125" : Explosion0 {Scale 0.125}
+ACTOR "Explosion1_S0.125" : Explosion1 {Scale 0.125}
+ACTOR "Explosion2_S0.125" : Explosion2 {Scale 0.125}
+ACTOR "Explosion3_S0.125" : Explosion3 {Scale 0.125}
+ACTOR "Explosion4_S0.125" : Explosion4 {Scale 0.125}
+ACTOR "Explosion5_S0.125" : Explosion5 {Scale 0.125}
+ACTOR "Explosion6_S0.125" : Explosion6 {Scale 0.125}
+ACTOR "Explosion7_S0.125" : Explosion7 {Scale 0.125}
+ACTOR "Explosion8_S0.125" : Explosion8 {Scale 0.125}
+ACTOR "Explosion9_S0.125" : Explosion9 {Scale 0.125}
+
+//////--------------------------------------------------------------------------
+//0.25
+ACTOR "Fire0_S0.25" : Fire0 {Scale 0.25}
+ACTOR "Fire0F_S0.25" : Fire0F {Scale 0.25}
+ACTOR "Fire0F_D2_S0.25" : Fire0F_D2 {Scale 0.25}
+ACTOR "Fire1_S0.25" : Fire1 {Scale 0.25}
+ACTOR "Spark0_S0.25" : Spark0 {Scale 0.25}
+ACTOR "Spark1_S0.25" : Spark1 {Scale 0.25}
+ACTOR "Spark2_S0.25" : Spark2 {Scale 0.25}
+ACTOR "Spark3_S0.25" : Spark3 {Scale 0.25}
+ACTOR "Spark4_S0.25" : Spark4 {Scale 0.25}
+ACTOR "Smoke3_S0.25" : Smoke3 {Scale 0.25}
+ACTOR "Smoke2_S0.25" : Smoke2 {Scale 0.25}
+ACTOR "Smoke1_S0.25" : Smoke1 {Scale 0.25}
+ACTOR "Smoke1_1F_S0.25" : Smoke1_1F {Scale 0.25}
+
+
+ACTOR "Dirtchunk_S0.25" : DirtChunk       {Scale 0.25}
+ACTOR "Splitter1_S0.25" : Splitter1       {Scale 0.25}
+ACTOR "Splitter2_S0.25" : Splitter2      {Scale 0.25}
+
+ACTOR "SmokeRed_S0.25"   : SmokeRed       {Scale 0.25}
+ACTOR "SmokeBlue_S0.25"  : SmokeBlue      {Scale 0.25}
+ACTOR "SmokeGreen_S0.25" : SmokeGreen     {Scale 0.25}
+
+ACTOR "Shockwave0_S0.25" : Shockwave0  {Scale 0.25}
+
+ACTOR "Explosion0_S0.25" : Explosion0 {Scale 0.25}
+ACTOR "Explosion1_S0.25" : Explosion1 {Scale 0.25}
+ACTOR "Explosion2_S0.25" : Explosion2 {Scale 0.25}
+ACTOR "Explosion3_S0.25" : Explosion3 {Scale 0.25}
+ACTOR "Explosion4_S0.25" : Explosion4 {Scale 0.25}
+ACTOR "Explosion5_S0.25" : Explosion5 {Scale 0.25}
+ACTOR "Explosion6_S0.25" : Explosion6 {Scale 0.25}
+ACTOR "Explosion7_S0.25" : Explosion7 {Scale 0.25}
+ACTOR "Explosion8_S0.25" : Explosion8 {Scale 0.25}
+ACTOR "Explosion9_S0.25" : Explosion9 {Scale 0.25}
+//////--------------------------------------------------------------------------
+//0.5
+ACTOR "Fire0_S0.5" : Fire0 {Scale 0.5}
+ACTOR "Fire0F_S0.5" : Fire0F {Scale 0.5}
+ACTOR "Fire0F_D2_S0.5" : Fire0F_D2 {Scale 0.5}
+ACTOR "Fire1_S0.5" : Fire1 {Scale 0.5}
+ACTOR "Spark0_S0.5" : Spark0 {Scale 0.5}
+ACTOR "Spark1_S0.5" : Spark1 {Scale 0.5}
+ACTOR "Spark2_S0.5" : Spark2 {Scale 0.5}
+ACTOR "Spark3_S0.5" : Spark3 {Scale 0.5}
+ACTOR "Spark4_S0.5" : Spark4 {Scale 0.5}
+ACTOR "Smoke3_S0.5" : Smoke3 {Scale 0.5}
+ACTOR "Smoke2_S0.5" : Smoke2 {Scale 0.5}
+ACTOR "Smoke1_S0.5" : Smoke1 {Scale 0.5}
+ACTOR "Smoke1_1F_S0.5" : Smoke1_1F {Scale 0.5}
+
+ACTOR "Dirtchunk_S0.5" : DirtChunk       {Scale 0.5}
+ACTOR "Splitter1_S0.5" : Splitter1       {Scale 0.5}
+ACTOR "Splitter2_S0.5" : Splitter2       {Scale 0.5}
+
+ACTOR "SmokeRed_S0.5"   : SmokeRed       {Scale 0.5}
+ACTOR "SmokeBlue_S0.5"  : SmokeBlue      {Scale 0.5}
+ACTOR "SmokeGreen_S0.5" : SmokeGreen     {Scale 0.5}
+
+ACTOR "Shockwave0_S0.5" : Shockwave0  {Scale 0.5}
+
+ACTOR "Explosion0_S0.5" : Explosion0 {Scale 0.5}
+ACTOR "Explosion1_S0.5" : Explosion1 {Scale 0.5}
+ACTOR "Explosion2_S0.5" : Explosion2 {Scale 0.5}
+ACTOR "Explosion3_S0.5" : Explosion3 {Scale 0.5}
+ACTOR "Explosion4_S0.5" : Explosion4 {Scale 0.5}
+ACTOR "Explosion5_S0.5" : Explosion5 {Scale 0.5}
+ACTOR "Explosion6_S0.5" : Explosion6 {Scale 0.5}
+ACTOR "Explosion7_S0.5" : Explosion7 {Scale 0.5}
+ACTOR "Explosion8_S0.5" : Explosion8 {Scale 0.5}
+ACTOR "Explosion9_S0.5" : Explosion9 {Scale 0.5}
+
+//////--------------------------------------------------------------------------
+//0.75
+ACTOR "Fire0_S0.75" : Fire0   {Scale 0.75}
+ACTOR "Fire0F_S0.75" : Fire0F   {Scale 0.75}
+ACTOR "Fire0F_D2_S0.75" : Fire0F_D2   {Scale 0.75}
+ACTOR "Fire1_S0.75" : Fire1   {Scale 0.75}
+ACTOR "Spark0_S0.75" : Spark0 {Scale 0.75}
+ACTOR "Spark1_S0.75" : Spark1 {Scale 0.75}
+ACTOR "Spark2_S0.75" : Spark2 {Scale 0.75}
+ACTOR "Spark3_S0.75" : Spark3 {Scale 0.75}
+ACTOR "Spark4_S0.75" : Spark4 {Scale 0.75}
+ACTOR "Smoke3_S0.75" : Smoke3 {Scale 0.75}
+ACTOR "Smoke2_S0.75" : Smoke2 {Scale 0.75}
+ACTOR "Smoke1_S0.75" : Smoke1 {Scale 0.75}
+ACTOR "Smoke1_1F_S0.75" : Smoke1_1F {Scale 0.75}
+
+ACTOR "Dirtchunk_S0.75" : DirtChunk       {Scale 0.75}
+ACTOR "Splitter1_S0.75" : Splitter1       {Scale 0.75}
+ACTOR "Splitter2_S0.75" : Splitter2      {Scale 0.75}
+
+
+ACTOR "SmokeRed_S0.75"   : SmokeRed       {Scale 0.75}
+ACTOR "SmokeBlue_S0.75"  : SmokeBlue      {Scale 0.75}
+ACTOR "SmokeGreen_S0.75" : SmokeGreen     {Scale 0.75}
+
+ACTOR "Shockwave0_S0.75" : Shockwave0  {Scale 0.75}
+
+ACTOR "Explosion9_S0.75" : Explosion9 {Scale 0.75}
+ACTOR "Explosion8_S0.75" : Explosion8 {Scale 0.75}
+ACTOR "Explosion7_S0.75" : Explosion7 {Scale 0.75}
+ACTOR "Explosion5_S0.75" : Explosion5 {Scale 0.75}
+ACTOR "Explosion6_S0.75" : Explosion6 {Scale 0.75}
+ACTOR "Explosion4_S0.75" : Explosion4 {Scale 0.75}
+ACTOR "Explosion3_S0.75" : Explosion3 {Scale 0.75}
+ACTOR "Explosion2_S0.75" : Explosion2 {Scale 0.75}
+ACTOR "Explosion1_S0.75" : Explosion1 {Scale 0.75}
+ACTOR "Explosion0_S0.75" : Explosion0 {Scale 0.75}
+//////--------------------------------------------------------------------------
+//1.25
+ACTOR "Fire0_S1.25" : Fire0   {Scale 1.25}
+ACTOR "Fire0F_S1.25" : Fire0F   {Scale 1.25}
+ACTOR "Fire0F_D2_S1.25" : Fire0F_D2   {Scale 1.25}
+ACTOR "Fire1_S1.25" : Fire1   {Scale 1.25}
+ACTOR "Spark0_S1.25" : Spark0 {Scale 1.25}
+ACTOR "Spark1_S1.25" : Spark1 {Scale 1.25}
+ACTOR "Spark2_S1.25" : Spark2 {Scale 1.25}
+ACTOR "Spark3_S1.25" : Spark3 {Scale 1.25}
+ACTOR "Spark4_S1.25" : Spark4 {Scale 1.25}
+ACTOR "Smoke3_S1.25" : Smoke3 {Scale 1.25}
+ACTOR "Smoke2_S1.25" : Smoke2 {Scale 1.25}
+ACTOR "Smoke1_S1.25" : Smoke1 {Scale 1.25}
+ACTOR "Smoke1_1F_S1.25" : Smoke1_1F {Scale 1.25}
+
+
+ACTOR "Dirtchunk_S1.25" : DirtChunk       {Scale 1.25}
+ACTOR "Splitter1_S1.25" : Splitter1       {Scale 1.25}
+ACTOR "Splitter2_S1.25" : Splitter2      {Scale 1.25}
+
+ACTOR "SmokeRed_S1.25"   : SmokeRed       {Scale 1.25}
+ACTOR "SmokeBlue_S1.25"  : SmokeBlue      {Scale 1.25}
+ACTOR "SmokeGreen_S1.25" : SmokeGreen     {Scale 1.25}
+
+ACTOR "Shockwave0_S1.25" : Shockwave0  {Scale 1.25}
+
+ACTOR "Explosion0_S1.25" : Explosion0 {Scale 1.25}
+ACTOR "Explosion1_S1.25" : Explosion1 {Scale 1.25}
+ACTOR "Explosion2_S1.25" : Explosion2 {Scale 1.25}
+ACTOR "Explosion3_S1.25" : Explosion3 {Scale 1.25}
+ACTOR "Explosion4_S1.25" : Explosion4 {Scale 1.25}
+ACTOR "Explosion5_S1.25" : Explosion5 {Scale 1.25}
+ACTOR "Explosion6_S1.25" : Explosion6 {Scale 1.25}
+ACTOR "Explosion7_S1.25" : Explosion7 {Scale 1.25}
+ACTOR "Explosion8_S1.25" : Explosion8 {Scale 1.25}
+ACTOR "Explosion9_S1.25" : Explosion9 {Scale 1.25}
+
+//////--------------------------------------------------------------------------
+//1.75
+ACTOR "Fire0_S1.75" : Fire0   {Scale 1.75}
+ACTOR "Fire0F_S1.75" : Fire0F   {Scale 1.75}
+ACTOR "Fire0F_D2_S1.75" : Fire0F_D2   {Scale 1.75}
+ACTOR "Fire1_S1.75" : Fire1   {Scale 1.75}
+ACTOR "Spark0_S1.75" : Spark0 {Scale 1.75}
+ACTOR "Spark1_S1.75" : Spark1 {Scale 1.75}
+ACTOR "Spark2_S1.75" : Spark2 {Scale 1.75}
+ACTOR "Spark3_S1.75" : Spark3 {Scale 1.75}
+ACTOR "Spark4_S1.75" : Spark4 {Scale 1.75}
+ACTOR "Smoke3_S1.75" : Smoke3 {Scale 1.75}
+ACTOR "Smoke2_S1.75" : Smoke2 {Scale 1.75}
+ACTOR "Smoke1_S1.75" : Smoke1 {Scale 1.75}
+ACTOR "Smoke1_1F_S1.75" : Smoke1_1F {Scale 1.75}
+
+
+ACTOR "Dirtchunk_S1.75" : DirtChunk       {Scale 1.75}
+ACTOR "Splitter1_S1.75" : Splitter1       {Scale 1.75}
+ACTOR "Splitter2_S1.75" : Splitter2       {Scale 1.75}
+
+
+ACTOR "SmokeRed_S1.75"   : SmokeRed       {Scale 1.75}
+ACTOR "SmokeBlue_S1.75"  : SmokeBlue      {Scale 1.75}
+ACTOR "SmokeGreen_S1.75" : SmokeGreen     {Scale 1.75}
+
+ACTOR "Shockwave0_S1.75" : Shockwave0  {Scale 1.75}
+
+ACTOR "Explosion0_S1.75" : Explosion0 {Scale 1.75}
+ACTOR "Explosion1_S1.75" : Explosion1 {Scale 1.75}
+ACTOR "Explosion2_S1.75" : Explosion2 {Scale 1.75}
+ACTOR "Explosion3_S1.75" : Explosion3 {Scale 1.75}
+ACTOR "Explosion4_S1.75" : Explosion4 {Scale 1.75}
+ACTOR "Explosion5_S1.75" : Explosion5 {Scale 1.75}
+ACTOR "Explosion6_S1.75" : Explosion6 {Scale 1.75}
+ACTOR "Explosion7_S1.75" : Explosion7 {Scale 1.75}
+ACTOR "Explosion8_S1.75" : Explosion8 {Scale 1.75}
+ACTOR "Explosion9_S1.75" : Explosion9 {Scale 1.75}
+
+
+//////--------------------------------------------------------------------------
+//1.5
+ACTOR "Fire0_S1.5" : Fire0 {Scale 1.5}
+ACTOR "Fire0F_S1.5" : Fire0F {Scale 1.5}
+ACTOR "Fire0F_D2_S1.5" : Fire0F_D2 {Scale 1.5}
+ACTOR "Fire1_S1.5" : Fire1 {Scale 1.5}
+ACTOR "Spark0_S1.5" : Spark0 {Scale 1.5}
+ACTOR "Spark1_S1.5" : Spark1 {Scale 1.5}
+ACTOR "Spark2_S1.5" : Spark2 {Scale 1.5}
+ACTOR "Spark3_S1.5" : Spark3 {Scale 1.5}
+ACTOR "Spark4_S1.5" : Spark4 {Scale 1.5}
+ACTOR "Smoke3_S1.5" : Smoke3 {Scale 1.5}
+ACTOR "Smoke2_S1.5" : Smoke2 {Scale 1.5}
+ACTOR "Smoke1_S1.5" : Smoke1 {Scale 1.5}
+ACTOR "Smoke1_1F_S1.5" : Smoke1_1F {Scale 1.5}
+
+
+ACTOR "Dirtchunk_S1.5" : DirtChunk       {Scale 1.5}
+ACTOR "Splitter1_S1.5" :Splitter1       {Scale 1.5}
+ACTOR "Splitter2_S1.5" :Splitter2      {Scale 1.5}
+
+ACTOR "SmokeRed_S1.5"   : SmokeRed       {Scale 1.5}
+ACTOR "SmokeBlue_S1.5"  : SmokeBlue      {Scale 1.5}
+ACTOR "SmokeGreen_S1.5" : SmokeGreen     {Scale 1.5}
+
+ACTOR "Shockwave0_S1.5" : Shockwave0  {Scale 1.5}
+
+ACTOR "Explosion0_S1.5" : Explosion0 {Scale 1.5}
+ACTOR "Explosion1_S1.5" : Explosion1 {Scale 1.5}
+ACTOR "Explosion2_S1.5" : Explosion2 {Scale 1.5}
+ACTOR "Explosion3_S1.5" : Explosion3 {Scale 1.5 Height 50 Radius 50}
+ACTOR "Explosion4_S1.5" : Explosion4 {Scale 1.5}
+ACTOR "Explosion5_S1.5" : Explosion5 {Scale 1.5}
+ACTOR "Explosion6_S1.5" : Explosion6 {Scale 1.5}
+ACTOR "Explosion7_S1.5" : Explosion7 {Scale 1.5}
+ACTOR "Explosion8_S1.5" : Explosion8 {Scale 1.5}
+ACTOR "Explosion9_S1.5" : Explosion9 {Scale 1.5}
+
+//////--------------------------------------------------------------------------
+//2.0
+ACTOR "Fire0_S2" : Fire0 {Scale 2}
+ACTOR "Fire0F_S2" : Fire0F {Scale 2}
+ACTOR "Fire0F_D2_S2" : Fire0F_D2 {Scale 2}
+ACTOR "Fire1_S2" : Fire1 {Scale 2}
+ACTOR "Spark0_S2" : Spark0 {Scale 2}
+ACTOR "Spark1_S2" : Spark1 {Scale 2}
+ACTOR "Spark2_S2" : Spark2 {Scale 2}
+ACTOR "Spark3_S2" : Spark3 {Scale 2}
+ACTOR "Spark4_S2" : Spark4 {Scale 2}
+ACTOR "Smoke3_S2" : Smoke3 {Scale 2}
+ACTOR "Smoke2_S2" : Smoke2 {Scale 2}
+ACTOR "Smoke1_S2" : Smoke1 {Scale 2}
+ACTOR "Smoke1_1F_S2" : Smoke1_1F {Scale 2}
+
+ACTOR "Dirtchunk_S2" : DirtChunk       {Scale 2}
+ACTOR "Splitter1_S2" : Splitter1       {Scale 2}
+ACTOR "Splitter2_S2" : Splitter2      {Scale 2}
+
+ACTOR "SmokeRed_S2"   : SmokeRed       {Scale 2}
+ACTOR "SmokeBlue_S2"  : SmokeBlue      {Scale 2}
+ACTOR "SmokeGreen_S2" : SmokeGreen     {Scale 2}
+
+ACTOR "Shockwave0_S2" : Shockwave0  {Scale 2}
+
+ACTOR "Explosion9_S2" : Explosion9 {Scale 2}
+ACTOR "Explosion8_S2" : Explosion8 {Scale 2}
+ACTOR "Explosion7_S2" : Explosion7 {Scale 2}
+ACTOR "Explosion6_S2" : Explosion6 {Scale 2}
+ACTOR "Explosion5_S2" : Explosion5 {Scale 2}
+ACTOR "Explosion4_S2" : Explosion4 {Scale 2}
+ACTOR "Explosion3_S2" : Explosion3 {Scale 2 Height 200 Radius 80}
+ACTOR "Explosion2_S2" : Explosion2 {Scale 2}
+ACTOR "Explosion1_S2" : Explosion1 {Scale 2}
+ACTOR "Explosion0_S2" : Explosion0 {Scale 2}
+
+
+//////--------------------------------------------------------------------------
+//2.25
+ACTOR "Fire0_S2.25" : Fire0 {Scale 2.25}
+ACTOR "Fire0F_S2.25" : Fire0F {Scale 2.25}
+ACTOR "Fire0F_D2_S2.25" : Fire0F_D2 {Scale 2.25}
+ACTOR "Fire1_S2.25" : Fire1 {Scale 2.25}
+ACTOR "Spark0_S2.25" : Spark0 {Scale 2.25}
+ACTOR "Spark1_S2.25" : Spark1 {Scale 2.25}
+ACTOR "Spark2_S2.25" : Spark2 {Scale 2.25}
+ACTOR "Spark3_S2.25" : Spark3 {Scale 2.25}
+ACTOR "Spark4_S2.25" : Spark4 {Scale 2.25}
+ACTOR "Smoke3_S2.25" : Smoke3 {Scale 2.25}
+ACTOR "Smoke2_S2.25" : Smoke2 {Scale 2.25}
+ACTOR "Smoke1_S2.25" : Smoke1 {Scale 2.25}
+ACTOR "Smoke1_1F_S2.25" : Smoke1_1F {Scale 2.25}
+
+ACTOR "Dirtchunk_S2.25" : DirtChunk       {Scale 2.25}
+ACTOR "Splitter1_S2.25" : Splitter1       {Scale 2.25}
+ACTOR "Splitter2_S2.25" : Splitter2      {Scale 2.25}
+
+ACTOR "SmokeRed_S2.25"   : SmokeRed       {Scale 2.25}
+ACTOR "SmokeBlue_S2.25"  : SmokeBlue      {Scale 2.25}
+ACTOR "SmokeGreen_S2.25" : SmokeGreen     {Scale 2.25}
+
+ACTOR "Shockwave0_S2.25" : Shockwave0  {Scale 2.25}
+
+ACTOR "Explosion9_S2.25" : Explosion9 {Scale 2.25}
+ACTOR "Explosion8_S2.25" : Explosion8 {Scale 2.25}
+ACTOR "Explosion7_S2.25" : Explosion7 {Scale 2.25}
+ACTOR "Explosion6_S2.25" : Explosion6 {Scale 2.25}
+ACTOR "Explosion5_S2.25" : Explosion5 {Scale 2.25}
+ACTOR "Explosion4_S2.25" : Explosion4 {Scale 2.25}
+ACTOR "Explosion3_S2.25" : Explosion3 {Scale 2.25}
+ACTOR "Explosion2_S2.25" : Explosion2 {Scale 2.25}
+ACTOR "Explosion1_S2.25" : Explosion1 {Scale 2.25}
+ACTOR "Explosion0_S2.25" : Explosion0 {Scale 2.25}
+
+
+
+//////--------------------------------------------------------------------------
+//4
+ACTOR "Fire0_S4" : Fire0 {Scale 4}
+ACTOR "Fire0F_S4" : Fire0F {Scale 4}
+ACTOR "Fire0F_D2_S4" : Fire0F_D2 {Scale 4}
+ACTOR "Fire1_S4" : Fire1 {Scale 4}
+ACTOR "Spark0_S4" : Spark0 {Scale 4}
+ACTOR "Spark1_S4" : Spark1 {Scale 4}
+ACTOR "Spark2_S4" : Spark2 {Scale 4}
+ACTOR "Spark3_S4" : Spark3 {Scale 4}
+ACTOR "Spark4_S4" : Spark4 {Scale 4}
+ACTOR "Smoke3_S4" : Smoke3 {Scale 4}
+ACTOR "Smoke2_S4" : Smoke2 {Scale 4}
+ACTOR "Smoke1_S4" : Smoke1 {Scale 4}
+ACTOR "Smoke1_1F_S4" : Smoke1_1F {Scale 4}
+
+ACTOR "Dirtchunk_S4" : DirtChunk       {Scale 4}
+ACTOR "Splitter1_S4" : Splitter1       {Scale 4}
+ACTOR "Splitter2_S4" : Splitter2       {Scale 4}
+
+ACTOR "SmokeRed_S4"   : SmokeRed       {Scale 4}
+ACTOR "SmokeBlue_S4"  : SmokeBlue      {Scale 4}
+ACTOR "SmokeGreen_S4" : SmokeGreen     {Scale 4}
+
+ACTOR "Shockwave0_S4" : Shockwave0  {Scale 4}
+
+ACTOR "Explosion9_S4" : Explosion9 {Scale 4}
+ACTOR "Explosion8_S4" : Explosion8 {Scale 4}
+ACTOR "Explosion7_S4" : Explosion7 {Scale 4}
+ACTOR "Explosion6_S4" : Explosion6 {Scale 4}
+ACTOR "Explosion5_S4" : Explosion5 {Scale 4}
+ACTOR "Explosion4_S4" : Explosion4 {Scale 4}
+ACTOR "Explosion3_S4" : Explosion3 {Scale 4}
+ACTOR "Explosion2_S4" : Explosion2 {Scale 4}
+ACTOR "Explosion1_S4" : Explosion1 {Scale 4}
+ACTOR "Explosion0_S4" : Explosion0 {Scale 4}
+
+
+
+
+
+
+

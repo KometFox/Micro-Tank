@@ -1,0 +1,18 @@
+ACTOR MT_TestGlow : Particle
+{
+  renderstyle Add
+  alpha 1
+  Scale 0.5
+  -NoGravity
+  -NoInteraction
+  Gravity 0.75
+  States
+  {
+  Spawn:
+    XFLA AAAAAAAAAAAAAA 1 Bright A_SpawnItem("BigGlowSmall2")
+    Goto Death
+  Death:
+    XFLA DDEEFFGG 1 Bright A_Fadeout(0.058)  
+    Stop
+  }
+}

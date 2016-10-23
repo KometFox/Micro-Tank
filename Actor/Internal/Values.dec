@@ -1,0 +1,177 @@
+//Actor base
+
+ACTOR MT_Counters : Inventory 
+{
+  +INVENTORY.HUBPOWER
+  +INVENTORY.QUIET
+  -INVBAR
+States
+{
+ Spawn:
+ TNT1 A -1
+ stop
+}
+}
+
+Actor MT_A_BooleanValue : Inventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+ +INVENTORY.UNDROPPABLE  
+}
+
+Actor MT_ItemS_AutoD-Count : Inventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 10
+}
+
+
+ACTOR TokenInventory : CustomInventory 
+{
+  +NOBLOOD
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.HUBPOWER
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE  
+  -INVBAR
+  -COUNTITEM
+} 
+
+ACTOR TokenInventory2 : Inventory 
+{
+  +NOBLOOD
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.KEEPDEPLETED
+  +INVENTORY.HUBPOWER
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE  
+  -INVBAR
+  -COUNTITEM
+} 
+
+
+actor Spawner : Health
+{ 
+  Inventory.Amount 0
+  Inventory.MaxAmount 999
+  Inventory.RespawnTics 400
+  +INVENTORY.QUIET
+  -COUNTITEM
+}
+
+
+
+//ID Token, very important...
+ACTOR MHTA1_Token : MT_A_BooleanValue {}
+ACTOR MMTA1_Token : MT_A_BooleanValue {}
+ACTOR MTA1_Token  : MT_A_BooleanValue {}
+ACTOR MT_ClassToken  : MT_A_BooleanValue {}
+
+
+
+Actor ItemS_Build : MT_Counters
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 1000000
+}
+
+
+
+Actor ItemS_GiftGasmenge_Delay : MT_Counters
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 1000
+}
+
+Actor ItemS_Stunned : MT_Counters
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ADDITIVETIME
+  States
+  {
+  Held:
+  TNT1 A 1 A_ClearTarget
+  TNT1 A 1 A_ClearTarget
+  loop
+  }
+}
+
+//Supply Box amount
+ACTOR MT_SupplyBox_Amount : MT_Counters 
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 11
+}
+
+//Ore Crystal lose power when alone I think
+ACTOR MT_CrystalNoPower : MT_Counters 
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+}
+
+//Ore Crystal infection
+Actor MT_Corruption : MT_Counters
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 20
+}
+
+
+//WIP, Power Active Armor
+ACTOR MT_DeflectionStrength : MT_Counters
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 50
+}
+
+//P = Postive, Yes, 1
+//N = Negative, No, 0
+Actor MT_P_Reload     : MT_A_BooleanValue {}
+Actor MT_N_Reload     : MT_A_BooleanValue {}
+
+//Lock Upgrades
+Actor MT_MortarLock1  : MT_A_BooleanValue {}
+
+
+//Weapon technology level
+ACTOR MT_T1    : MT_A_BooleanValue {}
+ACTOR MT_T2    : MT_A_BooleanValue {}
+ACTOR MT_LT_T1 : MT_A_BooleanValue {}
+ACTOR MT_LT_T2 : MT_A_BooleanValue {}
+
+Actor MT_ReloadDummy : MT_A_BooleanValue{}
+Actor MT_CycleDummy  : MT_A_BooleanValue{}
+
+//Player uses Cannon?
+ACTOR MT_CannonIsSelected          : MT_A_BooleanValue {}
+ACTOR MT_75x500mmCannon_IsSelected : MT_A_BooleanValue {}
+ACTOR MT_50x441mmCannon_IsSelected : MT_A_BooleanValue {}
+ACTOR MT_37x290mmCannon_IsSelected : MT_A_BooleanValue {}
+
+//How many Ammo types a gun can have
+//AmmoTypes+1
+
+
+
+
+
+//Gun Is reloadable?
+ACTOR MT_GunIsReloadable : MT_A_BooleanValue {}
+
+//Crystal Ore Amount
+ACTOR MT_Crystal1 : MT_A_BooleanValue {}
+ACTOR MT_Crystal2 : MT_A_BooleanValue {}
+ACTOR MT_Crystal3 : MT_A_BooleanValue {}
+ACTOR MT_Crystal4 : MT_A_BooleanValue {}
+
+//used for deflecting projectile
+ACTOR MT_Deflect : MT_A_BooleanValue {}
+//used for destroying projectiles
+ACTOR MT_Destroy : MT_A_BooleanValue {}

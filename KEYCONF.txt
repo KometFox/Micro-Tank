@@ -1,0 +1,37 @@
+//clearplayerclasses
+addplayerclass MicroHeavyTankA1_Class
+addplayerclass MicroMediumTankA1_Class
+addplayerclass MicroTankA1_Class
+addplayerclass HTANK_SNOW
+
+
+
+   addkeysection "Micro Tank Commands" MicroTankCommands
+   addmenukey "Switch Weapon Mode (Primary)" MTC_Switch_Mode
+   alias MTC_Switch_Mode "use WPN_Mode_Switch"
+   addmenukey "Switch Weapon Mode (Secondary)" MTC_Switch_Mode2
+   alias MTC_Switch_Mode2 "use WPN_Mode_Switch2"
+   addmenukey "Open Items Menu" MTC_UseConMenu
+   alias MTC_UseConMenu "pukename MT_BuyMenu always" 
+    addmenukey "Open Upgrades Menu" MTC_UseUpgMenu
+   alias MTC_UseUpgMenu "pukename MT_Upgrades always"   
+   addmenukey "Switch Weapon Ammo" MTC_AmoSwc
+   alias MTC_AmoSwc "use MT_AmmoSwitcher"  
+   addmenukey "Toggle Integrated Searchlight" MTC_SLight
+   alias MTC_SLight "use MT_SearchLight"     
+
+   alias ironcurtain god
+   alias Sheqel "Give MT_Credits 1000000;Give MT_Credits 1000000;Give MT_Credits 1000000;Give MT_HighValueMetal 1000000;Echo STUPID GOY"
+//    addmenukey "Reload Weapon" MTC_RG
+//   alias MTC_RG "use MT_Reloader" 
+     
+   
+   
+//  addmenukey "Use Periscope (Zooming)" MT_PeriscopeMode
+//  alias MTC_PeriscopeMode "use MT_PeriscopeMode"
+//   addmenukey "Turn Searchlight On/Off" MTC_Searchlightswitch
+//   alias MTC_Searchlightswitch "use SearchLight_Mode_Switch"
+
+
+
+

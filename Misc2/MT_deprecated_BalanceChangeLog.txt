@@ -1,0 +1,70 @@
+
+
+V1T.1
+All Weapon:
+Almost all projectiles are buffed heavly
+
+V1T
+All weapon:
+every weapon requires ammo now (except Coax MG)
+some few balance changes 
+
+20mm/Heavy Tank:
+HEI shell gravity increased from 0.0022 to 0.076
+
+Misc:
+Function of Regenator role changed
+you will need to scavenge resources from wrecks to be able to heal yourselfes
+instead of regenating its ammo 
+
+Core has been replaced by Medium repair kit (HP +30)
+changed maximal inventory amount from 25 to 5 for small repair kit
+changed maximal inventory amount from 25 to 3 for medium repair kit
+
+Enemy:
+Enemys dont drop repair kits anymore, you can scavenge their wrecks instead
+
+
+V1S
+
+Balance:
+75mm
+-AP/APCRBC/HEI have speed 60 instead of 65 now... Forget to do this on last version
+Heavy tank 20mm shell doesn't harm itself now
+-Buffed HT loading speed from 180 to 172
+-HE Shell A_Explode buffed from (128,130) to (160,130)
+-HECB clusterbombs A_Explode nerfed from (79,25) to (25,25)
+-HEAT shell damage buffed from (202,70) to (210,85)
+-HEH Missile damage nerfed from (260,115) to (155,130)
+
+50mm
+-HE Shell damage buffed from  (100,110) to (140,110), nerfed direct damage from 11 to 4
+-HECB cluster bombs damage nerfed from (42,47) to (22,47) 
+-HEAT shell damage buffed from (184,75) to (190,75) 
+-HEH Missile damage nerfed from (190,115) to (145,115)
+
+
+37mm
+-HE shell damage buffed from (64,94) to (100,94) 
+-HEAT shell damage buffed from (120,60) to (135,62) 
+
+All
+-Changed Level 2 Ammo capacity from 18 to 15 and with backpack from 34 to 35 
+
+-Buffed Core from 20 to 35
+
+-WUB2 Gives now a bit Ammo for Medium/Heavy 2 LVL2 Ammo
+for Light 12 EnergyCell
+
+-changed probability of replaced Items/Ammo by 255 instead of 128,
+Duplicated item (Medikit,SupreCore,CellPack) for a bit lower probability
+
+-All Cluster bombs/Gascloud and Fire have +NOTELEPORT flag now
+
+Enemy:
+-Light Attack Spider Plasma HP nerfed from 750 to 450
+-Light Attack Spider Missile HP nerfed from 745 to 450
+-Light Attack Mech Autocannon HP nerfed from 625 to 200
+-Painmaker HP nerfed from 570 to 500
+-Changed Light Attack Mech AC shell damage from (damage(1,8)*4) to (damage(1,1.2)*22)
+

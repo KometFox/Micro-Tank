@@ -1,0 +1,115 @@
+#Include "GLDefs.Boom.txt"
+
+
+Pointlight MT_Photon_1
+{
+    color 0.7 0.7 1
+    size 45
+	
+}
+
+PointLight MT_Photon_1_Strong
+{
+    color 0.5 0.5 0.9
+    size 75
+    dontlightself 1
+}
+
+//God damn skullfuck...
+//    dontlightself 0
+object MT_Photon
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1 
+	 }
+}
+
+
+object MT_Photon2
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1 
+	 }
+}
+
+object MT_LightPuff
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1_Strong 
+	 }
+}
+
+object MT_LightPuff2
+{
+ frame TNT2
+     {   
+	 light MT_Photon_1_Strong 
+	 }
+}
+
+/*
+PulseLight IlluminatingLight
+{
+    color 0.25 0.6 1 
+    size 450
+    secondarysize 400
+    interval 1.0
+    offset 1 1 1
+    
+}
+*/
+
+PointLight IlluminatingLight
+{
+    color 0.8 0.8 5
+    size 450
+}
+
+
+PointLight FlareLight
+{
+    color 0.92 0.25 0.1 
+    size 150 
+}
+
+PointLight FlareLight_2
+{
+    color 0.82 0.15 0.05 
+    size 75
+}
+
+PointLight FlareLight_3
+{
+    color 0.72 0.05 0.02 
+    size 30 
+}
+
+
+PulseLight IncFire_Big
+{
+    color 0.95 0.45 0.21 
+    size 100
+    secondarysize 50
+    interval 1.0
+    offset 1 1 1
+    
+}
+
+
+object "40mm Grenade Illuminating"
+{
+    frame MESH   { light IlluminatingLight }
+}
+
+object "40mm Grenade Flare"
+{
+    frame MESH    { light FlareLight   }
+	frame MESHB   { light FlareLight_2 }
+	frame MESHC   { light FlareLight_3 }
+}
+
+
+

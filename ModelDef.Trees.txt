@@ -1,0 +1,147 @@
+Model MT_Tree
+{
+   Path "MODELS\Nature"
+   Model 0 "Treetest.md3"
+   Skin  0 "Treetest.png"
+   Scale 12 12 12
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_PineTree
+{
+   Path "MODELS\Nature"
+   Model 0 "PineTree.md3"
+   Skin  0 "PineTree.png"
+   Scale 10 10 10
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_BirchTree1
+{
+   Path "MODELS\Nature"
+   Model 0 "BirchTree1.md3"
+   Skin  0 "BirchTree1.png"
+   Model 1 "BirchTree1_Leaves.md3"
+   Skin  1 "Bush1.png"
+   Scale 10 10 10
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Bush1
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush1.md3"
+   Skin  0 "Bush1_a.png"
+   Scale 10 10 10
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Bush1_Spring
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush1.md3"
+   Skin  0 "Bush1_Spring.png"
+   Scale 10 10 10
+   FrameIndex IDLE A 0 0
+}
+Model MT_Bush2_Spring
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush6.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Bush3_Spring
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush2.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Bush3_Birch_Spring
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush1.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Bush3_Autumn
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush4.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Bush4_Autumn
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush3.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Bush5_Autumn
+{
+   Path "MODELS\Nature"
+   Model 0 "Bush3.md3"
+   Skin  0 "Bush5.png"
+   Scale 25 25 40
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_TreeStump
+{
+   Path "MODELS\Nature"
+   Model 0 "Treetest.md3"
+   Skin  0 "Treetest.png"
+   Scale 12 12 12
+   FrameIndex IDLE B 0 1
+}
+
+Model MT_TreeProj
+{
+   Path "MODELS\Nature"
+   Model 0 "Treetest_Proj.md3"
+   Skin  0 "Treetest.png"
+   Scale 12 12 12
+   AngleOffset 0
+   FrameIndex FALL A 0 0
+   FrameIndex FALL B 0 1
+   FrameIndex FALL C 0 2
+   FrameIndex FALL D 0 3
+   FrameIndex FALL E 0 4
+   FrameIndex FALL F 0 5
+   FrameIndex FALL G 0 6
+   FrameIndex FALL H 0 7
+   FrameIndex FALL I 0 8
+   FrameIndex FALL J 0 9
+   FrameIndex FALL K 0 10
+   PITCHFROMMOMENTUM
+}
+
+
+Model MT_House1
+{
+   Path "MODELS\Umgebung"
+   Model 0 "House1.md3"
+   Skin  0 "House1a.png"
+   Scale 14 14 14
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+   PITCHFROMMOMENTUM
+}

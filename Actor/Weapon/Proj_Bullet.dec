@@ -1,0 +1,92 @@
+//
+ACTOR MT_BuckShot : MT_Frag
+{
+  DamageType Buckshot
+  Speed 45
+  damage (random(1,1.2)*10)
+  Gravity 0.07
+  Obituary "%o <Buckshot] %k" 
+  BounceType None
+  BounceCount 0
+  renderstyle Add
+  decal MT_Bullethit1
+  States{
+    Spawn:
+    FRAG A 1 
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop
+  XDeath:
+    TNT1 A 0
+    Stop	
+}}
+
+ACTOR MT_BuckShot_HE : MT_BuckShot
+{
+  DamageType Explosive
+  Speed 45
+  damage (random(1,1.2)*5)
+  Obituary "%o <Buckshot] %k" 
+  decal MT_VerySmallHEScorch
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(35,20,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_FastBulletBase : Fastprojectile
+{
+  Radius 6
+  Height 6
+  -NOGRAVITY
+  +BLOODSPLATTER  
+//Speed 90
+  Speed 250
+  Projectile
+  DamageType BulletAP 
+  damage (random(21,21)*1)
+  Obituary "%o <7.62mm AP] %k" 
+  gravity 0.0085
+  scale 0.1
+  renderstyle Add
+  Alpha 1
+  decal MT_Bullethit1
+  States
+  {
+  Spawn:
+    TRCR A 1 
+    Loop
+  Death:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItem("MT_BulletPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    Stop
+  XDeath:
+    TNT1 A 0
+    Stop
+  }
+}
+
+ACTOR "7.62x54mm AP" : MT_FastBulletBase
+{
+  Speed 250
+  DamageType Bullet
+  damage (random(21,21)*1)
+  Obituary "%o <7.62mm AP] %k"
+  States
+  {
+  Death:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItem("MT_BulletPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    Stop
+  }
+}

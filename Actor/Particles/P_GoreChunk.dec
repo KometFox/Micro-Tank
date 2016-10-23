@@ -1,0 +1,126 @@
+
+ACTOR MT_Gibchunkred: Particle
+{
+  Health 50
+  PainChance 256
+  BounceType Grenade
+  BounceCount 12
+  BounceFactor 0.2
+  Gravity 0.2
+  Renderstyle Translucent
+  Alpha 1
+  States
+  {
+  Spawn:
+    TNT1 A 1
+    TNT1 A 0 A_Jump(80,"BoneA")
+    TNT1 A 0 A_Jump(80,"BoneB")
+    Goto Spawn2
+  Spawn2:
+    CHNK A 350
+    goto Death
+  BoneA:
+    BONA A 350
+    goto BoneA_Death
+  BoneB:
+    BONB A 350
+    goto BoneB_Death
+  Death:
+    CHNK AAAAAAAAAAAAAAAA  5  A_Fadeout(0.0591)  
+    TNT1 A 0 A_NoBlocking
+    stop 
+  BoneA_Death:
+    BONA AAAAAAAAAAAAAAAA  5  A_Fadeout(0.0591)  
+    TNT1 A 0 A_NoBlocking
+    stop 
+  BoneB_Death:
+    BONB AAAAAAAAAAAAAAAA  5  A_Fadeout(0.0591)  
+    TNT1 A 0 A_NoBlocking
+    stop 
+}}
+
+Actor MT_Gibchunkred_S0.5     :    MT_Gibchunkred {Scale 0.5}
+Actor MT_Gibchunkred_S1.5     :    MT_Gibchunkred {Scale 1.5}
+Actor MT_Gibchunkred_S2       :    MT_Gibchunkred {Scale   2}
+
+
+ACTOR MT_Gibchunkblue: MT_Gibchunkred
+{
+
+  States
+  {
+
+  Spawn3:
+    CHNK AAAAAAAAAAAAAAAAAAAAA 2 A_Spawnitem("MTP_BlueBlood")
+    Goto Death
+}}
+
+Actor MT_Gibchunkblue_S0.5     :    MT_Gibchunkblue {Scale 0.5}
+Actor MT_Gibchunkblue_S1.5     :    MT_Gibchunkblue {Scale 1.5}
+Actor MT_Gibchunkblue_S2       :    MT_Gibchunkblue {Scale   2}
+
+ACTOR MT_Gibchunkgreen: MT_Gibchunkred
+{
+
+  States
+  {
+
+  Spawn3:
+    CHNK AAAAAAAAAAAAAAAAAAAAA 2 A_Spawnitem("MTP_GreenBlood")
+    Goto Death
+}}
+
+Actor MT_Gibchunkgreen_S0.5     :    MT_Gibchunkgreen {Scale 0.5}
+Actor MT_Gibchunkgreen_S1.5     :    MT_Gibchunkgreen {Scale 1.5}
+Actor MT_Gibchunkgreen_S2       :    MT_Gibchunkgreen {Scale   2}
+
+ACTOR MT_GibchunkAcid: Particle
+{
+  Health 50
+  PainChance 256
+  BounceType Grenade
+  BounceCount 12
+  BounceFactor 0.2
+  Gravity 0.2
+   Renderstyle Add
+  States
+  {
+
+  Spawn:
+    CHNK A 380
+    goto Death
+  Death:
+    CHNK AAAAAAAAAAAAAAAA 5  A_Fadeout(0.0591)  
+    TNT1 A 0 A_NoBlocking
+    stop 
+}}
+
+Actor MT_Gibchunkacid_S0.5     :    MT_Gibchunkacid {Scale 0.5}
+Actor MT_Gibchunkacid_S1.5     :    MT_Gibchunkacid {Scale 1.5}
+Actor MT_Gibchunkacid_S2       :    MT_Gibchunkacid {Scale   2}
+
+ACTOR MT_GibchunkBurn: Particle
+{
+  Health 50
+  PainChance 256
+  BounceType Grenade
+  BounceCount 12
+  BounceFactor 0.2
+  Gravity 0.2
+ 
+  States
+  {
+
+  Spawn:
+    TNT1 A 0 
+    CHNK A 380
+    goto Death
+  Death:
+    CHNK AAAAAAAAAAAAAAAA  5  A_Fadeout(0.0591)  
+    TNT1 A 0 A_NoBlocking
+    stop 
+}}
+
+Actor MT_Gibchunkburn_S0.5     :    MT_Gibchunkburn {Scale 0.5}
+Actor MT_Gibchunkburn_S1.5     :    MT_Gibchunkburn {Scale 1.5}
+Actor MT_Gibchunkburn_S2       :    MT_Gibchunkburn {Scale   2}

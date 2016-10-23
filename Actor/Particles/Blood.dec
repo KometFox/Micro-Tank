@@ -1,0 +1,57 @@
+ACTOR MTP_RedBlood : Particle
+{
+  Gravity 0.3
+  Scale 0.12
+  renderstyle Translucent
+  alpha 0.8
+  States
+  {
+  Spawn:
+    BLSR ABCDEFGHIJKLMNOPQRS 2 A_CheckFloor("Death")
+    BLSR TUVWXYZ 2 A_Fadeout(0.115) 
+    Goto Death   
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR MTP_GreenBlood : MTP_RedBlood
+{
+  States
+  {
+  Spawn:
+    BLSG ABCDEFGHIJKLMNOPQRS 2 A_CheckFloor("Death")
+    BLSG TUVWXYZ 2 A_Fadeout(0.115) 
+    Goto Death   
+  }
+}
+
+ACTOR MTP_BlueBlood : MTP_RedBlood
+{
+  States
+  {
+  Spawn:
+    BLSB ABCDEFGHIJKLMNOPQRS 2 A_CheckFloor("Death")
+    BLSB TUVWXYZ 2 A_Fadeout(0.115) 
+    Goto Death   
+  }
+}
+
+
+ACTOR MTP_RedBloodCloud : Particle
+{
+  renderstyle Translucent
+  alpha 0.8
+  Scale 0.13
+  States
+  {
+  Spawn:
+    BLSR DEFGHIJKLMNOPQR 1 
+    BLSR STUVWXYZ 1 A_Fadeout(0.106) 
+    Goto Death   
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}

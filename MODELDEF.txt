@@ -1,0 +1,304 @@
+Model HTANK_SNOW
+{
+   Path "MODELS"
+   Model 0 "Tiger13DC.md3"
+   Skin 0 "Tiger1.png"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA A 0 0
+    FrameIndex HTAA B 0 0
+	FrameIndex HTAA C 0 0
+    FrameIndex HTAA D 0 0
+      PITCHFROMMOMENTUM
+}
+
+Model MicroTankA1_Class
+{
+   Path "MODELS\MicroTankA1"
+   Model 0 "LightTankA1.md3"
+   Skin  0 "LightTankA1.png"
+   
+   Model 1 "LightTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_1.png"
+   Scale 4.75 4.75 4.75	
+   AngleOffset 0
+   FrameIndex MTA1 A 0 0
+      PITCHFROMMOMENTUM
+}
+
+Model MicroTankA1_Class
+{
+   Path "MODELS\MicroTankA1"
+   Model 0 "LightTankA1.md3"
+   Skin  0 "LightTankA1.png"
+   
+   Model 1 "LightTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_2.png"
+   Scale 4.75 4.75 4.75	
+   AngleOffset 0
+   FrameIndex MTA1 B 0 0
+      PITCHFROMMOMENTUM
+}
+
+Model MicroTankA1_Class
+{
+   Path "MODELS\MicroTankA1"
+   Model 0 "LightTankA1.md3"
+   Skin  0 "LightTankA1.png"
+   
+   Model 1 "LightTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_3.png"
+   Scale 4.75 4.75 4.75	
+   AngleOffset 0
+   FrameIndex MTA1 C 0 0
+      PITCHFROMMOMENTUM
+}
+
+
+Model MicroTankA1_Class
+{
+   Path "MODELS\MicroTankA1"
+   Model 0 "LightTankA1.md3"
+   Skin  0 "LightTankA1.png"
+   
+   Model 1 "LightTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_4.png"
+   Scale 4.75 4.75 4.75	
+   AngleOffset 0
+   FrameIndex MTA1 D 0 0
+      PITCHFROMMOMENTUM
+}
+
+
+
+Model MicroMediumTankA1_Class
+{
+   Path "MODELS\MicroMediumTankA1"
+   Model 0 "MediumTankA1.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroMediumTankA1"   
+   Model 1 "MediumTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_1.png"
+   Scale 4.65 4.65 4.65	
+   AngleOffset 0
+   FrameIndex MMA1 A 0 0
+}
+
+Model MicroMediumTankA1_Class
+{
+   Path "MODELS\MicroMediumTankA1"
+   Model 0 "MediumTankA1.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroMediumTankA1"   
+   Model 1 "MediumTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_2.png"
+   Scale 4.65 4.65 4.65	
+   AngleOffset 0
+   FrameIndex MMA1 B 0 0
+}
+
+Model MicroMediumTankA1_Class
+{
+   Path "MODELS\MicroMediumTankA1"
+   Model 0 "MediumTankA1.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroMediumTankA1"   
+   Model 1 "MediumTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_3.png"
+   Scale 4.65 4.65 4.65	
+   AngleOffset 0
+   FrameIndex MMA1 C 0 0
+}
+
+Model MicroMediumTankA1_Class
+{
+   Path "MODELS\MicroMediumTankA1"
+   Model 0 "MediumTankA1.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroMediumTankA1"  
+   Model 1 "MediumTankA1_Tracks.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_4.png"
+   Scale 4.65 4.65 4.65	
+   AngleOffset 0
+   FrameIndex MMA1 D 0 0
+}
+
+Model MicroHeavyTankA1_Class
+{	
+//   Path "MODELS\MicroHeavyTankA1"
+//   Model 0 "HeavyTankA1.md3"
+//   Skin  0 "HeavyTankA1.png"
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_1.png"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex HTAA A 0 0
+   FrameIndex HTAA A 1 0
+      PITCHFROMMOMENTUM
+}
+
+Model MicroHeavyTankA1_Class
+{
+//   Path "MODELS\MicroHeavyTankA1"
+//   Model 0 "HeavyTankA1.md3"
+//   Skin  0 "HeavyTankA1.png"
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_2.png"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex HTAA B 0 0
+   FrameIndex HTAA B 1 0
+}
+
+Model MicroHeavyTankA1_Class
+{
+//   Path "MODELS\MicroHeavyTankA1"
+//   Model 0 "HeavyTankA1.md3"
+//   Skin  0 "HeavyTankA1.png"
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_3.png"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex HTAA C 0 0
+   FrameIndex HTAA C 1 0
+}
+
+Model MicroHeavyTankA1_Class
+{
+//   Path "MODELS\MicroHeavyTankA1"
+//   Model 0 "HeavyTankA1.md3"
+//   Skin  0 "HeavyTankA1.png"
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path  "MODELS\Ketten"
+   Skin  1 "StandardTrack_4.png"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex HTAA D 0 0
+   FrameIndex HTAA D 1 0
+}
+
+Model MT_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "SludgeBarreL_Tex.png"
+   Scale 13.5 13.5 14
+   AngleOffset 0
+   FrameIndex BAR1 A 0 0
+}
+
+Model MT_SludgeBarrel_NoResp
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "SludgeBarreL_Tex.png"
+   Scale 13 13 13
+   AngleOffset 0
+   FrameIndex BAR1 A 0 0
+}
+
+
+
+
+
+Model MT_Parachute
+{
+   Path "MODELS\Misc"
+   Model 0 "Parachute.md3"
+   Skin  0 "Parachute.png"
+   Scale 15 15 15
+   AngleOffset 0
+   FrameIndex PARA A 0 1
+   FrameIndex PARA B 0 2
+   FrameIndex PARA C 0 3
+   FrameIndex PARA D 0 4
+   FrameIndex PARA E 0 5
+   FrameIndex PARA F 0 6
+}
+
+Model MT_SupplyBox
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
+
+Model MT_SupplyBox
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KISE A 0 0
+}
+
+
+
+Model MT_SupplyBoxEmpty
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
+
+
+
+
+
+
+
+
+

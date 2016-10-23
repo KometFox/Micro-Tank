@@ -1,0 +1,4 @@
+//
+CanFir fire08
+$random MT_R_CannonFire {fire08 fire09 fire7}
+$alias CanFire1 MT_R_CannonFire

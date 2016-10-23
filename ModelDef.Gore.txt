@@ -1,0 +1,177 @@
+
+Model MT_GibChunkRed
+{
+   Path "MODELS\Gore"
+   Model 0 "GibChunk.md3"
+   Skin  0 "bloodred.jpg"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex CHNK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+Model MT_GibChunkRed
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment1.md3"
+   Skin  0 "BoneFragment1.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONA A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+Model MT_GibChunkRed
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment2.md3"
+   Skin  0 "BoneFragment2.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONB A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+
+Model MT_GibChunkBlue
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment1.md3"
+   Skin  0 "BoneFragment1B.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONA A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+Model MT_GibChunkBlue
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment2.md3"
+   Skin  0 "BoneFragment2B.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONB A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+
+Model MT_GibChunkGreen
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment1.md3"
+   Skin  0 "BoneFragment1G.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONA A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+Model MT_GibChunkGreen
+{
+   Path "MODELS\Gore"
+   Model 0 "BoneFragment2.md3"
+   Skin  0 "BoneFragment2G.png"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex BONB A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+
+
+Model MT_GibChunkBlue
+{
+   Path "MODELS\Gore"
+   Model 0 "GibChunk.md3"
+   Skin  0 "bloodBlue.jpg"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex CHNK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+Model MT_GibChunkGreen
+{
+   Path "MODELS\Gore"
+   Model 0 "GibChunk.md3"
+   Skin  0 "bloodGreen.jpg"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex CHNK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+
+Model MT_GibChunkAcid
+{
+   Path "MODELS\Gore"
+   Model 0 "GibChunk.md3"
+   Skin  0 "bloodAcid.jpg"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex CHNK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+Model MT_GibChunkBurn
+{
+   Path "MODELS\Gore"
+   Model 0 "GibChunk.md3"
+   Skin  0 "bloodBurn.jpg"
+   Scale 7 7 7
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex CHNK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}

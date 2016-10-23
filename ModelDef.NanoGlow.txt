@@ -1,0 +1,915 @@
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_A.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_B.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_C.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_D.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_E.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+
+Model MT_Con_DragonTeeth
+{
+   Path "MODELS\Misc"
+   Model 0 "TBDT.md3"
+   Skin  0 "NLGL_F.png"
+   Scale 8 8 9
+   AngleOffset 0
+   FrameIndex AAAA F 0 0 
+}
+
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+
+}
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+
+}
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+
+}
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+
+}
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+
+}
+
+Model MT_Con_Hedgehog
+{
+   Path "MODELS\Hedgehog"
+   Model 0 "Hedgehog.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+
+}
+
+
+
+
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_A.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_B.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_C.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_D.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_E.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+
+Model MT_Con_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_F.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+
+
+
+
+
+
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_A.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_B.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_C.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_D.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_E.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+
+Model MT_Con_ExplosiveBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "NLGL_F.png"
+   Scale 13 13 14
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+
+
+
+
+
+
+
+   
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+
+Model MT_Con_RepairPad
+{
+   Path "MODELS\Misc"
+   Model 0 "RepairPad.md3"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 17
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+
+
+
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_OreRefinery
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreRefinery.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+   
+   
+   
+
+   
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_OreExtractor
+{
+   Path "MODELS\Buildings"
+   Model 0 "OreExtractor.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+ 
+ 
+ 
+   
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+   FrameIndex IDLE A 0 0
+}
+   
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_CrystalOreGenerator
+{
+   Path "MODELS\CrystalOreGenerator"
+   Model 0 "CrystalOreGenerator.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+ 
+
+   
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_CometCatcher
+{
+   Path "MODELS\CometCatcher"
+   Model 0 "CometCatcher.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+ 
+ 
+ 
+ 
+ 
+    
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+   FrameIndex IDLE A 0 0
+}
+   
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_MaterialMaker
+{
+   Path "MODELS\Buildings"
+   Model 0 "MaterialMaker.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_ArmsDealer
+{
+   Path "MODELS\Buildings"
+   Model 0 "ArmsDealer.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+
+
+
+
+ 
+
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_AmmoFactory
+{
+   Path "MODELS\AmmoFactory"
+   Model 0 "AmmoFactory.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+
+
+
+ 
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_A.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+   
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_B.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA B 0 0
+}
+   
+   
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_C.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA C 0 0
+}
+
+   
+   
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_D.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA D 0 0
+}
+   
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_E.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA E 0 0
+}
+   
+Model MT_Con_UpgradeCenter
+{
+   Path "MODELS\Buildings"
+   Model 0 "UpgradeCenter.md3"
+   Path "MODELS\Misc"
+   Skin  0 "NLGL_F.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA F 0 0
+}
+ 
+      
+           
+      

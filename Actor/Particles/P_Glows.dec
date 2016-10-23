@@ -1,0 +1,60 @@
+ACTOR BigGlow : Particle
+{
+  renderstyle Add
+  alpha 1
+  Scale 7
+  States
+  {
+  Spawn:
+    APP1 AAABBCC 1 Bright
+    APP1 DDEEFFGG 1 Bright A_Fadeout(0.058)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR MedGlow       :  BigGlow  {Scale 5 }
+ACTOR BigGlowSmall  :  BigGlow  {Scale 3.5 }
+ACTOR BigGlowSmall2 :  BigGlow  {Scale 2.25 }
+ACTOR SmallGlow     :  BigGlow  {Scale 0.5 }
+ACTOR TinyGlow      :  BigGlow  {Scale 0.25 }
+ACTOR TinierGlow      :  BigGlow  {Scale 0.125 }
+
+ACTOR MT_P_Glow_S0.0625    :  BigGlow  {Scale 0.0625 }
+ACTOR MT_P_Glow_S0.125     :  BigGlow  {Scale 0.125 }
+ACTOR MT_P_Glow_S0.25      :  BigGlow  {Scale 0.25 }
+ACTOR MT_P_Glow_S0.5       :  BigGlow  {Scale 0.5 }
+ACTOR MT_P_Glow_S0.75      :  BigGlow  {Scale 0.75 }
+ACTOR MT_P_Glow_S1         :  BigGlow  {Scale 1 }
+ACTOR MT_P_Glow_S1.25      :  BigGlow  {Scale 1.25 }
+ACTOR MT_P_Glow_S1.5       :  BigGlow  {Scale 1.5 }
+ACTOR MT_P_Glow_S1.75      :  BigGlow  {Scale 1.75 }
+ACTOR MT_P_Glow_S2         :  BigGlow  {Scale 2 }
+ACTOR MT_P_Glow_S2.25      :  BigGlow  {Scale 2.25 }
+
+
+
+
+ACTOR BigBlueGlow : Particle
+{
+  renderstyle Add
+  alpha 1
+  Scale 7
+  States
+  {
+  Spawn:
+    APP4 AAABBCC 1 Bright
+    APP4 DDEEFFGG 1 Bright A_Fadeout(0.058)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR MedBlueGlow       :   BigBlueGlow {Scale 5 }
+ACTOR BigBlueGlowSmall  :   BigBlueGlow {Scale 3.5 }
+ACTOR BigBlueGlowSmall2 :   BigBlueGlow {Scale 2.25 }
+ACTOR SmallBlueGlow     :   BigBlueGlow {Scale 0.5 }

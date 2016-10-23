@@ -1,0 +1,114 @@
+ACTOR G_Spark_S0.5 : Particle
+{
+  Health 0
+//  Projectile
+  Height 4
+  Radius 4
+  speed 0.005
+Gravity 0.35
+Scale 0.5
+  renderstyle Add
+  alpha 0.75
+  States
+  {
+  Spawn:
+    APP1 AAABBBCC 3
+    APP1 DDEEFFGG 3 A_Fadeout(0.058)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR G_Spark_S0.25 : G_Spark_S0.5 {Scale 0.25 }
+ACTOR G_Spark_S0.125 : G_Spark_S0.5 { Scale 0.125 }
+
+
+
+
+ACTOR SmallSparky : Particle
+{
+  Health 0
+//  Projectile
+  Height 4
+  Radius 4
+  speed 0.005
+Gravity 0.3
+Scale 0.13
+  renderstyle Add
+ -NOINTERACTION
+  alpha 1
+  States
+  {
+  Spawn:
+    APP1 A 30 
+    APP1 BBCCDDEEFFGG 1 A_Fadeout(0.029)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+
+ACTOR SmallSparkyA : SmallSparky {Scale 0.075 }
+
+ACTOR MT_Sparks : SmallSparky {Scale 0.08 Gravity 0.11 }
+
+ACTOR SmallBlueSparky : Particle
+{
+  Health 0
+//  Projectile
+  Height 4
+  Radius 4
+  speed 0.005
+Gravity 0.3
+Scale 0.13
+  renderstyle Add
+ -NOINTERACTION
+  alpha 1
+  States
+  {
+  Spawn:
+    APP4 A 30 
+    APP4 BBCCDDEEFFGG 1 A_Fadeout(0.029)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+
+
+ACTOR SmallBlueSparkyA : SmallBlueSparky {Scale 0.075 }
+
+
+
+
+ACTOR ReclaimEffect 
+{
+  Height 5
+  Radius 20
+  Scale 1
+  Speed 17
+  Gravity 0 
+  renderstyle Add
+  Damage (0)
+  +CANNOTPUSH
+  alpha 0.1
+  States
+  {
+  Spawn:
+    TNT1 A 10
+    TNT1 A 0 A_ChangeVelocity (-23, 0, -velz, CVF_RELATIVE|CVF_REPLACE)
+    ANP1 ABCDEFGHIJ 1 A_FadeIn(0.025)  
+    Goto Death
+  Death:
+    TNT1 A 0 A_ChangeVelocity (0, 0, 0, CVF_REPLACE)
+    ANP1 ABCDEFGHIJ 1 A_Fadeout(0.095)
+    Stop
+  }
+}
+
+

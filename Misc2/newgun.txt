@@ -1,0 +1,93 @@
+
+Light and Heavy weapon types:
+
+The player can carry more light weapon types 
+but these weapon dont scale up with its class (max 5)
+
+the player can carry fewer heavy weapon types
+but it scales with its class (max 2-3)
+
+i.e heavy tank Laser Bolter will output more damage
+than the light tank ones
+
+
+Light:
+2x20mm Autocannon
+4x7.92mm Machinegun 
+
+Heavy:
+
+MultiBarrel-Chaingun
+SludgeCannon
+RocketLauncher
+Laser Bolter
+Pulse Gun
+Mortar 
+
+
+
+
+Difference between Missiles and Rocket:
+Missiles - Guided (Homing,IR Infared, Radar,ATGM, Telescreen (TOW...), )
+Rocket   - Unguided (RPG,AT rocket etc...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+side note:
+I like how in fallout 3 (and Bethesda is a shit game dev)
+the "Missile" Launcher has shittons of buttons yet they do NOTHING
+FO1/2 has anyway better looking Rocket Launchers 

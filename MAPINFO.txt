@@ -1,0 +1,85 @@
+clearskills 
+
+skill baby
+{
+	AutoUseHealth
+	AmmoFactor = 2
+	DamageFactor = 0.5
+	EasyBossBrain
+	SpawnFilter = Baby
+	PicName = "M_JKILL"
+	Name = "Very Easy"
+	PlayerClassName = "Heavy Tank" , "Sunday Driver"
+	PlayerClassName = "Medium Tank", "Sunday Driver"
+	PlayerClassName = "Light Tank" , "Sunday Driver"
+	PlayerClassName = "Tiger 1"    , "Sonntagsfahrer"
+}
+
+skill easy
+{
+	EasyBossBrain
+	SpawnFilter = Easy
+	PicName = "M_ROUGH"
+	Name = "Easy"
+	PlayerClassName = "Heavy Tank" , "Private"
+	PlayerClassName = "Medium Tank", "Private"
+	PlayerClassName = "Light Tank" , "Private"
+	PlayerClassName = "Tiger 1"    , "Gefreiter"
+}	
+
+skill normal
+{
+	SpawnFilter = Normal
+	PicName = "M_HURT"
+	Name = "Normal"
+	PlayerClassName = "Heavy Tank" , "Experienced"
+	PlayerClassName = "Medium Tank", "Experienced"
+	PlayerClassName = "Light Tank" , "Experienced"
+	PlayerClassName = "Tiger 1"    , "Erfahren"
+}
+
+skill hard
+{
+	SpawnFilter = Hard
+	PicName = "M_ULTRA"
+	Name = "Hard"
+	PlayerClassName = "Heavy Tank" , "Panzer Elite"
+	PlayerClassName = "Medium Tank", "Panzer Elite"
+	PlayerClassName = "Light Tank" , "Panzer Elite"
+	PlayerClassName = "Tiger 1"    , "Panzer Elite"
+}
+
+skill nightmare
+{
+	AmmoFactor = 2
+	FastMonsters
+	DisableCheats
+	RespawnTime = 80
+	SpawnFilter = Nightmare
+	PicName = "M_NMARE"
+	Name = "Very Hard"
+	MustConfirm  = "Do you have what it takes to become a Tank Ace?"
+	PlayerClassName = "Heavy Tank" , "Tank Ace"
+	PlayerClassName = "Medium Tank", "Tank Ace"
+	PlayerClassName = "Light Tank" , "Tank Ace"
+	PlayerClassName = "Tiger 1"    , "Panzer Ass"	
+}
+
+skill nightmareII
+{
+	AmmoFactor = 2.5
+	Aggressiveness = 0.5
+	damagefactor = 1.5
+	FastMonsters
+	DisableCheats
+	RespawnTime = 40
+	SpawnFilter = Nightmare
+	PicName = "M_NMARE"
+	Name = "Very Hard"
+	MustConfirm = "Welcome to Ground Zero. Are you sure you are a tough for that?"
+	PlayerClassName = "Heavy Tank" , "Superior Tank Ace"
+	PlayerClassName = "Medium Tank", "Superior Tank Ace"
+	PlayerClassName = "Light Tank" , "Superior Tank Ace"
+	PlayerClassName = "Tiger 1"    , "Ueberlegene Panzer Ass"	
+}	
+

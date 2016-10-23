@@ -1,0 +1,79 @@
+
+
+Model WeaponUpgradeBox_lvl1
+{
+   Path "MODELS\WPN_Upgrade_1"
+   Model 0 "WPN_Upgrade.md3"
+   Skin  0 "WPN_Upgrade_Tex.png"
+   Scale 4.25 4.25 4.25
+   AngleOffset 0
+   FrameIndex WPNU A 0 0
+}
+
+Model SmallRepairKit
+{
+   Path "MODELS\MediumHealthBase"
+   Model 0 "SmallRepairKit.md3"
+   Skin  0 "SmallRepairKit.png"
+   Scale 4 4 4
+   AngleOffset 0
+   FrameIndex NACO A 0 0
+}
+
+Model MediumRepairKit
+{
+   Path "MODELS\MediumHealthBase"
+   Model 0 "SmallRepairKit.md3"
+   Skin  0 "SmallRepairKit.png"
+   Scale 4.25 4.25 4.25
+   AngleOffset 0
+   FrameIndex NACO A 0 0
+}
+
+
+Model MT_Materials_2U
+{
+   Path "MODELS\Items"
+   Model 0 "CrystalMat.md3"
+   Skin  0 "CrystalMat.png"
+   Scale 1.25 1.25 1.25
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+
+Model MT_Materials_3U
+{
+   Path "MODELS\ResourceBox"
+   Model 0 "Box.md3"
+   Skin  0 "Materials.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex AAAA A 0 0
+}
+
+
+
+Model MT_DynamiteBundle
+{
+   Path "MODELS\Items"
+   Model 0 "DynamiteBundle.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+ //  PITCHFROMMOMENTUM
+   Scale 3 3 3
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Fuze_10s
+{
+   Path "MODELS\Items"
+   Model 0 "Fuze.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+ //  PITCHFROMMOMENTUM
+   Scale 3 3 3
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}

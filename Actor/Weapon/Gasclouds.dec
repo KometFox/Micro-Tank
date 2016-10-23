@@ -1,0 +1,183 @@
+
+ACTOR GasCloud_Weak  : AreaEffect
+{
+  Health 0
+  +CANNOTPUSH
+  Height 4
+  Radius 4
+  speed 0.06
+  scale 0.02
+  DamageType Acid
+  Gravity 0
+  renderstyle Add
+  BounceType Doom
+  BounceCount 2
+  BounceFactor 0.3
+  Reactiontime 0
+  alpha 0.8
+  Obituary "%o <Gas Cloud) %k"   
+  var int user_fireduration;
+  States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_fireduration",1)	
+    goto Spawn2
+  Spawn2:
+    TNT1 A 2 A_Spawnitem("Fire0")
+    TNT1 A 0 A_Countdown
+    loop
+  Death:
+    TNT1 A 0 Bright A_spawnitemex("Gascloud_Effect")
+    TNT1 A 0 A_Explode (4,42)
+    TNT1 A 0 A_SetUserVar("user_fireduration",user_fireduration+1)
+    TNT1 A 18 // 18 = 0,5~ second, FD of 2 = 1 second  
+    TNT1 G 0 A_JumpIf(user_Fireduration==16,"Death2")
+    loop
+  Death2:
+    TNT1 A 1 
+    Stop
+}}
+
+
+
+ACTOR GasCloud_Weak2  : AreaEffect
+{
+  Health 0
+  +CANNOTPUSH
+  Height 4
+  Radius 4
+  speed 0.06
+  scale 0.02
+  DamageType Acid
+  Gravity 0
+  renderstyle Add
+  BounceType Doom
+  BounceCount 2
+  BounceFactor 0.3
+  Reactiontime 0
+  alpha 0.8
+  Obituary "%o <Gas Cloud) %k"   
+  var int user_fireduration;
+  States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_fireduration",1)	
+    goto Spawn2
+  Spawn2:
+    TNT1 A 2 A_Spawnitem("Fire0")
+    TNT1 A 0 A_Countdown
+    loop
+  Death:
+    TNT1 A 0 Bright A_spawnitemex("Gascloud_Effect")
+    TNT1 A 0 A_Explode (2,40)
+    TNT1 A 0 A_SetUserVar("user_fireduration",user_fireduration+1)
+    TNT1 A 18 // 18 = 0,5~ second, FD of 2 = 1 second  
+    TNT1 G 0 A_JumpIf(user_Fireduration==15,"Death2")
+    loop
+  Death2:
+    TNT1 A 1 
+    Stop
+}}
+
+
+
+
+
+
+
+ACTOR Gascloud_Weak3
+{
+  Health 0
+  Height 20
+  Radius 20
+  speed 0.15
+  scale 0.72
+  DamageType Toxin
+  Gravity 0
+    +NOGRAVITY
+    +FORCEXYBILLBOARD
+    +DONTSPLASH
+    -ACTIVATEIMPACT 
+    -ACTIVATEPCROSS 
+    +NODAMAGETHRUST
+    +FORCERADIUSDMG
+    +MISSILE
+    +SKYEXPLODE
+    +CANNOTPUSH
+    +NOTELEPORT
+//    +PAINLESS
+  renderstyle Translucent
+  BounceType Doom
+  BounceCount 10
+  speed 5
+  alpha 0.05
+  Obituary "%o <Toxin gas cloud] %k"   
+  var int user_effectduration;
+  States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_effectduration",1)
+    TNT1 AAA 1 A_Spawnitem("Smoke2_S0.125")
+    goto SpawnP
+  SpawnP:
+    LSP2 ABCDEFGHIJKLMNO 2 A_Fadein(0.008)
+    goto Spawn2
+  Spawn2:
+    TNT1 A 0 A_Explode (2,38)
+    LSP2 ABCDEFGH 2 
+    TNT1 A 0 A_Explode (2,38)
+    LSP2 IJKLMNO 2
+    TNT1 A 0 A_SetUserVar("user_effectduration",user_effectduration+1)
+    TNT1 A 0 A_JumpIf(user_effectduration==10,"Death")
+    TNT1 A 0 A_Jump(120,"Wander")
+    loop
+  Wander:
+    TNT1 A 0 A_ChangeVelocity(0+random(-70,70)/100,0+random(-70,70)/100,0+random(-70,70)/100,CVF_Replace)
+    Goto Spawn2
+  Death:
+    LSP2 ABCDEFGHIJKLMNO 2 A_Fadeout(0.028,1)
+    Stop
+  }
+}
+
+
+
+
+ACTOR StunGas  : AreaEffect
+{
+  Health 0
+  +CANNOTPUSH
+  Height 4
+  Radius 4
+  speed 0.06
+  scale 1.5
+  DamageType SuperStun
+  Gravity 0
+  renderstyle Add
+  BounceType Doom
+  BounceCount 2
+  BounceFactor 0.3
+  Reactiontime 0
+  alpha 0.8
+  Obituary "%o <Gas Cloud) %k"   
+  var int user_fireduration;
+  States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_fireduration",1)	
+    goto Spawn2
+  Spawn2:
+    TNT1 A 2 A_Spawnitem("Fire0")
+    TNT1 A 0 A_Countdown
+    loop
+  Death:
+    AFP1 N 0
+    AFP1 N 0 A_Explode (1,200)
+    AFP1 N 0 A_SetUserVar("user_fireduration",user_fireduration+1)
+    AFP1 N 1 // 18 = 0,5~ second, FD of 2 = 1 second  
+    AFP1 N 0 A_JumpIf(user_Fireduration==1000,"Death2")
+    loop
+  Death2:
+    TNT1 A 1 
+    Stop
+}}

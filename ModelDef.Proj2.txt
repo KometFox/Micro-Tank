@@ -1,0 +1,11 @@
+
+Model MT_AnthraxSprayer_1
+{
+   Path "MODELS\Projectiles"
+   Model 0 "CShell.md3"
+   Skin  0 "CShell.png"
+   PITCHFROMMOMENTUM
+   Scale 15 15 15
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}

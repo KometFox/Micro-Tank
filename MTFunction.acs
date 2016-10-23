@@ -1,0 +1,66 @@
+#library "MTFunction.acs"
+#include "zcommon.acs"
+
+#define PLAYER_TID_START 300
+
+//Fucking workaround so that the search light shit works
+//properly. God damnit DECORATE why the fuck is making a simple
+//Search Light Item so fucking hard?
+script "MTACS_SearchLight" (void) 
+{
+    //IF ON ITEM
+    while (!CheckInventory("MT_LIGHT_1"))
+	{
+	GiveInventory("MT_SearchLight2",1);
+	delay(4);
+	GiveInventory("MT_SearchLight2",1);
+	delay(4);
+
+	//IF OFF ITEM
+	 if (!CheckInventory("MT_LIGHT_2"))
+	 {
+	 ACS_NamedTerminate("MTACS_SearchLight",0);
+     Terminate;
+	 }  
+	 
+	}
+
+} 
+
+//This is highly neccessary so movement buttons can be used for Menus 
+ 
+script "MT_NIGGERS" OPEN 
+{
+ConsoleCommand("COMPAT_ClientsSendFullButtonInfo True");
+}
+
+//When the player got the Menu open and enters a map
+//He gets stuck, this ACS removes this bug.
+
+script "MT_MenuJunk" OPEN
+{
+	If(!CheckInventory("ImCrafting"))
+	{
+	    TakeInventory("ImCrafting",1);
+		SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	    SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+	}
+}
+//Some fucking Multiplayer shit.
+
+script "MT_MPShit1" ENTER
+{
+  Thing_ChangeTID(0,PLAYER_TID_START+PlayerNumber());
+}
+
+script "MT_MPShit2" RESPAWN
+{
+  // Make sure our old dead body doesn't still have our tid
+  Thing_ChangeTID(PLAYER_TID_START+PlayerNumber(),0);
+  Thing_ChangeTID(0,PLAYER_TID_START+PlayerNumber());
+}
+
+//Placeholder for the Pre-Morph health memory
+//So that morphing cannot be used for reseting the health
+//to spawn amount.
+

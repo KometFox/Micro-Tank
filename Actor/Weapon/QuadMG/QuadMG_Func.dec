@@ -1,0 +1,60 @@
+ACTOR MT_QuadMachineGun_IsSelected : MT_A_BooleanValue {}
+ACTOR MT_QuadMachineGun_APSelected : MT_A_BooleanValue {}
+ACTOR MT_QuadMachineGun_HESelected : MT_A_BooleanValue {}
+
+ACTOR MT_QuadMachineGun_Burst : Inventory {
+Inventory.MaxAmount 2
+}
+
+//----------------
+//Quad Machine Gun
+//----------------
+
+actor MT_QuadMG_AmmoSlot : Inventory {
+ inventory.maxamount 3 }
+  
+Actor MT_QuadMG_AmmoSwitch : CustomInventory {
+  +INVENTORY.HUBPOWER
+  +INVENTORY.QUIET
+  -INVBAR
+  -COUNTITEM
+//  +INVENTORY.UNTOSSABLE
+  +INVENTORY.AUTOACTIVATE
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+States {
+Use:
+TNT1 A 0 A_JumpIfInventory("MT_QuadMG_AmmoSlot",2,"Reset2")
+TNT1 A 0 A_GiveInventory("MT_QuadMG_AmmoSlot",1)
+Goto ResetCheck
+
+
+
+A1:
+TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_APSelected",1)
+stop
+A2:
+TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_HESelected",1)
+stop
+
+ResetCheck:
+TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_APSelected",            1,"Res1")
+TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_HESelected",            1,"Res2")
+Goto Switch
+
+Res1:
+TNT1 A 0 A_TakeInventory("MT_QuadMachineGun_APSelected",1)
+Goto ResetCheck
+Res2:
+TNT1 A 0 A_TakeInventory("MT_QuadMachineGun_HESelected",1)
+Goto ResetCheck
+
+Switch:
+TNT1 A 0 A_JumpIfInventory("MT_QuadMG_AmmoSlot",2,"A2")
+TNT1 A 0 A_JumpIfInventory("MT_QuadMG_AmmoSlot",1,"A1")
+Goto Use
+
+Reset2:
+TNT1 A 0 A_TakeInventory("MT_QuadMG_AmmoSlot",2)
+Goto Use
+}}

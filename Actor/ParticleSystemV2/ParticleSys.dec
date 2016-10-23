@@ -1,0 +1,29 @@
+//
+
+Actor MT_ParticleSystem2
+{
+  +ClientSideOnly
+  +FORCEXYBILLBOARD
+  +NOTELEPORT
+  +NOTELEOTHER
+  +CANNOTPUSH
+  +RANDOMIZE
+  +NOINTERACTION
+  -THRUACTORS
+  -ACTIVATEMCROSS
+
+  Speed 0
+  Gravity 0
+//Max 7, anything bigger and it slides
+  Radius 25
+  Height 25
+ 
+  BounceType Grenade
+  BounceCount 100
+  BounceFactor 0.0001 
+}
+
+Actor MT_ParticleSystem2_Interact : MT_ParticleSystem2
+{
+  -NOINTERACTION
+}

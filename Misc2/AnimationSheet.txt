@@ -1,0 +1,45 @@
+This sheet will be used to make all Actors using models share the same frame 
+names. So for example there is Actor Infantry and Actor Infantry-Rocket
+[A] Infantry uses for walking animation these frames:
+WA00-WA15 , while Infantry-Rocket just uses MO00-MO10 
+
+And where is the problem there? Simple, eventhrough those 2 frames are just 
+walking animation which will be anyway used for the see state and it would 
+make editing between those 2 troublesome so and the solution is simple to make
+the Infantry-Rocket uses the same actor naming sheme as everybody else.
+
+Whic will give us this:
+
+Actor Infantry...
+
+See:
+WA00 .... do shit
+....
+WA08 ... do more shit
+
+Actor Infantry-Rocket...
+
+See:
+WA00 .... do junk
+....
+WA05... do more shit
+
+
+//Default
+IDLE
+
+
+//Walking
+WALK
+
+//Moving
+MOVE
+
+//Destroyed
+KILL
+DEST
+
+//Misc
+
+//Building Animation, 
+

@@ -1,0 +1,174 @@
+
+
+
+ACTOR WeaponUpgradeBox_lvl1 : CustomInventory
+{
+
+-CountItem
++INVENTORY.UNDROPPABLE
++INVENTORY.HUBPOWER
++INVENTORY.AUTOACTIVATE
+ Scale 1.5
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.PickupMessage "Picked Up: Weapon Technology Crate +1"
+States
+{
+ Spawn:
+ WPNU A -1
+ stop
+ Use:
+ TNT1 A 1 A_JumpIfInventory("MHTA1_Token",1, "T1A")
+ TNT1 A 1 A_JumpIfInventory("MMTA1_Token",1, "T1A")
+ TNT1 A 1 A_JumpIfInventory("MTA1_Token",1,  "LT_T1A")
+ stop
+ 
+ 
+ T1A:
+ TNT1 A 1 A_JumpIfInventory("MT_T1",1,  "T2A")
+ TNT1 A 0 A_GiveInventory("MT_T1")
+ goto Held2
+ 
+ LT_T1A:
+ TNT1 A 1 A_JumpIfInventory("MT_LT_T1",1,  "LT_T2A")
+ TNT1 A 0 A_GiveInventory("MT_LT_T1")
+ goto Held2
+ 
+ LT_T2A:
+ TNT1 A 0 A_GiveInventory("MT_LT_T2")
+ goto Held
+
+ T2A:
+ TNT1 A 0 A_GiveInventory("MT_T2")
+ goto Held
+ 
+ 
+ Held2:
+ TNT1 A 0 A_TakeInventory("WeaponUpgradeBox_lvl1",1)
+ Stop
+ 
+ Held:
+ TNT1 A 10
+ loop
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ACTOR PZ2regen : Health 
+{
+  +INVENTORY.AUTOACTIVATE
+  -COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 500
+  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up a health bonus."
+  States
+  {
+  Spawn:
+    NANO ABCDCB 6  
+    Loop
+  }
+}
+
+ACTOR MTA1regen : Health 
+{
+  +INVENTORY.AUTOACTIVATE
+  -COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 575
+  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up a health bonus."
+  States
+  {
+  Spawn:
+    NANO ABCDCB 6  
+    Loop
+  }
+}
+
+ACTOR MMTA1regen : Health 
+{
+  +INVENTORY.AUTOACTIVATE
+  -COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 610
+  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up a health bonus."
+  States
+  {
+  Spawn:
+    NANO ABCDCB 6  
+    Loop
+  }
+}
+
+
+ACTOR MHTA1regen : Health 
+{
+  +INVENTORY.AUTOACTIVATE
+  -COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 700
+  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up a health bonus."
+  States
+  {
+  Spawn:
+    NANO ABCDCB 6  
+    Loop
+  }
+}
+
+
+ACTOR Regenator_HP : CustomInventory
+{
+
+-CountItem
++INVENTORY.UNDROPPABLE
++INVENTORY.HUBPOWER
++INVENTORY.AUTOACTIVATE
++INVENTORY.ALWAYSPICKUP 
+ Scale 1.5
+  Inventory.Amount 1
+  Inventory.MaxAmount 9999999
+States
+{
+ Spawn:
+ WPNU A -1
+ stop
+ Use:
+ TNT1 A 1 A_JumpIfInventory("MHTA1_Token",1, "MHTA1")
+ TNT1 A 1 A_JumpIfInventory("MMTA1_Token",1, "MMTA1")
+ TNT1 A 1 A_JumpIfInventory("MTA1_Token",1, "MTA1")
+ stop
+ MHTA1:
+ TNT1 A 1
+ TNT1 A 1 A_GiveInventory("MHTA1regen")
+ goto idle
+ MMTA1:
+ TNT1 A 1
+ TNT1 A 1 A_GiveInventory("MMTA1regen")
+ goto idle
+ MTA1:
+ TNT1 A 1
+ TNT1 A 1 A_GiveInventory("MTA1regen")
+ goto idle
+ Idle:
+ TNT1 A 1
+ stop
+}
+}
+
+
+

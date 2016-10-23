@@ -1,0 +1,226 @@
+//Fancy graphics like impact,fog,smoke etc...
+//should use this
+Actor Particle 
+{
+  +NOBLOOD
+  +DONTGIB
+  +NOICEDEATH
+  +ClientSideOnly
+  +FORCEXYBILLBOARD
+  +NOTELEPORT
+  +NOTELEOTHER
+  +CANNOTPUSH
+  -RANDOMIZE
+  -THRUACTORS
+  -NOINTERACTION
+  -ACTIVATEMCROSS  
+  -SHOOTABLE
+  Speed 2
+   Gravity 0
+//Anything bigger causes the effects to slide like a JIDF around
+  Radius 7
+  Height 7
+ 
+  BounceType Grenade
+  BounceCount 10
+  BounceFactor 0.5 
+ 
+}
+
+Actor ParticleNB : Particle
+{
+  BounceCount 0
+  BounceType None
+}
+
+Actor DestroyableActor 
+{
+  -SHOOTABLE
+  -ACTIVATEMCROSS
+  -CANNOTPUSH
+  -THRUACTORS
+  +NOTELEPORT
+  +NOTELEOTHER
+  +CANNOTPUSH
+  +SHOOTABLE
+  +SOLID
+  +CANPASS
+  +PUSHABLE
+  +BLOCKEDBYSOLIDACTORS
+  Radius 6
+  Height 6
+}
+
+
+//All Shell/Shot Projectiles should use this
+//as base
+ACTOR MTP_TShellBase {
+  Radius 6
+  Height 6
+  Speed 60
+  DamageType AP
+  Projectile
+  scale 0.7
+  -NOGRAVITY
+  +BLOODSPLATTER
+  +EXTREMEDEATH
+ // +FORCEPAIN
+  gravity 0.018
+  damage (random(1,1.2)*100)
+  DeathSound "Weapon/37mmblas"
+  Obituary "%o <75mm AP] %k" 
+  States {
+  Spawn:
+    37MM A 1 Bright A_Spawnitem("ShellTrace")
+    Loop
+  Death:
+   TNT1 A 0 A_Spawnitem("75mmAP_ExplosionSpawner")
+    TNT1 A 1  A_Explode(50,50)
+    Stop
+}}
+
+ACTOR MTP_TShellBase_FastProj : FastProjectile {
+  Radius 6
+  Height 6
+  Speed 60
+  DamageType AP
+  Projectile
+  scale 0.7
+  +NOGRAVITY
+  +BLOODSPLATTER
+ // +FORCEPAIN
+  +EXTREMEDEATH
+  gravity 0
+  damage (random(1,1.2)*100)
+  DeathSound "Weapon/37mmblas"
+  Obituary "%o <75mm AP] %k" 
+  States
+  {
+  Spawn:
+    37MM A 1 Bright A_Spawnitem("ShellTrace")
+    Loop
+  Death:
+   TNT1 A 0 A_Spawnitem("75mmAP_ExplosionSpawner")
+    TNT1 A 1  A_Explode(50,50)
+    Stop
+}}
+
+//////Should be used for Incendiary,Fire,Gas,etc
+Actor AreaEffect
+{
+  Health 0
+  Height 10
+  Radius 10
+    +FORCEXYBILLBOARD
+    +DONTSPLASH
+    +FORCERADIUSDMG
+    +SKYEXPLODE
+    +CANNOTPUSH
+    +NOTELEPORT
+    +MISSILE
+    -ACTIVATEIMPACT 
+    -ACTIVATEPCROSS 	
+}
+
+
+ACTOR MT_Dud
+{
+  Radius 6
+  Height 6
+  Speed 10
+  DamageType AP
+  Projectile
+  scale 0.7
+  -NOGRAVITY
+  +BLOODSPLATTER
+ // +FORCEPAIN
+  gravity 0.018
+  damage (random(1,1.2)*5)
++EXTREMEDEATH
+  DeathSound ""
+  Obituary "%o <dud] %k" 
+  BounceType Doom
+  BounceCount 2
+  BounceFactor 0.45
+  WallBounceFactor 2
+  States
+  
+  {
+  Spawn:
+    IDLE A 1
+    IDLE A 0 A_PlaySound("MetHit3")
+    Goto Spawn2
+  Spawn2:
+    IDLE A 2
+    TNT1 A 0 A_SpawnItem("Smoke1_S0.25")
+    loop
+  Death:
+    TNT1 AAAA 0 A_Spawnitemex("Dirtchunk_S0.75",0,0,0,0+random(-4,4),0+random(4,4),0+frandom(4,8),0+random(-360,360))
+    Stop
+  }
+}
+
+ACTOR MT_AreaCloud
+{
+
+  Health 0
+  Height 4
+  Radius 4
+    +FORCEXYBILLBOARD
+    +DONTSPLASH
+    -ACTIVATEIMPACT 
+    -ACTIVATEPCROSS 
+    +NODAMAGETHRUST
+    +FORCERADIUSDMG
+//    +MISSILE
+    +SKYEXPLODE
+    +CANNOTPUSH
+    +NOTELEPORT
+//    +PAINLESS
+  renderstyle Add
+  BounceType Hexen
+  BounceCount 6
+}
+
+//This Base Actor will be used for Player
+//useable Items
+ACTOR MT_PlayerInventory : CustomInventory
+{
+  +NOBLOOD
+  +NOBLOCKMONST
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  +INVBAR
+  -COUNTITEM
+}
+
+//used for items like upgrades
+//which in no circumstances should be removeable
+//unless it is a mod feature
+ACTOR MT_Special_PlayerCustomInventory : CustomInventory
+{
+  +NOBLOOD
+  +NOBLOCKMONST
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  +INVENTORY.UNDROPPABLE
+  +INVBAR
+  -COUNTITEM
+}
+
+ACTOR MT_Special_PlayerInventory : Inventory
+{
+  +NOBLOOD
+  +NOBLOCKMONST
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  +INVENTORY.UNDROPPABLE
+  +INVBAR
+  -COUNTITEM
+}

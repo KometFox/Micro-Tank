@@ -1,0 +1,184 @@
+/*******************************************************************************
+ *                         DEFAULT DOOM STATUS BAR
+ *******************************************************************************
+ * If you wish to include this file into a custom status bar please use the 
+ * following command:
+ *
+ *     base Doom;
+ *
+ * Using #include "sbarinfo/doom.txt" will not be supported.
+ ******************************************************************************/
+
+height 32;
+monospacefonts true, "0";
+base Doom;
+
+
+statusbar fullscreen,fullscreenoffsets // MicroTank HUD
+{
+InInventory MT_ClassToken, 1
+{
+        //Customhud 
+   //	drawimage "MTHBG", 20, -10, centerbottom;
+   	drawimage "MTHSB", 145, -2, centerbottom;
+   	drawimage "MTHSA", -145, -7, centerbottom;
+     drawmugshot "STF", 5, 70, -80;
+   	
+   	//health
+   	drawimage "MTHHP", 164, -82, centerbottom;
+    drawnumber 2147483647, BIGFONT, untranslated, health, drawshadow, alignment(left) , 175, -99;
+   //     drawbar   "MTHHB", "nullimage", health barshitfix , horizontal, 172, 664, 1; 
+     	
+   	//armor
+   	drawimage armoricon, 164, -59, centerbottom;
+        drawnumber 2147483647, BIGFONT, untranslated, armor, drawshadow, alignment(left) , whennotzero, 175, -75;
+   //     drawbar   "MTHHB", "nullimage", armor barshitfix , horizontal, 172, 688, 1; 
+   
+   	//ammo
+   	drawimage ammoicon1, -105, -62, centerbottom;
+   	drawnumber 2147483647, BIGFONT, untranslated, ammo1, drawshadow, -140, -85;
+   	
+   	drawimage ammoicon2, -105, -13, centerbottom;
+   	drawnumber 2147483647, BIGFONT, untranslated, ammo2, drawshadow, -140, -35;	
+   	
+        drawselectedinventory centerbottom, drawshadow, alwaysshowcounter, BIGFONT, -45, -45, -26, -42, untranslated;	
+   
+       //Metals
+        drawnumber 2147483647, BIGFONT, untranslated, ammo MT_HighValueMetal , drawshadow ,alignment(left) , 25, -180;
+   	drawimage "METBA0", 15, -160, centerbottom;
+   	
+       //Credits
+        drawnumber 2147483647, BIGFONT, untranslated, ammo MT_Credits , drawshadow,alignment(left) , 25, -140;
+   	drawimage "CREDA0", 15, -120, centerbottom;
+   
+   	
+      //got backpack?
+    InInventory Backpack, 1 
+    {
+      drawimage "BPAKA0", 140, -105, centerbottom;
+    }
+   	
+   	gamemode deathmatch
+   	{
+   		drawnumber 2147483647, BIGFONT, untranslated, frags, drawshadow, -3, 1;
+   	}
+   	gamemode singleplayer, cooperative, teamgame
+   	{
+   		// let's hope no mod ever uses 100 keys...
+   		drawkeybar 100, vertical, reverserows, auto, -10, 2, 0, 3, auto;
+   	}
+   
+   
+    //coax mg info
+      drawimage "MTHCM",  308, -2, centerbottom;
+   
+	  
+	IsSelected "75x500mm Cannon", MHT_Basegun  
+     {
+	  drawimage "HUBBA0", -105, -60, centerbottom;
+//	  drawnumber 2147483647, BIGFONT, centerbottom, ammo A_7u62x54mmR ,  alignment(left) , whennotzero , drawshadow, -183, -85;
+     } 
+    //ammo shit
+   
+    IsSelected "75x500mm Cannon", MHT_Basegun
+   {
+    InInventory MHT_BaseGun_AP, 1 
+    {
+      drawimage "APAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+   
+    InInventory MHT_BaseGun_HE, 1 
+    {
+      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MHT_BaseGun_Buckshot, 1 
+    {
+      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MHT_BaseGun_Inc, 1 
+    {
+      drawimage "HEIAA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    } 
+
+    InInventory MHT_BaseGun_HEAT, 1 
+    {
+      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }  
+    
+ 
+   }
+   
+   //////
+   
+    IsSelected "50x441mm Cannon", MMT_Basegun
+   {
+    InInventory MMT_BaseGun_AP, 1 
+    {
+      drawimage "APAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+   
+    InInventory MMT_BaseGun_HE, 1 
+    {
+      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MMT_BaseGun_Buckshot, 1 
+    {
+      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MMT_BaseGun_Inc, 1 
+    {
+      drawimage "HEIAA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    } 
+ 
+    InInventory MMT_BaseGun_HEAT, 1 
+    {
+      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }  
+    
+   }
+   
+   //////
+   
+    IsSelected "37x290mm Cannon", MMT_Basegun
+   {
+    InInventory MLT_BaseGun_AP, 1 
+    {
+      drawimage "APAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+   
+    InInventory MLT_BaseGun_HE, 1 
+    {
+      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MLT_BaseGun_Buckshot, 1 
+    {
+      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    
+    InInventory MLT_BaseGun_HEAT, 1 
+    {
+      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }  
+   }
+   
+}
+}

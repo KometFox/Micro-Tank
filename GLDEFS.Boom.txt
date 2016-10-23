@@ -1,0 +1,9 @@
+flickerlight Explosion_Big
+{
+    color 0.75 0.45 0.05
+    size 40
+    secondarysize 20
+    chance 0.75
+}
+
+

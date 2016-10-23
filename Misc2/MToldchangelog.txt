@@ -1,0 +1,281 @@
+V1S:
+
+Misc:
+Polished Tank's model/texture a bit...
+
+Enemy:
+Added Hovertank
+Enemy's death state have a corpse model now (not to be confused with the killable wrecks!)
+Wrecks have -SOLID flag and they don't kill themself over time now; HP nerfed from 2500
+to 900
+
+
+V1R:
+Balance:
+37mm
+Flamethrower damage is nerfed, Buffed Flameball damage
+HECB is replaced with Acid Cluster Bomb
+50/75mm
+Tweaked FAE/Gascloud rocket damage, for FAE you might be able to kill a single
+-cyberdemon with around 4-5 shots, Gascloud should be rather used against airborne target
+
+
+All
+HE(AT) damage tweaked 
+-HEAT's have +FORCERADIUSDMG flag now
+Tank MG's is using AP instead of FMJ damage type now...
+Shells are using speed 60 instead of 65... Which will make it less glitchy, gravity reduced a bit aswell
+
+Misc:
+Replaced items behaviour is changed... by using Randomspawner/Dropitem
+instead of bugged as fuck state version (which tends to spawn more items then 1...)
+Fixed BFG9000 respawn bug
+Fixed Medium Tank FAE weapon not using ammo
+WW2 tanks are no more available ,too much work for little gain
+they where pretty much the same...
+
+Reworkied the particles effect... now even more shinier
+I hope I dont get my ass busted for this... *hides in a bunker*
+
+
+//ops forgot to include the V1Q changelog...
+
+V1Q: 
+Balance:
+20/37mm type
+-Buffed 20/37mm Lasers a bit
+-Tweaked Flamethrowers, They fire faster now but deal less damage
+-Cannons fire Plasmaball a bit slower but acts as a mini-bfg now kinda...
+-20/37mm Lasers/Plasmaball uses EnergyCell as ammo now
+-20/37mm Laser/Plasmaball have +ForceRadiusDmg flag now
+-20/37mm Flamethrower now has a 2nd Primary Mode (FlameBall)
+
+50/75mm type
+-FAE (Level 2) Requires now ammo but is more powerful
+
+All calibers
+-Weapons that uses ammo but the player has no ammo gets notified about it
+might remove that when player think's it is annoyning/nublike
+-Tweaked Damage of all Shell type which should be way less now
+-HE Shells damage radius is bigger but causes less damage now
+-HEAT shell damage is less but still better then HE through smaller damage radius
+-Direct Damage is slightly less randomized (1,1.2)* instead of doom default
+(1,8)* should result in less insane damage value, I think
+
+Enemys:
+--*Spider/Mech
+--Buffed HP a bit and tweaked DamageFactor 
+-Added FireCrawler (has a chance to replace Archvile)
+-Added Painmaker   (has a chance to replace PainElemental)
+-Added MediumMech  (has a chance to replace HellBaron)
+
+Weapons:
+-Introduction of APCRBC weapon/ammo and damagetype which deals more damage
+and tanks/enemys are less resistent to it
+-APHEI got replaced by APCRBC
+-HE-Frag got replaced by HEI
+-HEAT 2nd mode is HECB (Cluster Bomb)
+-Run for your life!
+
+Misc:
+-Made a few changes to effects
+-Regenator needs now Ammo and to get ammo you need to go to 2nd Primary Mode
+and use Fire
+-Mehreens can use BFG9000 now 
+-All Tanks size got increased but anything more doesnt work
+witouth that the model looks out of place
+-Enemy wrecks self-d on a certain time
+
+
+V1P:
+Misc:
+-Removed All ActiveSound and SoundSpawn/SoundClass for now
+
+Balance:
+-Tweaked Gascloud a bit, it spreads farless and the shells spawns 
+a few less of them
+
+-Tanks doesn't autoregenate for now due to odd crash behaviour 
+-All Tanks have instead a "Weapon" that regenates HP/Armor instead
+-Nerfed HP Core from 37 to 20
+-Nerfed HP Supercore from 222 to 100
+
+
+
+
+V1O:
+-Introduction of Weapon modes
+added more warheads see the ammo/weapon section
+
+-Introduction of UGCV Durchbruchwagen II ausf A1
+
+-Introduction (Enemy PK3 only) of light attack walker with 4x autocannons
+
+-Made some shells a bit weaker, APHEI leaves some fire
+
+
+V1N:
+-Added a Light Attack Spider w/ Rapid Plasma and Missile Launcher
+as a seperate package
+
+-Changed behaviour of item replacement
+
+-Changed behaviour of FAE projectiles, should be less buggier now I guess
+
+-All tanks are a bit bigger now, adjusted the viewheight aswell
+-All tanks (except Micro Tank A1) have individual wrecks now
+
+
+
+
+V1M:
+
+-MG's projctile gets fastprojectile (means also no gravity for them for now)
+
+-Introduction of Super Core (75% chance of replacing soulsphere, 220+ HP)
+
+-37MM shell and onwards always gibs target
+
+-Added a common wrecks for all tanks (will add soon individual wreck)
+
+-Nerfed Medium Tank A1 speed a bit from 62 to 60
+
+-FAE (50-75mm) doesn't spawn fireballs anymore but it's groundfire damages
+bosses now, got also +PAINLESS flag so it shouldn't be too OP 
+
+-Adjusted 20-75mm shells a bit, mostly a bit buff - small direct damage nerfs
+for HE shell
+
+-MHT A1 Nitro booster recharges faster (710 instead of 825), is slower 1.38
+instead of 1.5 and last longer -8  instead of -5 seconds, also the removed icon
+bug is fixed, so the icon is always here, even when not useable
+
+-All 7.62x54 MG's fire faster
+
+-Buffed Health Core from 20 to 35
+
+-Improved MicroTankA1 model a bit
+-Introduction of Panzer III ausf G/2
+-Panzer II/III gets 7.92x57 instead of 7.62x54, MG is slower but makes
+more damage
+
+
+
+V1L:
+-Introduced Health bases which spawns a core (20+ HP, max 5k in inventory)
+
+-Nerfed HP regen from 15 to 2 (For Panzer II it's 1, he is so fast he can
+grab a few core anyway quicker then other tanks so)
+-Nerfed Armor regen to 1
+-Armor/HP Regen is smoother
+
+-Heavy Tank gets a short lasting nanite fuel 105, mainly because so he won't
+get stuck often in important places, no you cannot race it with it,
+Also it's speed from 0.56 got reduced to 0.48 and buffed HP from 900 to 925
+
+-Getting Level 1/2 weapons is a bit different now
+
+
+
+
+V1K:
+-All tanks are making noise and effect when hit
+-All tanks are pushable now but got atleast 4k Mass for now
+-Improved Particle collision behaviour (they shouldn't push stuff now)
+-improved tanks death behaviour a bit and fixed motor sound that keeps looping
+
+-I think the 'super regen' bug is fixed, might release a hotfix patch
+when that issue comes out of nowhere for whatever the reason is
+
+-Changed Weaponslot behaviour, no sadly I couldn't find a way around 
+adding compitability to other weapon mods
+
+-nerfed 75/50mm FAE rocket speed (forget it in previous release)
+it is supposed to have long range homing but for some reason zandronum
+doesnt read maxtargetrange therefor it's homing range is limited (I am doing it wrong?)
+
+-Buffed the speed of Micro Heavy Tank A1 a bit
+-nerfed MHTA1 HP to 900
+-HP regen of all tanks is 15 (16 for Panzer II)
+-Armor regen is 8 instead 15
+-HP/Armor regenation is slower
+-Buffed Lazer speed to 45 (PZII to 48)
+-Machine Guns fire 1 bullet in a row instead of 2
+
+V1J:
+-Introduction of 2 Unlockable weapons
+-37/20mm Cannon gets Flamer (Level 1) and Lazer (Level 2)
+-50/75mm Cannon gets Target-Homing Missile (Level 1) and Fuel-Air-Explosive (Level 2)
+-Unlockable Weapons might need some more balance and polishing
+-removeal of pickup addon, all tanks got +Pickup now
+Level 1 Upgrade is found in Berserk pack
+Level 2 Upgrade is found in BFG9000 weapon
+-Nerfed 50mm reloading speed a bit
+-Quite a few new sounds, is suspect to changes
+
+
+
+V1I:
+-Introduction of 3 Weapons (APHEI,AP,HE)
+-Animated Particles and complete revamp
+-removed armor spawn and given instead slow armor regen max 175 for all tanks 
+for now
+-buffed HP
+-few speed changes
+
+
+-Changed behaviour of main cannon reload time
+ while it is still reloading you can still 
+ swap weapons or use altfire
+
+
+V1H:
+-Added UGCV Micro Heavy Tank A1
+-nerfed main cannon weapon speed
+-polished particles a bit
+-buffed HP/Armor of all tanks a bit
+-buffed damage of all shells (not MG ones)
+-MG weapons uses FMJ damagefactor now
+-Forget adding A_Noblocking on death (causes glitches for projectiles)
+-some new sounds
+
+V1G:
+-Pickup version is a small patch then a standalone now
+-Polished 50mmAPHEI particle more (bigger)
+-buffed PZII to 300 HP 
+-changed radius of all MT's to 16 instead of 18 (might give visual glitch,
+but better a visual glitch then getting frustated being stuck on important
+places)
+-changed the maxstepheight of all tanks to 50 (PZII 52)
+
+V1F:
+-Polished Particles a bit
+-Buffed weapon damage
+
+V1E:
+-Added Micro Medium Tank A1
+
+
+V1D:
+-Polished particle effects a bit and new bitmaps
+-nerfed 2mm AP cannon
+-Panzer II ausf L a bit faster now
+-added combo weapons where you don't need to cycle for MG or cannon 
+-added placeholder sounds
+
+V1C:
+-Added in UGCV Panzer II Ausfuehrung L*
+-Added 2cm cannon and 7.62 MG32
+-Forget to add proper numbering making the HEI and APHEI shells OP
+
+
+
+V1B:
+-37mmAPHEI gets a tracer now and is affected by fixed gravity
+-7x62mm AP machinegun is somewhat affected by gravity
+-made MTA1 somewhat faster
+-added projectile model 
+-effect changes (should perhaps be less resource intensiv I guess)
+
+V1(a):
+initial release

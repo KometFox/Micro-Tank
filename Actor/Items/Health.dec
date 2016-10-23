@@ -1,0 +1,49 @@
+
+
+
+actor SmallRepairKit : MT_PlayerInventory
+{    
+  Height 5
+  Radius 5
+  Scale 2
+  Inventory.Icon "REPKA0"
+  Inventory.PickupMessage "Picked up: Small repair kit (HP 10+), Inventory max amount: 40"
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.InterHubAmount 1
+  -COUNTITEM
+  Tag "Small Repair Kit (HP 10+, Inv 40)"
+  states
+  {
+  Spawn:
+    NACO A 2
+    loop
+  Use:  
+    TNT1 A 0 HealThing(1,0)
+    Stop
+  Death:
+    TNT1 A 0
+    stop
+  }
+}
+
+Actor MediumRepairKit : SmallRepairKit
+{
+ Scale 2.75
+  Inventory.Icon "REPMA0"
+  Inventory.PickupMessage "Picked up: Medium repair kit (HP 35+), Inventory max amount: 5"
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.InterHubAmount 1
+  +INVENTORY.AUTOACTIVATE
+  Tag "Medium Repair Kit (HP 40+)"
+ states
+ {
+  Use:
+   TNT1 A 0 HealThing(40,0)
+   stop
+  }
+}
+
+
+
