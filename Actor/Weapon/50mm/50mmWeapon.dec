@@ -162,7 +162,7 @@ ACTOR MMT_Basegun : Weapon
  
   HEAT_Fire:
   TNT1 A 0 A_TakeInventory("MT_50x441mmHEAT",1)
-  TNT1 A 0 A_Jumpifinventory("WPN_Mode_2",1, "HE_Fire2")
+  TNT1 A 0 A_Jumpifinventory("WPN_Mode_2",1, "HEAT_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_3",1, "HEAT3_Fire")
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_2",1, "HEAT2_Fire")    
   TNT1 A 0 A_Firecustommissile("50mmHEATshell",0,18,0,0,0)
@@ -172,7 +172,7 @@ ACTOR MMT_Basegun : Weapon
   TNT1 A 0 A_TakeInventory("MT_50x441mmHEAT",1)
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_3",1, "HEAT3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_2",1, "HEAT2_Fire2")    
-  TNT1 A 0 A_Firecustommissile("50mmHEATshell",0,18,0,0,0)
+  TNT1 A 0 A_Firecustommissile("50mmHEAT-TurboShell",0,18,0,0,0)
   Goto MuzzleFlash_Default
   
 ////-------------
