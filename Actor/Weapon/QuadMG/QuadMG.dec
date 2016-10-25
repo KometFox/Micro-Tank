@@ -26,12 +26,14 @@ ACTOR MT_QuadMachineGun : Weapon
     QUMG AAAAA 0 A_Raise
     QUMG A 1 A_Raise
     Loop
-	
-	
+  FuckYou:
+    QUMG A 10 A_PlaySound("Beep2")
+    TNT1 A 0 A_Print("You imbecile! You did not loaded any ammo!")
+	Goto Ready	
   Fire:   
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_APSelected" ,1, "AP_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_HESelected" ,1, "HE_Fire_Check")
-    Goto Ready
+    Goto FuckYou
  
   AP_Fire_Check:
     TNT1 A 0 //A_JumpIfInventory("MT_75x500mmAP",1,"AP_Fire")	

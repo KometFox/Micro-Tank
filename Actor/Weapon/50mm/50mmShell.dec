@@ -81,7 +81,7 @@ ACTOR 50mmHEshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("50mmHE_ExplosionSpawner")
-    TNT1 A 1  A_Explode(200,153,0,0,72)
+    TNT1 A 1  A_Explode(225,153,0,0,75)
     Stop
   }
 }
@@ -112,7 +112,32 @@ ACTOR 50mmHEATshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
-    TNT1 A 1  A_Explode(215,130,0,0,78)
+    TNT1 A 1  A_Explode(215,120,0,0,100)
+    Stop
+  }
+}
+
+ACTOR 50mmHEAT-TurboShell : MTP_TShellBase_FastProj
+{
+  Radius 6
+  Height 6
+  Speed 120
+  DamageType PiercingExplosive
+  gravity 0.042
+  damage (random(1,1.2)*5)
+  Deathsound "Weapon/boom7"
+  Obituary "%o <50mm HEAT] %k" 
+  +FORCERADIUSDMG
+  Decal MT_SmallHEATScorch
+  States
+  {
+  Spawn:
+    37MM A 1 Bright A_Spawnitem("ShellTrace")
+    Loop
+  Death:
+    TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
+    TNT1 A 0 A_Scream
+    TNT1 A 1  A_Explode(178,80,0,0,70)
     Stop
   }
 }

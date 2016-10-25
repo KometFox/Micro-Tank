@@ -55,8 +55,8 @@ Actor DestroyableActor
 //All Shell/Shot Projectiles should use this
 //as base
 ACTOR MTP_TShellBase {
-  Radius 6
-  Height 6
+  Radius 7
+  Height 7
   Speed 60
   DamageType AP
   Projectile

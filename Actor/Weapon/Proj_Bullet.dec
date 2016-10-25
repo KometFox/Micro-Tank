@@ -24,6 +24,28 @@ ACTOR MT_BuckShot : MT_Frag
     Stop	
 }}
 
+ACTOR MT_BuckShot_2 : MT_BuckShot
+{
+  damage (random(1,1.2)*12)
+  States{
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop	
+}}
+
+ACTOR MT_BuckShot_3 : MT_BuckShot
+{
+  damage (random(1,1.2)*15)
+  States{
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop	
+}}
+
 ACTOR MT_BuckShot_HE : MT_BuckShot
 {
   DamageType Explosive
@@ -37,7 +59,33 @@ ACTOR MT_BuckShot_HE : MT_BuckShot
 	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
 	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
 	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
-	TNT1 A 0 A_Explode(35,20,0,0,1)
+	TNT1 A 0 A_Explode(35,60,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_BuckShot_HE_2 : MT_BuckShot_HE
+{
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(42,72,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_BuckShot_HE_3 : MT_BuckShot_HE
+{
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(51,87,0,0,1)
 	TNT1 A 1
 	Stop
 }}
