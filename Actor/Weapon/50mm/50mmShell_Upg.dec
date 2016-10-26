@@ -38,7 +38,7 @@ ACTOR 50mmHEshell_2 : 50mmHEshell
     TNT1 A 0  A_Spawnitem("50mmHE_ExplosionSpawner")
     TNT1 AA 0 A_SpawnItemEx("Shockwave0_S1.25")
     TNT1 A 0  A_Playsound("boom12")
-    TNT1 A 4  A_Explode(270,190,0,0,128)
+    TNT1 A 4  A_Explode(270,228,0,0,128)
     Stop
   }
 }
@@ -70,7 +70,7 @@ ACTOR 50mmHEATshell_2 : 50mmHEATshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
-    TNT1 A 1  A_Explode(258,138,0,0,124)
+    TNT1 A 1  A_Explode(408,148,0,0,124)
     Stop
   }
 }
@@ -86,7 +86,7 @@ ACTOR 50mmHEATshell_3 : 50mmHEATshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
-    TNT1 A 1  A_Explode(336,166,0,0,150)
+    TNT1 A 1  A_Explode(513,178,0,0,150)
     Stop
   }
 }
@@ -102,7 +102,7 @@ ACTOR 50mmHEAT-TurboShell_2 : 50mmHEAT-TurboShell
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
     TNT1 A 0 A_Scream
-    TNT1 A 1  A_Explode(214,92,0,0,83)
+    TNT1 A 1  A_Explode(273,104,0,0,88)
     Stop
   }
 }
@@ -118,7 +118,7 @@ ACTOR 50mmHEAT-TurboShell_3 : 50mmHEAT-TurboShell
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
     TNT1 A 0 A_Scream
-    TNT1 A 1  A_Explode(279,111,0,0,100)
+    TNT1 A 1  A_Explode(355,125,0,0,106)
     Stop
   }
 }

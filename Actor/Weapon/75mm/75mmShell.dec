@@ -161,7 +161,7 @@ ACTOR 75mmHEATshell : MTP_TShellBase
   Death:
     TNT1 A 0 A_Spawnitem("75mmHEAT_ExplosionSpawner")
     TNT1 A 0 A_Scream
-    TNT1 A 1  A_Explode(470,142,0,0,100)
+    TNT1 A 1  A_Explode(470,142,0,0,120)
     Stop
   }
 }
@@ -186,7 +186,7 @@ ACTOR 75mmHEAT-TurboShell : MTP_TShellBase_FastProj
   Death:
     TNT1 A 0 A_Spawnitem("50mmHEAT_ExplosionSpawner")
     TNT1 A 0 A_Scream
-    TNT1 A 1  A_Explode(250,100,0,0,90)
+    TNT1 A 1  A_Explode(313,100,0,0,85)
     Stop
   }
 }
