@@ -134,7 +134,6 @@ ACTOR MHT_Basegun : Weapon
   Goto MuzzleFlash_Default  
   
   Buckshot_Fire2:
-  TNT1 A 0 A_TakeInventory("MT_75x500mmBuckshot",1)
   TNT1 A 0 A_Jumpifinventory("MTU_BuckShotShell_3",1, "Buckshot3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_BuckShotShell_2",1, "Buckshot2_Fire2")  
   MCAN A 0 A_FireCustomMissile("MT_Nothing",0,1)
@@ -151,7 +150,6 @@ ACTOR MHT_Basegun : Weapon
   Goto MuzzleFlash_Default
   
   AP_Fire2:
-  TNT1 A 0 A_TakeInventory("MT_75x500mmAP",1)
   TNT1 A 0 A_Jumpifinventory("MTU_APShot_3",1, "AP3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_APShot_2",1, "AP2_Fire2")
   TNT1 AAAAAAA 0 A_Firecustommissile("75mmAPshell",0,0)
@@ -167,7 +165,6 @@ ACTOR MHT_Basegun : Weapon
   Goto MuzzleFlash_Default
   
   HE_Fire2:
-  TNT1 A 0 A_TakeInventory("MT_75x500mmHE",1)
   TNT1 A 0 A_Jumpifinventory("MTU_HEShell_3",1, "HE3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_HEShell_2",1, "HE2_Fire2")
   TNT1 A 0 A_Firecustommissile("75mmHEshell",0,1,0,0,0)
@@ -182,7 +179,6 @@ ACTOR MHT_Basegun : Weapon
   Goto MuzzleFlash_Default
  
   Inc_Fire2:
-  TNT1 A 0 A_TakeInventory("MT_75x500mmInc",1)
   TNT1 A 0 A_Jumpifinventory("MTU_IncShell_3",1, "Inc3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_IncShell_2",1, "Inc2_Fire2")  
   TNT1 A 0 A_Firecustommissile("75mmIncshell",0,1,0,0,0)
@@ -197,7 +193,6 @@ ACTOR MHT_Basegun : Weapon
   Goto MuzzleFlash_Default
   
   HEAT_Fire2:
-  TNT1 A 0 A_TakeInventory("MT_75x500mmHEAT",1)
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_3",1, "HEAT3_Fire2")
   TNT1 A 0 A_Jumpifinventory("MTU_HEATShell_2",1, "HEAT2_Fire2") 
   TNT1 A 0 A_FireCustomMissile("75mmHEAT-TurboShell",0,1)
