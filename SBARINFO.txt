@@ -65,7 +65,7 @@ InInventory MT_ClassToken, 1
    	gamemode singleplayer, cooperative, teamgame
    	{
    		// let's hope no mod ever uses 100 keys...
-   		drawkeybar 100, vertical, reverserows, auto, -10, 2, 0, 3, auto;
+   		drawkeybar 150, horizontal, reverserows, auto, -45, -130, 0, 3, auto;
    	}
    
    
