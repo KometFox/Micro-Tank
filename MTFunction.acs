@@ -2,6 +2,10 @@
 #include "zcommon.acs"
 
 #define PLAYER_TID_START 300
+// 'your code looks messy man!'
+// ah fuck you, I can't code for shit. Even a Pajeet knows coding better
+//than me
+
 
 //Fucking workaround so that the search light shit works
 //properly. God damnit DECORATE why the fuck is making a simple
@@ -63,4 +67,24 @@ script "MT_MPShit2" RESPAWN
 //Placeholder for the Pre-Morph health memory
 //So that morphing cannot be used for reseting the health
 //to spawn amount.
+
+
+//Bullshit for CVAR
+script "MT_CVAR_Things" (void)
+{
+    SetResultValue(GetCVar("mtcvar_creditstart"));
+}
+
+script "MT_GiveMoni" ENTER
+{
+  int creditamount;
+   
+   if(GetCVar("mtcvar_creditstart") > 1 )
+    {
+	   creditamount = GetCVar("mtcvar_creditstart");
+	   GiveInventory("MT_Credits", creditamount);	
+	}
+}
+
+
 

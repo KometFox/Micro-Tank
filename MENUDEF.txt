@@ -1,0 +1,33 @@
+//I fucking hate you cunts to force me to do this shit instead of like you
+//know adding a recursive support or someshit like that but NOOO
+//I have to do this highly incompitable bullshit 
+OptionMenu "OptionsMenu"
+{
+	Title "OPTIONS"
+	Submenu "Multiplayer Options",		"ZA_MultiplayerOptions" // [TP]
+	StaticText " " // [TP]
+	Submenu "Customize Controls",		"CustomizeControls"
+	Submenu "Mouse options",			"MouseOptions"
+	Submenu "Joystick options",			"JoystickOptions"
+	StaticText " "
+	Submenu "Player Setup",				"PlayerMenu"
+	Submenu "Gameplay Options",			"GameplayOptions"
+	Submenu "Compatibility Options",	"CompatibilityOptions"
+	Submenu "Automap Options",			"AutomapOptions"
+	Submenu "HUD Options",				"HUDOptions"
+	Submenu "Miscellaneous Options",	"MiscOptions"
+	Submenu "Sound Options",			"SoundOptions"
+	Submenu "Display Options",			"VideoOptions"
+	Submenu "Set video mode",			"VideoModeMenu"
+	StaticText " "
+	SafeCommand "Reset to defaults",	"reset2defaults"
+	SafeCommand	"Reset to last saved",	"reset2saved"
+	Command "Go to console",			"menuconsole"
+    SubMenu "Micro Tank Server Settings", "MicroTankServerMenu"
+}
+
+OptionMenu "MicroTankServerMenu"
+{
+   Title "FUCKYOULEATHERMAN"
+   Slider "Starting Credits", "mtcvar_creditstart", 2500,10000,500
+}

@@ -39,7 +39,7 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
   Player.startitem "MT_Item_GrenadePod_Flare"     ,30
   Player.startitem "Item_GrenadePod_Smoke"        ,8
   Player.startitem "Item_GrenadePod_SSS"          ,1
-  Player.startitem "MT_Credits"                   ,2700
+  Player.startitem "MT_Credits"                   ,0
   Player.Startitem "MT_50x441mmHE"                ,44
   Player.Startitem "MT_50x441mmAP"                ,54
   Player.Startitem "MT_50x441mmBuckshot"            ,25
