@@ -79,11 +79,15 @@ script "MT_GiveMoni" ENTER
 {
   int creditamount;
    
+  If (!CheckInventory("MT_Credits") >= 1)
+  {
    if(GetCVar("mtcvar_creditstart") > 1 )
     {
 	   creditamount = GetCVar("mtcvar_creditstart");
 	   GiveInventory("MT_Credits", creditamount);	
 	}
+  Terminate;
+  }
 }
 
 

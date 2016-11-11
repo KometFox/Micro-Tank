@@ -28,6 +28,6 @@ OptionMenu "OptionsMenu"
 
 OptionMenu "MicroTankServerMenu"
 {
-   Title "FUCKYOULEATHERMAN"
+   Title "Settings."
    Slider "Starting Credits", "mtcvar_creditstart", 2500,10000,500
 }
