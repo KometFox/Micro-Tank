@@ -15,10 +15,10 @@ Model HTANK_SNOW
 Model MicroTankA1_Class
 {
    Path "MODELS\MicroTankA1"
+   Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
-   Skin  0 "LightTankA1.png"
-   
-   Model 1 "LightTankA1_Tracks.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
    Path  "MODELS\Ketten"
    Skin  1 "StandardTrack_1.png"
    Scale 4.75 4.75 4.75	
@@ -30,10 +30,10 @@ Model MicroTankA1_Class
 Model MicroTankA1_Class
 {
    Path "MODELS\MicroTankA1"
+   Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
-   Skin  0 "LightTankA1.png"
-   
-   Model 1 "LightTankA1_Tracks.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
    Path  "MODELS\Ketten"
    Skin  1 "StandardTrack_2.png"
    Scale 4.75 4.75 4.75	
@@ -45,10 +45,10 @@ Model MicroTankA1_Class
 Model MicroTankA1_Class
 {
    Path "MODELS\MicroTankA1"
+   Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
-   Skin  0 "LightTankA1.png"
-   
-   Model 1 "LightTankA1_Tracks.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
    Path  "MODELS\Ketten"
    Skin  1 "StandardTrack_3.png"
    Scale 4.75 4.75 4.75	
@@ -61,10 +61,10 @@ Model MicroTankA1_Class
 Model MicroTankA1_Class
 {
    Path "MODELS\MicroTankA1"
+   Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
-   Skin  0 "LightTankA1.png"
-   
-   Model 1 "LightTankA1_Tracks.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
    Path  "MODELS\Ketten"
    Skin  1 "StandardTrack_4.png"
    Scale 4.75 4.75 4.75	
