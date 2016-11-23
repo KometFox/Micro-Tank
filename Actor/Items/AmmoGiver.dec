@@ -115,3 +115,47 @@ Actor MT_AmmoG_HEInc : CustomInventory
   
   }
 }
+
+
+Actor MT_AmmoG_IncendiaryFuel : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: Incendiary Fuel Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_37x290mm_IncendiaryAmmo",50)
+  Stop
+  
+  }
+}
+
+Actor MT_AmmoG_EnergyCell : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: Energy Cell Pack"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_37x290mm_EnergyCellAmmo",40)
+  Stop
+  
+  }
+}
+

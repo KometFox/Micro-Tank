@@ -6,12 +6,22 @@ ACTOR 50mmAPshell_2 : MT_50mmAPshot
   States
   {
   Death:
-    TNT1 A 0  A_Spawnitem("50mmAP_ExplosionSpawner")
-    TNT1 A 0  A_Playsound("boom3")
-    TNT1 A 4  A_Explode(50,47)
+    TNT1 A 4  A_Explode(50,47,0,0)
+	Stop
+  XDeath:
+    TNT1 A 0  A_spawnitemex("SmokeRed")
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    TNT1 A 1  A_Explode(50,47,0,0)
+    Stop
+  Crash:
+    TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
+	TNT1 A 0 A_PlaySound("MetHit3")
+    TNT1 A 1  A_Explode(50,47,0,0)
     Stop
   }
 }
+
+
 
 ACTOR 50mmAPshell_3 : MT_50mmAPshot 
 {
@@ -19,11 +29,18 @@ ACTOR 50mmAPshell_3 : MT_50mmAPshot
   States
   {
   Death:
-    TNT1 A 0  A_Spawnitem("50mmAP_ExplosionSpawner")
-    TNT1 A 0  A_Playsound("boom3")
-    TNT1 A 4  A_Explode(87,81)
+    TNT1 A 1  A_Explode(87,81,0,0)
     Stop
-   
+  XDeath:
+    TNT1 A 0  A_spawnitemex("SmokeRed")
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    TNT1 A 1  A_Explode(87,81,0,0)
+    Stop
+  Crash:
+    TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
+	TNT1 A 0 A_PlaySound("MetHit3")
+    TNT1 A 1  A_Explode(87,81,0,0)
+    Stop	  
   }
 }
 

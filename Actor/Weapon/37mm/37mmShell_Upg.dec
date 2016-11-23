@@ -36,8 +36,6 @@ ACTOR 40mmAPshell_2 : 37mmAPshell
   States
   {
   Death:
-    TNT1 A 0  A_Spawnitem("37mmAP_ExplosionSpawner")
-    TNT1 A 0  A_Playsound("boom3")
     TNT1 A 4  A_Explode(188,44)
     Stop
   }
@@ -49,8 +47,6 @@ ACTOR 40mmAPshell_3 : 37mmAPshell
   States
   {
   Death:
-    TNT1 A 0  A_Spawnitem("37mmAP_ExplosionSpawner")
-    TNT1 A 0  A_Playsound("boom3")
     TNT1 A 4  A_Explode(282,77)
     Stop
    

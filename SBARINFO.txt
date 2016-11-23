@@ -177,7 +177,17 @@ InInventory MT_ClassToken, 1
     {
       drawimage "HTAMA0", 295, -30, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
-    }  
+    } 
+    InInventory MLT_BaseGun_FlameThrower, 1 
+    {
+      drawimage "NCAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_IncendiaryAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    } 	
+    InInventory MLT_BaseGun_Laser, 1 
+    {
+      drawimage "ENCEA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_EnergyCellAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    } 	
    }
    
 }
