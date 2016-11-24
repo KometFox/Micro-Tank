@@ -1,8 +1,9 @@
 Model HTANK_SNOW
 {
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Atlas.md3"
    Path "MODELS"
-   Model 0 "Tiger13DC.md3"
-   Skin 0 "Tiger1.png"
+   Skin 0 "Atlas.png"
    Scale 7.5 7.5 7.5
    AngleOffset 0
     FrameIndex HTAA A 0 0
