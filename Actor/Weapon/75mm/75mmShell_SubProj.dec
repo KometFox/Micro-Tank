@@ -47,11 +47,11 @@ ACTOR MT_75mmIncShell_Fire : MT_IncendiaryFire_Base
  States
   {
   Spawn:
-    LFP1  A 1
-    LFP1  A 0 A_SetScale(1.2,1.2)
-   "####" A 1 A_SetUserVar("user_SplashDamage",10)
+    LFP0  A 1
+    LFP0  A 0 A_SetScale(1.2,1.2)
+   "####" A 1 A_SetUserVar("user_SplashDamage",7)
    "####" A 1 A_SetUserVar("user_SplashRadius",130)
-   "####" A 1 A_SetUserVar("user_Duration",27)
+   "####" A 1 A_SetUserVar("user_Duration",50)
    "####" A 1 A_Gravity
   Goto Spawn3
    Death:
@@ -61,6 +61,44 @@ ACTOR MT_75mmIncShell_Fire : MT_IncendiaryFire_Base
   }
 }
 
+
+ACTOR MT_75mmIncShell_Fire2 : MT_IncendiaryFire_Base
+{
+ States
+  {
+  Spawn:
+    LFP1  A 1
+    LFP1  A 0 A_SetScale(1.2,1.2)
+   "####" A 1 A_SetUserVar("user_SplashDamage",8)
+   "####" A 1 A_SetUserVar("user_SplashRadius",156)
+   "####" A 1 A_SetUserVar("user_Duration",32)
+   "####" A 1 A_Gravity
+  Goto Spawn3
+   Death:
+   "####" AAAAAA 0 A_SpawnitemEx("MT_CEG_75mmIncFire",0,0,0,0+random(-4,4),0+random(-4,4),1+random(1,4))
+   "####" A 0 A_PlaySound("Boom14")
+   Goto Loopy 
+  }
+}
+
+ACTOR MT_75mmIncShell_Fire3 : MT_IncendiaryFire_Base
+{
+ States
+  {
+  Spawn:
+    LFP2  A 1
+    LFP2  A 0 A_SetScale(1.2,1.2)
+   "####" A 1 A_SetUserVar("user_SplashDamage",10)
+   "####" A 1 A_SetUserVar("user_SplashRadius",187)
+   "####" A 1 A_SetUserVar("user_Duration",38)
+   "####" A 1 A_Gravity
+  Goto Spawn3
+   Death:
+   "####" AAAAAA 0 A_SpawnitemEx("MT_CEG_75mmIncFire",0,0,0,0+random(-4,4),0+random(-4,4),1+random(1,4))
+   "####" A 0 A_PlaySound("Boom14")
+   Goto Loopy 
+  }
+}
 
 
 

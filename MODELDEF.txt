@@ -22,7 +22,7 @@ Model MT_MediumTank_PantherM10
    Model 0 "PantherM10.md3"
    Path "MODELS"
    Skin 0 "Atlas.png"
-   Scale 7.5 7.5 7.5
+   Scale 5 5 5
    AngleOffset 0
     FrameIndex MMA1 A 0 0
     FrameIndex MMA1 B 0 0

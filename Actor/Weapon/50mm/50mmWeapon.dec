@@ -28,26 +28,23 @@ ACTOR MMT_Basegun : Weapon
    
   Ready:
    MCAN A 1 A_WeaponReady
-   Goto Lopse
-   
+   Goto Lopse   
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("50mmReloadTime",1, "Ready")
     TNT1 A 0 A_Giveinventory("50mmReloadTime",1)
-    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_AP"        ,1, "AP_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_Buckshot"  ,1, "Buckshot_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HE"        ,1, "HE_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
-    Goto Ready
-    
+    Goto FireNow
   Fire_FastCan:
     TNT1 A 0 A_Jumpifinventory("50mmReloadTime_UPG2",1, "Ready")
     TNT1 A 0 A_Giveinventory("50mmReloadTime_UPG2",1)
+    Goto FireNow
+   FireNow:	
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_AP"        ,1, "AP_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_Buckshot"  ,1, "Buckshot_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HE"        ,1, "HE_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
-    Goto Ready
+    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_Inc"        ,1, "Inc_Fire_Check")
+    TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")   
+   Goto Ready
 
 //It is mandatory they are isolated   
   AP_Fire_Check:
@@ -56,6 +53,10 @@ ACTOR MMT_Basegun : Weapon
   
   HE_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmHE",1,"HE_Fire")
+	Goto Ready
+
+  Inc_Fire_Check:
+    TNT1 A 0 A_JumpIfInventory("MT_50x441mmInc",1,"Inc_Fire")
 	Goto Ready
 	
   Buckshot_Fire_Check:
@@ -156,6 +157,20 @@ ACTOR MMT_Basegun : Weapon
   TNT1 A 0 A_Jumpifinventory("MTU_HEShell_2",1, "HE2_Fire2")  
   TNT1 A 0 A_Firecustommissile("50mmHEshell",0,18,0,0,0)
   Goto MuzzleFlash_Default
+  
+  Inc_Fire:
+  TNT1 A 0 A_TakeInventory("MT_50x441mmInc",1)  
+  TNT1 A 0 A_Jumpifinventory("WPN_Mode_2",1, "Inc_Fire2")    
+  TNT1 A 0 A_Jumpifinventory("MTU_IncShell_3",1, "Inc3_Fire")
+  TNT1 A 0 A_Jumpifinventory("MTU_IncShell_2",1, "Inc2_Fire")  
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell",0,18,0,0,0)
+  Goto MuzzleFlash_Default
+  
+  Inc_Fire2:
+  TNT1 A 0 A_Jumpifinventory("MTU_IncShell_3",1, "Inc3_Fire2")
+  TNT1 A 0 A_Jumpifinventory("MTU_IncShell_2",1, "Inc2_Fire2")  
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell",0,18,0,0,0)
+  Goto MuzzleFlash_Default  
  
   HEAT_Fire:
   TNT1 A 0 A_TakeInventory("MT_50x441mmHEAT",1)
@@ -234,19 +249,19 @@ ACTOR MMT_Basegun : Weapon
   Goto MuzzleFlash_Default 
 //Incendiary  
   Inc2_Fire:
-  TNT1 A 0 A_Firecustommissile("50mmIncshell",0,1,0,0,0)
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell2",0,1,0,0,0)
   Goto MuzzleFlash_Default 
   
   Inc2_Fire2:
-  TNT1 A 0 A_Firecustommissile("50mmIncshell",0,1,0,0,0)
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell2",0,1,0,0,0)
   Goto MuzzleFlash_Default 
   
   Inc3_Fire:
-  TNT1 A 0 A_Firecustommissile("50mmIncshell",0,1,0,0,0)
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell3",0,1,0,0,0)
   Goto MuzzleFlash_Default
  
   Inc3_Fire2:
-  TNT1 A 0 A_Firecustommissile("50mmIncshell",0,1,0,0,0)
+  TNT1 A 0 A_Firecustommissile("MT_50mmIncshell3",0,1,0,0,0)
   Goto MuzzleFlash_Default  
   
 //High Explosive Anti Tank  
