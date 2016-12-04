@@ -3,6 +3,7 @@ addplayerclass MicroHeavyTankA1_Class
 addplayerclass MicroMediumTankA1_Class
 addplayerclass MicroTankA1_Class
 addplayerclass HTANK_SNOW
+addplayerclass MT_MediumTank_PantherM10
 
 
 

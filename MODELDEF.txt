@@ -1,5 +1,7 @@
 Model HTANK_SNOW
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "Tiger1_Atlas.md3"
    Path "MODELS"
@@ -10,11 +12,28 @@ Model HTANK_SNOW
     FrameIndex HTAA B 0 0
 	FrameIndex HTAA C 0 0
     FrameIndex HTAA D 0 0
-      PITCHFROMMOMENTUM
-}
 
+}
+Model MT_MediumTank_PantherM10
+{
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
+   Path "MODELS\MicroMediumTankA1"
+   Model 0 "PantherM10.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex MMA1 A 0 0
+    FrameIndex MMA1 B 0 0
+	FrameIndex MMA1 C 0 0
+    FrameIndex MMA1 D 0 0
+
+}
 Model MicroTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
@@ -25,11 +44,13 @@ Model MicroTankA1_Class
    Scale 4.75 4.75 4.75	
    AngleOffset 0
    FrameIndex MTA1 A 0 0
-      PITCHFROMMOMENTUM
+
 }
 
 Model MicroTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
@@ -40,11 +61,12 @@ Model MicroTankA1_Class
    Scale 4.75 4.75 4.75	
    AngleOffset 0
    FrameIndex MTA1 B 0 0
-      PITCHFROMMOMENTUM
 }
 
 Model MicroTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
@@ -55,12 +77,13 @@ Model MicroTankA1_Class
    Scale 4.75 4.75 4.75	
    AngleOffset 0
    FrameIndex MTA1 C 0 0
-      PITCHFROMMOMENTUM
 }
 
 
 Model MicroTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
    Model 0 "LightTankA1.md3"
@@ -71,13 +94,14 @@ Model MicroTankA1_Class
    Scale 4.75 4.75 4.75	
    AngleOffset 0
    FrameIndex MTA1 D 0 0
-      PITCHFROMMOMENTUM
 }
 
 
 
 Model MicroMediumTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
    Path "MODELS"
@@ -94,6 +118,8 @@ Model MicroMediumTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
+d   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
    Path "MODELS"
@@ -110,6 +136,8 @@ Model MicroMediumTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
    Path "MODELS"
@@ -126,6 +154,8 @@ Model MicroMediumTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
+   PITCHFROMMOMENTUM
+   IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
    Path "MODELS"
@@ -140,86 +170,75 @@ Model MicroMediumTankA1_Class
    FrameIndex MMA1 D 0 0
 }
 
+
+
 Model MicroHeavyTankA1_Class
 {	
-//   Path "MODELS\MicroHeavyTankA1"
-//   Model 0 "HeavyTankA1.md3"
-//   Skin  0 "HeavyTankA1.png"
+   PITCHFROMMOMENTUM
+   INHERITACTORROLL
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
    Path "MODELS"
-   Skin  0 "Atlas.png"
-   
+   Skin  0 "Atlas.png" 
    Path "MODELS\MicroHeavyTankA1"
    Model 1 "HeavyTankA1Track.md3"
-   Path  "MODELS\Ketten"
-   Skin  1 "StandardTrack_1.png"
+   Path "MODELS\Ketten"
+   Skin  1 "StandardTrack_1.png" 
+   Path "MODELS\MicroHeavyTankA1"
+   Model 2 "HeavyTankA1Track.md3"
+   Path "MODELS\Ketten"
+   Skin  2 "StandardTrack_2.png"      
    Scale 4.5 4.5 4.5
-   AngleOffset 0
-   FrameIndex HTAA A 0 0
    FrameIndex HTAA A 1 0
-      PITCHFROMMOMENTUM
-}
-
-Model MicroHeavyTankA1_Class
-{
-//   Path "MODELS\MicroHeavyTankA1"
-//   Model 0 "HeavyTankA1.md3"
-//   Skin  0 "HeavyTankA1.png"
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA2.md3"
-   Path "MODELS"
-   Skin  0 "Atlas.png"
-   
-   Path "MODELS\MicroHeavyTankA1"
-   Model 1 "HeavyTankA1Track.md3"
-   Path  "MODELS\Ketten"
-   Skin  1 "StandardTrack_2.png"
-   Scale 4.5 4.5 4.5
-   AngleOffset 0
+   FrameIndex HTAA A 0 0
+   FrameIndex HTAA B 2 0
    FrameIndex HTAA B 0 0
-   FrameIndex HTAA B 1 0
+
+   Path "MODELS\MicroHeavyTankA1"
+   Model 3 "Teamcolor.md3"
+   Path "MODELS"
+   Skin  3 "Atlas.png"  
+   FrameIndex HTAA A 3 0
+   FrameIndex HTAA B 3 0
+   FrameIndex HTAA C 3 0
+   FrameIndex HTAA D 3 0  
+  IGNORETRANSLATION 3    
 }
 
 Model MicroHeavyTankA1_Class
-{
-//   Path "MODELS\MicroHeavyTankA1"
-//   Model 0 "HeavyTankA1.md3"
-//   Skin  0 "HeavyTankA1.png"
+{	
+   PITCHFROMMOMENTUM
+   INHERITACTORROLL
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
    Path "MODELS"
    Skin  0 "Atlas.png"
-   
    Path "MODELS\MicroHeavyTankA1"
    Model 1 "HeavyTankA1Track.md3"
-   Path  "MODELS\Ketten"
-   Skin  1 "StandardTrack_3.png"
+   Path "MODELS\Ketten"
+   Skin  1 "StandardTrack_3.png" 
+   Path "MODELS\MicroHeavyTankA1"
+   Model 2 "HeavyTankA1Track.md3"
+   Path "MODELS\Ketten"
+   Skin  2 "StandardTrack_4.png"    
    Scale 4.5 4.5 4.5
-   AngleOffset 0
-   FrameIndex HTAA C 0 0
    FrameIndex HTAA C 1 0
+   FrameIndex HTAA C 0 0
+   FrameIndex HTAA D 2 0
+   FrameIndex HTAA D 0 0
+
+   Path "MODELS\MicroHeavyTankA1"
+   Model 3 "Teamcolor.md3"
+   Path "MODELS"
+   Skin  3 "Atlas.png"  
+   IGNORETRANSLATION
+   FrameIndex HTAA A 3 0
+   FrameIndex HTAA B 3 0
+   FrameIndex HTAA C 3 0
+   FrameIndex HTAA D 3 0  
+      
 }
 
-Model MicroHeavyTankA1_Class
-{
-//   Path "MODELS\MicroHeavyTankA1"
-//   Model 0 "HeavyTankA1.md3"
-//   Skin  0 "HeavyTankA1.png"
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA2.md3"
-   Path "MODELS"
-   Skin  0 "Atlas.png"
-   
-   Path "MODELS\MicroHeavyTankA1"
-   Model 1 "HeavyTankA1Track.md3"
-   Path  "MODELS\Ketten"
-   Skin  1 "StandardTrack_4.png"
-   Scale 4.5 4.5 4.5
-   AngleOffset 0
-   FrameIndex HTAA D 0 0
-   FrameIndex HTAA D 1 0
-}
 
 Model MT_SludgeBarrel
 {

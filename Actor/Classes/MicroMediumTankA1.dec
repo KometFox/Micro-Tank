@@ -133,6 +133,7 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
   }
 }
 
+ACTOR MT_MediumTank_PantherM10 : MicroMediumTankA1_Class {Player.DisplayName "M10 Wolverine (Med)"}
 
 
 

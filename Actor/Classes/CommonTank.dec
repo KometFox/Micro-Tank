@@ -2,7 +2,7 @@
 ACTOR MT_BaseTank : PlayerPawn
 {
   player.DisplayName "MicroTank-A1"
-  player.AttackZOffset 6
+  player.AttackZOffset 7
   player.viewheight 16
   player.forwardmove 0.68
   player.sidemove 0
@@ -21,10 +21,8 @@ ACTOR MT_BaseTank : PlayerPawn
   BloodType "Tankhit"
   Species "Tank"
   
-  
   +PICKUP
   -PUSHABLE
-//  +NOSKIN
   +NOBLOODDECALS
   
   DamageFactor "None"        ,0.7
@@ -32,12 +30,10 @@ ACTOR MT_BaseTank : PlayerPawn
   DamageFactor "Extreme"     ,0.7
   DamageFactor "Drowning"    ,0.8
   DamageFactor "Falling"     ,0.5
-  
   DamageFactor "Fire"        ,0.35
   DamageFactor "Acid"        ,0.42
   DamageFactor "Ice"         ,0.6
   DamageFactor "Radiation"   ,0.1
-
   DamageFactor "Electric"    ,0.15
   DamageFactor "Energy"      ,0.50
   DamageFactor "AP"          ,0.9
@@ -47,7 +43,6 @@ ACTOR MT_BaseTank : PlayerPawn
   DamageFactor "HEI"         ,0.47
   DamageFactor "APHEI"       ,0.8
   DamageFactor "Corrosive"   ,0.25
-  
   DamageFactor "MuzzleFlash" ,0
   DamageFactor "FMJ"         ,0
   DamageFactor "Frag"        ,0

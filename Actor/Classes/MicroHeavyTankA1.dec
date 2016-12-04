@@ -12,12 +12,10 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Mass 5000
   PainChance 256
   Player.RunHealth 150
-//  ActiveSound "MotLop3"
   ActiveSound "MotLop2"
 //  Player.Portrait  "HeavyTP"
   Player.ColorRange 112, 127
   Deathsound "weapons/rocklx"
-
   Player.DisplayName "Heavy Tank"
 
 //Internal stuff, very important
@@ -142,7 +140,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
 }
 
 
-ACTOR HTANK_SNOW : MicroHeavyTankA1_Class {Player.DisplayName "Tiger 1"}
+ACTOR HTANK_SNOW : MicroHeavyTankA1_Class {Player.DisplayName "Tiger 1 (Hvy)"}
 
 
 
