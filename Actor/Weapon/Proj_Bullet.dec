@@ -2,7 +2,7 @@
 ACTOR MT_BuckShot : MT_Frag
 {
   DamageType Buckshot
-  Speed 45
+  Speed 160
   damage (random(1,1.2)*10)
   Gravity 0.07
   Obituary "%o <Buckshot] %k" 
@@ -49,7 +49,7 @@ ACTOR MT_BuckShot_3 : MT_BuckShot
 ACTOR MT_BuckShot_HE : MT_BuckShot
 {
   DamageType Explosive
-  Speed 45
+  Speed 150
   damage (random(1,1.2)*5)
   Obituary "%o <Buckshot] %k" 
   decal MT_VerySmallHEScorch
@@ -130,6 +130,8 @@ ACTOR MT_FastBulletBase : Fastprojectile
 
 ACTOR "7.62x54mm AP" : MT_FastBulletBase
 {
+  Radius 8
+  Height 8
   Speed 250
   DamageType Bullet
   damage (random(21,21)*1)

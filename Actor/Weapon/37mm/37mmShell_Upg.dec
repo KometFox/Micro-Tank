@@ -52,3 +52,54 @@ ACTOR 40mmAPshell_3 : 37mmAPshell
    
   }
 }
+
+
+
+ACTOR MT_37mmLaserBeam2 : MT_37mmLaserBeam
+{
+  damage (random(1,1.2)*14)
+  States
+  {
+  Death:
+    TNT1 A 0 A_SpawnitemEx("MT_CEG_37mmLaserHit",0,0,0,0,0,2)
+    TNT1 A 1  A_Explode(7,60) 
+    Stop
+  }
+}
+
+ACTOR MT_37mmLaserBeam3 : MT_37mmLaserBeam
+{
+  damage (random(1,1.2)*17)
+  States
+  {
+  Death:
+    TNT1 A 0 A_SpawnitemEx("MT_CEG_37mmLaserHit",0,0,0,0,0,2)
+    TNT1 A 1  A_Explode(8,72) 
+    Stop
+  }
+}
+
+
+ACTOR 37mmPlasmaProjectile2 : 37mmPlasmaProjectile
+{
+  States
+  {
+  Death:
+    TNT1 A 0 A_Spawnitem("37mmPlasma_ExplosionSpawner")
+    TNT1 A 1  A_Explode(180,180) 
+    TNT1 A 0 A_BFGSpray("BlueBFGspray",15,5)
+    Stop
+  }
+}
+
+ACTOR 37mmPlasmaProjectile3 : 37mmPlasmaProjectile
+{
+  States
+  {
+  Death:
+    TNT1 A 0 A_Spawnitem("37mmPlasma_ExplosionSpawner")
+    TNT1 A 1  A_Explode(216,216) 
+    TNT1 A 0 A_BFGSpray("BlueBFGspray",15,5)
+    Stop
+  }
+}

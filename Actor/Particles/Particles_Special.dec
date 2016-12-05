@@ -459,11 +459,11 @@ ACTOR MT_Particle_LaserBeam : Particle
 {
   renderstyle Add
   alpha 1
-  Scale 0.4
+  Scale 0.45
   States
   {
   Spawn:
-    AFP1 QWZ 1 Bright  
+    AFP1 PQWZ 1 Bright  
     Goto Death
   Death:
     TNT1 A 1

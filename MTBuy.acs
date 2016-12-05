@@ -224,19 +224,21 @@ script "MT_BuyMenu" (void) NET{
 ///////////////////
 
 
-#define MTUPGRADES_MAX 12
+#define MTUPGRADES_MAX 14
 str MTUpgrades_list[MTUPGRADES_MAX][3] = {
 	{"Main Cannon (Firing Rate)",		         "MT_Upgrade_CannonFiringRate_1",   "ICAGA0"},	
-	{"High Explosive Shell    (1 Upgrade)",		 "MT_HEShell_Upgrader2",	        "IHEAB0"},	
-	{"High Explosive Shell    (2 Upgrade)",		 "MT_HEShell_Upgrader3",	        "IHEAC0"},	
-	{"Armor Piercing Shot     (1 Upgrade)",		 "MT_APShot_Upgrader2",	            "IAPAB0"},	
-	{"Armor Piercing Shot     (2 Upgrade)",		 "MT_APShot_Upgrader3",	            "IAPAC0"},
-	{"Buckshot                (1 Upgrade)",		 "MT_Buckshot_Upgrader2",	        "IBKAB0"},	
-	{"Buckshot                (2 Upgrade)",		 "MT_Buckshot_Upgrader3",	        "IBKAC0"},		
-	{"Incendiary Shell        (1 Upgrade)",		 "MT_IncShell_Upgrader2",	        "IINAB0"},	
-	{"Incendiary Shell        (2 Upgrade)",		 "MT_IncShell_Upgrader3",	        "IINAC0"},
-	{"Hollow Charge Shell     (1 Upgrade)",		 "MT_HEATShell_Upgrader2",	        "IHTAB0"},	
-	{"Hollow Charge Shell     (2 Upgrade)",		 "MT_HEATShell_Upgrader3",	        "IHTAC0"},	
+	{"High Explosive Shell      (T1)",		 "MT_HEShell_Upgrader2",	            "IHEAB0"},	
+	{"High Explosive Shell      (T2)",		 "MT_HEShell_Upgrader3",	            "IHEAC0"},	
+	{"Armor Piercing Shot       (T1)",		 "MT_APShot_Upgrader2",	                "IAPAB0"},	
+	{"Armor Piercing Shot       (T2)",		 "MT_APShot_Upgrader3",	                "IAPAC0"},
+	{"Buckshot                  (T1)",		 "MT_Buckshot_Upgrader2",	            "IBKAB0"},	
+	{"Buckshot                  (T2)",		 "MT_Buckshot_Upgrader3",	            "IBKAC0"},		
+	{"Incendiary Shell          (T1)",		 "MT_IncShell_Upgrader2",	            "IINAB0"},	
+	{"Incendiary Shell          (T2)",		 "MT_IncShell_Upgrader3",	            "IINAC0"},
+	{"Hollow Charge Shell       (T1)",		 "MT_HEATShell_Upgrader2",	            "IHTAB0"},	
+	{"Hollow Charge Shell       (T2)",		 "MT_HEATShell_Upgrader3",	            "IHTAC0"},	
+	{"Energy Weapon Improvment (T1)",            "MT_Energy_Upgrader2",            "IENCA0"},
+	{"Energy Weapon Improvment (T2)",            "MT_Energy_Upgrader3",            "IENCA0"},	
     {"Environ. Hazard Coating  (Armor Addon)",   "MT_Upgrade_Armor_EnvironmentCoat","IHAMA0"},	
 
 };
@@ -253,10 +255,14 @@ int MTUpgrades_recipe[MTUPGRADES_MAX][RECIPE_ITEMS_MAX] = {
 	{3700,500},
 	{2500,250},
 	{3700,500},
+	{2500,250},
+	{3700,500},	
 	{2000},
 };
 int MTUpgrades_result[MTUPGRADES_MAX] = {
 
+1,
+1,
 1,
 1,
 1,

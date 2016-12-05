@@ -29,7 +29,10 @@ ACTOR MLT_Basegun : Weapon
   Ready:
    MCAN A 1 A_WeaponReady
    Goto Lopse
-
+  FuckYou:
+    TNT1 A 0 A_PlaySound("Beep2")
+    MCAN A 15 A_Print("You imbecile! You did not loaded any ammo!")
+	Goto Ready
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("37mmReloadTime",            1,"Ready")
@@ -39,7 +42,7 @@ ACTOR MLT_Basegun : Weapon
     TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
 	TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_FlameThrower",  1,"Flamethrower_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_Laser",         1,"Laser_Fire_Check")
-    Goto Ready
+    Goto FuckYou
     
   
   Fire_FastCan:
@@ -50,7 +53,7 @@ ACTOR MLT_Basegun : Weapon
     TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_Laser",         1,"Laser_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MLT_BaseGun_FlameThrower",  1,"Flamethrower_Fire_Check")
-    Goto Ready
+    Goto FuckYou
 
   AP_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_37x290mmAP",1,"AP_Fire")
@@ -95,6 +98,7 @@ ACTOR MLT_Basegun : Weapon
     TNT1 A 0 A_Playsound("PKMFire1")
     MCAN A 0 A_GunFlash
     TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
     MCAN A 2 A_Firecustommissile("7.62x54mm AP")
     MCAN A 2
     MCAN A 0 A_ReFire
@@ -110,6 +114,10 @@ ACTOR MLT_Basegun : Weapon
     CAAB A -1
     Stop
     
+  MuzzleFlash_MG:  
+   TNT1 A 0 A_FireCustomMissile("37mmFakeMuzzleFlash",0,0,0)
+   goto Ready 
+   
   MuzzleFlash_Default:  
    TNT1 A 0 A_Giveinventory("37mmReloadTime",1)
    TNT1 A 0 A_Giveinventory("37mmReloadTime_UPG2",1)
@@ -161,16 +169,19 @@ ACTOR MLT_Basegun : Weapon
   
   Laser_Fire:
   TNT1 A 0 A_Jumpifinventory("37mmReloadTime_Laser",1, "Ready")
-  MCAN A 0 A_Jumpifinventory("WPN_Mode_2",1, "Laser_Fire2")
-  TNT1 A 0 A_TakeInventory("MT_37x290mm_EnergyCellAmmo",2)  
+  MCAN A 0 A_Jumpifinventory("WPN_Mode_2",1, "Laser_Fire2") 
+  TNT1 A 0 A_TakeInventory("MT_37x290mm_EnergyCellAmmo",1)  
+  TNT1 A 0 A_Jumpifinventory("MTU_Energy_3",1, "Laser3_Fire")
+  TNT1 A 0 A_Jumpifinventory("MTU_Energy_2",1, "Laser2_Fire")   
   MCAN A 0 A_FireCustomMissile("MT_37mmLaserBeam")
   Goto MuzzleFlash_Laser
 
   Laser_Fire2:
-  TNT1 A 0 A_Jumpifinventory("37mmReloadTime_Laser2",1, "Ready")
-  MCAN A 0 A_Jumpifinventory("WPN_Mode_1",1, "Laser_Fire")
+  TNT1 A 0 A_Jumpifinventory("37mmReloadTime_Laser2",1, "Ready") 
   TNT1 A 0 A_TakeInventory("MT_37x290mm_EnergyCellAmmo",15)  
-  MCAN A 0 A_Firecustommissile("37mmPlasmaProjectile",0,18,0,0,0)
+  TNT1 A 0 A_Jumpifinventory("MTU_Energy_3",1, "Laser3_Fire2")
+  TNT1 A 0 A_Jumpifinventory("MTU_Energy_2",1, "Laser2_Fire2")    
+  MCAN A 0 A_Firecustommissile("37mmPlasmaProjectile")
   Goto MuzzleFlash_Laser2
   
   Flame_Fire:
@@ -219,7 +230,7 @@ ACTOR MLT_Basegun : Weapon
   MCAN A 0 A_AlertMonsters
   MCAN AAA 3 A_Firecustommissile("MT_37mmFlameProjectile2",0,1,0,0,0)
   Goto Ready
-  
+
   Flame3_Fire:
   TNT1 A 0 A_Jumpifinventory("37mmReloadTime_Flamer",1, "Ready")
   TNT1 A 0 A_TakeInventory("MT_37x290mm_IncendiaryAmmo",1)    
@@ -228,6 +239,20 @@ ACTOR MLT_Basegun : Weapon
   MCAN A 0 A_AlertMonsters
   MCAN AAA 3 A_Firecustommissile("MT_37mmFlameProjectile3",0,1,0,0,0)
   Goto Ready
+  
+  Laser2_Fire: 
+  MCAN A 0 A_FireCustomMissile("MT_37mmLaserBeam2")
+  Goto MuzzleFlash_Laser
+  Laser2_Fire2:
+  MCAN A 0 A_Firecustommissile("37mmPlasmaProjectile2")
+  Goto MuzzleFlash_Laser2
+  
+  Laser3_Fire: 
+  MCAN A 0 A_FireCustomMissile("MT_37mmLaserBeam3")
+  Goto MuzzleFlash_Laser
+  Laser3_Fire2:
+  MCAN A 0 A_Firecustommissile("37mmPlasmaProjectile3")
+  Goto MuzzleFlash_Laser2  
   }
 }
 
@@ -277,7 +302,7 @@ ACTOR 37mmReloadTime_Laser : MT_A_BooleanValue
 States
 {
  Held:
- BON1 A 2
+ BON1 A 8
  TNT1 A 0
  stop
 }}

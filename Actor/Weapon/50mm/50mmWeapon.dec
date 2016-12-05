@@ -28,7 +28,11 @@ ACTOR MMT_Basegun : Weapon
    
   Ready:
    MCAN A 1 A_WeaponReady
-   Goto Lopse   
+   Goto Lopse 
+    FuckYou:
+    TNT1 A 0 A_PlaySound("Beep2")
+    TNT1 A 0 A_Print("You imbecile! You did not loaded any ammo!")
+	Goto Ready
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("50mmReloadTime",1, "Ready")
@@ -44,7 +48,7 @@ ACTOR MMT_Basegun : Weapon
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HE"        ,1, "HE_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_Inc"        ,1, "Inc_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MMT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")   
-   Goto Ready
+   Goto FuckYou
 
 //It is mandatory they are isolated   
   AP_Fire_Check:
@@ -86,7 +90,8 @@ ACTOR MMT_Basegun : Weapon
     TNT1 A 0 A_Playsound("PKMFire1")
     MCAN A 0 A_GunFlash
     TNT1 A 0 A_AlertMonsters
-    MCAN A 2 A_Firecustommissile("7.62x54mm AP")
+	TNT1 A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
+    MCAN A 2 A_Firecustommissile("7.62x54mm AP",+frandom(-0.12,0.12),1,0,0,0,+frandom(-0.12,0.12))
     MCAN A 2
     MCAN A 0 A_ReFire
     Goto Ready

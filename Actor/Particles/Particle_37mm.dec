@@ -256,6 +256,21 @@ ACTOR 37mmPlasma_ExplosionSpawner : Particle
   }
 }
 
+ACTOR MT_CEG_37mmLaserHit : Particle
+{
+  renderstyle Add
+  alpha 1
+  Scale 1.5
+  States
+  {
+  Spawn:
+    AFP1 MNOPQRSTUVWXYZ 1 Bright  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
 
 
 

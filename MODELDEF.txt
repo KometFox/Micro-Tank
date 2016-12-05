@@ -1,6 +1,5 @@
 Model HTANK_SNOW
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "Tiger1_Atlas.md3"
@@ -16,7 +15,6 @@ Model HTANK_SNOW
 }
 Model MT_MediumTank_PantherM10
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "PantherM10.md3"
@@ -32,7 +30,6 @@ Model MT_MediumTank_PantherM10
 }
 Model MicroTankA1_Class
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
@@ -49,7 +46,6 @@ Model MicroTankA1_Class
 
 Model MicroTankA1_Class
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
@@ -65,7 +61,6 @@ Model MicroTankA1_Class
 
 Model MicroTankA1_Class
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
@@ -82,7 +77,7 @@ Model MicroTankA1_Class
 
 Model MicroTankA1_Class
 {
-   PITCHFROMMOMENTUM
+
    IGNORETRANSLATION
    Path "MODELS\MicroTankA1"
    Model 1 "LightTankA1_Tracks.md3"  
@@ -100,7 +95,6 @@ Model MicroTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
@@ -118,7 +112,6 @@ Model MicroMediumTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
-d   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
@@ -136,7 +129,6 @@ d   PITCHFROMMOMENTUM
 
 Model MicroMediumTankA1_Class
 {
-   PITCHFROMMOMENTUM
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
@@ -154,7 +146,7 @@ Model MicroMediumTankA1_Class
 
 Model MicroMediumTankA1_Class
 {
-   PITCHFROMMOMENTUM
+
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
    Model 0 "MediumTankA1.md3"
@@ -174,7 +166,6 @@ Model MicroMediumTankA1_Class
 
 Model MicroHeavyTankA1_Class
 {	
-   PITCHFROMMOMENTUM
    INHERITACTORROLL
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
@@ -207,7 +198,6 @@ Model MicroHeavyTankA1_Class
 
 Model MicroHeavyTankA1_Class
 {	
-   PITCHFROMMOMENTUM
    INHERITACTORROLL
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
