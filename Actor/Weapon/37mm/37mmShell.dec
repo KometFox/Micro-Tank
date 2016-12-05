@@ -203,7 +203,7 @@ ACTOR 37mmFlameProjectile
   Speed 32
   DamageType Fire
   Projectile
-  scale 0.4
+  scale 1.5
   -NOGRAVITY
  // +FORCEPAIN
   +FORCERADIUSDMG
@@ -221,12 +221,44 @@ ACTOR 37mmFlameProjectile
   {
   Spawn:
     TNT1 A 0
-    TNT1 AAAAAAAAAAAAA 1 Bright A_Explode(10,32,0,1,1)
+    AFP4 ABCDEFGHIKLMNO 3 Bright A_Explode(10,32,0,1,1)
     Stop
   Death:
     TNT1 A 0 A_SpawnItemEx("Fire0F",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(2,3))
     TNT1 A 0 A_SpawnItemEx("Fire0F_S0.75",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(3,4))
     TNT1 A 1  A_Explode(5,32)
+    Stop
+  }
+}
+
+ACTOR MT_37mmFlameProjectile2 : 37mmFlameProjectile
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    AFP4 ABCDEFGHIKLMNO 3 Bright A_Explode(12,32,0,1,1)
+    Stop  
+  Death:
+    TNT1 A 0 A_SpawnItemEx("Fire0F",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(2,3))
+    TNT1 A 0 A_SpawnItemEx("Fire0F_S1.25",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(3,4))
+    TNT1 A 1  A_Explode(6,32)
+    Stop
+  }
+}
+
+ACTOR MT_37mmFlameProjectile3 : 37mmFlameProjectile
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    AFP4 ABCDEFGHIKLMNO 3 Bright A_Explode(14,32,0,1,1)
+    Stop  
+  Death:
+    TNT1 A 0 A_SpawnItemEx("Fire0F",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(2,3))
+    TNT1 A 0 A_SpawnItemEx("Fire0F_S1.5",0,0,0,0+random(-1,-1),0+random(-1,1),0+random(3,4))
+    TNT1 A 1  A_Explode(7,32)
     Stop
   }
 }
