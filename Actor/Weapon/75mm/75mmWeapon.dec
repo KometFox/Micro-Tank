@@ -36,27 +36,21 @@ ACTOR MHT_Basegun : Weapon
 	Goto Ready
 //Checks what ammo mode is selected and then checks 
 //if there is any ammo available at all. 
+
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("75mmReloadTime",1, "Ready")
-    TNT1 A 0 A_Giveinventory("75mmReloadTime",1)      
-    TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "AP_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Buckshot"  ,1, "Buckshot_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "HE_Fire_Check")
-	TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Inc"       ,1, "Inc_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
-    Goto FuckYou
- 
+    Goto FireNow
   Fire_FastCan:
     TNT1 A 0 A_Jumpifinventory("75mmReloadTime_UPG2",1, "Ready")
-    TNT1 A 0 A_Giveinventory("75mmReloadTime_UPG2",1)
+    Goto FireNow
+   FireNow:	
     TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "AP_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Buckshot"  ,1, "Buckshot_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "HE_Fire_Check")
 	TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Inc"       ,1, "Inc_Fire_Check")
     TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
-    Goto FuckYou
-	
+   Goto FuckYou
 //It is mandatory they are isolated   
   AP_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_75x500mmAP",1,"AP_Fire")
@@ -118,7 +112,7 @@ ACTOR MHT_Basegun : Weapon
     
   MuzzleFlash_Default:  
    TNT1 A 0 A_Giveinventory("75mmReloadTime",1)
-   TNT1 A 0 A_Giveinventory("75mmReloadTime_UPG2",1)
+   TNT1 A 0 A_Giveinventory("75mmReloadTime_UPG2",1)  
    TNT1 A 0 A_Playsound("Fire05")
    MCAN A 0 A_GunFlash
    TNT1 A 0 A_AlertMonsters
@@ -320,7 +314,6 @@ States
 {
  Held:
  BON1 A 10
- BON1 A 0 A_TakeInventory("75mmSludgeReloadTime",1)
  TNT1 A 0
  stop
 }}
@@ -329,9 +322,9 @@ ACTOR 75mmReloadTime : MT_A_BooleanValue
 {
 States
 {
- Held:
+ Held: 
  TNT1 A 143
- TNT1 A 0
+ TNT1 A 0 
  stop
 }}
 

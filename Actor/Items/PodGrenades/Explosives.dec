@@ -28,6 +28,7 @@ Actor MT_GrenadePod_Explosive : MT_PlayerInventory {
 }}
 
 
+
 ACTOR "40mm Grenade Explosive"
 {
   Radius 6

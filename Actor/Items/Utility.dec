@@ -1,6 +1,22 @@
 
 
 
+ACTOR MT_Sound_Loaded1 : Health
+{
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.PickupMessage "" 
+  Inventory.PickupSound QGuLoa5
+  Inventory.PickupFlash ""
+  States
+  {
+  Spawn:
+    BON1 ABCDCB 6
+    Loop
+  }
+}
 
 
 
