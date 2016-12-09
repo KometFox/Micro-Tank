@@ -44,7 +44,7 @@ Model MT_Materials_2U
 
 Model MT_Materials_3U
 {
-   Path "MODELS\ResourceBox"
+   Path "MODELS\Resource"
    Model 0 "Box.md3"
    Skin  0 "Materials.png"
    Scale 10 10 10

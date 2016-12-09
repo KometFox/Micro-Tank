@@ -55,7 +55,7 @@ ACTOR MT_Res_SmallOre
   Health 20
   Radius 27
   Height 27
-  Scale 6
+  Scale 5
   Mass 45000
   DamageType Crush
   DamageFactor "Build", 0
@@ -93,7 +93,6 @@ ACTOR MT_Res_SmallOre
 
 ACTOR MT_Res_LargeOre : MT_Res_SmallOre
 {
-  Scale 15
   States
   {
   Death.Reclaim:
@@ -108,7 +107,6 @@ ACTOR MT_Res_LargeOre : MT_Res_SmallOre
 
 ACTOR MT_Res_SmallCrystal : MT_Res_SmallOre
 {
-  Scale 1.5
   States 
   {
   Death.Reclaim:
@@ -123,7 +121,6 @@ ACTOR MT_Res_SmallCrystal : MT_Res_SmallOre
 
 ACTOR MT_Res_LargeCrystal : MT_Res_SmallOre
 {
-  Scale 3.25
   States
   {
   Death.Reclaim:

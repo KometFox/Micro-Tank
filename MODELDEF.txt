@@ -192,8 +192,7 @@ Model MicroHeavyTankA1_Class
    FrameIndex HTAA A 3 0
    FrameIndex HTAA B 3 0
    FrameIndex HTAA C 3 0
-   FrameIndex HTAA D 3 0  
-  IGNORETRANSLATION 3    
+   FrameIndex HTAA D 3 0    
 }
 
 Model MicroHeavyTankA1_Class

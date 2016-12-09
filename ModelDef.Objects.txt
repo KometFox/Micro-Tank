@@ -82,7 +82,7 @@ Model MT_ExplosiveBarrel2
 
 Model MT_Materials
 {
-   Path "MODELS\ResourceBox"
+   Path "MODELS\Resource"
    Model 0 "Box.md3"
    Skin  0 "Materials.png"
    Scale 10 10 10
@@ -92,7 +92,7 @@ Model MT_Materials
 
 Model MT_CometMaterials
 {
-   Path "MODELS\ResourceBox"
+   Path "MODELS\Resource"
    Model 0 "Box.md3"
    Skin  0 "MaterialsT41.png"
    Scale 10 10 10
@@ -103,7 +103,7 @@ Model MT_CometMaterials
 
 Model MT_Materials25
 {
-   Path "MODELS\ResourceBox"
+   Path "MODELS\Resource"
    Model 0 "Box.md3"
    Skin  0 "Materials.png"
    Scale 10 10 10
@@ -215,7 +215,7 @@ Model MTB_CrystalOreGenerator
 
 Model MT_CrystalOre
 {
-   Path "MODELS\CrystalOre"
+   Path "MODELS\Resource"
    Model 0 "CrystalOre.md3"
    Skin  0 "CrystalOre.png"
    Scale 4 4 4
@@ -257,7 +257,7 @@ Model MT_CrystalOre
 
 Model MT_BadCrystalOre
 {
-   Path "MODELS\CrystalOre"
+   Path "MODELS\Resource"
    Model 0 "CrystalOre.md3"
    Skin  0 "BadCrystalOre.png"
    Scale 4 4 4
@@ -407,7 +407,7 @@ Model MT_UpgradeCenter
 
 Model Con_OEClose
 {
-   Path "MODELS\ResourceBox"
+   Path "MODELS\Resource"
    Model 0 "Box.md3"
    Skin  0 "KillBox.png"
    Scale 700 700 2
@@ -422,7 +422,7 @@ Model Con_OEClose
 
 Model MT_OreComet
 {
-   Path "MODELS\Comet"
+   Path "MODELS\Resource"
    Model 0 "Comet.md3"
    Skin  0 "Comet.png"
    Scale 1 1 1
@@ -436,10 +436,11 @@ Model MT_OreComet
 
 Model MT_Res_SmallOre
 {
-   Path "MODELS\rawore"
-   Model 0 "rawore.md3"
-   Skin  0 "rawore.png"
-   Scale 1 1 1
+   Path "MODELS\Resource"
+   Model 0 "SmallOre.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 2.5 2.5 2.5
    AngleOffset 0
    PITCHFROMMOMENTUM
    FrameIndex IDLE A 0 0
@@ -448,10 +449,11 @@ Model MT_Res_SmallOre
 
 Model MT_Res_LargeOre
 {
-   Path "MODELS\rawore"
-   Model 0 "rawore.md3"
-   Skin  0 "rawore.png"
-   Scale 1 1 1
+   Path "MODELS\Resource"
+   Model 0 "LargeOre.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 2 2 2
    AngleOffset 0
    PITCHFROMMOMENTUM
    FrameIndex IDLE A 0 0
@@ -461,10 +463,11 @@ Model MT_Res_LargeOre
 
 Model MT_Res_SmallCrystal
 {
-   Path "MODELS\Items"
-   Model 0 "CrystalMat.md3"
-   Skin  0 "CrystalMat.png"
-   Scale 1 1 1
+   Path "MODELS\Resource"
+   Model 0 "SmallCrystal.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 2.5 2.5 2.5 
    AngleOffset 0
    PITCHFROMMOMENTUM
    FrameIndex IDLE A 0 0
@@ -474,10 +477,11 @@ Model MT_Res_SmallCrystal
 
 Model MT_Res_LargeCrystal
 {
-   Path "MODELS\Items"
-   Model 0 "CrystalMat.md3"
-   Skin  0 "CrystalMat.pn3"
-   Scale 1 1 1
+   Path "MODELS\Resource"
+   Model 0 "LargeCrystal.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 2 2 2
    AngleOffset 0
    PITCHFROMMOMENTUM
    FrameIndex IDLE A 0 0
@@ -487,7 +491,7 @@ Model MT_Res_LargeCrystal
 
 Model MT_FallingComet
 {
-   Path "MODELS\Comet"
+   Path "MODELS\Resource"
    Model 0 "Comet.md3"
    Skin  0 "Comet.png"
    Scale 1 1 1
