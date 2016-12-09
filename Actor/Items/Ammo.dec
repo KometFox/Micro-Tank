@@ -291,25 +291,8 @@ ACTOR MT_37x290mmHE : Ammo {
 
 
 
- ACTOR A_7u62x54mmR : Ammo {
-  Inventory.PickupMessage "Picked up: 5x 7.62x54mmR bullets"
-  Inventory.Amount 30
-  Inventory.MaxAmount 3000
-  Ammo.BackpackAmount 50
-  Ammo.BackpackMaxAmount 6500
-  Inventory.Icon "TNT1A0"
-  Scale 0.25
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    HUBB A -1
-    Stop
-}}
-
-
  ACTOR MT_75x500mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Armor Piercing Composite Rigid Ballistic Cap shot"
+  Inventory.PickupMessage "Picked up: Buckshot"
   Inventory.Amount 1
   Inventory.MaxAmount 60
   Ammo.BackpackAmount 0
@@ -325,7 +308,7 @@ ACTOR MT_37x290mmHE : Ammo {
 }}
 
 ACTOR MT_50x441mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Armor Piercing Composite Rigid Ballistic Cap shot"
+  Inventory.PickupMessage "Picked up: Buckshot"
   Inventory.Amount 1
   Inventory.MaxAmount 75
   Ammo.BackpackAmount 0
@@ -341,7 +324,7 @@ ACTOR MT_50x441mmBuckshot : Ammo {
 }}
 
 ACTOR MT_37x290mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Armor Piercing Composite Rigid Ballistic Cap shot"
+  Inventory.PickupMessage "Picked up: Buckshot"
   Inventory.Amount 1
   Inventory.MaxAmount 115
   Ammo.BackpackAmount 0
@@ -375,6 +358,38 @@ ACTOR MT_37x290mmBuckshot : Ammo {
 }}
 
 
+
+ ACTOR A_7u62x54mmR : Ammo {
+  Inventory.PickupMessage "Picked up: 30x 7.62x54mmR rounds"
+  Inventory.Amount 30
+  Inventory.MaxAmount 3000
+  Ammo.BackpackAmount 50
+  Ammo.BackpackMaxAmount 6500
+  Inventory.Icon "TNT1A0"
+  Scale 0.25
+  +INVENTORY.UNDROPPABLE 
+  States
+  {
+  Spawn:
+    HUBB A -1
+    Stop
+}}
+
+ ACTOR MT_Ammo_7u62x54mmR_HE : Ammo {
+  Inventory.PickupMessage "Picked up: 50x 7.62x54mmR-HE rounds"
+  Inventory.Amount 50
+  Inventory.MaxAmount 2000
+  Ammo.BackpackAmount 25
+  Ammo.BackpackMaxAmount 4000
+  Inventory.Icon "TNT1A0"
+  Scale 0.25
+  +INVENTORY.UNDROPPABLE 
+  States
+  {
+  Spawn:
+    HUBB A -1
+    Stop
+}}
 
 
 

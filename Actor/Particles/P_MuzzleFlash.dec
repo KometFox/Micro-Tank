@@ -245,10 +245,11 @@ ACTOR MT_MGMuzzleFlash : MGFakeMuzzleFlash
 
 ACTOR MT_CEG_MGMuzzleFlash : Particle
 {
-  Radius 4
-  Height 4
+  Radius 0
+  Height 0
   renderstyle Add
   Scale 0.2
+  +NOINTERACTION
   States
   {
   Spawn:

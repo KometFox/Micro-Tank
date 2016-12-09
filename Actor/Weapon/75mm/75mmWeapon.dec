@@ -32,7 +32,7 @@ ACTOR MHT_Basegun : Weapon
     loop
   FuckYou:
     TNT1 A 0 A_PlaySound("Beep2")
-    TNT1 A 0 A_Print("You imbecile! You did not loaded any ammo!")
+    MCAN A 15 A_Print("You imbecile! You did not loaded any ammo!")
 	Goto Ready
 //Checks what ammo mode is selected and then checks 
 //if there is any ammo available at all. 

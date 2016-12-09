@@ -41,6 +41,7 @@ Actor MT_HE : CustomInventory
   TNT1 A 0 A_GiveInventory("MT_75x500mmHE",5)
   TNT1 A 0 A_GiveInventory("MT_50x441mmHE",5)
   TNT1 A 0 A_GiveInventory("MT_37x290mmHE",5)
+  TNT1 A 0 A_GiveInventory("MT_Ammo_7u62x54mmR_HE",50)
   Stop
   }
 }

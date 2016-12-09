@@ -190,5 +190,19 @@ InInventory MT_ClassToken, 1
     } 	
    }
    
+   ////Common weapon shit
+   IsSelected "MT_QuadMachineGun"
+   {
+    InInventory MT_QuadMachineGun_APSelected, 1 
+    {
+      drawimage "APAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo A_7u62x54mmR ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }
+    InInventory MT_QuadMachineGun_HESelected, 1 
+    {
+      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_Ammo_7u62x54mmR_HE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+    }  	
+   }  
 }
 }

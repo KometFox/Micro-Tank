@@ -31,19 +31,23 @@ ACTOR MT_QuadMachineGun : Weapon
     TNT1 A 0 A_Print("You imbecile! You did not loaded any ammo!")
 	Goto Ready	
   Fire:   
-    TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_APSelected" ,1, "AP_Fire_Check")
-    TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_HESelected" ,1, "HE_Fire_Check")
+    TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_APSelected" ,1, "AP_Fire_CheckA")
+    TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_HESelected" ,1, "HE_Fire_CheckA")
     Goto FuckYou
- 
-  AP_Fire_Check:
-    TNT1 A 0 //A_JumpIfInventory("MT_75x500mmAP",1,"AP_Fire")	
+	
+  AP_Fire_CheckA:
+    TNT1 A 0 A_JumpIfInventory("A_7u62x54mmR",2,"AP_Fire_CheckB")	
+	Goto Ready
+  AP_Fire_CheckB:
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_Burst",2,"BurstReset")
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_Burst",1,"Fire_AP_B2")
 	TNT1 A 0 A_Jump(256,"Fire_AP_B1")
 	Goto Ready
-  
-  HE_Fire_Check:
-    TNT1 A 0 //A_JumpIfInventory("MT_75x500mmHE",1,"HE_Fire")
+	
+  HE_Fire_CheckA:
+    TNT1 A 0 A_JumpIfInventory("MT_AMMO_7u62x54mmR_HE",2,"HE_Fire_CheckB")
+	Goto Ready  
+  HE_Fire_CheckB:
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_Burst",2,"BurstReset")
     TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_Burst",1,"Fire_HE_B2")	
 	TNT1 A 0 A_Jump(256,"Fire_HE_B1")
@@ -54,6 +58,8 @@ ACTOR MT_QuadMachineGun : Weapon
     QUMG A 0 A_GunFlash
     QUMG AB 2
     QUMG A 0 A_PlaySound("ACFire1")
+	TNT1 A 0 A_TakeInventory("A_7u62x54mmR",2)
+	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash",0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",0,0,2,0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",0,0,-2,0,0)
 	TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,12)
@@ -65,6 +71,8 @@ ACTOR MT_QuadMachineGun : Weapon
   	TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
 	QUMG CD 2 
     QUMG A 0 A_PlaySound("ACFire1")
+	TNT1 A 0 A_TakeInventory("A_7u62x54mmR",2)
+	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash2",0,0)
     QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",0,0,2,-2,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",0,0,-2,-2,0)
     TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,12)
@@ -81,15 +89,23 @@ ACTOR MT_QuadMachineGun : Weapon
     QUMG A 0 A_GunFlash
     QUMG AB 2
     QUMG A 0 A_PlaySound("ACFire1")
+	TNT1 A 0 A_TakeInventory("MT_AMMO_7u62x54mmR_HE",2)
+	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash",0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",0,0,2,0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",0,0,-2,0,0)
+    TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,12)
+    TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,-12)	
 	Goto Ready
   Fire_HE_B2:	
     TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
 	QUMG CD 2 
     QUMG A 0 A_PlaySound("ACFire1")
+	QUMG A 0 A_TakeInventory("MT_AMMO_7u62x54mmR_HE",2)
+	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash2",0,0)
     QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",0,0,2,-2,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",0,0,-2,-2,0)
+    TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,12)
+    TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",0,0,8,0,-12)	
     QUMG A 0 A_ReFire 
     Goto Ready
 
@@ -146,7 +162,7 @@ ACTOR MT_QuadMQ_HE_Proj : Fastprojectile
   Speed 400
   DamageType BulletAP
   Projectile
-  damage (random(21,21)*1)
+  damage (random(8,8)*1)
   -NOGRAVITY
   +BLOODSPLATTER
   gravity 0.0085
@@ -160,13 +176,44 @@ ACTOR MT_QuadMQ_HE_Proj : Fastprojectile
     TRCR A 1 
     Loop
   Death:
-    TNT1 A 0 A_SpawnItem("Explosion3_S0.75") 
+    TNT1 A 0 A_SpawnItem("Explosion3_S0.5") 
     TNT1 A 0 A_Playsound("BulHi")
-	TNT1 A 0 A_Explode(8,50,0,0,32)
+	TNT1 A 0 A_Explode(8,60,0,0,32)
     Stop
   XDeath:
-    TNT1 A 0 A_SpawnItem("Explosion3_S0.75") 
-	TNT1 A 0 A_Explode(8,50,0,0,32)
+    TNT1 A 0 A_SpawnItem("Explosion3_S0.5") 
+	TNT1 A 0 A_Explode(8,60,0,0,32)
+    Stop
+  }
+}
+
+
+ACTOR MT_QuadMGMuzzleFlash : MGFakeMuzzleFlash
+{
+  Radius 4
+  Height 4
+  speed 10
+  States
+  {
+  Spawn:
+    TNT1 A 2
+    37MM AA 0 A_SpawnItemEx("MT_CEG_MGMuzzleFlash",0,-8,-2,0,1)
+	37MM AA 0 A_SpawnItemEx("MT_CEG_MGMuzzleFlash",0,8,-2,0,1)
+    Stop
+  }
+}
+
+ACTOR MT_QuadMGMuzzleFlash2 : MGFakeMuzzleFlash
+{
+  Radius 4
+  Height 4
+  speed 10
+  States
+  {
+  Spawn:
+    TNT1 A 2
+    37MM AA 0 A_SpawnItemEx("MT_CEG_MGMuzzleFlash",0,-8,-9,0,1)
+	37MM AA 0 A_SpawnItemEx("MT_CEG_MGMuzzleFlash",0,8,-9,0,1)
     Stop
   }
 }
