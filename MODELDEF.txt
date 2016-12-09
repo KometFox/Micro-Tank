@@ -166,7 +166,7 @@ Model MicroMediumTankA1_Class
 
 Model MicroHeavyTankA1_Class
 {	
-   INHERITACTORROLL
+   IGNORETRANSLATION
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
    Path "MODELS"
@@ -174,59 +174,80 @@ Model MicroHeavyTankA1_Class
    Path "MODELS\MicroHeavyTankA1"
    Model 1 "HeavyTankA1Track.md3"
    Path "MODELS\Ketten"
-   Skin  1 "StandardTrack_1.png" 
+   Skin  1 "StandardTrack_1.png"     
    Path "MODELS\MicroHeavyTankA1"
-   Model 2 "HeavyTankA1Track.md3"
-   Path "MODELS\Ketten"
-   Skin  2 "StandardTrack_2.png"      
-   Scale 4.5 4.5 4.5
-   FrameIndex HTAA A 1 0
-   FrameIndex HTAA A 0 0
-   FrameIndex HTAA B 2 0
-   FrameIndex HTAA B 0 0
-
-   Path "MODELS\MicroHeavyTankA1"
-   Model 3 "Teamcolor.md3"
+   Model 2 "Teamcolor.md3"
    Path "MODELS"
-   Skin  3 "Atlas.png"  
-   FrameIndex HTAA A 3 0
-   FrameIndex HTAA B 3 0
-   FrameIndex HTAA C 3 0
-   FrameIndex HTAA D 3 0    
+   Skin  2 "Atlas.png"  
+   Scale 4.5 4.5 4.5
+   FrameIndex HTAA A 0 0  
+   FrameIndex HTAA A 1 0
+   FrameIndex HTAA A 2 0
 }
 
 Model MicroHeavyTankA1_Class
 {	
-   INHERITACTORROLL
+   IGNORETRANSLATION
    Path "MODELS\MicroHeavyTankA1"
    Model 0 "HeavyTankA2.md3"
    Path "MODELS"
-   Skin  0 "Atlas.png"
+   Skin  0 "Atlas.png" 
    Path "MODELS\MicroHeavyTankA1"
    Model 1 "HeavyTankA1Track.md3"
    Path "MODELS\Ketten"
-   Skin  1 "StandardTrack_3.png" 
+   Skin  1 "StandardTrack_2.png"     
    Path "MODELS\MicroHeavyTankA1"
-   Model 2 "HeavyTankA1Track.md3"
-   Path "MODELS\Ketten"
-   Skin  2 "StandardTrack_4.png"    
-   Scale 4.5 4.5 4.5
-   FrameIndex HTAA C 1 0
-   FrameIndex HTAA C 0 0
-   FrameIndex HTAA D 2 0
-   FrameIndex HTAA D 0 0
-
-   Path "MODELS\MicroHeavyTankA1"
-   Model 3 "Teamcolor.md3"
+   Model 2 "Teamcolor.md3"
    Path "MODELS"
-   Skin  3 "Atlas.png"  
-   IGNORETRANSLATION
-   FrameIndex HTAA A 3 0
-   FrameIndex HTAA B 3 0
-   FrameIndex HTAA C 3 0
-   FrameIndex HTAA D 3 0  
-      
+   Skin  2 "Atlas.png"  
+   Scale 4.5 4.5 4.5
+   FrameIndex HTAA B 0 0  
+   FrameIndex HTAA B 1 0
+   FrameIndex HTAA B 2 0
 }
+
+Model MicroHeavyTankA1_Class
+{	
+   IGNORETRANSLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png" 
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path "MODELS\Ketten"
+   Skin  1 "StandardTrack_3.png"     
+   Path "MODELS\MicroHeavyTankA1"
+   Model 2 "Teamcolor.md3"
+   Path "MODELS"
+   Skin  2 "Atlas.png"  
+   Scale 4.5 4.5 4.5
+   FrameIndex HTAA C 0 0  
+   FrameIndex HTAA C 1 0
+   FrameIndex HTAA C 2 0
+}
+
+Model MicroHeavyTankA1_Class
+{	
+   IGNORETRANSLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "HeavyTankA2.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png" 
+   Path "MODELS\MicroHeavyTankA1"
+   Model 1 "HeavyTankA1Track.md3"
+   Path "MODELS\Ketten"
+   Skin  1 "StandardTrack_4.png"     
+   Path "MODELS\MicroHeavyTankA1"
+   Model 2 "Teamcolor.md3"
+   Path "MODELS"
+   Skin  2 "Atlas.png"  
+   Scale 4.5 4.5 4.5
+   FrameIndex HTAA D 0 0  
+   FrameIndex HTAA D 1 0
+   FrameIndex HTAA D 2 0
+}
+
 
 
 Model MT_SludgeBarrel

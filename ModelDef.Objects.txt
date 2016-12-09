@@ -443,9 +443,22 @@ Model MT_Res_SmallOre
    Scale 2.5 2.5 2.5
    AngleOffset 0
    PITCHFROMMOMENTUM
-   FrameIndex IDLE A 0 0
-
+   FrameIndex XXX1 A 0 0
 }
+
+Model MT_Res_SmallOre
+{
+   Path "MODELS\Resource"
+   Model 0 "SmallOre2.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Scale 2.5 2.5 2.5
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex XXX2 A 0 0
+}
+
+
 
 Model MT_Res_LargeOre
 {
@@ -456,7 +469,8 @@ Model MT_Res_LargeOre
    Scale 2 2 2
    AngleOffset 0
    PITCHFROMMOMENTUM
-   FrameIndex IDLE A 0 0
+   FrameIndex XXX1 A 0 0
+   FrameIndex XXX2 A 0 0
 
 }
 
@@ -470,7 +484,8 @@ Model MT_Res_SmallCrystal
    Scale 2.5 2.5 2.5 
    AngleOffset 0
    PITCHFROMMOMENTUM
-   FrameIndex IDLE A 0 0
+   FrameIndex XXX1 A 0 0
+   FrameIndex XXX2 A 0 0
 
 }
 
@@ -484,7 +499,8 @@ Model MT_Res_LargeCrystal
    Scale 2 2 2
    AngleOffset 0
    PITCHFROMMOMENTUM
-   FrameIndex IDLE A 0 0
+   FrameIndex XXX1 A 0 0
+   FrameIndex XXX2 A 0 0
 
 }
 
