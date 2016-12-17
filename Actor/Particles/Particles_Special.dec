@@ -21,17 +21,12 @@ ACTOR SupplySmokeScreen : Smoke1
 {
   Scale 0.75
   Alpha 0.99
-  var int user_IncScale; 
   States
   {
   Spawn:
-    TNT1 A 0 A_SetUserVar("user_IncScale",0)
-    Goto Spawn2 
-  Spawn2: 
+    TNT1 A 0 
     ASP2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 Bright  
-//    TNT1 A 0 A_SetUserVar("user_IncScale",user_IncScale+1)
-//    TNT1 A 0 A_SetScale(0.6,0.6)
-    Goto Death
+    Stop
   }
 }
 

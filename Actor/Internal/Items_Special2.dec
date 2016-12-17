@@ -1,42 +1,5 @@
 
 
-ACTOR MT_Grenade_SSS_Cooldown_Showme : PowerDamage
-{
-  Powerup.Duration -135
-  damagefactor "USELESS", 1.1
-  Inventory.Icon "FGRSC0"
-  -COUNTITEM
-  +AUTOACTIVATE
-}
-
-
-ACTOR MT_Grenade_SSS_Cooldown : Inventory
-{
-// +INVENTORY.UNDROPPABLE
-// +INVENTORY.HUBPOWER
-  Inventory.Amount 1
-  Inventory.MaxAmount 1
-  
-States
-{
- Spawn:
- BON1 A -1
- stop
- Held:
- TNT1 A 0 A_Giveinventory("MT_Grenade_SSS_Cooldown_Showme",1)
- BON1 A 4725
- Goto Loaded
- Loaded:
- TNT1 A 0 A_Takeinventory("MT_Grenade_SSS_Cooldown_Showme",1)
- BON1 A 0 A_TakeInventory("MT_Grenade_SSS_Cooldown",1)
- goto Die
- Die:
- TNT1 A 1
- stop
-
-}
-}
-
 
 
 //A_ZoomFactor restriced to guns only... Fucking bullshit
