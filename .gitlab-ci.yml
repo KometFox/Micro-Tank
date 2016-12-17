@@ -1,2 +1,6 @@
 before_script:
-- Makefile.sh
+- 
+
+compile:
+ script: 
+ -makefile.sh
