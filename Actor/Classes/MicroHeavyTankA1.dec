@@ -39,7 +39,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Player.Startitem "MT_75x500mmBuckshot"          ,30
   Player.Startitem "A_7u62x54mmR"                 ,1500
 //Items
-  Player.startitem "Item_GrenadePod_Smoke"        ,8
+//  Player.startitem "Item_GrenadePod_Smoke"        ,8
   Player.startitem "Item_GrenadePod_SSS"          ,1
   Player.Startitem "MT_GrenadePod_Explosive"      ,20
   Player.startitem "Item_GrenadePod_Illuminating" ,2
@@ -101,7 +101,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
    
    See:
    HTAA ABCD 2  A_LoopActiveSound
-//   TNT1 A 0 A_SpawnItemEx("MT_Crushing")
+   TNT1 A 0 A_SpawnItemEx("MT_Crushing")
    HTAA A 0 A_JumpIfHealthLower(100,"MotorDamaged2") 
    HTAA A 0 A_JumpIfHealthLower(150,"MotorDamaged") 
    loop

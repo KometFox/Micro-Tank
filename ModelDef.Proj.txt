@@ -33,6 +33,30 @@ Model "7.62x54mm AP"
    FrameIndex TRCR A 0 0
 }
 
+Model "MT_QuadMQ_AP_Proj"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 70 45 45
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+
+Model "MT_QuadMQ_HE_Proj"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 70 45 45
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+
 Model MT_WeakPlasmaShot
 {
    Path "MODELS\Proj_Planes"
@@ -155,4 +179,6 @@ Model MT_ScudMissile
    PITCHFROMMOMENTUM
    FrameIndex MESH A 0 0
 }
+
+
 

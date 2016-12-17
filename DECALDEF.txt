@@ -132,4 +132,98 @@
        randomflipy
        solid
    }   
+////LASER IMPACT, RED
+  fader MT_RedLaserScorch_Decay {
+	DecayStart	20
+	DecayTime	1.0
+  }
+  stretcher MT_RedLaserScorch_Stretcher {
+   GoalX -0.9
+   GoalY -0.9
+   StretchStart 15
+   StretchTime 1.5
+  }
+
+  
+  Combiner MT_RedLaserScorch_Combine {
+   MT_RedLaserScorch_Decay
+   MT_RedLaserScorch_Stretcher
+   }
+   
+   decal MT_RedLaserScorchB
+   {
+       pic BSmallRedLaser
+       shade "60 50 30"
+       x-scale 0.5
+       y-scale 0.5
+       randomflipx
+       randomflipy
+       add 1
+	   fullbright
+	   animator MT_RedLaserScorch_Combine
+   } 
+   
+   decal MT_VerySmallRedLaserScorchB
+   {
+       pic BSmallRedLaser
+       shade "60 50 30"
+       x-scale 0.15
+       y-scale 0.15
+       randomflipx
+       randomflipy
+       add 1
+	   fullbright
+	   animator MT_RedLaserScorch_Combine
+   }   
+   
+   decal MT_LargeRedLaserScorch
+   {	   
+       lowerdecal MT_RedLaserScorchB
+       pic SmallRedLaser
+       shade "60 50 30"
+       x-scale 2.2
+       y-scale 2.2
+       randomflipx
+       randomflipy
+       solid
+
+   } 
+
+   decal MT_MediumRedLaserScorch 
+   {
+   	   lowerdecal MT_RedLaserScorchB
+       pic SmallRedLaser
+       shade "60 50 30"
+       x-scale 1.1
+       y-scale 1.1
+       randomflipx
+       randomflipy
+       solid
+   }
+
+   decal MT_SmallRedLaserScorch 
+   {
+   	   lowerdecal MT_VerySmallRedLaserScorchB
+       pic SmallRedLaser
+       shade "50 50 30"
+       x-scale 0.5
+       y-scale 0.5
+       randomflipx
+       randomflipy
+       solid
+   }    
+   
+   decal MT_VerySmallRedLaserScorch 
+   {
+   	   lowerdecal MT_VerySmallRedLaserScorchB
+       pic SmallRedLaser
+       shade "50 50 30"
+       x-scale 0.25
+       y-scale 0.25
+       randomflipx
+       randomflipy
+       solid
+   }   
+   
+   
    

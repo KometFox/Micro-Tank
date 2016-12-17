@@ -436,3 +436,5 @@ ACTOR MT_P_BulletCaseTest : Particle
     Stop
   }
 }
+
+ACTOR MT_P_BulletCaseTest_Medium : MT_P_BulletCaseTest {Scale 0.5}

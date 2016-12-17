@@ -21,7 +21,7 @@ str recipe_list[RECIPE_ITEMS_MAX][2] = {
 /////Buy Menu
 ////////////////
 
-#define CRAFT_MAX 18
+#define CRAFT_MAX 17
 str craft_list[CRAFT_MAX][3] = {
     {"Spare parts",                    "MT_Spareparts",                      "ISPPA0"}, 
 	
@@ -37,7 +37,7 @@ str craft_list[CRAFT_MAX][3] = {
     {"Quad MG (Weapon)",		              "MT_QuadMachineGun",	         "IQMGA0"},
 		
 	
-	{"Smoke         (Grenade Pod)",		           "Item_GrenadePod_Smoke",	 "IPGSA0"},
+//	{"Smoke         (Grenade Pod)",		           "Item_GrenadePod_Smoke",	 "IPGSA0"},
 	{"Flare         (Grenade Pod)",	  "MT_Item_GrenadePod_Flare",	         "IPGFA0"},	
 	{"Illuminating  (Grenade Pod)",	   "Item_GrenadePod_Illuminating",	     "IPGIA0"},	
     {"Explosive     (Grenade Pod)",	   "MT_GrenadePod_Explosive",	         "IPGHA0"},
@@ -63,7 +63,7 @@ int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
 	
 	{2200},
 	
-    {160},
+//    {160},
 	{60},
 	{60},
 	{80},
@@ -89,7 +89,7 @@ int craft_result[CRAFT_MAX] = {
 
 1,
 
-4,
+//4,
 4,
 4,
 4,
