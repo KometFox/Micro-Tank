@@ -68,7 +68,7 @@ int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
 	{60},
 	{80},
 	{200},
-	{3500},
+	{12000},
 	
 	{500},
 	{250,20},
