@@ -2,30 +2,48 @@ Model HTANK_SNOW
 {
    IGNORETRANSLATION
    Path "MODELS\MicroHeavyTankA1"
-   Model 0 "Tiger1_Atlas.md3"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank"
+   Model 1 "Tiger1_Tracks_Atlas.md3"
    Path "MODELS"
-   Skin 0 "Atlas.png"
+   Skin 1 "Atlas.png"
    Scale 7.5 7.5 7.5
    AngleOffset 0
     FrameIndex HTAA A 0 0
     FrameIndex HTAA B 0 0
 	FrameIndex HTAA C 0 0
     FrameIndex HTAA D 0 0
+    FrameIndex HTAA A 1 0
+    FrameIndex HTAA B 1 0
+	FrameIndex HTAA C 1 0
+    FrameIndex HTAA D 1 0	
 
 }
 Model MT_MediumTank_PantherM10
 {
    IGNORETRANSLATION
    Path "MODELS\MicroMediumTankA1"
-   Model 0 "PantherM10.md3"
+   Model 0 "PantherM10_Chassis.md3"
+   Skin 0 "PantherM10"
+   Model 2 "PantherM10_Turret.md3"
+   Skin 2 "PantherM10"   
+   Model 1 "PantherM10_Tracks.md3"
    Path "MODELS"
-   Skin 0 "Atlas.png"
+   Skin 1 "Atlas.png"
    Scale 5 5 5
    AngleOffset 0
     FrameIndex MMA1 A 0 0
     FrameIndex MMA1 B 0 0
 	FrameIndex MMA1 C 0 0
     FrameIndex MMA1 D 0 0
+    FrameIndex MMA1 A 1 0
+    FrameIndex MMA1 B 1 0
+	FrameIndex MMA1 C 1 0
+    FrameIndex MMA1 D 1 0
+    FrameIndex MMA1 A 2 0
+    FrameIndex MMA1 B 2 0
+	FrameIndex MMA1 C 2 0
+    FrameIndex MMA1 D 2 0	
 
 }
 Model MicroTankA1_Class

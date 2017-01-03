@@ -135,13 +135,14 @@ ACTOR MT_Res_SmallCrystal : MT_Res_SmallOre
   {
   Death.Reclaim:
     "####" A 0 A_Playsound("Recla")
-    "####" A 1 A_GiveToTarget("MT_Credits",65)
+	"####" A 1 A_GiveToTarget("MT_HighValueMetal",10)
+    "####" A 1 A_GiveToTarget("MT_Credits",10)
     "####" A 0 A_SpawnItemEx("Explosion1_S0.5")
     "####" AAAAA 1 A_Fadeout(0.12,1)
     Stop
   Death.Crush:
 //    "####" A 0 A_Playsound("Recla")
-    "####" A 1 A_GiveToTarget("MT_Credits",25)
+    "####" A 1 A_GiveToTarget("MT_Credits",5)
 //    "####" A 0 A_SpawnItemEx("Explosion1_S0.5")
     "####" AAA 1 A_Fadeout(0.30,1)
     Stop  	
@@ -155,15 +156,15 @@ ACTOR MT_Res_LargeCrystal : MT_Res_SmallOre
   {
   Death.Reclaim:
     "####" A 0 A_Playsound("Recla")
-    "####" A 1 A_GiveToTarget("MT_Credits",250)
-    "####" A 1 A_GiveToTarget("MT_HighValueMetal",10)
+    "####" A 1 A_GiveToTarget("MT_Credits",50)
+    "####" A 1 A_GiveToTarget("MT_HighValueMetal",45)
     "####" A 0 A_SpawnItemEx("Explosion1_S0.5")
     "####" AAAAA 1 A_Fadeout(0.12,1)
     Stop
   Death.Crush:
 //    "####" A 0 A_Playsound("Recla")
-    "####" A 1 A_GiveToTarget("MT_Credits",100)
-	"####" A 1 A_GiveToTarget("MT_HighValueMetal",2)
+    "####" A 1 A_GiveToTarget("MT_Credits",20)
+	"####" A 1 A_GiveToTarget("MT_HighValueMetal",8)
 //    "####" A 0 A_SpawnItemEx("Explosion1_S0.5")
     "####" AAA 1 A_Fadeout(0.30,1)
     Stop  	

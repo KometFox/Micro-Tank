@@ -198,11 +198,11 @@ ACTOR MT_OreBoring_ProjB1
     TNT1 A 0 A_SetUserVar("user_Amount",0)
 	Goto Zufall
   Zufall:
-    TNT1 A 0 A_JumpIf(user_Amount == 5,"Crash")
+    TNT1 A 0 A_JumpIf(user_Amount == 3,"Crash")
     TNT1 A 0 A_Jump(120,"SmallOre")
-	TNT1 A 0 A_Jump(120,"LargeOre")
-	TNT1 A 0 A_Jump(20,"SmallCrystal")
-	TNT1 A 0 A_Jump(15,"LargeCrystal")
+	TNT1 A 0 A_Jump(90,"LargeOre")
+	TNT1 A 0 A_Jump(80,"SmallCrystal")
+	TNT1 A 0 A_Jump(35,"LargeCrystal")
 	loop
   SmallOre:
 	TNT1 A 0 A_SpawnItemex("MT_Res_SmallOre",0,0,0,+random(-3,3),+random(-3,3),+random(5,8))
