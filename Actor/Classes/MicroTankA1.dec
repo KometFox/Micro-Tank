@@ -7,8 +7,9 @@ ACTOR MicroTankA1_Class : MT_BaseTank
 {
   player.forwardmove 1.2
   player.jumpz 2
-  MaxStepHeight 48
+  MaxStepHeight 20
   player.MaxHealth 1150
+   player.portrait "LTANKX0" 
   Health 900
   Player.RunHealth 100
   Mass 4250
@@ -20,14 +21,15 @@ ACTOR MicroTankA1_Class : MT_BaseTank
   Player.StartItem "MLTA1Weapon_AP"           ,1
 
   Player.StartItem "37x290mm Cannon"     ,1
-  Player.StartItem "MT_OreBoringDevice"           ,1
+  Player.StartItem "MLT_BaseGun_AP"      ,1
+  Player.StartItem "MT_OreBoringDevice"  ,1
   
   Player.StartItem "MT_AmmoSwitcher"     ,1
   Player.StartItem "WPN_Mode_Switch"     ,1
   Player.StartItem "WPN_Mode"            ,1
   Player.StartItem "WPN_Mode_Switch2"    ,1
   Player.StartItem "WPN_Mode2"           ,1
-  Player.Startitem "MT_Searchlight"       ,1
+  Player.Startitem "MT_Searchlight"      ,1
 
 
   Player.StartItem "MT_ClassToken"                ,1
@@ -42,7 +44,8 @@ ACTOR MicroTankA1_Class : MT_BaseTank
   Player.Startitem "MT_37x290mmAP"                ,54
   Player.Startitem "MT_37x290mmBuckshot"            ,25
   Player.Startitem "A_7u62x54mmR"                 ,2000
-  
+  Player.StartItem "MT_MarineMorpher",           9999
+ 
   DamageFactor "Normal"            ,0.8
   DamageFactor "Extreme"           ,0.8
   DamageFactor "Drowning"          ,0.0
