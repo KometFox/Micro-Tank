@@ -6,9 +6,8 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
 {
   player.forwardmove 0.6
   player.jumpz 2
-  MaxStepHeight 20
+  MaxStepHeight 48
   player.MaxHealth 2000
-  player.portrait "HTANKX0"
   Health 2000
   Mass 5000
   PainChance 256
@@ -32,7 +31,6 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Player.StartItem "MT_MortarLock1" ,1
 //Weapons
   Player.StartItem "75x500mm Cannon"              ,1
-  Player.StartItem "MHT_BaseGun_AP"               ,1
   Player.StartItem "Multi Purpose Device"         ,1
   Player.StartItem "MT_OreBoringDevice"           ,1
 //Ammo
@@ -48,7 +46,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Player.startitem "MT_Item_GrenadePod_Flare"     ,30
   Player.StartItem "NaniteFuel105S"               ,1
 
-  Player.StartItem "MT_MarineMorpher",           9999
+
 
 
 //  Player.Startitem "MT_Item_DynamiteBundle"       ,999
@@ -142,10 +140,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
 }
 
 
-ACTOR HTANK_SNOW : MicroHeavyTankA1_Class {
-Player.DisplayName "Tiger 1 (Hvy)"
-player.portrait "TIG1X0"
-}
+ACTOR HTANK_SNOW : MicroHeavyTankA1_Class {Player.DisplayName "Tiger 1 (Hvy)"}
 
 
 

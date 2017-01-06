@@ -64,7 +64,7 @@ ACTOR MT_JetPackProj
   {
   Spawn:
     TNT1 A 0
-    MPUL ABCDEFGH 1 Bright A_RadiusThrust(5000,5,RTF_AFFECTSOURCE  )
+    MPUL ABCDEFGH 1 Bright A_RadiusThrust(-10000,5,RTF_AFFECTSOURCE)
     Goto Death
 	Death:
 	TNT1 A 0
