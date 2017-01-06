@@ -1,4 +1,3 @@
-//clearplayerclasses
 addplayerclass MicroHeavyTankA1_Class
 addplayerclass MicroMediumTankA1_Class
 addplayerclass MicroTankA1_Class
@@ -20,14 +19,16 @@ addplayerclass MT_MediumTank_PantherM10
    alias MTC_AmoSwc "use MT_AmmoSwitcher"  
    addmenukey "Toggle Integrated Searchlight" MTC_SLight
    alias MTC_SLight "use MT_SearchLight"     
-
+   
+   addmenukey "Morph as Marine. (temp)" MTC_MarineMorph
+   alias MTC_MarineMorph "use MT_MarineMorpher" 
+   
    alias ironcurtain god
    alias Sheqel "Give MT_Credits 1000000;Give MT_Credits 1000000;Give MT_Credits 1000000;Give MT_HighValueMetal 1000000;Echo STUPID GOY"
+
+
 //    addmenukey "Reload Weapon" MTC_RG
 //   alias MTC_RG "use MT_Reloader" 
-     
-   
-   
 //  addmenukey "Use Periscope (Zooming)" MT_PeriscopeMode
 //  alias MTC_PeriscopeMode "use MT_PeriscopeMode"
 //   addmenukey "Turn Searchlight On/Off" MTC_Searchlightswitch

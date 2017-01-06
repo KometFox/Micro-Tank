@@ -35,7 +35,7 @@ script "MTACS_SearchLight" (void)
  
 script "MT_NIGGERS" OPEN 
 {
-ConsoleCommand("COMPAT_ClientsSendFullButtonInfo True");
+ConsoleCommand("compat_clientssendfullbuttoninfo 1");
 }
 
 //When the player got the Menu open and enters a map
