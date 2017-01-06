@@ -1,4 +1,5 @@
-Mod Version: V1U Git MASTER
+Mod Version: V1U Git Stable
+#
 
 OpenGL render is required!
 Software doesn't support 3D models.
@@ -197,4 +198,4 @@ Make Infantry,Vehicles,Aircraft etc... Have a new and a bit more advanced
 behavior (5% done)
 
 NSA/Windows X is a piece of shit OS.
-
+
