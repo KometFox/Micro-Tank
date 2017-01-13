@@ -7,7 +7,7 @@ ACTOR MicroTankA1_Class : MT_BaseTank
 {
   player.forwardmove 1.2
   player.jumpz 2
-  MaxStepHeight 20
+  MaxStepHeight 48
   player.MaxHealth 1150
    player.portrait "LTANKX0" 
   Health 900

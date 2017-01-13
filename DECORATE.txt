@@ -71,6 +71,7 @@
 #Include "Actor/Weapon/QuadMG/QuadMG_Func.dec"
 #Include "Actor/Weapon/QuadMG/QuadMG.dec"
 #Include "Actor/Weapon/OreBoring/OreBoring.dec"
+#Include "Actor/Weapon/ShieldGenerator/ShieldGenerator.dec"
 #Include "Actor/Weapon/Proj_Special.dec"
 #Include "Actor/Weapon/Proj_Bullet.dec"
 #Include "Actor/Weapon/Proj_Energy.dec"

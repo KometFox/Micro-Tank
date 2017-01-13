@@ -4,6 +4,10 @@ addplayerclass MicroTankA1_Class
 addplayerclass HTANK_SNOW
 addplayerclass MT_MediumTank_PantherM10
 
+//WeaponSection BLAH
+//SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice" 
+//SetSlot 2 "75x500mm Cannon" "MT_QuadMachineGun" 
+//SetSlot 3 "MT_ShieldGenerator"
 
 
    addkeysection "Micro Tank Commands" MicroTankCommands

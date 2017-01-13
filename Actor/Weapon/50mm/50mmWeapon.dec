@@ -32,6 +32,9 @@ ACTOR MMT_Basegun : Weapon
     TNT1 A 0 A_PlaySound("Beep2")
     MCAN A 15 A_Print("You imbecile! You did not loaded any ammo!")
 	Goto Ready
+  Empty:
+    MCAN A 8 A_PlaySound("GunEmp")
+	Goto Ready	
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("50mmReloadTime",1, "Ready")
@@ -50,23 +53,23 @@ ACTOR MMT_Basegun : Weapon
 //It is mandatory they are isolated   
   AP_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmAP",1,"AP_Fire")
-	Goto Ready
+	Goto Empty
   
   HE_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmHE",1,"HE_Fire")
-	Goto Ready
+	Goto Empty
 
   Inc_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmInc",1,"Inc_Fire")
-	Goto Ready
+	Goto Empty
 	
   Buckshot_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmBuckshot",1, "Buckshot_Fire")
-	Goto Ready
+	Goto Empty
 
   HEAT_Fire_Check:
     TNT1 A 0 A_JumpIfInventory("MT_50x441mmHEAT",1, "HEAT_Fire")
-	Goto Ready
+	Goto Empty
     
   AltFire2:
     TNT1 A 0 A_Jumpifinventory("WPN_Mode2_1",1, "AltFire")

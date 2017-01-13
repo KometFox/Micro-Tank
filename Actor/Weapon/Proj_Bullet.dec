@@ -99,7 +99,7 @@ ACTOR MT_FastBulletBase : Fastprojectile
 //Speed 90
   Speed 250
   Projectile
-  DamageType BulletAP 
+  DamageType Bullet
   damage (random(21,21)*1)
   Obituary "%o <7.62mm AP] %k" 
   gravity 0.0085

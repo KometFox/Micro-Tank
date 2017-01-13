@@ -1,6 +1,0 @@
-before_script:
-- 
-
-compile:
- script: 
- -makefile.sh
