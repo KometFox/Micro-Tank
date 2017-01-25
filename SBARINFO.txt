@@ -82,110 +82,252 @@ InInventory MT_ClassToken, 1
    
     IsSelected "75x500mm Cannon", MHT_Basegun
    {
+   
+
     InInventory MHT_BaseGun_AP, 1 
     {
-      drawimage "APAMA0", 295, -30, centerbottom;
+      drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_APShot_2, 1
+     {
+       drawimage "APAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_APShot_3, 1
+     {
+       drawimage "APAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
-   
+	
     InInventory MHT_BaseGun_HE, 1 
     {
-      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_HEShell_2, 1
+     {
+       drawimage "HEAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEShell_3, 1
+     {
+       drawimage "HEAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MHT_BaseGun_Buckshot, 1 
     {
-      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_BuckShotShell_2, 1
+     {
+       drawimage "ARBCB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_BuckShotShell_3, 1
+     {
+       drawimage "ARBCC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MHT_BaseGun_Inc, 1 
     {
-      drawimage "HEIAA0", 295, -30, centerbottom;
+      drawimage "HEIAA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_IncShell_2, 1
+     {
+       drawimage "HEIAB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_IncShell_3, 1
+     {
+       drawimage "HEIAC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     } 
 
     InInventory MHT_BaseGun_HEAT, 1 
     {
-      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_HEATShell_2, 1
+     {
+       drawimage "HTAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEATShell_3, 1
+     {
+       drawimage "HTAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }  
     
  
    }
    
-   //////
+////////////////////////////////
    
     IsSelected "50x441mm Cannon", MMT_Basegun
    {
     InInventory MMT_BaseGun_AP, 1 
     {
-      drawimage "APAMA0", 295, -30, centerbottom;
+      drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_APShot_2, 1
+     {
+       drawimage "APAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_APShot_3, 1
+     {
+       drawimage "APAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }	  
     }
    
     InInventory MMT_BaseGun_HE, 1 
     {
-      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_HEShell_2, 1
+     {
+       drawimage "HEAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEShell_3, 1
+     {
+       drawimage "HEAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MMT_BaseGun_Buckshot, 1 
     {
-      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_BuckShotShell_2, 1
+     {
+       drawimage "ARBCB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_BuckShotShell_3, 1
+     {
+       drawimage "ARBCC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MMT_BaseGun_Inc, 1 
     {
-      drawimage "HEIAA0", 295, -30, centerbottom;
+      drawimage "HEIAA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_IncShell_2, 1
+     {
+       drawimage "HEIAB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_IncShell_3, 1
+     {
+       drawimage "HEIAC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     } 
  
     InInventory MMT_BaseGun_HEAT, 1 
     {
-      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
-    }  
+     InInventory MTU_HEATShell_2, 1
+     {
+       drawimage "HTAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEATShell_3, 1
+     {
+       drawimage "HTAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }    
+	}  
     
    }
    
-   //////
+/////////////////////////////////
    
     IsSelected "37x290mm Cannon", MMT_Basegun
    {
     InInventory MLT_BaseGun_AP, 1 
     {
-      drawimage "APAMA0", 295, -30, centerbottom;
+      drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
-    }
+     InInventory MTU_APShot_2, 1
+     {
+       drawimage "APAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_APShot_3, 1
+     {
+       drawimage "APAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }	      
+	}
    
     InInventory MLT_BaseGun_HE, 1 
     {
-      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_HEShell_2, 1
+     {
+       drawimage "HEAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEShell_3, 1
+     {
+       drawimage "HEAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MLT_BaseGun_Buckshot, 1 
     {
-      drawimage "ARBCA0", 295, -30, centerbottom;
+      drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     InInventory MTU_BuckShotShell_2, 1
+     {
+       drawimage "ARBCB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_BuckShotShell_3, 1
+     {
+       drawimage "ARBCC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
     }
     
     InInventory MLT_BaseGun_HEAT, 1 
     {
-      drawimage "HTAMA0", 295, -30, centerbottom;
+      drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+      InInventory MTU_HEATShell_2, 1
+     {
+       drawimage "HTAMB0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }
+     InInventory MTU_HEATShell_3, 1
+     {
+       drawimage "HTAMC0", 295, -17, centerbottom;
+       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
+     }   
     } 
     InInventory MLT_BaseGun_FlameThrower, 1 
     {
-      drawimage "NCAMA0", 295, -30, centerbottom;
+      drawimage "NCAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_IncendiaryAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     } 	
     InInventory MLT_BaseGun_Laser, 1 
     {
-      drawimage "ENCEA0", 295, -30, centerbottom;
+      drawimage "ENCEA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_EnergyCellAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     } 	
    }
@@ -195,12 +337,12 @@ InInventory MT_ClassToken, 1
    {
     InInventory MT_QuadMachineGun_APSelected, 1 
     {
-      drawimage "APAMA0", 295, -30, centerbottom;
+      drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo A_7u62x54mmR ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }
     InInventory MT_QuadMachineGun_HESelected, 1 
     {
-      drawimage "HEAMA0", 295, -30, centerbottom;
+      drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_Ammo_7u62x54mmR_HE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }  	
    }  

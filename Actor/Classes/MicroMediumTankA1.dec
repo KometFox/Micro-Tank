@@ -7,7 +7,7 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
 {
   player.forwardmove 0.68
   player.jumpz 2
-  MaxStepHeight 48
+  MaxStepHeight 20
   player.MaxHealth 1400
    player.portrait "MTANKX0" 
   Health 1400
@@ -20,12 +20,12 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
 
   ActiveSound "MotLop3"
   
-  Player.StartItem "MMTA1Weapon_AP"        ,1
-
-  Player.StartItem "50x441mm Cannon"    ,1
-  Player.StartItem "MMT_BaseGun_AP"     ,1
-  Player.StartItem "MT_OreBoringDevice" ,1  
-  Player.StartItem "MT_AmmoSwitcher"    ,1
+  Player.StartItem "MMTA1Weapon_AP"       ,1
+  Player.StartItem "MT_AssaultBridgeTool" ,1
+  Player.StartItem "50x441mm Cannon"      ,1
+  Player.StartItem "MMT_BaseGun_AP"       ,1
+  Player.StartItem "MT_OreBoringDevice"   ,1  
+  Player.StartItem "MT_AmmoSwitcher"      ,1
 
   Player.StartItem "WPN_Mode_Switch"  ,1
   Player.StartItem "WPN_Mode"         ,1
@@ -45,7 +45,6 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
   Player.Startitem "MT_50x441mmAP"                ,54
   Player.Startitem "MT_50x441mmBuckshot"            ,25
  Player.Startitem "A_7u62x54mmR"                 ,1800
-  Player.StartItem "MT_MarineMorpher",           9999
 
 
   DamageFactor "Normal"            ,0.8

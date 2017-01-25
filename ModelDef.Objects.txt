@@ -515,3 +515,86 @@ Model MT_FallingComet
    FrameIndex IDLE A 0 0
 
 }
+
+Model MT_SludgeBarrel
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "SludgeBarreL_Tex.png"
+   Scale 13.5 13.5 14
+   AngleOffset 0
+   FrameIndex BAR1 A 0 0
+}
+
+Model MT_SludgeBarrel_NoResp
+{
+   Path "MODELS\Misc"
+   Model 0 "SludgeBarrel.md3"
+   Skin  0 "SludgeBarreL_Tex.png"
+   Scale 13 13 13
+   AngleOffset 0
+   FrameIndex BAR1 A 0 0
+}
+
+
+
+Model MT_Parachute
+{
+   Path "MODELS\Misc"
+   Model 0 "Parachute.md3"
+   Skin  0 "Parachute.png"
+   Scale 15 15 15
+   AngleOffset 0
+   FrameIndex PARA A 0 1
+   FrameIndex PARA B 0 2
+   FrameIndex PARA C 0 3
+   FrameIndex PARA D 0 4
+   FrameIndex PARA E 0 5
+   FrameIndex PARA F 0 6
+}
+
+Model MT_SupplyBox
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
+
+Model MT_SupplyBox
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KISE A 0 0
+}
+
+
+
+Model MT_SupplyBoxEmpty
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox.md3"
+   Path "MODELS"
+   Skin  0 "Atlas.png"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
+
+
+
+
+
+
+
+
+
+
+

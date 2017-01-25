@@ -9,8 +9,8 @@ ACTOR MT_QuadMachineGun : Weapon
   +WEAPON.DONTBOB
   Weapon.SlotNumber 3
   Weapon.SlotPriority 1
-  Inventory.PickupMessage "Picked Up: Quad Machine Gun (Heavy)"
-  Tag "(Heavy) Quad Machine Gun"
+  Inventory.PickupMessage "Picked Up: Quad Machine Gun (Light)"
+  Tag "(Light) Quad Machine Gun"
   States
   {
   Ready:

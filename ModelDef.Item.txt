@@ -1,5 +1,15 @@
-
-
+/*Model Decipistol
+{
+Path "Decimation\Models\Pistol"
+Model 0 "Pistol.md3"
+Skin 0 "Pistol" 
+Scale 2 2 2
+FrameIndex CHGG A 0 0
+FrameIndex CHGF A 0 0
+FrameIndex  CHGF B 0 0
+}
+*/
+	 
 Model WeaponUpgradeBox_lvl1
 {
    Path "MODELS\WPN_Upgrade_1"

@@ -6,7 +6,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
 {
   player.forwardmove 0.6
   player.jumpz 2
-  MaxStepHeight 48
+  MaxStepHeight 20
   player.MaxHealth 2000
   player.portrait "HTANKX0"
   Health 2000
@@ -35,6 +35,7 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Player.StartItem "MHT_BaseGun_AP"               ,1
   Player.StartItem "Multi Purpose Device"         ,1
   Player.StartItem "MT_OreBoringDevice"           ,1
+  Player.StartItem "MT_AssaultBridgeTool"         ,1
 //Ammo
   Player.Startitem "MT_75x500mmHE"                ,25
   Player.Startitem "MT_75x500mmAP"                ,50

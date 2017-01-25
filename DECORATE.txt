@@ -66,6 +66,7 @@
 #Include "Actor/Weapon/CommonWeapons.dec"
 #Include "Actor/Weapon/JetPackShit.dec"
 #Include "Actor/Weapon/SludgeCannon.dec"
+#Include "Actor/Weapon/BridgeTool/BridgeTool.dec"
 #Include "Actor/Weapon/GasClouds.dec"
 #Include "Actor/Weapon/Puffs.dec"
 #Include "Actor/Weapon/QuadMG/QuadMG_Func.dec"

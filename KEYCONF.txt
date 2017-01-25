@@ -35,9 +35,6 @@ addplayerclass MT_MediumTank_PantherM10
 //   alias MTC_RG "use MT_Reloader" 
 //  addmenukey "Use Periscope (Zooming)" MT_PeriscopeMode
 //  alias MTC_PeriscopeMode "use MT_PeriscopeMode"
-//   addmenukey "Turn Searchlight On/Off" MTC_Searchlightswitch
-//   alias MTC_Searchlightswitch "use SearchLight_Mode_Switch"
-
 
 
 

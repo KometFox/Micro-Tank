@@ -2,6 +2,7 @@
 This Decorate only purpose is to have example barebones particles
 and making sure they are correctly animated 
 */
+
 ACTOR Spark0 : Particle
 {
   renderstyle Add
@@ -156,7 +157,7 @@ ACTOR SmokeBlue : Particle
 
 ACTOR Smoke1 : Particle
 {
-
+  
   renderstyle Translucent
   alpha 0.8
   States
@@ -167,11 +168,11 @@ ACTOR Smoke1 : Particle
     loop
   Spawn1:
     ASP1 ABCDEFGHIJKLMNOPQRS 2  
-    ASP1 TUVWXYZ 2 A_Fadeout(0.1) 
+    ASP1 TUVWXYZ 2 //A_Fadeout(0.1) 
     Goto Death
   Spawn2:
     ASQ1 ABCDEFGHIJKLMNOPQRS 2  
-    ASQ1 TUVWXYZ 2 A_Fadeout(0.1) 
+    ASQ1 TUVWXYZ 2 //A_Fadeout(0.1) 
     Goto Death       
   Death:
     TNT1 A 1
@@ -517,7 +518,7 @@ ACTOR Explosion3 : Particle
     BEP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright
     Goto Death
   Spawn3:
-    CEP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 Bright
+    CEP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright
     Goto Death
   Death:
     TNT1 A 1
