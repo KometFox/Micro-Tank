@@ -9,3 +9,59 @@ Model MT_AnthraxSprayer_1
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
+
+Model MT_P_BulletCaseTest
+{
+   Path "MODELS\Misc"
+   Model 0 "Case.md3"
+   Skin  0 "Case"
+   PITCHFROMMOMENTUM
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex MBULE A 0 1
+   FrameIndex MBULE B 0 2
+   FrameIndex MBULE C 0 3
+   FrameIndex MBULE D 0 4
+   FrameIndex MBULE E 0 5
+   FrameIndex MBULE F 0 6
+   FrameIndex MBULE G 0 7
+   FrameIndex MBULE H 0 8
+}
+
+Model MT_P_BulletCaseTest_Medium
+{
+   Path "MODELS\Misc"
+   Model 0 "Case.md3"
+   Skin  0 "Case"
+   PITCHFROMMOMENTUM
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex MBULE A 0 1
+   FrameIndex MBULE B 0 2
+   FrameIndex MBULE C 0 3
+   FrameIndex MBULE D 0 4
+   FrameIndex MBULE E 0 5
+   FrameIndex MBULE F 0 6
+   FrameIndex MBULE G 0 7
+   FrameIndex MBULE H 0 8
+}
+
+
+Model MT_P_CaseLink
+{
+   Path "MODELS\Misc"
+   Model 0 "CaseLink.md3"
+   Skin  0 "CaseLink"
+   PITCHFROMMOMENTUM
+   Scale 20 20 20
+   AngleOffset 0
+   FrameIndex MBULE A 0 1
+   FrameIndex MBULE B 0 2
+   FrameIndex MBULE C 0 3
+   FrameIndex MBULE D 0 4
+   FrameIndex MBULE E 0 5
+   FrameIndex MBULE F 0 6
+   FrameIndex MBULE G 0 7
+   FrameIndex MBULE H 0 8
+}
+

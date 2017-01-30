@@ -399,4 +399,124 @@ Model MT_AssaultBridge
  Scale 2 2 2.5
 }
 
+//----CANNON---------------------------------------
+
+Model "75x500mm Cannon"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP"
+   Model 1 "Cannon.md3"
+   Skin  1 "Cannon"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 7 22 -15
+   //Idle
+   FrameIndex MCAN A 0 0  
+   //Cannon Fire
+   FrameIndex MCAN B 0 0  
+   FrameIndex MCAN C 0 0  
+   FrameIndex MCAN D 0 0  
+   FrameIndex MCAN E 0 0  
+   FrameIndex MCAN F 0 0  
+   FrameIndex MCAN G 0 0  
+   //MG Fire
+   FrameIndex MCAN H 0 8  
+   FrameIndex MCAN I 0 9  
+   FrameIndex MCAN J 0 10  
+   FrameIndex MCAN K 0 11 
+   FrameIndex MCAN L 0 12 
+
+   //Idle
+   FrameIndex MCAN A 1 0  
+   //Cannon Fire
+   FrameIndex MCAN B 1 1  
+   FrameIndex MCAN C 1 2  
+   FrameIndex MCAN D 1 3  
+   FrameIndex MCAN E 1 4  
+   FrameIndex MCAN F 1 5  
+   FrameIndex MCAN G 1 6  
+}
+
+
+Model "50x441mm Cannon"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP"
+   Model 1 "Cannon.md3"
+   Skin  1 "Cannon"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 7 22 -15
+   //Idle
+   FrameIndex MCAN A 0 0  
+   //Cannon Fire
+   FrameIndex MCAN B 0 0  
+   FrameIndex MCAN C 0 0  
+   FrameIndex MCAN D 0 0  
+   FrameIndex MCAN E 0 0  
+   FrameIndex MCAN F 0 0  
+   FrameIndex MCAN G 0 0  
+   //MG Fire
+   FrameIndex MCAN H 0 8  
+   FrameIndex MCAN I 0 9  
+   FrameIndex MCAN J 0 10  
+   FrameIndex MCAN K 0 11 
+   FrameIndex MCAN L 0 12 
+
+   //Idle
+   FrameIndex MCAN A 1 0  
+   //Cannon Fire
+   FrameIndex MCAN B 1 1  
+   FrameIndex MCAN C 1 2  
+   FrameIndex MCAN D 1 3  
+   FrameIndex MCAN E 1 4  
+   FrameIndex MCAN F 1 5  
+   FrameIndex MCAN G 1 6  
+}
+
+
+Model "37x290mm Cannon"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP"
+   Model 1 "Cannon.md3"
+   Skin  1 "Cannon"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 7 22 -15
+   //Idle
+   FrameIndex MCAN A 0 0  
+   //Cannon Fire
+   FrameIndex MCAN B 0 0  
+   FrameIndex MCAN C 0 0  
+   FrameIndex MCAN D 0 0  
+   FrameIndex MCAN E 0 0  
+   FrameIndex MCAN F 0 0  
+   FrameIndex MCAN G 0 0  
+   //MG Fire
+   FrameIndex MCAN H 0 8  
+   FrameIndex MCAN I 0 9  
+   FrameIndex MCAN J 0 10  
+   FrameIndex MCAN K 0 11 
+   FrameIndex MCAN L 0 12 
+
+   //Idle
+   FrameIndex MCAN A 1 0  
+   //Cannon Fire
+   FrameIndex MCAN B 1 1  
+   FrameIndex MCAN C 1 2  
+   FrameIndex MCAN D 1 3  
+   FrameIndex MCAN E 1 4  
+   FrameIndex MCAN F 1 5  
+   FrameIndex MCAN G 1 6  
+}
 

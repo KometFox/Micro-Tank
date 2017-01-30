@@ -236,7 +236,8 @@ ACTOR MT_MGMuzzleFlash : MGFakeMuzzleFlash
     37MM AA 0 A_SpawnItemEx("MT_CEG_MGMuzzleFlash",0,5,-2,0,1)
     Goto Death
   Death:
-    TNT1 A 0  A_spawnitemex("Bullet_Spark",0,0,0,0,10)
+	TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest",-8,9,-7,0,2+random(2,3),0,+random(-20,20))
+	TNT1 A 0 A_SpawnItemEx("MT_P_CaseLink",-8,9,-7,0,2+random(2,3),0,+random(-20,20))
     TNT1 A 1  
     Stop
   }

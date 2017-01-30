@@ -42,7 +42,7 @@ ACTOR "Multi Purpose Device" : Weapon
     Goto Ready
 */
   Fire:  
-    TNT1 A 0 A_Jumpifinventory("WPN_Mode_1",1, "Fire")
+ //   TNT1 A 0 A_Jumpifinventory("WPN_Mode_1",1, "Fire")
     TNT1 A 0 A_SpawnItemEx("ReclaimEffect",0,0,15,25)   
     TNT1 A 0 A_SpawnItemEx("ReclaimEffect",0,0,15,28)   
     0MED A 4 A_Firecustommissile("MPD_Projectile2",0,18,0,0,0)

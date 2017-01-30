@@ -97,17 +97,18 @@ ACTOR MHT_Basegun : Weapon
     MCAN A 0 A_GunFlash
     TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
-    MCAN A 2 A_Firecustommissile("7.62x54mm AP")
-    MCAN A 2
-    MCAN A 0 A_ReFire
+    MCAN HI 2
+	MCAN A 0 A_Firecustommissile("7.62x54mm AP")
+	MCAN A 0 A_ReFire
+	MCAN JKL 3
     Goto Ready
   Flash:
     TNT1 A 0 
-    MCAN BCDEFG 2 
+//    MCAN BCDEFG 2 
     Goto LightDone
   AltFlash:
 //    TNT1 A 0 A_FireCustomMissile("MGFakeMuzzleFlash",0,0,-2)
-    MCAN HIJKL 2 
+    MCAN A 0
     Goto LightDone
   Spawn:
     CAAB A -1
@@ -121,6 +122,7 @@ ACTOR MHT_Basegun : Weapon
    TNT1 A 0 A_AlertMonsters
    TNT1 A 0 A_FireCustomMissile("75mmFakeMuzzleFlash",0,0,0)
    TNT1 A 0 A_SpawnItemEx("MT_P_BulletCaseTest_Medium",0,0,8,4,0,5+random(-2,2),180)
+   MCAN BCDEFG 2 
   goto Ready 
    
   Buckshot_Fire:
