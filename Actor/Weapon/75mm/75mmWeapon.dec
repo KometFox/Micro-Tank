@@ -21,15 +21,25 @@ ACTOR MHT_Basegun : Weapon
     TNT1 A 0  A_GiveInventory("MT_75x500mmCannon_IsSelected",1)
     MCAN A 1 A_Raise
     Loop
-  
-  Lopse:
-    TNT1 A 0
-    Goto Ready
-  
-  Ready:
-    TNT1 A 0
+ 
+   Ready:
     MCAN A 1 A_WeaponReady
-    loop
+    TNT1 A 0 A_JumpIfInventory("MT_Periscope",1,"Zoom1")
+    Loop
+   
+  //Periscope Stuff
+  Zoom1:
+    TNT1 A 0 A_ZoomFactor(2.0)
+	TNT1 A 0 A_JumpIfInventory("MT_Periscope",2,"Zoom2")
+    Goto "Ready"
+  Zoom2:
+    TNT1 A 0 A_ZoomFactor(4.0)
+	TNT1 A 0 A_JumpIfInventory("MT_Periscope",3,"ZoomOut")
+    Goto "Ready"
+  ZoomOut:
+    TNT1 A 0 A_ZoomFactor(1.0)
+	TNT1 A 0 A_TakeInventory("MT_Periscope",5)
+    Goto "Ready" 
   FuckYou:
     TNT1 A 0 A_PlaySound("Beep2")
     MCAN A 15 A_Print("You imbecile! You did not loaded any ammo!")
@@ -37,9 +47,9 @@ ACTOR MHT_Basegun : Weapon
   Empty:
     MCAN A 8 A_PlaySound("GunEmp")
 	Goto Ready
+	
 //Checks what ammo mode is selected and then checks 
 //if there is any ammo available at all. 
-
   Fire:
     TNT1 A 0 A_Jumpifinventory("MTU_FastCannon_2",1, "Fire_FastCan")
     TNT1 A 0 A_Jumpifinventory("75mmReloadTime",1, "Ready")
@@ -98,7 +108,7 @@ ACTOR MHT_Basegun : Weapon
     TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
     MCAN HI 2
-	MCAN A 0 A_Firecustommissile("7.62x54mm AP")
+	MCAN A 0 A_Firecustommissile("7.62x54mm AP",+frandom(-0.2,0.2),0,0,0,0,+frandom(-0.2,0.2))
 	MCAN A 0 A_ReFire
 	MCAN JKL 3
     Goto Ready
@@ -117,7 +127,7 @@ ACTOR MHT_Basegun : Weapon
   MuzzleFlash_Default:  
    TNT1 A 0 A_Giveinventory("75mmReloadTime",1)
    TNT1 A 0 A_Giveinventory("75mmReloadTime_UPG2",1)  
-   TNT1 A 0 A_Playsound("Fire05")
+   TNT1 A 0 A_Playsound("75mmFire")
    MCAN A 0 A_GunFlash
    TNT1 A 0 A_AlertMonsters
    TNT1 A 0 A_FireCustomMissile("75mmFakeMuzzleFlash",0,0,0)

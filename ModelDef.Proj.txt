@@ -28,7 +28,7 @@ Model "7.62x54mm AP"
    Model 0 "Plane2.md3"
    Skin  0 "Trace2_1.png"
    PITCHFROMMOMENTUM
-   Scale 80 45 45
+   Scale 100 20 20
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -39,7 +39,7 @@ Model "MT_QuadMQ_AP_Proj"
    Model 0 "Plane2.md3"
    Skin  0 "Trace2_1.png"
    PITCHFROMMOMENTUM
-   Scale 70 45 45
+   Scale 100 20 20
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -51,7 +51,7 @@ Model "MT_QuadMQ_HE_Proj"
    Model 0 "Plane2.md3"
    Skin  0 "Trace2_1.png"
    PITCHFROMMOMENTUM
-   Scale 70 45 45
+   Scale 100 40 40
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -63,7 +63,7 @@ Model MT_WeakPlasmaShot
    Model 0 "Plane2.md3"
    Skin  0 "Trace2Blue.png"
    PITCHFROMMOMENTUM
-   Scale 70 45 45
+   Scale 50 22 22
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }

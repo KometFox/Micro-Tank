@@ -3,7 +3,7 @@ ACTOR MT_BaseTank : PlayerPawn
 {
   player.DisplayName "MicroTank-A1"
   player.AttackZOffset 7
-  player.viewheight 16
+  player.viewheight 20
   player.forwardmove 0.68
   player.sidemove 0
   player.jumpz 2

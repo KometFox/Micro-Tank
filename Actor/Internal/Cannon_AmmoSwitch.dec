@@ -52,6 +52,45 @@ actor MT_AmmoSwitcher : CustomInventory {
 
  }}
 
+actor MT_Periscope : Inventory
+{
+  inventory.maxamount 4
+}
 
+actor MT_PeriscopeItem : CustomInventory { 
+  +INVENTORY.HUBPOWER
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE 
+  -INVBAR
+  -COUNTITEM
+//  +INVENTORY.UNTOSSABLE
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  states
+  {
+  Use:
+  TNT1 A 0 A_JumpIfInventory("MT_37x290mmCannon_IsSelected",1,"MLT_Basegun")
+  TNT1 A 0 A_JumpIfInventory("MT_50x441mmCannon_IsSelected",1,"MMT_Basegun")
+  TNT1 A 0 A_JumpIfInventory("MT_75x500mmCannon_IsSelected",1,"MHT_Basegun")
+  TNT1 A 0 A_GiveInventory("MT_PeriscopeItem",2)
+  stop
+   
+  MHT_Basegun: TNT1 A 0 A_GiveInventory("MT_Periscope",1) 
+  TNT1 A 0 A_GiveInventory("MT_PeriscopeItem",2)
+  stop  
+ 
+  MMT_Basegun: TNT1 A 0 A_GiveInventory("MT_Periscope",1) 
+  TNT1 A 0 A_GiveInventory("MT_PeriscopeItem",2)
+  stop  
+  
+  MLT_Basegun: TNT1 A 0 A_GiveInventory("MT_Periscope",1) 
+  TNT1 A 0 A_GiveInventory("MT_PeriscopeItem",2)
+  stop
+  
+  DoNothing:
+  TNT1 A 0 A_GiveInventory("MT_PeriscopeItem",2)
+  stop
+
+ }}
 
 

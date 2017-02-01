@@ -66,6 +66,8 @@ Fire09    Fire09
 PKMFire1  PKMFire1
 PlsFir    PlsFir
 37mmFire  37mmFire
+50mmFire  50mmFire
+75mmFire  75mmFire
 GFire2    GFire2
 GFire1    GFIre1
 LaserFir  LaserFir
@@ -127,6 +129,7 @@ Beep1 Beep1
 Beep2 Beep2
 Beep3 Beep3
 
+Shell2 Shell2
 
 
 //Pain

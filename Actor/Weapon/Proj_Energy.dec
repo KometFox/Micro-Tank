@@ -4,7 +4,7 @@ Actor MT_WeakPlasmaShot : "7.62x54mm AP"
 {
   Speed 65
   DamageType Energy
-  damage (random(6,8)*1)
+  damage (random(8,10)*1)
   renderstyle Add
   Decal MT_VerySmallRedLaserScorch
   States

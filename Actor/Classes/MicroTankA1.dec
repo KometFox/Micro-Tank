@@ -31,6 +31,8 @@ ACTOR MicroTankA1_Class : MT_BaseTank
   Player.StartItem "WPN_Mode_Switch2"    ,1
   Player.StartItem "WPN_Mode2"           ,1
   Player.Startitem "MT_Searchlight"      ,1
+  Player.StartItem "MT_PeriscopeItem"     ,1
+
 
 
   Player.StartItem "MT_ClassToken"                ,1

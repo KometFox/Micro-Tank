@@ -28,6 +28,8 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
   Player.StartItem "WPN_Mode2"            ,1
   Player.StartItem "MT_AmmoSwitcher"      ,1
   Player.Startitem "MT_SearchLight"       ,1
+  Player.StartItem "MT_PeriscopeItem"     ,1
+
 //Lockers
   Player.StartItem "MT_MortarLock1" ,1
 //Weapons
