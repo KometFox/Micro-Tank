@@ -7,6 +7,7 @@ ACTOR MT_BaseTank : PlayerPawn
   player.forwardmove 0.68
   player.sidemove 0
   player.jumpz 2
+  player.face "TKF"
   MaxStepHeight 48
   ReactionTime 0
   Health 575
