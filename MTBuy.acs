@@ -238,7 +238,7 @@ str MTUpgrades_list[MTUPGRADES_MAX][3] = {
 	{"Hollow Charge Shell       (T1)",		 "MT_HEATShell_Upgrader2",	            "IHTAB0"},	
 	{"Hollow Charge Shell       (T2)",		 "MT_HEATShell_Upgrader3",	            "IHTAC0"},	
 	{"Energy Weapon Improvment (T1)",            "MT_Energy_Upgrader2",            "IENCA0"},
-	{"Energy Weapon Improvment (T2)",            "MT_Energy_Upgrader3",            "IENCA0"},	
+	{"Energy Weapon Improvment (T2)",            "MT_Energy_Upgrader3",            "IENCB0"},	
     {"Environ. Hazard Coating  (Armor Addon)",   "MT_Upgrade_Armor_EnvironmentCoat","IHAMA0"},	
 
 };

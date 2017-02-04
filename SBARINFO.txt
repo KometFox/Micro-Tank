@@ -1,17 +1,6 @@
-/*******************************************************************************
- *                         DEFAULT DOOM STATUS BAR
- *******************************************************************************
- * If you wish to include this file into a custom status bar please use the 
- * following command:
- *
- *     base Doom;
- *
- * Using #include "sbarinfo/doom.txt" will not be supported.
- ******************************************************************************/
-
 height 32;
 monospacefonts true, "0";
-base Doom;
+#Include "SBARINFO.doom"
 
 
 statusbar fullscreen,fullscreenoffsets // MicroTank HUD
@@ -65,7 +54,7 @@ InInventory MT_ClassToken, 1
    	gamemode singleplayer, cooperative, teamgame
    	{
    		// let's hope no mod ever uses 100 keys...
-   		drawkeybar 150, horizontal, reverserows, auto, -45, -130, 0, 3, auto;
+  		drawkeybar 10, horizontal, reverserows, auto, -45, -130, 0, 3, auto;	
    	}
    
    
@@ -86,6 +75,7 @@ InInventory MT_ClassToken, 1
 
     InInventory MHT_BaseGun_AP, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "AP Shot", 325, -50,0,alignment(left);
       drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_APShot_2, 1
@@ -102,6 +92,7 @@ InInventory MT_ClassToken, 1
 	
     InInventory MHT_BaseGun_HE, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "HE Shell", 325, -50,0,alignment(left);
       drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_HEShell_2, 1
@@ -118,6 +109,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MHT_BaseGun_Buckshot, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "Buckshot", 325, -50,0,alignment(left);
       drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_BuckShotShell_2, 1
@@ -134,6 +126,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MHT_BaseGun_Inc, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "Inc Shell", 325, -50,0,alignment(left);
       drawimage "HEIAA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_IncShell_2, 1
@@ -150,6 +143,7 @@ InInventory MT_ClassToken, 1
 
     InInventory MHT_BaseGun_HEAT, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "HEAT Shell", 325, -50,0,alignment(left);
       drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_75x500mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_HEATShell_2, 1
@@ -173,6 +167,7 @@ InInventory MT_ClassToken, 1
    {
     InInventory MMT_BaseGun_AP, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "AP Shot", 325, -50,0,alignment(left);
       drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_APShot_2, 1
@@ -189,6 +184,7 @@ InInventory MT_ClassToken, 1
    
     InInventory MMT_BaseGun_HE, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "HE Shell", 325, -50,0,alignment(left);
       drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_HEShell_2, 1
@@ -205,6 +201,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MMT_BaseGun_Buckshot, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "Buckshot", 325, -50,0,alignment(left);
       drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_BuckShotShell_2, 1
@@ -221,6 +218,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MMT_BaseGun_Inc, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "Inc Shell", 325, -50,0,alignment(left);
       drawimage "HEIAA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmInc ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_IncShell_2, 1
@@ -237,6 +235,7 @@ InInventory MT_ClassToken, 1
  
     InInventory MMT_BaseGun_HEAT, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "HEAT Shell", 325, -50,0,alignment(left);
       drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_50x441mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_HEATShell_2, 1
@@ -259,6 +258,7 @@ InInventory MT_ClassToken, 1
    {
     InInventory MLT_BaseGun_AP, 1 
     {
+  	  drawstring BIGFONT, GOTSHOTGUN, "AP Shot", 325, -50,0,alignment(left);
       drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmAP ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_APShot_2, 1
@@ -275,6 +275,7 @@ InInventory MT_ClassToken, 1
    
     InInventory MLT_BaseGun_HE, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "HE Shell", 325, -50,0,alignment(left);
       drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_HEShell_2, 1
@@ -291,6 +292,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MLT_BaseGun_Buckshot, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "Buckshot", 325, -50,0,alignment(left);
       drawimage "ARBCA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmBuckshot ,  alignment(left) , whennotzero , drawshadow, 325, -30;
      InInventory MTU_BuckShotShell_2, 1
@@ -307,6 +309,7 @@ InInventory MT_ClassToken, 1
     
     InInventory MLT_BaseGun_HEAT, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "HEAT Shell", 325, -50,0,alignment(left);
       drawimage "HTAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mmHEAT ,  alignment(left) , whennotzero , drawshadow, 325, -30;
       InInventory MTU_HEATShell_2, 1
@@ -322,11 +325,13 @@ InInventory MT_ClassToken, 1
     } 
     InInventory MLT_BaseGun_FlameThrower, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "Flame", 325, -50,0,alignment(left);
       drawimage "NCAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_IncendiaryAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     } 	
     InInventory MLT_BaseGun_Laser, 1 
     {
+	  drawstring BIGFONT, GOTSHOTGUN, "Laser", 325, -50,0,alignment(left);
       drawimage "ENCEA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_37x290mm_EnergyCellAmmo ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     } 	
@@ -337,14 +342,74 @@ InInventory MT_ClassToken, 1
    {
     InInventory MT_QuadMachineGun_APSelected, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "AP Shot", 325, -50,0,alignment(left);
       drawimage "APAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo A_7u62x54mmR ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }
     InInventory MT_QuadMachineGun_HESelected, 1 
     {
+	 drawstring BIGFONT, GOTSHOTGUN, "HE Shell", 325, -50,0,alignment(left);
       drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_Ammo_7u62x54mmR_HE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }  	
    }  
+
 }
+
+InInventory not MT_ClassToken, 1
+{
+///////////////////Fallback for the normal shit
+ //health
+    drawimage "MEDIA0", 20, -2, centerbottom;
+    drawnumber 3, HUDFONT_DOOM, untranslated, health, drawshadow, 82, -20;
+
+    //armor
+    drawimage armoricon, 20, -24, centerbottom;
+    drawnumber 3, HUDFONT_DOOM, untranslated, armor, drawshadow, whennotzero, 82, -39;
+
+    //ammo
+    drawimage ammoicon1, -14, -4, centerbottom;
+    drawnumber 3, HUDFONT_DOOM, untranslated, ammo1, drawshadow, -25, -20;
+
+    usesammo
+    {
+        //secondary ammo and inventory
+        usessecondaryammo
+        {
+            drawimage ammoicon2, -14, -22, centerbottom;
+            drawnumber 3, HUDFONT_DOOM, untranslated, ammo2, drawshadow, -25, -38;
+            inventorybarnotvisible
+            {
+                drawselectedinventory centerbottom, drawshadow, alwaysshowcounter, HUDFONT_DOOM, -14, -39, -26, -56, untranslated;
+            }
+        }
+        //no secondary ammo
+        usessecondaryammo not
+        {
+            inventorybarnotvisible
+            {
+                drawselectedinventory centerbottom, drawshadow, alwaysshowcounter, HUDFONT_DOOM, -14, -21, -26, -38, untranslated;
+            }
+        }
+    }
+    
+    // no ammo but inventory
+    usesammo not
+    {
+        inventorybarnotvisible
+        {
+            drawselectedinventory centerbottom, drawshadow, alwaysshowcounter, HUDFONT_DOOM, -14, -3, -26, -20, untranslated;
+        }
+    }
+
+    gamemode deathmatch
+    {
+        drawnumber 2, HUDFONT_DOOM, untranslated, frags, drawshadow, -3, 1;
+    }
+    gamemode singleplayer, cooperative, teamgame
+    {
+        drawkeybar 6, vertical, reverserows, auto, -10, 2, 0, 3, auto;
+    }
+}
+
 }
