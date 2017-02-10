@@ -1,3 +1,125 @@
+//////////////////////////////////// Tiger 1 (Heavy)
+--Desert
+Model Tiger1_Desert
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Desert"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads1"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA A 0 0
+    FrameIndex HTAA A 1 0
+}
+
+Model Tiger1_Desert
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Desert"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads2"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA B 0 0
+    FrameIndex HTAA B 1 1
+}
+
+Model Tiger1_Desert
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Desert"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads3"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA C 0 0
+    FrameIndex HTAA C 1 2
+}
+
+Model Tiger1_Desert
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Desert"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads4"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA D 0 0
+    FrameIndex HTAA D 1 3
+}
+--Winter
+Model Tiger1_Winter
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Winter"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads1"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA A 0 0
+    FrameIndex HTAA A 1 0
+}
+
+Model Tiger1_Winter
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Winter"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads2"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA B 0 0
+    FrameIndex HTAA B 1 1
+}
+
+Model Tiger1_Winter
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Winter"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads3"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA C 0 0
+    FrameIndex HTAA C 1 2
+}
+
+Model Tiger1_Winter
+{
+   IGNORETRANSLATION
+   NOINTERPOLATION
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis_UV.md3"
+   Skin 0 "TigerTank_Winter"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads4"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex HTAA D 0 0
+    FrameIndex HTAA D 1 3
+}
+--Normal
 Model HTANK_SNOW
 {
    IGNORETRANSLATION
@@ -57,7 +179,7 @@ Model HTANK_SNOW
     FrameIndex HTAA D 0 0
     FrameIndex HTAA D 1 3
 }
-
+////////////////////////////////////
 
 
 Model MT_MediumTank_PantherM10
@@ -529,3 +651,25 @@ Model "37x290mm Cannon"
    FrameIndex MCAN G 1 6  
 }
 
+/////////////////////Quad Machine Gun
+
+
+Model "MT_QuadMachineGun"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "QuadMG.md3"
+   Skin  0 "QuadMachineGun"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 7 24 -15
+   //Idle
+   FrameIndex QUMG A 0 0  
+   //Cannon Fire
+   FrameIndex QUMG B 0 1  
+   FrameIndex QUMG C 0 2  
+   FrameIndex QUMG D 0 3  
+   FrameIndex QUMG E 0 4  
+   FrameIndex QUMG F 0 5   
+}

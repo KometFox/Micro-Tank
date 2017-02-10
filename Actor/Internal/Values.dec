@@ -154,6 +154,7 @@ ACTOR MT_CannonIsSelected          : MT_A_BooleanValue {}
 ACTOR MT_75x500mmCannon_IsSelected : MT_A_BooleanValue {}
 ACTOR MT_50x441mmCannon_IsSelected : MT_A_BooleanValue {}
 ACTOR MT_37x290mmCannon_IsSelected : MT_A_BooleanValue {}
+ACTOR MT_QuadMachineCannon_IsSelected : MT_A_BooleanValue {}
 
 //How many Ammo types a gun can have
 //AmmoTypes+1

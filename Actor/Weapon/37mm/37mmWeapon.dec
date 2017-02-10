@@ -13,7 +13,10 @@ ACTOR MLT_Basegun : Weapon
   {
     Deselect:
     MCAN AAAAA 0 A_Lower
+	TNT1 A 0 A_TakeInventory("MT_Periscope",2)
+	TNT1 A 0 A_ZoomFactor(1.0)	
     TNT1 A 0  A_TakeInventory("MT_37x290mmCannon_IsSelected",1)
+	TNT1 A 0 A_SetCrosshair(0)
     MCAN A 1 A_Lower
     Loop
   Select:
@@ -27,22 +30,43 @@ ACTOR MLT_Basegun : Weapon
    Ready:
     MCAN A 1 A_WeaponReady
     TNT1 A 0 A_JumpIfInventory("MT_Periscope",1,"Zoom1")
+	TNT1 A 0 A_JumpIfInventory("37mmReloadTimer_Delay",45,"Loadedb")
+    TNT1 A 0 A_JumpIfInventory("37mmReloadTimerUPG2_Delay",45,"Loadedb2")
    Loop
    
   //Periscope Stuff
   Zoom1:
+	TNT1 A 0 A_JumpIfInventory("37mmReloadTimer_Delay",45,"Loadedb")
+    TNT1 A 0 A_JumpIfInventory("37mmReloadTimerUPG2_Delay",45,"Loadedb2")
     TNT1 A 0 A_ZoomFactor(2.0)
 	TNT1 A 0 A_JumpIfInventory("MT_Periscope",2,"Zoom2")
+	TNT1 A 0 A_SetCrosshair(99)
     Goto "Ready"
   Zoom2:
+	TNT1 A 0 A_JumpIfInventory("37mmReloadTimer_Delay",45,"Loadedb")
+    TNT1 A 0 A_JumpIfInventory("37mmReloadTimerUPG2_Delay",45,"Loadedb2")
     TNT1 A 0 A_ZoomFactor(4.0)
 	TNT1 A 0 A_JumpIfInventory("MT_Periscope",3,"ZoomOut")
+	TNT1 A 0 A_SetCrosshair(99)
     Goto "Ready"
   ZoomOut:
     TNT1 A 0 A_ZoomFactor(1.0)
 	TNT1 A 0 A_TakeInventory("MT_Periscope",5)
+	TNT1 A 0 A_SetCrosshair(0)
     Goto "Ready" 
-
+	
+   //Used when the Cannon is ready.
+   Loadedb:
+    MCAN A 0 A_TakeInventory("37mmReloadTimer_Delay",500)		
+    MCAN A 0 A_TakeInventory("37mmReloadTimer",1)	
+    MCAN A 0 A_Playsound("loaded",0,1,0,22)
+	Goto Ready	
+   Loadedb2:
+    MCAN A 0 A_TakeInventory("37mmReloadTimerUPG2_Delay",500)		
+    MCAN A 0 A_TakeInventory("37mmReloadTimerUPG2",1)	
+    MCAN A 0 A_Playsound("loaded",0,1,0,22)
+	Goto Ready	
+	
   FuckYou:
     TNT1 A 0 A_PlaySound("Beep2")
     MCAN A 15 A_Print("You imbecile! You did not loaded any ammo!")
@@ -104,7 +128,9 @@ ACTOR MLT_Basegun : Weapon
     TNT1 A 0 A_Jumpifinventory("WPN_Mode2_2",1, "AltFire2")
     TNT1 A 0 A_JumpIfInventory("A_7u62x54mmR",1, "AltFire_N")
 	Goto Ready
-  AltFire_N:  
+  AltFire_N:
+	TNT1 A 0 A_JumpIfInventory("37mmReloadTimer_Delay",45,"Loadedb")
+    TNT1 A 0 A_JumpIfInventory("37mmReloadTimerUPG2_Delay",45,"Loadedb2") 
     TNT1 A 0 A_Jumpifinventory("WPN_Mode2_2",1, "AltFire2")
     TNT1 A 0 A_Playsound("PKMFire1")
     MCAN A 0 A_GunFlash
@@ -128,16 +154,24 @@ ACTOR MLT_Basegun : Weapon
   MuzzleFlash_MG:  
    TNT1 A 0 A_FireCustomMissile("37mmFakeMuzzleFlash",0,0,0)
    goto Ready 
-   
-  MuzzleFlash_Default:  
+
+  MuzzleFlash2:
    TNT1 A 0 A_Giveinventory("37mmReloadTime",1)
-   TNT1 A 0 A_Giveinventory("37mmReloadTime_UPG2",1)
+   TNT1 A 0 A_GiveInventory("37mmReloadTimer",1)     
+   Goto Ready	
+  MuzzleFlash3:
+   TNT1 A 0 A_Giveinventory("37mmReloadTime_UPG2",1)  
+   TNT1 A 0 A_GiveInventory("37mmReloadTimerUPG2",1)
+   Goto Ready 
+  MuzzleFlash_Default:  
+
    TNT1 A 0 A_Playsound("Fire09")
    MCAN A 0 A_GunFlash
    TNT1 A 0 A_AlertMonsters
    TNT1 A 0 A_FireCustomMissile("37mmFakeMuzzleFlash",0,0,0)
    MCAN BCDEFG 2 
-   goto Ready 
+   TNT1 A 0 A_JumpIfInventory("MTU_FastCannon_2",1,"MuzzleFlash3")
+  goto MuzzleFlash2  
 
   MuzzleFlash_Laser: 
    TNT1 A 0 A_Giveinventory("37mmReloadTime_Laser",1)
@@ -294,6 +328,47 @@ States
  stop
 }}
 
+
+ACTOR 37mmReloadTimer_Delay : MT_A_BooleanValue
+{
+Inventory.Amount 1
+Inventory.MaxAmount 50
+Inventory.InterHubAmount 50
+States
+{
+ Held: 
+ TNT1 A 80
+ TNT1 A 0
+ Stop
+}}
+
+Actor 37mmReloadTimer : MT_PlayerInventory { 
+  -COUNTITEM
+  -INVENTORY.INVBAR
+  +INVENTORY.AUTOACTIVATE
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage ""
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.InterHubAmount 1
+  Tag "Timer"
+  Scale 1
+
+  states
+  {
+  Spawn:
+    HGAM A -1
+    stop
+  Held:  
+    TNT1 A 0
+    TNT1 A 1  A_GiveInventory("37mmReloadTimer_Delay",1)	    
+    fail
+  Use:
+    TNT1 A 0 
+	Stop
+}}
+
+
 ACTOR 37mmReloadTime_UPG2 : MT_A_BooleanValue
 {
 +INVENTORY.UNDROPPABLE
@@ -304,6 +379,46 @@ States
  BON1 A 40
  TNT1 A 0
  stop
+}}
+
+
+ACTOR 37mmReloadTimerUPG2_Delay : MT_A_BooleanValue
+{
+Inventory.Amount 1
+Inventory.MaxAmount 50
+Inventory.InterHubAmount 50
+States
+{
+ Held: 
+ TNT1 A 80
+ TNT1 A 0
+ Stop
+}}
+
+Actor 37mmReloadTimerUPG2 : MT_PlayerInventory { 
+  -COUNTITEM
+  -INVENTORY.INVBAR
+  +INVENTORY.AUTOACTIVATE
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage ""
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.InterHubAmount 1
+  Tag "Timer"
+  Scale 1
+
+  states
+  {
+  Spawn:
+    HGAM A -1
+    stop
+  Held:  
+    TNT1 A 0
+    TNT1 A 1  A_GiveInventory("37mmReloadTimerUPG2_Delay",1)	    
+    fail
+  Use:
+    TNT1 A 0 
+	Stop
 }}
 
 

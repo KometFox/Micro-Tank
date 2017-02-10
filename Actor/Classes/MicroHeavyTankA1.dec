@@ -150,7 +150,15 @@ Player.DisplayName "Tiger 1 (Hvy)"
 player.portrait "TIG1X0"
 }
 
+ACTOR Tiger1_Winter : MicroHeavyTankA1_Class {
+Player.DisplayName "Tiger 1 (Hvy) (Winter)"
+player.portrait "TIG1X0"
+}
 
+ACTOR Tiger1_Desert : MicroHeavyTankA1_Class {
+Player.DisplayName "Tiger 1 (Hvy) (Desert)"
+player.portrait "TIG1X0"
+}
 
 
 

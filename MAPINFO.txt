@@ -13,6 +13,8 @@ skill baby
 	PlayerClassName = "Medium Tank", "Sunday Driver"
 	PlayerClassName = "Light Tank" , "Sunday Driver"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Sonntagsfahrer"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Sonntagsfahrer"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Sonntagsfahrer"
 	PlayerClassName = "M10 Wolverine (Med)" , "Sunday Driver"	
 }
 
@@ -26,6 +28,8 @@ skill easy
 	PlayerClassName = "Medium Tank", "Private"
 	PlayerClassName = "Light Tank" , "Private"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Gefreiter"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Gefreiter"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Gefreiter"
     PlayerClassName = "M10 Wolverine (Med)" , "Private"	
 
 }	
@@ -39,6 +43,8 @@ skill normal
 	PlayerClassName = "Medium Tank", "Experienced"
 	PlayerClassName = "Light Tank" , "Experienced"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Erfahren"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Erfahren"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Erfahren"
     PlayerClassName = "M10 Wolverine (Med)" , "Experienced"	
 
 }
@@ -52,6 +58,8 @@ skill hard
 	PlayerClassName = "Medium Tank", "Panzer Elite"
 	PlayerClassName = "Light Tank" , "Panzer Elite"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Panzer Elite"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Panzer Elite"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Panzer Elite"
 	PlayerClassName = "M10 Wolverine (Med)" , "Panzer Elite"	
 }
 
@@ -69,6 +77,8 @@ skill nightmare
 	PlayerClassName = "Medium Tank", "Tank Ace"
 	PlayerClassName = "Light Tank" , "Tank Ace"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Panzer Ass"	
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Panzer Ass"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Panzer Ass"
 	PlayerClassName = "M10 Wolverine (Med)" , "Tank Ace"	
 }
 
@@ -88,6 +98,8 @@ skill nightmareII
 	PlayerClassName = "Medium Tank", "Superior Tank Ace"
 	PlayerClassName = "Light Tank" , "Superior Tank Ace"
 	PlayerClassName = "Tiger 1 (Hvy)"    , "Ueberlegene Panzer Ass"	
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Ueberlegene Panzer Ass"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Ueberlegene Panzer Ass"
 	PlayerClassName = "M10 Wolverine (Med)" , "Superior Tank Ace"	
 }	
 
