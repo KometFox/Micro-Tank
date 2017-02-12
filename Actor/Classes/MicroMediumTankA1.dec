@@ -136,12 +136,21 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
   }
 }
 
-ACTOR MT_MediumTank_PantherM10 : MicroMediumTankA1_Class 
+ACTOR MT_PantherM10_Summer : MicroMediumTankA1_Class 
 {
-Player.DisplayName "M10 Wolverine (Med)"
+Player.DisplayName "M10 Wolverine (Med) (Summer)"
 player.portrait "PAM10X0" 
 }
 
+ACTOR MT_PantherM10_Winter : MicroMediumTankA1_Class 
+{
+Player.DisplayName "M10 Wolverine (Med) (Winter)"
+player.portrait "PAM10X0" 
+}
 
-
+ACTOR MT_PantherM10_Desert : MicroMediumTankA1_Class 
+{
+Player.DisplayName "M10 Wolverine (Med) (Desert)"
+player.portrait "PAM10X0" 
+}
 

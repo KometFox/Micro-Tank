@@ -1,11 +1,12 @@
 addplayerclass MicroHeavyTankA1_Class
 addplayerclass MicroMediumTankA1_Class
 addplayerclass MicroTankA1_Class
-addplayerclass HTANK_SNOW
+addplayerclass Tiger1_Summer
 addplayerclass Tiger1_Winter
 addplayerclass Tiger1_Desert
-addplayerclass MT_MediumTank_PantherM10
-
+addplayerclass MT_PantherM10_Summer
+addplayerclass MT_PantherM10_Winter
+addplayerclass MT_PantherM10_Desert
 
 
 WeaponSection BLAH

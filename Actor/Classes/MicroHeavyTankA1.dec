@@ -145,8 +145,8 @@ ACTOR MicroHeavyTankA1_Class : MT_BaseTank
 }
 
 
-ACTOR HTANK_SNOW : MicroHeavyTankA1_Class {
-Player.DisplayName "Tiger 1 (Hvy)"
+ACTOR Tiger1_Summer : MicroHeavyTankA1_Class {
+Player.DisplayName "Tiger 1 (Hvy) (Summer)"
 player.portrait "TIG1X0"
 }
 
