@@ -820,3 +820,42 @@ Model "Multi Purpose Device"
    FrameIndex 0MED E 0 5  
 }
 
+////////////////////Deep Ore Boring Device
+Model MT_OreBoringDevice
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "DeepOreExtractor.md3"
+   Skin  0 "DeepOreExtractor"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 9 25 -16
+   //Idle
+   FrameIndex MBOR A 0 0  
+   //Fire
+ABCDEFGHIJKLMNOPQRST   
+   FrameIndex MBOR B 0 1  
+   FrameIndex MBOR C 0 2  
+   FrameIndex MBOR D 0 3  
+   FrameIndex MBOR E 0 4
+   FrameIndex MBOR F 0 5  
+   FrameIndex MBOR G 0 6  
+   FrameIndex MBOR H 0 7  
+   FrameIndex MBOR I 0 8  
+   FrameIndex MBOR J 0 9  
+   FrameIndex MBOR K 0 10  
+   FrameIndex MBOR L 0 11 
+   FrameIndex MBOR M 0 12 
+   FrameIndex MBOR N 0 13 
+   FrameIndex MBOR O 0 14
+   FrameIndex MBOR P 0 15 
+   FrameIndex MBOR Q 0 16 
+   FrameIndex MBOR R 0 17 
+   FrameIndex MBOR S 0 18 
+   FrameIndex MBOR T 0 19    
+}
+
+
+
+
+
