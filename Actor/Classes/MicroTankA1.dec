@@ -133,3 +133,8 @@ ACTOR MicroTankA1_Class : MT_BaseTank
   }
 }
 
+ACTOR MT_PanzerIIAusfL_Summer : MicroTankA1_Class 
+{
+Player.DisplayName "Panzer II Ausf. L (Lgh) (Summer)"
+player.portrait "PAM10X0" 
+}

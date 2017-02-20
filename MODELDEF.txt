@@ -384,6 +384,64 @@ Model MT_PantherM10_Summer
     FrameIndex MMA1 D 1 0
     FrameIndex MMA1 D 2 3
 }
+//////////////////////////////////// Panzer II Ausf. L (Light)
+---Summer
+Model MT_PanzerIIAusfL_Summer
+{
+   IGNORETRANSLATION
+   Path "MODELS\MicroTankA1"
+   Model  0 "PanzerIIAusfL.md3"
+   Skin   0 "PanzerIIAusfL_Summer"
+   Model 1 "PanzerIIAusfL_Treads.md3"
+   Skin  1 "PanzerIIAusfL_Treads"
+   Scale 5 5 5
+   AngleOffset 0
+    FrameIndex MTA1 A 0 0
+    FrameIndex MTA1 A 1 0
+}
+
+Model MT_PanzerIIAusfL_Summer
+{
+   IGNORETRANSLATION
+   Path "MODELS\MicroTankA1"
+   Model  0 "PanzerIIAusfL.md3"
+   Skin   0 "PanzerIIAusfL_Summer"
+   Model 1 "PanzerIIAusfL_Treads.md3"
+   Skin  1 "PanzerIIAusfL_Treads"
+   Scale 5 5 5
+   AngleOffset 0
+    FrameIndex MTA1 B 0 0
+    FrameIndex MTA1 B 1 0
+}
+
+Model MT_PanzerIIAusfL_Summer
+{
+   IGNORETRANSLATION
+   Path "MODELS\MicroTankA1"
+   Model  0 "PanzerIIAusfL.md3"
+   Skin   0 "PanzerIIAusfL_Summer"
+   Model 1 "PanzerIIAusfL_Treads.md3"
+   Skin  1 "PanzerIIAusfL_Treads"
+   Scale 5 5 5
+   AngleOffset 0
+    FrameIndex MTA1 C 0 0
+    FrameIndex MTA1 C 1 0
+}
+
+Model MT_PanzerIIAusfL_Summer
+{
+   IGNORETRANSLATION
+   Path "MODELS\MicroTankA1"
+   Model  0 "PanzerIIAusfL.md3"
+   Skin   0 "PanzerIIAusfL_Summer"
+   Model 1 "PanzerIIAusfL_Treads.md3"
+   Skin  1 "PanzerIIAusfL_Treads"
+   Scale 5 5 5
+   AngleOffset 0
+    FrameIndex MTA1 D 0 0
+    FrameIndex MTA1 D 1 0
+}
+
 //////////////////////////////////////
 Model MicroTankA1_Class
 {

@@ -7,6 +7,7 @@ addplayerclass Tiger1_Desert
 addplayerclass MT_PantherM10_Summer
 addplayerclass MT_PantherM10_Winter
 addplayerclass MT_PantherM10_Desert
+addplayerclass MT_PanzerIIAusfL_Summer
 
 
 WeaponSection BLAH

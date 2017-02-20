@@ -3,7 +3,7 @@ ACTOR MT_BuckShot : MT_Frag
 {
   DamageType Buckshot
   Speed 160
-  damage (random(1,1.2)*10)
+  damage (random(1,1.2)*15)
   Gravity 0.07
   Obituary "%o <Buckshot] %k" 
   BounceType None
@@ -26,7 +26,7 @@ ACTOR MT_BuckShot : MT_Frag
 
 ACTOR MT_BuckShot_2 : MT_BuckShot
 {
-  damage (random(1,1.2)*12)
+  damage (random(1,1.2)*18)
   States{
   Death:
     TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
@@ -37,7 +37,7 @@ ACTOR MT_BuckShot_2 : MT_BuckShot
 
 ACTOR MT_BuckShot_3 : MT_BuckShot
 {
-  damage (random(1,1.2)*15)
+  damage (random(1,1.2)*22)
   States{
   Death:
     TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
@@ -144,4 +144,14 @@ ACTOR "7.62x54mm AP" : MT_FastBulletBase
     TNT1 A 0 A_Playsound("BulHi")
 	Stop
   }
+}
+
+ACTOR "7.62x54mm AP 2" : "7.62x54mm AP" 
+{
+  damage (random(25,25)*1)
+}
+
+ACTOR "7.62x54mm AP 3" : "7.62x54mm AP" 
+{
+  damage (random(30,30)*1)
 }

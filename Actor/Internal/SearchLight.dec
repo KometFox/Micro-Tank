@@ -59,7 +59,7 @@ ACTOR MT_Photon : Fastprojectile
 {
   Radius 6
   Height 6
-  Speed 27
+  Speed 29
   DamageType AP
   Projectile
   +CLIENTSIDEONLY
@@ -81,7 +81,7 @@ ACTOR MT_Photon : Fastprojectile
 
 ACTOR MT_Photon2 : MT_Photon
 {
-  Speed 14
+  Speed 16
 }
 
 

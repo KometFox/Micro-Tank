@@ -224,9 +224,10 @@ script "MT_BuyMenu" (void) NET{
 ///////////////////
 
 
-#define MTUPGRADES_MAX 14
+#define MTUPGRADES_MAX 15
 str MTUpgrades_list[MTUPGRADES_MAX][3] = {
-	{"Main Cannon (Firing Rate)",		         "MT_Upgrade_CannonFiringRate_1",   "ICAGA0"},	
+	{"Main Cannon (Firing Rate)",		         "MT_Upgrade_CannonFiringRate_1",   "ICAGA0"},
+	//
 	{"High Explosive Shell      (T1)",		 "MT_HEShell_Upgrader2",	            "IHEAB0"},	
 	{"High Explosive Shell      (T2)",		 "MT_HEShell_Upgrader3",	            "IHEAC0"},	
 	{"Armor Piercing Shot       (T1)",		 "MT_APShot_Upgrader2",	                "IAPAB0"},	
@@ -239,12 +240,15 @@ str MTUpgrades_list[MTUPGRADES_MAX][3] = {
 	{"Hollow Charge Shell       (T2)",		 "MT_HEATShell_Upgrader3",	            "IHTAC0"},	
 	{"Energy Weapon Improvment (T1)",            "MT_Energy_Upgrader2",            "IENCA0"},
 	{"Energy Weapon Improvment (T2)",            "MT_Energy_Upgrader3",            "IENCB0"},	
+	//
     {"Environ. Hazard Coating  (Armor Addon)",   "MT_Upgrade_Armor_EnvironmentCoat","IHAMA0"},	
+	{"Supply Box (T1)", "MT_Upgrade_Aux_SupplyBox", "SUPBAB0"},
 
 };
 int MTUpgrades_recipe[MTUPGRADES_MAX][RECIPE_ITEMS_MAX] = {
 	
 	{1500},
+	//
 	{2500,250},
 	{3700,500},
 	{2500,250},
@@ -257,11 +261,14 @@ int MTUpgrades_recipe[MTUPGRADES_MAX][RECIPE_ITEMS_MAX] = {
 	{3700,500},
 	{2500,250},
 	{3700,500},	
+	//
 	{2000},
+	{8000,300},
 };
 int MTUpgrades_result[MTUPGRADES_MAX] = {
 
 1,
+//
 1,
 1,
 1,
@@ -273,6 +280,8 @@ int MTUpgrades_result[MTUPGRADES_MAX] = {
 1,
 1,
 1,
+1,
+//
 1,
 1,
 };

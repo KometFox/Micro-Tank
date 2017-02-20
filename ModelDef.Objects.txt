@@ -557,8 +557,7 @@ Model MT_SupplyBox
 {
    Path "MODELS\Misc"
    Model 0 "SupplyBox.md3"
-   Path "MODELS"
-   Skin  0 "Atlas.png"
+   Skin  0 "SupplyBox"
    Scale 10 10 10
    AngleOffset 0
    FrameIndex KIST A 0 0
@@ -567,29 +566,71 @@ Model MT_SupplyBox
 Model MT_SupplyBox
 {
    Path "MODELS\Misc"
-   Model 0 "SupplyBox.md3"
-   Path "MODELS"
-   Skin  0 "Atlas.png"
+   Model 0 "SupplyBox_empty.md3"
+   Skin  0 "SupplyBox"
    Scale 10 10 10
    AngleOffset 0
    FrameIndex KISE A 0 0
 }
 
-
-
 Model MT_SupplyBoxEmpty
 {
    Path "MODELS\Misc"
    Model 0 "SupplyBox.md3"
-   Path "MODELS"
-   Skin  0 "Atlas.png"
+   Skin  0 "SupplyBox"
    Scale 10 10 10
    AngleOffset 0
    FrameIndex KIST A 0 0
 }
 
+Model MT_Items_SupplyBoxContent
+{
+   Path "MODELS\Misc"
+   Model 0 "Supplies.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
 
 
+Model MT_SupplyBox_2
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox_2.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
 
+Model MT_SupplyBox_2
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox_empty.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KISE A 0 0
+}
 
+Model MT_SupplyBoxEmpty_2
+{
+   Path "MODELS\Misc"
+   Model 0 "SupplyBox_2.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex KIST A 0 0
+}
+
+Model MT_Items_SupplyBoxContent_2
+{
+   Path "MODELS\Misc"
+   Model 0 "Supplies_2.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
 
