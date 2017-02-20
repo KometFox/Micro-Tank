@@ -45,7 +45,7 @@ Actor Item_GrenadePod_SSS_2 : MT_PlayerInventory {
   Use:  
     N15S A 1 A_Jumpifinventory("MT_Grenade_SSS_Cooldown_Showme",1, "Nein")
     TNT1 A 0 A_Giveinventory("MT_Grenade_SSS_Cooldown_Showme",1)
-    TNT1 A 1 A_GiveInventory("Item_GrenadePod_SSS",1)
+    TNT1 A 1 A_GiveInventory("Item_GrenadePod_SSS_2",1)
     TNT1 A 0 A_Playsound("Fire04")
     TNT1 A 0 A_FireCustomMissile("MT_40mmSupplyMarker_2",0,0,-11)
     loop

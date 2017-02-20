@@ -21,7 +21,7 @@ actor MT_Item_AnthraxGasGenerator : MT_PlayerInventory
 { 
   -COUNTITEM
  // Inventory.InterHubAmount 1
-  Inventory.Icon "FGRSB0"
+  Inventory.Icon "ANTXA0"
   Inventory.PickupMessage "Picked up: Anthrax Sprayer"
   Inventory.Amount 1
   Inventory.MaxAmount 10
