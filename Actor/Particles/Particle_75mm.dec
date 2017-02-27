@@ -16,6 +16,59 @@ ACTOR 75mmAP_ExplosionSpawner : Particle
   } 
 }
 
+ACTOR MT_P_75mmHE_DirtChunk2 : MT_P_DirtChunk2
+{
+  Scale 3.25
+  Bouncecount 0
+  BounceType None
+}
+ACTOR MT_CEG_75mmHE_DirtSmoke : Smoke1
+{
+  Scale 0.5
+  States {
+  Spawn1:
+    ASP1 ABCDEFGHIJKLMNOPQRS 1  
+    ASP1 TUVWXYZ 1 //A_Fadeout(0.1) 
+    Goto Death
+  Spawn2:
+    ASQ1 ABCDEFGHIJKLMNOPQRS 1 
+    ASQ1 TUVWXYZ 1 //A_Fadeout(0.1) 
+    Goto Death  
+}}
+
+ACTOR MT_CEG_75mmHE_DreckRauch : MT_PRT_TrailBase {
+  Var Int User_TTL;
+  Gravity 0.8
+  Scale 2
+  renderstyle Normal
+  States {
+ Spawn:
+    TNT1 A 1 A_SetUserVar("User_TTL",1)	
+    goto Loopy  
+  Loopy:
+     DRCK    A 1
+    "####"   A 0 A_Spawnitemex("MT_CEG_75mmHE_DirtSmoke")
+    "####"   A 0 A_SetUserVar("User_TTL",User_TTL+1)
+    "####"   A 0 A_JumpIf(User_TTL==20,"Death")
+    loop
+}}
+
+ACTOR MT_CEG_75mmHEShell_Glow : Particle
+{
+  renderstyle Add
+  alpha 0.25
+  Scale 12
+  States
+  {
+  Spawn:
+    APP1 AAABBCC 1 Bright
+    APP1 DDEEFFGG 1 Bright A_Fadeout(0.058)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
 
 ACTOR 75mmHE_ExplosionSpawner : Particle
 {
@@ -25,34 +78,15 @@ ACTOR 75mmHE_ExplosionSpawner : Particle
     TNT1 A 0 
     Goto Death 
   Death:
-  	TNT1 A 0 A_Spawnitemex("MT_CEG_75mmHE_Trail",0,0,0,0+random(-7,7),0+random(-7,7),0+random(5,10),0+frandom(-70,70))
-    TNT1 AAAAAAA 0 A_Spawnitemex("Dirtchunk",0,0,0,0+random(-5,5),0+random(-5,5),0+random(8,13),0+frandom(-70,70))
-	TNT1 AAAA 0 A_Spawnitemex("MT_DreckRauch",0,0,0,0+random(-15,15),0+random(-15,15),0+random(10,20),0+frandom(-70,70))
-    TNT1 A  0  A_SpawnItemEx("BigGlow",0,0,0,0+frandom(-1,1),0+frandom(-1,1),0+frandom(-1,1),0+frandom(-360,360))
+    TNT1 AAAAAAAAA 0 A_Spawnitemex("MT_P_75mmHE_DirtChunk2",0,0,0,0+random(-5,5),0+random(-5,5),0+random(10,16),0+frandom(-40,40))
+	TNT1 AAAA 0 A_Spawnitemex("MT_CEG_75mmHE_DreckRauch",0,0,0,0+random(-15,15),0+random(-15,15),0+random(20,25),0+frandom(-70,70))
+    TNT1 A  0  A_SpawnItemEx("MT_CEG_75mmHEShell_Glow",0,0,0,0+frandom(-1,1),0+frandom(-1,1),0+frandom(-1,1),0+frandom(-360,360))
     TNT1 AAAAAA 0  A_SpawnItemEx("Explosion3_S1.5",0+random(-80,80),0+random(-80,80),0+random(-4,80))
-//    TNT1 A 0 A_SpawnItem("75mmHE_ExplosionSpawnerB")
-    TNT1 A 5
+    TNT1 A 7
     TNT1 AAAAAAAA 0 A_Spawnitemex("Smoke1_S2.25",0,0,0,0+random(-2,2),0+random(-2,2),0+random(2,6))
  Stop  
   } 
 }
-
-
-ACTOR MT_CEG_75mmHE_Trail : MT_PRT_TrailBase {
-  Var Int User_TTL;
-  Gravity 0
-  States {
- Spawn:
-    TNT1 A 1 A_SetUserVar("User_TTL",1)	
-    goto Loopy  
-  Loopy:
-     APP1    A 2
-    "####"   A 0 A_Spawnitemex("SmallGlow")
-    "####"   A 0 A_Spawnitemex("Spark1",0,0,0,0,0,1)
-    "####"   A 0 A_SetUserVar("User_TTL",User_TTL+1)
-    "####"   A 0 A_JumpIf(User_TTL==15,"Death")
-    loop
-}}
 
 
 

@@ -21,16 +21,12 @@ ACTOR MicroMediumTankA1_Class : MT_BaseTank
   ActiveSound "MotLop3"
   
   Player.StartItem "MMTA1Weapon_AP"       ,1
-  Player.StartItem "MT_AssaultBridgeTool" ,1
   Player.StartItem "50x441mm Cannon"      ,1
+  Player.StartItem "MT_AssaultBridgeTool" ,1  
   Player.StartItem "MMT_BaseGun_AP"       ,1
   Player.StartItem "MT_OreBoringDevice"   ,1  
   Player.StartItem "MT_AmmoSwitcher"      ,1
   Player.StartItem "MT_PeriscopeItem"     ,1
-  Player.StartItem "WPN_Mode_Switch"  ,1
-  Player.StartItem "WPN_Mode"         ,1
-  Player.StartItem "WPN_Mode_Switch2" ,1
-  Player.StartItem "WPN_Mode2"        ,1
   Player.StartItem "MT_ClassToken"    ,1
   Player.StartItem "MMTA1_Token"      ,1
   Player.Startitem "MT_Searchlight"       ,1

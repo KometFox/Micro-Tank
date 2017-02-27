@@ -337,13 +337,13 @@ InInventory MT_ClassToken, 1
     } 	
    }
    
-   ////Common weapon shit
+/////////Common weapon shit
    IsSelected "MT_QuadMachineGun"
    {
     InInventory MT_QuadMachineGun_APSelected, 1 
     {
-	 drawstring BIGFONT, GOTSHOTGUN, "AP Shot", 325, -50,0,alignment(left);
-      drawimage "APAMA0", 295, -17, centerbottom;
+	 drawstring BIGFONT, GOTSHOTGUN, "7.62mm Regular", 325, -50,0,alignment(left);
+      drawimage "HUBBA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo A_7u62x54mmR ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }
     InInventory MT_QuadMachineGun_HESelected, 1 
@@ -352,7 +352,23 @@ InInventory MT_ClassToken, 1
       drawimage "HEAMA0", 295, -17, centerbottom;
       drawnumber 2147483647, BIGFONT, centerbottom, ammo MT_Ammo_7u62x54mmR_HE ,  alignment(left) , whennotzero , drawshadow, 325, -30;
     }  	
-   }  
+   } 
+///////////DispersionGun
+   IsSelected "MT_DispersionGun"
+   {
+    InInventory MT_DispersionGun_Func_Charge, 1 
+    {   
+    drawstring BIGFONT, GOTSHOTGUN, "CHARGE", 325, -50,0,alignment(left);
+    drawimage "ENCEA0", 295, -17, centerbottom;
+	drawnumber 2147483647, BIGFONT, centerbottom,  MT_DispersionGun_Charge , alignment(left) , whennotzero , drawshadow, 325, -30;  
+    }
+    InInventory MT_DispersionGun_Func_NoCharge, 1 
+    {   
+    drawstring BIGFONT, GOTSHOTGUN, "NO CHARGE", 325, -50,0,alignment(left);
+    drawimage "ENCEA0", 295, -17, centerbottom;
+	drawnumber 2147483647, BIGFONT, centerbottom,  MT_DispersionGun_Charge , alignment(left) , whennotzero , drawshadow, 325, -30;  
+    }	
+   }
 
 }
 

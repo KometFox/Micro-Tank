@@ -1,12 +1,7 @@
 #library "MTFunction.acs"
 #include "zcommon.acs"
-
+//bool MT_Translocator[64];
 #define PLAYER_TID_START 300
-// 'your code looks messy man!'
-// ah fuck you, I can't code for shit. Even a Pajeet knows coding better
-//than me
-
-
 //Fucking workaround so that the search light shit works
 //properly. God damnit DECORATE why the fuck is making a simple
 //Search Light Item so fucking hard?
@@ -90,5 +85,75 @@ script "MT_GiveMoni" ENTER
   }
 }
 
+/*
+
+//Teleporter stuff
+//Ripped from RGA mod, whoever made it thanks to that dude.
+script "MT_Teleport" (void)
+{
+	if(MT_Translocator[PlayerNumber()] == True)
+	{
+		Delay(1);
+		Teleport(PlayerNumber()+600);
+		Delay(1);
+		Thing_Remove(PlayerNumber()+600);
+		SetFont("SMALLFONT");
+		//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+		//	HudMessageBold(n:0,s:" \cdused Tactical Insertion!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		MT_Translocator[PlayerNumber()] = False;
+	}
+}
+//628
+script "MT_Teleport2" (int Which)
+{
+	int byte_angle = GetActorAngle(0) >> 8;
+	int byte_pitch = GetActorPitch(0) >> 8;
+	if(Which == 0)
+	{
+		if(MT_Translocator[PlayerNumber()] == False)
+		{
+			SpawnSpotFacing("MT_TranslocatorPlaced",PlayerNumber()+500,PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = True;
+		}
+	}
+	else if(Which == 1)
+	{
+		if(MT_Translocator[PlayerNumber()] == True)
+		{
+			Thing_Remove(PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = False;
+			SetFont("SMALLFONT");
+			HudMessage(s:"\cfTactical Insertion Removed";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+		}
+	}
+	else if(Which == 2)
+	{
+		SetResultValue(MT_Translocator[PlayerNumber()]);
+	}
+	else if(Which == 3)
+	{
+		SetFont("SMALLFONT");
+		HudMessage(s:"\cfYou've already placed one!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,1.0);
+	}
+//projectile stuff
+	
+	else if(Which == 4)
+	{
+		if(MT_Translocator[PlayerNumber()] == False)
+		{
+            SpawnProjectile(0,"MT_TranslocatorProjectile",byte_angle,200,byte_pitch*2,0.2,PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = True;
+		}
+	}	
+	else
+	{
+		MT_Translocator[ActivatorTID()-600] = False;
+		SetActivator(ActivatorTID()-600);
+		MT_Translocator[PlayerNumber()] = False;
+		SetFont("SMALLFONT");
+		HudMessage(s:"\cgTactical Insertion destroyed!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+	}
+}
 
 
+*/

@@ -21,6 +21,7 @@ actor MT_AmmoSwitcher : CustomInventory {
   TNT1 A 0 A_JumpIfInventory("MT_50x441mmCannon_IsSelected",1,"MMT_Basegun")
   TNT1 A 0 A_JumpIfInventory("MT_37x290mmCannon_IsSelected",1,"MLT_Basegun")
   TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_IsSelected",1,"MT_QuadMG")
+  TNT1 A 0 A_JumpIfInventory("MT_DispersionGun_IsSelected",1,"MT_DispersionGun")
   TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
   stop
   
@@ -45,6 +46,10 @@ actor MT_AmmoSwitcher : CustomInventory {
   MT_QuadMG: TNT1 A 0 A_GiveInventory("MT_QuadMG_AmmoSwitch",1) 
   TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
   stop   
+  
+  MT_DispersionGun: TNT1 A 0 A_GiveInventory("MT_DispersionGun_AmmoSwitch",1)
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  Stop
   
   DoNothing:
   TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)

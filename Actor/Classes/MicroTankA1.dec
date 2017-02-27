@@ -7,7 +7,7 @@ ACTOR MicroTankA1_Class : MT_BaseTank
 {
   player.forwardmove 1.2
   player.jumpz 2
-  MaxStepHeight 20
+  MaxStepHeight 22
   player.MaxHealth 1150
    player.portrait "LTANKX0" 
   Health 900
@@ -19,21 +19,13 @@ ACTOR MicroTankA1_Class : MT_BaseTank
   Player.AttackZOffset 6
 
   Player.StartItem "MLTA1Weapon_AP"           ,1
-
   Player.StartItem "37x290mm Cannon"      ,1
   Player.StartItem "MLT_BaseGun_AP"       ,1
   Player.StartItem "MT_OreBoringDevice"   ,1
   Player.StartItem "MT_AssaultBridgeTool" ,1
-  
   Player.StartItem "MT_AmmoSwitcher"     ,1
-  Player.StartItem "WPN_Mode_Switch"     ,1
-  Player.StartItem "WPN_Mode"            ,1
-  Player.StartItem "WPN_Mode_Switch2"    ,1
-  Player.StartItem "WPN_Mode2"           ,1
   Player.Startitem "MT_Searchlight"      ,1
   Player.StartItem "MT_PeriscopeItem"     ,1
-
-
 
   Player.StartItem "MT_ClassToken"                ,1
   Player.StartItem "MTA1_Token"                   ,1

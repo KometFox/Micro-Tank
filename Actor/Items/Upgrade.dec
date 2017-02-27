@@ -65,7 +65,7 @@ ACTOR MT_ItemUpgradeBase : CustomInventory
   Inventory.Amount 1
   Inventory.MaxAmount 1
   Inventory.PickupMessage "Picked Up: N/A Upgrade"
-  Inventory.Icon "APU1A0"
+  Inventory.Icon "TNT1A0"
 States
 {
  Spawn:
@@ -83,7 +83,6 @@ States
 ACTOR MT_APShot_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -103,7 +102,6 @@ States
 ACTOR MT_APShot_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -131,7 +129,6 @@ States
 ACTOR MT_Buckshot_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -151,7 +148,6 @@ States
 ACTOR MT_Buckshot_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -180,7 +176,6 @@ States
 ACTOR MT_HEShell_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -200,7 +195,6 @@ States
 ACTOR MT_HEShell_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -228,7 +222,6 @@ States
 ACTOR MT_HEATShell_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -248,7 +241,6 @@ States
 ACTOR MT_HEATShell_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -277,7 +269,6 @@ States
 ACTOR MT_IncShell_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -297,7 +288,6 @@ States
 ACTOR MT_IncShell_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -326,7 +316,6 @@ States
 ACTOR MT_Energy_Upgrader2 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -346,7 +335,6 @@ States
 ACTOR MT_Energy_Upgrader3 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -375,7 +363,6 @@ States
 ACTOR MT_Upgrade_CannonFiringRate_1 : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -394,7 +381,6 @@ States
 ACTOR MT_Upgrade_Armor_EnvironmentCoat : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:
@@ -413,7 +399,6 @@ States
 ACTOR MT_Upgrade_Aux_SupplyBox : MT_ItemUpgradeBase
 {
   Inventory.PickupMessage "Upgrade."
-  Inventory.Icon "APU1A0"
 States
 {
  Use:

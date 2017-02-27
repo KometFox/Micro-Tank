@@ -890,8 +890,7 @@ Model MT_OreBoringDevice
    Offset 9 25 -16
    //Idle
    FrameIndex MBOR A 0 0  
-   //Fire
-ABCDEFGHIJKLMNOPQRST   
+   //Fire   
    FrameIndex MBOR B 0 1  
    FrameIndex MBOR C 0 2  
    FrameIndex MBOR D 0 3  
@@ -911,6 +910,21 @@ ABCDEFGHIJKLMNOPQRST
    FrameIndex MBOR R 0 17 
    FrameIndex MBOR S 0 18 
    FrameIndex MBOR T 0 19    
+}
+
+////////////////////DispersionGun
+Model MT_DispersionGun
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "DispersionGun.md3"
+   Skin  0 "DispersionGun"
+   Scale 2 2 2
+   Offset 9 25 -16
+   //Idle
+   FrameIndex DISP A 0 0  
+   //Fire   
+   FrameIndex DISP B 0 1    
 }
 
 

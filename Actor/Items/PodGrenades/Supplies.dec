@@ -255,9 +255,10 @@ Actor MT_Items_SupplyBoxContent : CustomInventory
   Pickup:
     KIST A 0 A_GiveInventory("MT_AP",1)
     KIST A 0 A_GiveInventory("MT_HE",1)
-	KIST AA 0 A_GiveInventory("MTAmmo_Buckshot",1)
+	KIST A 0 A_GiveInventory("MTAmmo_Buckshot",1)
     KIST A 0 A_GiveInventory("A_7u62x54mmR",200)
     KIST A 0 A_GiveInventory("MT_Credits",100)	
+    KIST A 0 A_GiveInventory("MT_GrenadePod_Explosive",4)
   Stop
   }
 }
@@ -279,11 +280,11 @@ Actor MT_Items_SupplyBoxContent_2 : CustomInventory
   Pickup:
     KIST AA 0 A_GiveInventory("MT_AP",1)
     KIST AA 0 A_GiveInventory("MT_HE",1)
-	KIST AAAA 0 A_GiveInventory("MTAmmo_Buckshot",1)
+	KIST AA 0 A_GiveInventory("MTAmmo_Buckshot",1)
     KIST A 0 A_GiveInventory("A_7u62x54mmR",400)
 	KIST A 0 A_GiveInventory("MT_Credits",200)
 	KIST A 0 A_GiveInventory("MT_HighValueMetal",10)
-	KIST A 0 A_GiveInventory("MT_Spareparts",40)
+	KIST A 0 A_GiveInventory("MT_GrenadePod_Explosive",8)
   Stop
   }
 }
@@ -365,7 +366,7 @@ Actor MT_Proj_SupplyBoxBomb
     Loop
   Death:
     TNT1 A 0  A_Spawnitemex("50mmHECB_Sub_ExplosionSpawner",0,0,0)
-    PUFF A 4  A_Explode(20,40)
+    PUFF A 4  A_Explode(20,140)
     PUFF B 4
     Stop
   }

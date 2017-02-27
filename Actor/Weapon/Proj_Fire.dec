@@ -5,9 +5,12 @@ ACTOR MT_IncendiaryFire_Base  {
   scale 1
   DamageType Fire
   Gravity 2.5
- -NOGRAVITY
- -FORCEXYBILLBOARD
-  renderstyle Add
+ //-FORCEXYBILLBOARD
+  -NoGravity
+  -NoBlockMap
+  +NoExplodeFloor
+  +NoDamageThrust 
+//  renderstyle Add
   alpha 0.95
   Obituary "%o <Incendiary Fire] %k"
   var Int user_SplashDamage;
@@ -17,7 +20,7 @@ ACTOR MT_IncendiaryFire_Base  {
  States
   {
   Spawn:
-    LFP1  A 1
+    LAFP  A 1
    "####" A 0 A_SetUserVar("user_SplashDamage",8)
    "####" A 0 A_SetUserVar("user_SplashRadius",64)
    "####" A 0 A_SetUserVar("user_Duration",20)
@@ -30,15 +33,15 @@ ACTOR MT_IncendiaryFire_Base  {
    "####" A 0 A_CheckCeiling("Death")
     loop
   Death:
-   "####" AAAAAA 0 A_SpawnitemEx("Fire0",0,0,0,0+random(-4,4),0+random(-4,4),1+random(1,4))
+    LFP1  AAAAAA 0 A_SpawnitemEx("Fire0",0,0,0,0+random(-4,4),0+random(-4,4),1+random(1,4))
    "####" A 0 A_PlaySound("Boom14")
    Goto Loopy
   Loopy:
    "####" A 0 A_ScaleVelocity(0)
    "####" A 0 A_Explode (+user_SplashDamage,+(2*user_SplashRadius),1,0,+user_SplashRadius)
-   "####" ABCDE 1 Bright
+   "####" ABCDE 2 Bright
    "####" A 0 A_Explode (+user_SplashDamage,+(2*user_SplashRadius),1,0,+user_SplashRadius)
-   "####" FGHIJ 1 Bright
+   "####" FGHIJ 2 Bright
    "####" A 0 A_SetUserVar("user_Duration",-1+user_Duration)
    "####" A 0 A_JumpIf(user_Duration<=1,"Death2")
    "####" A 0 A_Jump(100,"Puff")

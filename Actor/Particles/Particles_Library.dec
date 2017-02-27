@@ -105,6 +105,22 @@ ACTOR DirtChunk : Particle
   }
 }
 
+ACTOR MT_P_DirtChunk2 : Particle
+{
+  alpha 0.75
+  Gravity 0.5
+  +MISSILE
+  States
+  {
+  Spawn:
+    DRCK B 120 
+    Goto Death
+  Death:
+    TNT1 A 0  A_Fadeout(0.05)
+    Stop
+  }
+}
+
 
 ACTOR SmokeRed : Particle
 {

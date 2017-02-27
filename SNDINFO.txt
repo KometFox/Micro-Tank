@@ -76,6 +76,7 @@ RocketFi  RocketFi
 Launch    Launch
 FlaFir    FlaFir
 MorFir    MorFir
+DispShot  DispShot
 
 Boom1     Boom1
 Boom2     Boom2
@@ -128,6 +129,7 @@ Recla Recla
 Beep1 Beep1
 Beep2 Beep2
 Beep3 Beep3
+DispPowe DispPowe
 
 Shell2 Shell2
 
