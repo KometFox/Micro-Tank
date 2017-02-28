@@ -130,3 +130,17 @@ ACTOR MT_PanzerIIAusfL_Summer : MicroTankA1_Class
 Player.DisplayName "Panzer II Ausf. L (Lgh) (Summer)"
 player.portrait "PAM10X0" 
 }
+
+ACTOR MT_PanzerIIAusfL_Winter : MicroTankA1_Class 
+{
+Player.DisplayName "Panzer II Ausf. L (Lgh) (Winter)"
+player.portrait "PAM10X0" 
+}
+
+ACTOR MT_PanzerIIAusfL_Desert : MicroTankA1_Class 
+{
+Player.DisplayName "Panzer II Ausf. L (Lgh) (Desert)"
+player.portrait "PAM10X0" 
+}
+
+

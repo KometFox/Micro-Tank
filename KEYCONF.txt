@@ -8,7 +8,8 @@ addplayerclass MT_PantherM10_Summer
 addplayerclass MT_PantherM10_Winter
 addplayerclass MT_PantherM10_Desert
 addplayerclass MT_PanzerIIAusfL_Summer
-
+addplayerclass MT_PanzerIIAusfL_Winter
+addplayerclass MT_PanzerIIAusfL_Desert
 
 //WeaponSection BLAH
 //SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice" "MT_AssaultBridgeTool"

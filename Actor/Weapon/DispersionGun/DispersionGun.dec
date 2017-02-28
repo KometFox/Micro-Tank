@@ -42,10 +42,12 @@ ACTOR MT_DispersionGun : Weapon
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small"        ,0,1,6+12)
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small_Trail"  ,0,0,6+12)
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small_Trail2" ,0,0,6+12)		
+	DISP A 0 A_SpawnItemEx("MT_CEG_DispersionGun_MediumSpark",0,-8,0)		
 	DISP A 4
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small"        ,0,1,-6+12)
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small_Trail"  ,0,0,-6+12)
 	DISP A 0 A_FireCustomMissile("MT_DispersionBall_Small_Trail2" ,0,0,-6+12)		
+	DISP A 0 A_SpawnItemEx("MT_CEG_DispersionGun_MediumSpark",0,-8,0)		
 	DISP A 4 
     DISP A 0 A_ReFire 
     Goto Ready

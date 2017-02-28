@@ -19,6 +19,8 @@ skill baby
 	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Sunday Driver"
 	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Sunday Driver"
 	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Sonntagsfahrer"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Sonntagsfahrer"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Sonntagsfahrer"	
 }
 
 
@@ -38,6 +40,8 @@ skill easy
 	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Private"
 	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Private"
 	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Gefreiter"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Gefreiter"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Gefreiter"
 
 }	
 
@@ -56,6 +60,8 @@ skill normal
 	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Experienced"
 	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Experienced"
 	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Erfahren"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Erfahren"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Erfahren"
 
 }
 
@@ -74,6 +80,8 @@ skill hard
 	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Panzer Elite"
 	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Panzer Elite"
 	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"   , "Panzer Elite"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"   , "Panzer Elite"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"   , "Panzer Elite"
 }
 
 skill nightmare
@@ -96,29 +104,8 @@ skill nightmare
 	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Tank Ace"
 	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Tank Ace"
 	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Panzer Ass"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Panzer Ass"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Panzer Ass"
 }
 
-skill nightmareII
-{
-	AmmoFactor = 2.5
-	Aggressiveness = 0.5
-	damagefactor = 1.5
-	FastMonsters
-	DisableCheats
-	RespawnTime = 40
-	SpawnFilter = Nightmare
-	PicName = "M_NMARE"
-	Name = "Very Hard"
-	MustConfirm = "Welcome to Ground Zero. Are you sure you are a tough for that?"
-	PlayerClassName = "Heavy Tank" , "Superior Tank Ace"
-	PlayerClassName = "Medium Tank", "Superior Tank Ace"
-	PlayerClassName = "Light Tank" , "Superior Tank Ace"
-	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Ueberlegene Panzer Ass"	
-	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Ueberlegene Panzer Ass"
-	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Ueberlegene Panzer Ass"
-	PlayerClassName = "M10 Wolverine (Med) (Summer)", "Superior Tank Ace"
-	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Superior Tank Ace"
-	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Superior Tank Ace"
-	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Ueberlegene Panzer Ass"
-}	
 
