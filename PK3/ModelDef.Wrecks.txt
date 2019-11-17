@@ -1,0 +1,86 @@
+
+Model CommonWreck
+{
+   Path "MODELS\Wreck"
+   Model 0 "CommonWreck.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex WRCK A 0 0
+}
+
+Model Wreck_M_LTA1
+{
+   Path "MODELS\Wreck"
+   Model 0 "Wreck_UGCV_M_LTA1.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex WRCK A 0 0
+}
+
+Model Wreck_M_HTA1
+{
+   Path "MODELS\Wreck"
+   Model 0 "Wreck_UGCV_M_HTA1.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex WRCK A 0 0
+}
+
+Model Wreck_M_MTA1
+{
+   Path "MODELS\Wreck"
+   Model 0 "Wreck_UGCV_M_MTA1.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 4.5 4.5 4.5
+   AngleOffset 0
+   FrameIndex WRCK A 0 0
+}
+
+
+Model MT_Junk
+{
+   Path "MODELS\Wreck"
+   Model 0 "Junk.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 2 2 2
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex WRCK A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+Model MT_Junk
+{
+   Path "MODELS\Wreck"
+   Model 0 "Junk2.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 12 12 12
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex WRC2 A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}
+
+Model MT_Junk
+{
+   Path "MODELS\Wreck"
+   Model 0 "Junk3.md3"
+   Skin  0 "Junk_Tex.jpg"
+   Scale 12 12 12
+   AngleOffset 0
+   pitchfrommomentum
+   FrameIndex WRC3 A 0 0
+   INHERITACTORPITCH
+   rotating
+   rotation-speed 0.75
+   rotation-vector 0.5 0.5 0.5
+}

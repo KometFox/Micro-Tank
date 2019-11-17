@@ -1,0 +1,185 @@
+
+Actor MT_AP : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: AP Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_75x500mmAP",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmAP",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmAP",5)
+  Stop
+  
+  }
+}
+
+Actor MT_APCR : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: APCR Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_75x500mmAPCR",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmAPCR",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmAPCR",5)
+  Stop
+  
+  }
+}
+
+Actor MT_HE : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: HE Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 1 
+  TNT1 A 0 A_GiveInventory("MT_75x500mmHE",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmHE",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmHE",5)
+  TNT1 A 0 A_GiveInventory("MT_Ammo_7u62x54mmR_HE",50)
+  Stop
+  }
+}
+
+Actor MTAmmo_Buckshot : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: Buckshot Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_75x500mmBuckshot",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmBuckshot",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmBuckshot",5)
+  Stop
+  
+  }
+}
+
+
+Actor MT_HEAT : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: HEAT Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_75x500mmHEAT",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmHEAT",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmHEAT",5)
+  Stop
+  
+  }
+}
+
+
+Actor MT_AmmoG_HEInc : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: HEInc Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_75x500mmInc",5)
+  TNT1 A 0 A_GiveInventory("MT_50x441mmInc",5)
+  TNT1 A 0 A_GiveInventory("MT_37x290mmInc",5)
+  Stop
+  
+  }
+}
+
+
+Actor MT_AmmoG_IncendiaryFuel : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: Incendiary Fuel Ammo"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_37x290mm_IncendiaryAmmo",50)
+  Stop
+  
+  }
+}
+
+Actor MT_AmmoG_EnergyCell : CustomInventory
+{ 
+  Inventory.Icon "FGRNA0"
+  Inventory.PickupMessage "Picked up: Energy Cell Pack"
+  Inventory.Amount 1
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
+  +INVENTORY.AUTOACTIVATE
+  Scale 1
+  states
+  {
+  Spawn:
+    APAM A -1
+    stop
+  Pickup:
+  TNT1 A 0 A_GiveInventory("MT_37x290mm_EnergyCellAmmo",40)
+  Stop
+  
+  }
+}
+

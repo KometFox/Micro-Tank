@@ -1,0 +1,16 @@
+//
+//Default settings, Server/SP only
+server int mtcvar_creditstart = 3500;
+server int mtcvar_metalstart = 100;
+
+//Supply Crate Setting
+server int mtcvar_supc_metals = 50;
+server int mtcvar_supc_credit = 1000;
+
+//HUD Settings
+
+//Weapon behavior
+
+//Particle Effects
+
+//Client settings

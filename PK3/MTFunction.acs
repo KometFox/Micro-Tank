@@ -1,0 +1,541 @@
+#library "MTFunction"
+#include "zcommon.acs"
+//bool MT_Translocator[64];
+//MP/Player constants
+#define PLAYER_TID_START 300
+//Weapon related constants
+#define Cannon_Ammo_MAX 4
+//Aux
+#define AmmoType_HUD_ID 500
+//HUD Scale
+#define BIGFONT_HUDX 320
+#define BIGFONT_HUDY 640
+
+int marineprevioushealth;
+int marinepreviousarmor;
+int vehicleprevioushealth;
+int vehiclepreviousarmor;
+
+//Inbuilt search light
+script "MTACS_SearchLight" (void) NET
+{
+    
+	while(1)
+	{
+		//IF ON ITEM
+		if (CheckInventory("MT_Light_1") > 0)
+		{
+			GiveInventory("MT_SearchLight2",1);		
+		}
+		else 
+		{
+			Terminate;
+		}
+		
+	//Adding more frames (6-7) to the light emitting bulletpuffs adds a way too
+	//long "motion blur" like effect to compensate for delay(2) so a delay of 1
+	//will be used instead.
+	delay(1);
+		 
+	}
+
+} 
+
+
+str WeaponType[2] = {
+"MHT_75mmCannon", "MHT_Heavy_Pepperpot",
+};
+
+//75mm Cannon
+str AmmoType[Cannon_Ammo_MAX][2] = {
+{"MHT_BaseGun_AP", "APAMA0"},
+{"MHT_BaseGun_APCR", "ACAMA0"},
+{"MHT_BaseGun_HE", "HEAMA0"},
+{"MHT_BaseGun_HEAT", "HTAMA0"},
+};
+
+str AmmoType_Count[Cannon_Ammo_MAX] = {
+"MT_75x500mmAP", "MT_75x500mmAPCR", "MT_75x500mmHE", "MT_75x500mmHEAT"};
+
+
+//Mags
+str WPN_Barrel[1] = {
+"MT_Heavy_Pepperpot_BarrelsLoad"};
+
+//Ammo/Weapon mode display crap
+//Sbarinfo is pretty shitty and tedious for this
+//And no Graf, I will NOT use ZScript which something Sbarinfo should
+//have a better support for it, + I want Zandronum 3.1 compability 
+script "MTHUD_Ammo" (VOID) NET
+{
+	int last_wpn, cur_ammo, cur_magsize; 
+	last_wpn = 0;
+	cur_ammo = 0;
+	cur_magsize = 0;
+	print(s: "Activator: ", d: PlayerNumber());
+	//TODO: Take account for resolution changes, fixed to 1680:1050
+
+	while(1)
+	{
+
+		//First check selected weapon
+		//if (CheckWeapon("MHT_75mmCannon") == 1)
+		if ((CheckWeapon("MHT_75mmCannon") || CheckWeapon("MHT_Heavy_Pepperpot")) == 1)
+		{
+					
+				//Working pattern...
+				/*
+				if (CheckInventory(AmmoType[0][0]) == 1)
+				{
+					SetHudSize(1340, 1340, 0);
+					SetFont(AmmoType[0][1]);
+					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+				}
+				else if (CheckInventory(AmmoType[1][0]) == 1)
+				{
+					SetHudSize(1340, 1340, 0);
+					SetFont(AmmoType[1][1]);
+					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+				}
+				else if (CheckInventory(AmmoType[2][0]) == 1)
+				{
+					SetHudSize(1340, 1340, 0);
+					SetFont(AmmoType[2][1]);
+					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+				}
+				else if (CheckInventory(AmmoType[3][0]) == 1)
+				{
+					SetHudSize(1340, 1340, 0);
+					SetFont(AmmoType[3][1]);
+					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+				}
+				*/
+
+			for (int i = 0; i < Cannon_Ammo_MAX; i++) 
+			{
+						
+				//print(s: AmmoType[0][0]);
+				//print(s: AmmoType[1][0]);
+				//print(s: AmmoType[2][0]);
+				//print(s: AmmoType[3][0]);
+				
+				
+				//print(s: "You have: ", d: (CheckInventory(AmmoType[i][0])), s: " ", s: AmmoType[i][0] );
+				//SetFont("CONFONT");
+				
+				//if (CheckInventory(AmmoType[i][0]) == i)
+				//	print(s: AmmoType[i][0]);
+
+				//print(d: (CheckInventory(AmmoType[i][0]) == 1) );
+				
+				//Then check for current ammo
+				if (CheckInventory(AmmoType[i][0]) == 1)
+					cur_ammo = i;
+				
+				if (CheckInventory(AmmoType[cur_ammo][0]))
+				{
+					//Ammo display
+					SetHudSize(1340, 1340, true);
+					SetFont(AmmoType[cur_ammo][1]);
+					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+					//Ammo count
+					SetHudSize(1100, 1100, false);
+					SetFont("BIGFONT");
+					HudMessage(d: CheckInventory(AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_UNTRANSLATED, 1048.0, 958.0, 0);
+					HudMessage(s: "/";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_UNTRANSLATED, 1067.0, 958.0, 0);
+					//Ammo count Max
+					SetHudSize(1100, 1100, false);
+					SetFont("BIGFONT");
+					HudMessage(d: GetMaxInventory(0, AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_UNTRANSLATED, 1090.0, 958.0, 0);
+					
+					//Check for Mag/Chamber
+					if (CheckInventory(WPN_Barrel[0]) > 0 && CheckWeapon("MHT_Heavy_Pepperpot"))
+					{
+						cur_magsize = CheckInventory(WPN_Barrel[0]);
+						SetHudSize(1100, 1100, false);
+						SetFont("BIGFONT");
+						HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+					}
+					else
+					{
+						SetHudSize(1100, 1100, false);
+						SetFont("BIGFONT");
+						HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+					}
+				}
+				
+
+			}
+
+		}
+		//If it doesn't use ammo/weapon mode then it shouldn't
+		//display anything.
+		else
+		{
+			SetFont("");
+			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 0, 0, 0);
+			SetFont("");
+			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_BLUE, 0, 0, 0);
+			SetFont("");
+			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_BLUE, 0, 0, 0);
+			SetFont("");
+			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_BLUE, 0, 0, 0);
+			SetFont("");
+			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_BLUE, 0, 0, 0);
+		}
+
+		Delay(1);
+	}
+
+} 
+
+
+
+//Used to add firing delay for cannons so that players can use other
+//weapons in the meanwhile 
+str delayer[4] = {
+//88mm Cannon
+
+//75mm Cannon
+"75mmReloadTimer1", "75mmReloadTimer2",
+"MT_Heavy_Pepperpot_ReloadTimer1", "MT_Heavy_Pepperpot_ReloadTimer2"};
+//50mm Cannon
+
+//37mm Cannon
+
+script "MT_Wfiring_delay" (int Item, int duration) 
+{
+	
+	//print(s: "A ", s: delayer[0]);
+	
+	//GiveInventory(delayer[Item], 1);
+	
+	while(True)
+	{
+			
+		GiveInventory(delayer[Item], 1);
+		
+			if(CheckInventory(delayer[Item]) >= duration)
+			{
+				TakeInventory(delayer[Item], 9999);
+				Terminate;
+			}
+		Delay(1);
+	}
+	
+}
+
+
+//This is highly neccessary so movement buttons can be used for Menus 
+ 
+script "MT_ItemBuyBugfix" OPEN 
+{
+ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+}
+
+//When the player got the Menu open and enters a map
+//He gets stuck, this ACS removes this bug.
+
+script "MT_MenuJunk" OPEN
+{
+	If(!CheckInventory("ImCrafting"))
+	{
+	    TakeInventory("ImCrafting",1);
+		SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	    SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+	}
+}
+
+//Script to force use a specific item
+script "MT_AmmoSwitch_Reverse" (VOID) NET
+{
+	UseActorInventory(0, "MT_AmmoSwitcher");
+}
+
+//Script to check if a item is exactly one,
+//Zandronum doesn't support CountInv 
+script "MT_IsItemOne" (int item) 
+{
+		//str items[1];
+		str items[1] = {"MHT_BaseGun_AmmoSlot"};
+		
+		if (CheckActorInventory(0, items[item]) == 1)
+		{
+			SetResultValue(True);
+			//Return True;
+		}
+		/*
+		Else 
+			Return False;
+		Return False;
+		*/
+}
+
+
+
+//Some fucking Multiplayer shit.
+/*
+script "MT_MPShit1" ENTER
+{
+  Thing_ChangeTID(0,PLAYER_TID_START+PlayerNumber());
+}
+
+script "MT_MPShit2" RESPAWN
+{
+  // Make sure our old dead body doesn't still have our tid
+  Thing_ChangeTID(PLAYER_TID_START+PlayerNumber(),0);
+  Thing_ChangeTID(0,PLAYER_TID_START+PlayerNumber());
+}
+*/
+
+
+//Bullshit for CVAR
+script "MT_CVAR_Things" (void)
+{
+    SetResultValue(GetCVar("mtcvar_creditstart"));
+}
+
+script "MT_GiveMoni" ENTER
+{
+  int creditamount;
+   
+  If (!CheckInventory("MT_Credits") >= 1)
+  {
+   if(GetCVar("mtcvar_creditstart") > 1 )
+    {
+	   creditamount = GetCVar("mtcvar_creditstart");
+	   GiveInventory("MT_Credits", creditamount);	
+	}
+  Terminate;
+  }
+}
+
+//Placeholder for the Pre-Morph health memory
+//So that morphing cannot be used for reseting the health
+//to spawn amount.
+
+
+
+//Morph to Marine function
+//Probably needs some more refining
+//TODO: Fix marine health going to 0 when switching next map
+//TODO: Multiplayer compat
+script "MT_MorphToMarine" (VOID) NET
+{
+
+	//Morph marine
+ 	 if (!CheckInventory("MT_MorphVCrewToken") & CheckInventory("MT_ClassToken"))
+		{
+			vehicleprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
+			GiveInventory("MT_MorphVCrewToken", 1);
+			//HudMessage(d: vehicleprevioushealth;HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+			delay(1);
+			
+			MorphActor(PlayerNumber(), "MT_MorphPlayer", "", 0xFFFFFF, 0, "", "");
+			
+			if (!CheckInventory("MT_FirstMorph")) 
+				{
+					//Initial morphing
+					marineprevioushealth = 200;
+					SetActorProperty(PlayerNumber(), APROP_Health, marineprevioushealth);
+				}
+			else
+				{
+					//Guarantee at least 50 HP...
+					if (marineprevioushealth < 50)
+					{
+						marineprevioushealth = 50;
+					}
+					SetActorProperty(PlayerNumber(), APROP_Health, marineprevioushealth);
+				}
+			GiveInventory("MT_FirstMorph", 1);
+		}
+	//Morph tank
+	else if (CheckInventory("MT_ClassToken"))
+		{
+			marineprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
+			delay(1);
+			UnMorphActor(PlayerNumber(), 0);
+			SetActorProperty(PlayerNumber(), APROP_Health, vehicleprevioushealth);
+			TakeInventory("MT_MorphVCrewToken", 999);
+		}
+		
+	else
+		{
+			HudMessage(s:"\cfOnly available for Micro Tank classes.";HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+		}
+ 
+ }
+
+//Check max player health
+script "MT_CheckMaxHealth" (VOID) 
+{
+	if (GetActorProperty(0, APROP_HEALTH) == GetActorProperty(0, APROP_SPAWNHEALTH))
+		{
+			SetResultValue(1);
+		}
+	else
+		{
+			SetResultValue(0);
+		}
+}
+
+
+/*
+
+//Teleporter stuff
+//Ripped from RGA mod, whoever made it thanks to that dude.
+script "MT_Teleport" (void)
+{
+	if(MT_Translocator[PlayerNumber()] == True)
+	{
+		Delay(1);
+		Teleport(PlayerNumber()+600);
+		Delay(1);
+		Thing_Remove(PlayerNumber()+600);
+		SetFont("SMALLFONT");
+		//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+		//	HudMessageBold(n:0,s:" \cdused Tactical Insertion!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		MT_Translocator[PlayerNumber()] = False;
+	}
+}
+//628
+script "MT_Teleport2" (int Which)
+{
+	int byte_angle = GetActorAngle(0) >> 8;
+	int byte_pitch = GetActorPitch(0) >> 8;
+	if(Which == 0)
+	{
+		if(MT_Translocator[PlayerNumber()] == False)
+		{
+			SpawnSpotFacing("MT_TranslocatorPlaced",PlayerNumber()+500,PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = True;
+		}
+	}
+	else if(Which == 1)
+	{
+		if(MT_Translocator[PlayerNumber()] == True)
+		{
+			Thing_Remove(PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = False;
+			SetFont("SMALLFONT");
+			HudMessage(s:"\cfTactical Insertion Removed";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+		}
+	}
+	else if(Which == 2)
+	{
+		SetResultValue(MT_Translocator[PlayerNumber()]);
+	}
+	else if(Which == 3)
+	{
+		SetFont("SMALLFONT");
+		HudMessage(s:"\cfYou've already placed one!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,1.0);
+	}
+//projectile stuff
+	
+	else if(Which == 4)
+	{
+		if(MT_Translocator[PlayerNumber()] == False)
+		{
+            SpawnProjectile(0,"MT_TranslocatorProjectile",byte_angle,200,byte_pitch*2,0.2,PlayerNumber()+600);
+			MT_Translocator[PlayerNumber()] = True;
+		}
+	}	
+	else
+	{
+		MT_Translocator[ActivatorTID()-600] = False;
+		SetActivator(ActivatorTID()-600);
+		MT_Translocator[PlayerNumber()] = False;
+		SetFont("SMALLFONT");
+		HudMessage(s:"\cgTactical Insertion destroyed!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+	}
+}
+*/
+
+
+//This one causes the Player to morph back to tank with 0 health
+//but he can still move and rotate, maybe it can be used for something. 
+/*
+//Morph to Marine function
+script "MT_MorphToMarine" (VOID) NET
+{
+
+	//Morph player
+ 	 if (!CheckInventory("MT_MorphVCrewToken") & CheckInventory("MT_ClassToken"))
+		{
+			delay(1);
+			delay(5);
+			SetActorAngle (0, GetActorAngle (261));
+			Thing_Move(0, 261, 1);
+			GiveInventory("MT_MorphVCrewToken", 1);
+
+			vehicleprevioushealth = GetActorProperty(0, APROP_Health);
+			int vehiclepreviousbaseangle = GetUserVariable(0, "user_tankbasedirection");
+
+			MorphActor(0, "MT_MorphPlayer", "", 0xFFFFFF, 0, "", "");
+
+			int resetarmor = CheckInventory("StoredArmorInsideVehicle");
+			int resethealth = CheckInventory("StoredHealthInsideVehicle");
+			SetActorProperty(0, APROP_Health, resethealth);
+			GiveInventory("GiveArmor", resetarmor);
+			SetActorProperty(261, APROP_Health, vehicleprevioushealth);
+			SetActorProperty(261, APROP_Health, vehicleprevioushealth);
+			TakeInventory("StoredHealthInsideVehicle", 9999);
+			TakeInventory("StoredArmorInsideVehicle", 9999);
+		}
+	//Morph tank
+	else if (CheckInventory("MT_ClassToken"))
+		{
+			TakeInventory("MT_MorphVCrewToken", 999);
+
+			SetActorAngle (0, GetActorAngle (261));
+			Thing_Move(0, 261, 1);
+			vehicleprevioushealth = GetActorProperty(261, APROP_Health);
+			GiveInventory("StoredArmorInsideVehicle", playerpreviousarmor);
+			GiveInventory("StoredHealthInsideVehicle", playerprevioushealth);
+			SetActorProperty(0, APROP_Health, vehicleprevioushealth);
+			
+
+			UnMorphActor(0,1);		
+
+
+
+			SetActorProperty(0, APROP_Health, vehicleprevioushealth);
+		}
+	else
+		{
+			HudMessage(s:"\cfOnly available for Micro Tank classes.";HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+		}
+ 
+ 
+ 
+ //vehicleprevioushealth = GetActorProperty(261, APROP_Health);
+ //GiveInventory("StoredArmorInsideVehicle", playerpreviousarmor);
+ //GiveInventory("StoredHealthInsideVehicle", playerprevioushealth);
+ //SetActorProperty(0, APROP_Health, vehicleprevioushealth);
+ //int thisgunmachinegunammo = CheckActorInventory(261, "HeavyMachinegunAmmo");
+ //int thistankammo = CheckActorInventory(261, "TankAmmo");
+ //int thisvehicleHelicopterRocketAmmo = CheckActorInventory(261, "HelicopterRocketAmmo");
+ //int thisvehicleMechMortarAmmo = CheckActorInventory(261, "MechMortarAmmo");
+ //int thisvehicleMechLaserAmmo = CheckActorInventory(261, "MechLaserAmmo");
+ //int thisvehicleMechRocketAmmo = CheckActorInventory(261, "MechRocketAmmo");
+ //int vehiclepreviousbaseangle = CheckActorInventory(261, "TankBaseDirection");
+ //GiveInventory("HeavyMachinegunAmmo", thisgunmachinegunammo);
+ //GiveInventory("TankAmmo", thistankammo);
+ //GiveInventory("HelicopterRocketAmmo", thisvehicleHelicopterRocketAmmo);
+ //GiveInventory("MechMortarAmmo", thisvehicleMechMortarAmmo);
+ //GiveInventory("MechLaserAmmo", thisvehicleMechLaserAmmo);
+ //GiveInventory("MechRocketAmmo", thisvehicleMechRocketAmmo);
+ //SetUserVariable(0, "user_tankbasedirection", vehiclepreviousbaseangle);
+ //delay(1);
+}
+*/
+
+//------------------------------------------------------------------------------
+////Main script
+//It will initalize other scripts on start
+//------------------------------------------------------------------------------
+script "MTACS_Main" (VOID) NET 
+{
+	ACS_NamedExecute("MTHUD_Ammo", 0, 0, 0, 0);
+}

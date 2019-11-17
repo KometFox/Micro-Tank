@@ -1,0 +1,189 @@
+//
+TODO (in short form):
+Weapons:
+-Weapons,Ammo need balance
+-Improved weapons system
+-Improve Invendiary Impact
+-Better sound effects, give weapons etc a "OMPH" effect
+-Decals (25% Done)
+
+
+5 ammo type maximum
+Remove: Buckshot, Incendiary Shell (Replace them with something else)
+50,75,88mm Cannon:
+AP Shell (Shell, due to small explosive amount, piercing)
+APCR Shell (Improved variant of AP Shell, more expensive, piercing)
+HEAT Shell* (Combo of AP/HE)
+HE Shell (medium explosion radius, medium damage)
+
+Candiates:
+Nuclear Shell, (Or maybe T2 upgrade should have a nuclear like effect)
+Acid shell? Could be actually useful against armors since it can plausible melt
+metals. 
+
+
+Replace Panzer II with Panzer III (50mm Cannon, Long), light tanks are actually 
+useless and they are meant for scouting anyway, my mod is not realism focused 
+but a 37mm cannon against a SU-100, SU-122? C'mon. Appendix: Actually no,
+I'll just leave the light classes as it is. 
+
+
+
+Tank Destroyer class? (Jagd Panther, Stug III/IV, Jagd Panzer IV) 
+Panther/M10 should get 75mm Cannon
+
+Misc:
+-More Dynamic Lights
+-HUD needs some work
+-Finish the upgrades for weapons (50% done)
+-More Items (15% done)
+-Script organization (10% done) 
+-Improved particles 
+-Change camo directly (no classes)
+
+HUD::
+-ACS for displaying the ammo needs the following changes:
+ -Support for multiple resolution
+ -multiplayer support 
+ -Different weapon/ammo type support 
+
+Enemies:
+-Add proper Tank behavior such as limited turn rate
+-Improved chase behavior
+-chasing threshold 
+-Remove infinite hearing/sight range 
+-Remove infantries and replace them with light vehicles instead
+-Enemy threat scale (Light upto Heavy vehicles) 
+Neo-Bolsheviks (name subject to change)
+SU-76 (halfway done)
+SU-100 (halfway done)
+T-34 (somewhat done)
+KV-1, KV-2
+T-62 
+MerCorp (name subject to change)
+LightAttackSpider (Normal; Missile)
+MediumAttackWalker (Chaingun, Missile)
+LightAttackWalker (Laser Bolt Gun) 
+PainMaker 
+MediumHoverTank (Light Laser Bolt, Medium Laser Bolt) 
+
+Maps:
+Episode 1:
+MTMAP01 Tech Base (40% done) 
+MTMAP02 Tech Base II (5% done) 
+MTMAP03 ?
+MTMAP04 ?
+MTMAP05 ?
+MTMAP06
+MTMAP07
+MTMAP08 Final Battle 
+
+MTMAP01:
+Simple Tech Base
+Small
+-
+MTMAP02:
+Complex Tech Base
+Large
+
+
+
+TODO (elaborative):
+
+
+
+
+
+Old Ideas:
+Weapon Concept:
+
+Example:
+75mm/50mm Cannon
+Fire:
+Armor Piercing/"Instant-Hit" Shot, [Energy like?] or 
+Frangible Frag Shot
+Buckshot/Buckshot Explosive
+High Explosive/White Phosphour
+Hollow Charge/Ramjet Hollow Charge
+Incendiary/Acid
+
+
+,Explosive,??,Turbo,Acid
+37mm Cannon
+Fire:
+Armor Piercing/Double AP [2x damage]
+Buckshot/Buckshot Explosive
+High Explosive/Unknown
+Hollow Charge/Ramjet Hollow Charge
+Flamethrower/Unknown
+Laser beam/Plasma Ball
+
+Any AltFire for Cannons:
+Light/Heavy Russian MG, Grenade/Rocket Launcher, Laser Bolt Gun,Autocannon
+
+Heavy Cannon (Medium/Heavy Tank only)
+Fire:
+Heavy Rocket (Incendiary/BioChem),Heavy AT Rocket (Seeking),??,??
+Altfire:
+??,??,??,??
+
+Energy Cannon (Light Tank only)
+Fire:
+Laser Beam,Lightning Beam,Pulse Projectile
+??,Thunder Strike,
+Alfire:
+??,??
+
+Deep Ore Extractor
+Fire:
+Deployment then Extraction (2x Firing)
+AltFire:
+Cancel
+=100% Done
+
+2nd Resource "Weapon"
+Water Extractor
+Material Atomizer
+
+
+UNKNOWN:
+Missile/Rocket Launcher, Pulse Machine Gun, 2x20mm AutoCannon,
+Quad Machine Gun. Nuclear Rocket Launcher.
+
+
+Totally different weapon concept:
+Instead of having several weapons or so it I would prefer something like this
+A vehicle has 3 weapon slot:
+1 HEAVY/SPECIAL
+2 LIGHT
+3 LIGHT (via upgrade maybe) 
+4 Unknown/Grenade Pods?
+
+All of those weapon should be almost be fired in simoulatenous manner,
+when the 1 HEAVY got the Cannon weapon for example it should have all
+functionalities it had previously, at least the FIRE part. Since the 2 other
+light weapon slot can be used for fast firing ones instead.
+
+
+(Special) Items:
+AT-RocketLauncher 
+Search Light (75% Done)
+Scud Strike Marker (100% Done)
+Shield Generator (0% Done)
+Anthrax Sprayer (100% Done)
+Flare-DONE
+Illuminating-DONE
+Smoke (75% Done)
+  
+
+Enemies:
+Neo-Bolsheviks (Neo-Bol): (5% done)
+T-34, T-34-76, T-34-85, KV-1, KV-2, Infantries,Gun Placements,T-62
++Several upgrade version
+American Corporation and Mercenary Coaliation (MerCorp): (5% done)
+Light Mechs, Medium Mechs, Hover Tanks, 
+Gangs:
+Gun Trucks, Infantries, Gun Placement, 
+
+Make Infantry,Vehicles,Aircraft etc... Have a new and a bit more advanced 
+behavior (5% done)

@@ -1,0 +1,256 @@
+//Impacts
+BulHi BulHi
+BulHit BulHit2
+LaserHit LaserHit
+LasH1    LasH1
+ShotB ShotB
+Smoke Smoke
+MeatHit MeatHit
+BordHit BordHit
+MeaHit1 MeaHit1
+MeaHit2 MeaHit2
+MeaHit3 MeaHit3
+MeaHit4 MeaHit4
+MetHit1 MetHit1
+MetHit2 MetHit2
+MetHit3 MetHit3
+MetHit4 MetHit4
+StoneH1 StoneH1
+StoneH2 StoneH2
+WoodH1  WoodH1
+WoodH2  WoodH2
+RockFa RockFa
+RockFa2 RockFa2
+
+//Loading
+Loaded  Loaded
+GunLoa  GunLoa
+GunLoa2 GunLoa2
+GunLoa3 GunLoa3
+GunLoa4 GunLoa4
+GunLoa5 GunLoa5
+GunLoa6 GunLoa6
+QGuLoa5 QGuLoa5
+W_Pepperpot/Load1 Gunloa
+W_Pepperpot/Load2 loaded
+W_Pepperpot/Load3 Gunloa2
+
+
+
+//Motor
+DSZTank1 DSZTank1
+DSZTank2 DSZTank2
+DSZTankD DSZTankD
+TENLO    Tenlo
+MotLop1  MotLop1 
+MotLop2  MotLop2
+MotLop3  MotLop3
+MotLop4  MotLop4
+MotLop5  MotLop5
+MotLop6  MotLop6
+MotLop7  MotLop7
+MotOf MotOf
+MotOn MotOn
+WMTGo WMTGo
+WMTSt WMTSt
+
+DSZTGun   DSZTGun
+MGFire1   MGFire1
+MGFire2   MGFire2
+MGFire3   MGFire3
+ACFire1   ACFire1
+Fire01    Fire01
+Fire02    Fire02
+Fire03    Fire03
+Fire04    Fire04
+Fire05    Fire05
+Fire06    Fire06
+Fire07    Fire07
+Fire08    Fire08
+Fire09    Fire09
+PKMFire1  PKMFire1
+PlsFir    PlsFir
+37mmFire  37mmFire
+50mmFire  50mmFire
+75mmFire  75mmFire
+GFire2    GFire2
+GFire1    GFIre1
+LaserFir  LaserFir
+LasFir1   LasFir1
+RocketFi  RocketFi
+Launch    Launch
+FlaFir    FlaFir
+MorFir    MorFir
+DispShot  DispShot
+
+ZSPCMGN3 ZSPCMGN3
+ZSPCMGN2 ZSPCMGN2
+ZSPCMGN1 ZSPCMGN1
+
+$random Machinegun/Fire {ZSPCMGN3 ZSPCMGN2 ZSPCMGN1}
+
+Boom1     Boom1
+Boom2     Boom2
+Boom3     Boom3
+Boom4     Boom4
+Boom5     Boom5 
+Boom6     Boom6
+Boom7     Boom7
+Boom8     Boom8
+Boom10    Boom10
+Boom11    Boom11
+Boom12    Boom12
+Boom13    Boom13
+Boom14    Boom14
+Boom15    Boom15
+Boom16    Boom16
+Boom17    Boom17
+Boom18    Boom18
+37mmBlas  37mmBlas
+DSZTankX  DSZTankX
+DistBoo2  DistBoo2
+DistBoom  DistBoom
+AcidBoom  AcidBoom
+Wbom1     Wbom1
+MorHit    MorHit
+LasHit1   LasHit1
+
+//Misc
+Spark     Spark
+FireBurs  FireBurs
+FireIdle  FireIdle
+FireBur2  FireBur2
+FlamLoo   FlameLoo
+Radar1    Radar1
+Elec2     Elec2
+Elec1     Elec1
+GunEmp    GunEmp
+Click     Click
+Drill     Drill
+CanRot    CanRot
+GScop     GScop
+InCha     InCha
+TanMov    TanMov
+CarMov    CarMov
+TurRot    TurRot
+TurRott   TurRott
+MServo    MServo
+MexRun    MexRun
+Recla Recla
+Beep1 Beep1
+Beep2 Beep2
+Beep3 Beep3
+DispPowe DispPowe
+
+Shell2 Shell2
+
+
+//Pain
+CwDe2   CwDe2
+CwDe    CwDe
+CwHit   CwHit
+CwHit2  CwHit2
+
+//German Crew
+GCrew/CannonEmpty KanLer
+GCrew/AmmoFilled MuniAuf
+GCrew/MGEmpty KeinMG
+GCrew/StillLoading WirdGel
+GCrew/MissionStart EinsBeg
+
+//Walker
+MecSte1 MecSte1
+MecSte2 MecSte2
+MecSte3 MecSte3
+MecSte4 MecSte4
+
+TreCru TreCru
+HouCru HouCru
+
+
+
+////----------------------------------------------------------------------------
+///Engine/Vehicle noise
+////----------------------------------------------------------------------------
+TankEngine/Start MotOn
+TankEngine/Idle MotLop3
+TankEngine/Stop MotOff
+Treads/Mid H_RPM4
+Treads/Forward H_RPM3
+Treads/Left MotLop3
+Treads/Right MotLop3
+Treads/Backward H_RPM2
+
+$Volume Treads/Forward 0.7
+$Volume Treads/Backward 0.7
+$Volume Treads/Left 0.7
+$Volume Treads/Right 0.7
+$Volume Treads/Mid 0.7
+
+////----------------------------------------------------------------------------
+///Vehicle interaction
+////----------------------------------------------------------------------------
+V_Interact/Button Click
+V_Interact/Zoom Click
+V_Interact/Periscope GScop
+V_Interact/Nightvision Click 
+
+
+////----------------------------------------------------------------------------
+///Autocannon
+////----------------------------------------------------------------------------
+25mmAutocannon/Fire 37mmfire
+
+
+////----------------------------------------------------------------------------
+///Machinegun
+////----------------------------------------------------------------------------
+
+
+////----------------------------------------------------------------------------
+///Small Cannon
+////----------------------------------------------------------------------------
+
+
+////----------------------------------------------------------------------------
+///Big Cannon
+////----------------------------------------------------------------------------
+MediumCannon/Firing0 Fire05
+MediumCannon/Firing1 Fire07
+MediumCannon/Firing2 Fire08
+$Random MediumCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
+$Random HeavyCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
+
+
+
+$Volume loaded 2
+$Volume Weapon/Boom5 4
+$Volume Weapon/boom6 4
+$Volume MGFire3 8
+
+//Weapon sounds
+Weapon/Boom1 Boom1
+Weapon/Boom2 Boom2
+Weapon/Boom3 Boom3
+Weapon/Boom4 Boom4
+Weapon/Boom5 Boom5
+Weapon/Boom6 Boom6
+Weapon/Boom7 Boom7
+Weapon/Boom8 Boom8
+Weapon/FireBurs  FireBurs
+Weapon/FireBur2  FireBur2
+Weapon/37mmblas  37mmblas
+Weapon/LaserHit  LaserHit
+Weapon/LaserHit1 LasHit1
+
+//sonstiges
+Sons/loaded loaded
+
+
+
+$Volume MGFire1 2
+$Volume fire03 3
+$Volume Fire05 1.2
+
+$Attenuation Sprk 3
+$Attenuation DSZTankP 3

@@ -1,0 +1,187 @@
+#Include "GLDefs.Boom.txt"
+
+
+Pointlight MT_Photon_1
+{
+    color 0.85 0.85 1.36
+    size 33
+}
+
+Pointlight MT_Photon_2
+{
+    color 0.8 0.8 1.28
+    size 39	
+}
+
+Pointlight MT_Photon_3
+{
+    color 0.75 0.75 1.2 
+    size 44	
+}
+
+Pointlight MT_Photon_4
+{
+    color 0.7 0.7 1.1
+    size 50
+}
+
+Pointlight MT_Photon_5
+{
+    color 0.65 0.65 1.1
+    size 55	
+}
+
+Pointlight MT_Photon_6
+{
+    color 0.6 0.6 0.96
+    size 61	
+}
+
+
+
+PointLight MT_Photon_1_Strong
+{
+    color 0.5 0.5 0.9
+    size 75
+    dontlightself 1
+}
+
+//God damn skullfuck...
+//    dontlightself 0
+object MT_Photon
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1 
+	 }
+}
+
+
+object MT_Photon2
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1 
+	 }
+}
+
+object MT_LightPuff1
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_1 
+	 }
+}
+
+object MT_LightPuff2
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_2 
+	 }
+}
+
+object MT_LightPuff3
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_3 
+	 }
+}
+
+object MT_LightPuff4
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_4 
+	 }
+}
+
+object MT_LightPuff5
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_5 
+	 }
+}
+
+object MT_LightPuff6
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_6 
+	 }
+}
+
+object MT_LightPuff7
+{
+ frame TNT1 
+     {   
+	 light MT_Photon_6 
+	 }
+}
+
+
+/*
+PulseLight IlluminatingLight
+{
+    color 0.25 0.6 1 
+    size 450
+    secondarysize 400
+    interval 1.0
+    offset 1 1 1
+    
+}
+*/
+
+PointLight IlluminatingLight
+{
+    color 0.8 0.8 5
+    size 450
+}
+
+
+PointLight FlareLight
+{
+    color 0.92 0.25 0.1 
+    size 150 
+}
+
+PointLight FlareLight_2
+{
+    color 0.82 0.15 0.05 
+    size 75
+}
+
+PointLight FlareLight_3
+{
+    color 0.72 0.05 0.02 
+    size 30 
+}
+
+
+PulseLight IncFire_Big
+{
+    color 0.95 0.45 0.21 
+    size 100
+    secondarysize 50
+    interval 1.0
+    offset 1 1 1
+    
+}
+
+
+object "40mm Grenade Illuminating"
+{
+    frame MESH   { light IlluminatingLight }
+}
+
+object "40mm Grenade Flare"
+{
+    frame MESH    { light FlareLight   }
+	frame MESHB   { light FlareLight_2 }
+	frame MESHC   { light FlareLight_3 }
+}
+
+
+

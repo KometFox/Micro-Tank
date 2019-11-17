@@ -1,0 +1,57 @@
+ACTOR MT_JetGun : Weapon 
+{
+
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL  
+  +WEAPON.CHEATNOTWEAPON
+  +INVENTORY.UNDROPPABLE
+  +WEAPON.NOALERT
+  +WEAPON.DONTBOB
+  Weapon.SlotNumber 0
+  Weapon.SlotPriority 0
+  Inventory.PickupMessage "$GOTPLASMA"
+  Tag "JetGun"
+  Weapon.AmmoUse1 0
+  Weapon.AmmoType1 Cell
+//  Weapon.AmmoUse2 1
+//  Weapon.AmmoType2 MT_OreBoringAmmo2
+  States
+  {
+  Ready:
+    TNT1 A 0
+    MBOR A 1 A_WeaponReady
+    Loop
+  Ready2:
+    MBOR T 1 A_WeaponReady
+	loop
+  Deselect:
+    MBOR AAAAA 0 A_Lower
+    MBOR A 1 A_Lower
+    Loop
+  Select:
+    MBOR AAAAA 0 A_Raise
+    MBOR A 1 A_Raise
+    Loop
+  Fire:
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_JumpIfInventory("Power_MTBoringSlowdown",1,"FireP2")
+	TNT1 A 0 A_GiveInventory("Power_MTBoringSlowdown")
+	TNT1 A 0 A_Playsound("MServo")
+	MBOR ABCDEFGHIJKLMNOPQRST 2
+    MBOR T 0 A_ReFire 
+    Goto Ready
+  Flash:
+    TNT1 A 0 A_JumpifInventory("Power_MTBoringSlowdown",1,"Flash2") 
+    MBOR A 4  
+    Goto LightDone
+  Flash2:
+    TNT1 A 0  
+    MBOR T 4 
+    Goto LightDone	
+  Spawn:
+    MBOR A -1
+    Stop
+  }
+}
+
+

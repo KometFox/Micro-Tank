@@ -1,0 +1,194 @@
+
+  
+ACTOR MT_CEG_AnthraxSmoke1 : SmallBlueSparky {Scale 1.5 Gravity 0 Alpha 0.3
+ renderstyle Translucent
+ States{
+  Spawn:
+    ASP2 BCDEFGHIJ 6
+    ASP2 KLMNO 6 A_Fadeout(0.19)
+  Goto Death}}
+
+ACTOR MT_CEG_AnthraxSpark1 : SmallBlueSparky {Scale 0.12 Gravity 0
+ States{
+  Spawn:
+  APP2 A 12
+  APP2 BBCCDDEEFFGG 1 A_Fadeout(0.029) 
+  Goto Death}}
+  
+
+
+actor MT_Item_AnthraxGasGenerator : MT_PlayerInventory
+{ 
+  -COUNTITEM
+ // Inventory.InterHubAmount 1
+  Inventory.Icon "ANTXA0"
+  Inventory.PickupMessage "Picked up: Anthrax Sprayer"
+  Inventory.Amount 1
+  Inventory.MaxAmount 10
+  Inventory.InterHubAmount 10
+  Tag "[Defense]: Anthrax Sprayer"
+  -COUNTITEM
+  
+  states
+  {
+  Spawn:
+    N15S A -1
+    stop
+  Use:  
+    N15S A 1 A_Jumpifinventory("MT_Item_AnthraxGasGenerator_CoolDown",1, "Nein")
+    N15S A 0 A_GiveInventory("MT_Item_AnthraxGasGenerator_CoolDown")
+    TNT1 A 0 A_Playsound("Fire04")   
+	TNT1 A 0 A_FireCustomMissile("MT_AnthraxSprayer_1")
+ //   TNT1 AAAAA  0  A_spawnitemex("Smoke1_S0.25",0+frandom(0.5,-0.5),0+frandom(0.5,-0.5),-11+frandom(0.5,-0.5),0+frandom(-0.5,0.5),0+frandom(-0.5,0.5),0+frandom(-0.5,0.5),0+frandom(-360,360))
+    loop
+  Nein:
+    TNT1 A 0
+    goto Use
+  }
+}
+
+ACTOR MT_Item_AnthraxGasGenerator_CoolDown : Inventory
+{
+  +INVENTORY.UNDROPPABLE
+  //+INVENTORY.UNTOSSABLE
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+States
+{
+ Spawn:
+ BON1 A -1
+ stop
+ Held:
+ TNT1 A 100
+ TNT1 A 0
+ Stop
+
+}
+}
+
+ACTOR MT_AnthraxSprayer_1
+{
+  Radius 6
+  Height 6
+  Speed 1
+  DamageType BioChem
+  Projectile
+  scale 0.3
+  -NOGRAVITY
+  +BLOODSPLATTER
+  +NOTELEPORT
+  gravity 0.8
+   damage (random(1,1.5)*5)
+  Deathsound "AcidBoom"
+  Obituary "%o <Anthrax] %k" 
+  States
+  {
+  Spawn:
+    IDLE A 0
+	IDLE A 0 A_ChangeVelocity(0,0,10,CVF_REPLACE)
+	IDLE A 1
+  Death:
+    IDLE A 5
+    IDLE A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    IDLE A 20
+	IDLE A 0 A_Scream
+    IDLE A 0 A_Explode(10,250,0)
+    IDLE A 5 A_SpawnItemEx("MT_AnthraxSprayer_BioBlob")
+    IDLE A 5 A_SpawnItemEx("MT_AnthraxSprayer_BioBlob2",0,0,0,0,15,8,0)
+	IDLE A 5 A_SpawnItemEx("MT_AnthraxSprayer_BioBlob2",0,0,0,0,15,8,90)
+	IDLE A 5 A_SpawnItemEx("MT_AnthraxSprayer_BioBlob2",0,0,0,0,15,8,180)
+	IDLE A 5 A_SpawnItemEx("MT_AnthraxSprayer_BioBlob2",0,0,0,0,15,8,270)
+    Stop
+  }
+}
+
+
+
+ACTOR MT_AnthraxSprayer_BioBlob  {
+  Height 7
+  Radius 7
+  speed 1
+  scale 1
+  DamageType BioChem
+  Gravity 1
+ -NOGRAVITY
+ -FORCEXYBILLBOARD
+  renderstyle Add
+  alpha 0.95
+  Obituary "%o <Incendiary Fire] %k"   
+  var int user_fireduration;
+  reactiontime 10
+ States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_fireduration",1)	
+    goto Spawn2
+  Spawn2:
+    TNT1 A 0 A_Gravity
+    TNT1 A 1 A_SpawnitemEx("Fire0F_S0.25",0,0,0,0,0,1)
+    TNT1 A 0 A_CheckFloor("Death")
+    TNT1 A 0 A_CheckCeiling("Death")
+    TNT1 A 0 A_CountDown
+	loop
+  Death:
+    TNT1 AAAAAA 0 A_SpawnitemEx("Fire0",0,0,0,0+random(-4,4),0+random(-4,4),1+random(1,4))
+	TNT1 A 0 A_PlaySound("Boom14")
+    Goto Loopy
+  Loopy:
+     TNT1     A 0 A_ScaleVelocity(0)
+    "####"    A 0 A_Explode (10,250,1,0,120)
+	"####"    A 0 A_SpawnItemEx("MT_CEG_AnthraxSmoke1",0,0,10,0+random(-3,3),0+random(-3,3),0+random(-2,1))
+	"####"    AA 0 A_SpawnItemEx("MT_CEG_AnthraxSpark1",0,0,0,0+random(-4,4),0+random(-4,4),0+random(-2,5))
+	"####"    A 6
+    "####"    A 0 A_Explode (20,180,1,0,80)
+    "####"    A 0 A_SetUserVar("user_fireduration",user_fireduration+1)
+    "####"    A 0 A_JumpIf(user_Fireduration==150,"Death2")
+    "####"    A 0 A_Jump(100,"Puff")
+    loop
+  Puff:
+    TNT1 A 0 
+    goto Loopy
+  Death2:
+    TNT1 ABCDEFGHIJ 2 A_Fadeout(0.125)
+    Stop
+  }
+}
+
+
+ACTOR MT_AnthraxSprayer_BioBlob2 : MT_AreaCloud
+{
+  Health 0
+  Height 15
+  Radius 50
+  speed 0.15
+  scale 0.75
+  DamageType BioChem
+  Gravity 2
+  -NOGRAVITY
+  +PAINLESS
+  speed 5
+  Obituary "%o <Toxin gas cloud] %k"   
+  var int user_effectduration;
+  States
+  {
+  Spawn:
+    TNT1 A 1 A_SetUserVar("user_effectduration",1)
+    TNT1 AAAAAAAAAA 1 A_Spawnitem("Smoke2_S0.5")
+    goto Spawn2
+  Spawn2:
+    TNT1   A 0 A_Explode (18,200)
+	TNT1   A 0 A_SpawnItemEx("MT_CEG_AnthraxSmoke1",0,0,0,0+random(-3,3),0+random(-3,3),0+random(-2,1))
+	"####" AAA 0 A_Spawnitemex("MT_CEG_AnthraxSpark1",+random(-8,8),+random(-8,8),0+22,+random(-5,5),+random(-5,5),random(-3,2))	
+    TNT1   A 6
+    TNT1   A 0 A_SetUserVar("user_effectduration",user_effectduration+1)
+    TNT1   A 0 A_JumpIf(user_effectduration==140,"Death")
+    loop
+  Death:
+    TNT1 A 0 
+    Stop
+  }
+}
+
+
+
+

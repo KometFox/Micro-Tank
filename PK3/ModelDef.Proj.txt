@@ -1,0 +1,206 @@
+
+Model MT_Dud
+{
+   Path "MODELS\Projectiles"
+   Model 0 "CShell.md3"
+   Skin  0 "CShell.png"
+   PITCHFROMMOMENTUM
+   Scale 5.5 5.5 5.5
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+Model NukeRocket
+{
+   Path "MODELS\Projectiles"
+   Model 0 "75mmrocket.md3"
+   Skin  0 "75mmrocket_tex.png"
+   PITCHFROMMOMENTUM
+   Scale 9 9 9
+   AngleOffset 0
+   FrameIndex 37MM A 0 0
+}
+
+
+Model "7.62x54mm AP"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 100 20 20
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "7.62x54mm AP 2"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 100 20 20
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "7.62x54mm AP 3"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 100 20 20
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "MT_QuadMQ_AP_Proj"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 100 20 20
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+
+Model "MT_QuadMQ_HE_Proj"
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 100 40 40
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+
+Model MT_WeakPlasmaShot
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2Blue.png"
+   PITCHFROMMOMENTUM
+   Scale 50 22 22
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "7.62x54mm Bordium Shard" 
+{
+   Path "MODELS\Proj_Planes"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2Blue.png"
+   PITCHFROMMOMENTUM
+   Scale 40 15 15
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model MT_40mmGrenadeSmoke
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_Smoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+
+Model MT_40mmGrenadeSmoke2
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_Smoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+Model "40mm Grenade Illuminating"
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_Smoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+
+Model "40mm Grenade Explosive"
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_Smoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+
+Model MT_40mmSupplyMarker
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_SSmoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+Model "40mm GP Scud Missile Marker"
+{
+   Path "MODELS\Projectiles"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_SSmoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
+
+
+
+
+Model MT_ScudMissile
+{
+   Path "MODELS\Proj_Scud"
+   Model 0 "Scud.md3"
+   Skin  0 "Scud.png"
+   Scale 4 4 4
+   AngleOffset 180
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+}
+
+
+

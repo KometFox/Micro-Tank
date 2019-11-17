@@ -1,0 +1,404 @@
+#library "MTBuy"
+#include "zcommon.acs"
+
+#define MESSAGE_INSTRUCTION 98
+#define MESSAGE_INSTRUCTSPE 99
+#define MESSAGE_LIST_MIN 100
+#define MESSAGE_RECIPE_MIN 132
+#define MESSAGE_RESULT_MIN 148
+#define CONSTRUCTION_TID 120
+#define ITEM_TID 121
+#define RECIPE_ITEMS_MAX 2
+str recipe_list[RECIPE_ITEMS_MAX][2] = {
+	{"Credits",				"MT_Credits"},
+	{"Metals",		"MT_HighValueMetal"},
+};
+
+
+
+//
+////////////////
+/////Buy Menu
+////////////////
+
+#define CRAFT_MAX 18
+str craft_list[CRAFT_MAX][3] = {
+    {"Spare parts",                    "MT_Spareparts",                      "ISPPA0"}, 
+	
+    {"7.62x54mmR       (Ammo)",                    "A_7u62x54mmR",           "IBUAA0"}, 
+	{"AP Shot          (Ammo)",		              "MT_AP",	                 "IAPAA0"},
+	{"APCR Shot        (Ammo)",		              "MT_APCR",	             "IAPAA0"},
+	{"Buckshot         (Ammo)",		              "MTAmmo_Buckshot",	     "IBKAA0"},
+	{"HE Shell         (Ammo)",		              "MT_HE",	                 "IHEAA0"},
+	{"Incendiary Shell (Ammo)",		              "MT_AmmoG_HEInc",	         "IINAA0"},	
+	{"HEAT Shell       (Ammo)",		              "MT_HEAT",	             "IHTAA0"},
+	{"Incendiary Fuel  (Ammo)",                   "MT_AmmoG_IncendiaryFuel", "IFLAA0"},
+	{"Energy Cell Pack (Ammo)",                   "MT_AmmoG_EnergyCell", "IENAA0"},
+	
+    {"Quad MG (Weapon)",		              "MT_QuadMachineGun",	         "IQMGA0"},
+		
+	
+//	{"Smoke         (Grenade Pod)",		           "Item_GrenadePod_Smoke",	 "IPGSA0"},
+	{"Flare         (Grenade Pod)",	  "MT_Item_GrenadePod_Flare",	         "IPGFA0"},	
+	{"Illuminating  (Grenade Pod)",	   "Item_GrenadePod_Illuminating",	     "IPGIA0"},	
+    {"Explosive     (Grenade Pod)",	   "MT_GrenadePod_Explosive",	         "IPGHA0"},
+	{"Molotov       (Grenade Pod)",    "MT_Item_GrenadePod_MolotovGrenade",  "IPGMA0"},
+	{"Scud Strike Marker (Special)",   "Item_GrenadePod_ScudStrike",	     "ISCUA0"},
+	
+	{"Backpack        (Aux)",          "Backpack",	   "IBKPA0"},	
+	{"Anthrax Sprayer (Aux)",          "MT_Item_AnthraxGasGenerator",	     "IANTA0"},
+	
+	
+};
+int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
+	{75,10},
+
+    {30},
+	{400},
+	{800,100},
+	{300},
+	{450},
+	{400,50},
+	{600},
+	{200,10},
+	{350,15},
+	
+	{8500},
+	
+//    {160},
+	{60},
+	{60},
+	{80},
+	{200},
+	{12000},
+	
+	{500},
+	{250,20},
+
+	
+};
+int craft_result[CRAFT_MAX] = {
+50,
+100,
+5,
+5,
+5,
+5,
+5,
+5,
+50,
+40,
+
+
+1,
+
+//4,
+4,
+4,
+4,
+4,
+1,
+
+2,
+1,
+
+
+};
+int craft_maxitem[CRAFT_MAX] = {0,0,};
+
+script "MT_BuyMenu" (void) NET{
+	int lastinput,input = 0;
+	int lastselected=0,selected=0;
+	int color;
+	int i,j=0,n_recipe=0;
+	str recipe_color;
+
+	if ( CheckInventory("Health")<=0 ) terminate;
+	if ( CheckInventory("ImCrafting") ) terminate;
+
+	//Waiting BT_USE release
+	Do {
+		input = GetPlayerInput(-1,INPUT_BUTTONS);
+		Delay(1);
+	} while ( input&BT_USE );
+
+	//Drawing Table
+	GiveInventory("ImCrafting",1);
+	FadeTo(0,0,0,0.5,0);
+	SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+	ActivatorSound("craft/open",127);
+	SetHudSize(640,480,true);
+	HudMessage(s:"USE: Craft | +RUN: 10x craft \n Note: 10x doesn't work for ammo";HUDMSG_PLAIN,MESSAGE_INSTRUCTION,CR_YELLOW,320.0,8.0,0);
+	HudMessage(s:"Press Jump to Exit";HUDMSG_PLAIN,MESSAGE_INSTRUCTSPE,CR_YELLOW,320.0,24.0,0);
+
+	//recipe list
+	SetFont("CONFONT");
+	for ( i=0; i<CRAFT_MAX; i++ ) {
+		if ( i==selected ) color=CR_CREAM; else color=CR_DARKBROWN;
+		HudMessage(s:craft_list[i][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+i,color,160.0,32.0+i*10.0,0);
+	}
+	SetFont(craft_list[selected][2]);
+	HudMessage(s:"A";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,CR_UNTRANSLATED,480.0,40.0,0);
+	SetFont("CONFONT");
+	HudMessage(s:"x",d:craft_result[selected];HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,CR_WHITE,480.0+24.0,48.0,0);
+
+	//Listening input
+	while ( true ) {
+		if ( lastselected!=selected ) {
+			HudMessage(s:craft_list[lastselected][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+lastselected,CR_DARKBROWN,160.0,32.0+lastselected*10.0,0);
+			HudMessage(s:craft_list[selected][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+selected,CR_CREAM,160.0,32.0+selected*10.0,0);
+			SetFont(craft_list[selected][2]);
+			HudMessage(s:"A";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,CR_UNTRANSLATED,480.0,40.0,0);
+			SetFont("CONFONT");
+			HudMessage(s:"x",d:craft_result[selected];HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,CR_WHITE,480.0+24.0,48.0,0);
+		}
+
+		//item recipe
+		j = 0;
+		for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) if ( craft_recipe[selected][i]!=0 ) {
+			if ( CheckInventory(recipe_list[i][1])<craft_recipe[selected][i] ) recipe_color="\cr"; else recipe_color="\cq";
+			//Show cost
+			HudMessage(s:recipe_list[i][0],s:recipe_color,s:" x",d:craft_recipe[selected][i];HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+j,CR_DARKBROWN,480.0,128.0+j*10.0,0);
+			j++;
+		}
+		for ( i=j; i<n_recipe; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+i,0,128,0,1);
+		n_recipe = j;
+
+		//Print(d:Timer());
+		while ( true ) {
+			int amount = 1;
+/*
+			Do {
+				lastinput = GetPlayerInput(-1,INPUT_BUTTONS);
+				Delay(1);
+			} while ( Timer()%3 );
+*/
+			Do {
+				Delay(1);
+				lastinput = input;
+				input = GetPlayerInput(-1,INPUT_BUTTONS);
+			} while ( lastinput==input );
+
+			lastselected = selected;
+			if ( lastinput&BT_FORWARD ) { selected = (CRAFT_MAX+selected-1) % CRAFT_MAX; break; }
+			if ( lastinput&BT_BACK ) { selected = (selected+1) % CRAFT_MAX; break; }
+			if ( lastinput&BT_JUMP ) break;
+
+			if ( lastinput&BT_SPEED ) amount = 10;
+			if ( lastinput&BT_USE ) {
+				int inventory = CheckInventory(craft_list[selected][1]);
+				if ( craft_maxitem[selected]!=0 && inventory+craft_result[selected]*amount>craft_maxitem[selected] ) {
+					ActivatorSound("craft/full",127);
+					break;
+				}
+				for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) if ( CheckInventory(recipe_list[i][1])<craft_recipe[selected][i]*amount ) break;
+				if ( i==RECIPE_ITEMS_MAX ) {
+					for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) TakeInventory(recipe_list[i][1],craft_recipe[selected][i]*amount);
+					ActivatorSound("craft/table",127);
+					GiveInventory(craft_list[selected][1],craft_result[selected]*amount);
+					break;
+				} else ActivatorSound("craft/fail",127);
+			}
+		}
+
+		if ( lastinput&BT_JUMP ) break;
+	}
+
+	//Clearing
+	for ( i=0; i<CRAFT_MAX; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_LIST_MIN+i,0,0,0,1);
+	for ( i=0; i<n_recipe; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+i,0,0,0,1);	//i<RECIPE_ITEMS_MAX
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,0,0,0,1);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,0,0,0,1);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_INSTRUCTION,0,0,0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_INSTRUCTSPE,0,0,0,0);
+	SetHudSize(0,0,false);
+	ActivatorSound("craft/close",127);
+	SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+	FadeTo(0,0,0,0,0);
+	//CancelFade();			//Dafuck? Didn't work :S
+	TakeInventory("ImCrafting",0x7FFFFFFF);
+}
+
+
+
+
+///////////////////
+////UPGRADES
+///////////////////
+
+
+#define MTUPGRADES_MAX 15
+str MTUpgrades_list[MTUPGRADES_MAX][3] = {
+	{"Main Cannon (Firing Rate)",		         "MT_Upgrade_CannonFiringRate_1",   "ICAGA0"},
+	//
+	{"High Explosive Shell      (T1)",		 "MT_HEShell_Upgrader2",	            "IHEAB0"},	
+	{"High Explosive Shell      (T2)",		 "MT_HEShell_Upgrader3",	            "IHEAC0"},	
+	{"Armor Piercing Shot       (T1)",		 "MT_APShot_Upgrader2",	                "IAPAB0"},	
+	{"Armor Piercing Shot       (T2)",		 "MT_APShot_Upgrader3",	                "IAPAC0"},
+	{"Buckshot                  (T1)",		 "MT_Buckshot_Upgrader2",	            "IBKAB0"},	
+	{"Buckshot                  (T2)",		 "MT_Buckshot_Upgrader3",	            "IBKAC0"},		
+	{"Incendiary Shell          (T1)",		 "MT_IncShell_Upgrader2",	            "IINAB0"},	
+	{"Incendiary Shell          (T2)",		 "MT_IncShell_Upgrader3",	            "IINAC0"},
+	{"Hollow Charge Shell       (T1)",		 "MT_HEATShell_Upgrader2",	            "IHTAB0"},	
+	{"Hollow Charge Shell       (T2)",		 "MT_HEATShell_Upgrader3",	            "IHTAC0"},	
+	{"Energy Weapon Improvment (T1)",            "MT_Energy_Upgrader2",            "IENCA0"},
+	{"Energy Weapon Improvment (T2)",            "MT_Energy_Upgrader3",            "IENCB0"},	
+	//
+    {"Environ. Hazard Coating  (Armor Addon)",   "MT_Upgrade_Armor_EnvironmentCoat","IHAMA0"},	
+	{"Supply Box (T1)", "MT_Upgrade_Aux_SupplyBox", "SUPBAB0"},
+
+};
+int MTUpgrades_recipe[MTUPGRADES_MAX][RECIPE_ITEMS_MAX] = {
+	
+	{1500},
+	//
+	{2500,250},
+	{3700,500},
+	{2500,250},
+	{3700,500},
+	{2500,250},
+	{3700,500},
+	{2500,250},
+	{3700,500},
+	{2500,250},
+	{3700,500},
+	{2500,250},
+	{3700,500},	
+	//
+	{2000},
+	{8000,300},
+};
+int MTUpgrades_result[MTUPGRADES_MAX] = {
+
+1,
+//
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+//
+1,
+1,
+};
+int MTUpgrades_maxitem[MTUPGRADES_MAX] = {0};
+
+script "MT_Upgrades" (void) NET{
+	int lastinput,input = 0;
+	int lastselected=0,selected=0;
+	int color;
+	int i,j=0,n_recipe=0;
+	str recipe_color;
+
+	if ( CheckInventory("Health")<=0 ) terminate;
+	if ( CheckInventory("ImCrafting") ) terminate;
+
+	//Waiting BT_USE release
+	Do {
+		input = GetPlayerInput(-1,INPUT_BUTTONS);
+		Delay(1);
+	} while ( input&BT_USE );
+
+	//Drawing Table
+	GiveInventory("ImCrafting",1);
+	FadeTo(0,0,0,0.5,0);
+	SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+	ActivatorSound("MTUpgrades/open",127);
+	SetHudSize(640,480,true);
+	HudMessage(s:"USE: Craft | +RUN: 10x Craft \n Note: 10x doesn't work for ammo";HUDMSG_PLAIN,MESSAGE_INSTRUCTION,CR_YELLOW,320.0,8.0,0);
+	HudMessage(s:"Press Jump to Exit";HUDMSG_PLAIN,MESSAGE_INSTRUCTSPE,CR_YELLOW,320.0,24.0,0);
+
+	//recipe list
+	SetFont("CONFONT");
+	for ( i=0; i<MTUPGRADES_MAX; i++ ) {
+		if ( i==selected ) color=CR_CREAM; else color=CR_DARKBROWN;
+		HudMessage(s:MTUpgrades_list[i][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+i,color,160.0,32.0+i*10.0,0);
+	}
+	SetFont(MTUpgrades_list[selected][2]);
+	HudMessage(s:"A";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,CR_UNTRANSLATED,480.0,40.0,0);
+	SetFont("CONFONT");
+	HudMessage(s:"x",d:MTUpgrades_result[selected];HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,CR_WHITE,480.0+24.0,48.0,0);
+
+	//Listening input
+	while ( true ) {
+		if ( lastselected!=selected ) {
+			HudMessage(s:MTUpgrades_list[lastselected][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+lastselected,CR_DARKBROWN,160.0,32.0+lastselected*10.0,0);
+			HudMessage(s:MTUpgrades_list[selected][0];HUDMSG_PLAIN,MESSAGE_LIST_MIN+selected,CR_CREAM,160.0,32.0+selected*10.0,0);
+			SetFont(MTUpgrades_list[selected][2]);
+			HudMessage(s:"A";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,CR_UNTRANSLATED,480.0,40.0,0);
+			SetFont("CONFONT");
+			HudMessage(s:"x",d:MTUpgrades_result[selected];HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,CR_WHITE,480.0+24.0,48.0,0);
+		}
+
+		//item recipe
+		j = 0;
+		for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) if ( MTUpgrades_recipe[selected][i]!=0 ) {
+			if ( CheckInventory(recipe_list[i][1])<MTUpgrades_recipe[selected][i] ) recipe_color="\cr"; else recipe_color="\cq";
+			//Show cost
+			HudMessage(s:recipe_list[i][0],s:recipe_color,s:" x",d:MTUpgrades_recipe[selected][i];HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+j,CR_DARKBROWN,480.0,128.0+j*10.0,0);
+			j++;
+		}
+		for ( i=j; i<n_recipe; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+i,0,128,0,1);
+		n_recipe = j;
+
+		//Print(d:Timer());
+		while ( true ) {
+			int amount = 1;
+/*
+			Do {
+				lastinput = GetPlayerInput(-1,INPUT_BUTTONS);
+				Delay(1);
+			} while ( Timer()%3 );
+*/
+			Do {
+				Delay(1);
+				lastinput = input;
+				input = GetPlayerInput(-1,INPUT_BUTTONS);
+			} while ( lastinput==input );
+
+			lastselected = selected;
+			if ( lastinput&BT_FORWARD ) { selected = (MTUPGRADES_MAX+selected-1) % MTUPGRADES_MAX; break; }
+			if ( lastinput&BT_BACK ) { selected = (selected+1) % MTUPGRADES_MAX; break; }
+			if ( lastinput&BT_JUMP ) break;
+
+			if ( lastinput&BT_SPEED ) amount = 10;
+			if ( lastinput&BT_USE ) {
+				int inventory = CheckInventory(MTUpgrades_list[selected][1]);
+				if ( MTUpgrades_maxitem[selected]!=0 && inventory+MTUpgrades_result[selected]*amount>MTUpgrades_maxitem[selected] ) {
+					ActivatorSound("MTUpgrades/full",127);
+					break;
+				}
+				for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) if ( CheckInventory(recipe_list[i][1])<MTUpgrades_recipe[selected][i]*amount ) break;
+				if ( i==RECIPE_ITEMS_MAX ) {
+					for ( i=0; i<RECIPE_ITEMS_MAX; i++ ) TakeInventory(recipe_list[i][1],MTUpgrades_recipe[selected][i]*amount);
+					ActivatorSound("MTUpgrades/table",127);
+					GiveInventory(MTUpgrades_list[selected][1],MTUpgrades_result[selected]*amount);
+					break;
+				} else ActivatorSound("MTUpgrades/fail",127);
+			}
+		}
+
+		if ( lastinput&BT_JUMP ) break;
+	}
+
+	//Clearing
+	for ( i=0; i<MTUPGRADES_MAX; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_LIST_MIN+i,0,0,0,1);
+	for ( i=0; i<n_recipe; i++ ) HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RECIPE_MIN+i,0,0,0,1);	//i<RECIPE_ITEMS_MAX
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RESULT_MIN,0,0,0,1);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_RESULT_MIN+1,0,0,0,1);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_INSTRUCTION,0,0,0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,MESSAGE_INSTRUCTSPE,0,0,0,0);
+	SetHudSize(0,0,false);
+	ActivatorSound("MTUpgrades/close",127);
+	SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+	FadeTo(0,0,0,0,0);
+	//CancelFade();			//Dafuck? Didn't work :S
+	TakeInventory("ImCrafting",0x7FFFFFFF);
+}

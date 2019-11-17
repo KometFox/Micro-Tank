@@ -1,0 +1,111 @@
+clearskills 
+
+skill baby
+{
+	AutoUseHealth
+	AmmoFactor = 2
+	DamageFactor = 0.5
+	EasyBossBrain
+	SpawnFilter = Baby
+	PicName = "M_JKILL"
+	Name = "Very Easy"
+	PlayerClassName = "Heavy Tank" , "Sunday Driver"
+	PlayerClassName = "Medium Tank", "Sunday Driver"
+	PlayerClassName = "Light Tank" , "Sunday Driver"
+	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Sonntagsfahrer"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Sonntagsfahrer"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Sonntagsfahrer"
+	PlayerClassName = "M10 Wolverine (Med) (Summer)" , "Sunday Driver"
+	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Sunday Driver"
+	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Sunday Driver"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Sonntagsfahrer"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Sonntagsfahrer"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Sonntagsfahrer"	
+}
+
+
+skill easy
+{
+	EasyBossBrain
+	SpawnFilter = Easy
+	PicName = "M_ROUGH"
+	Name = "Easy"
+	PlayerClassName = "Heavy Tank" , "Private"
+	PlayerClassName = "Medium Tank", "Private"
+	PlayerClassName = "Light Tank" , "Private"
+	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Gefreiter"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Gefreiter"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Gefreiter"
+    PlayerClassName = "M10 Wolverine (Med) (Summer)" , "Private"
+	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Private"
+	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Private"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Gefreiter"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Gefreiter"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Gefreiter"
+
+}	
+
+skill normal
+{
+	SpawnFilter = Normal
+	PicName = "M_HURT"
+	Name = "Normal"
+	PlayerClassName = "Heavy Tank" , "Experienced"
+	PlayerClassName = "Medium Tank", "Experienced"
+	PlayerClassName = "Light Tank" , "Experienced"
+	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Erfahren"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Erfahren"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Erfahren"
+    PlayerClassName = "M10 Wolverine (Med) (Summer)" , "Experienced"
+	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Experienced"
+	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Experienced"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Erfahren"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Erfahren"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Erfahren"
+
+}
+
+skill hard
+{
+	SpawnFilter = Hard
+	PicName = "M_ULTRA"
+	Name = "Hard"
+	PlayerClassName = "Heavy Tank" , "Panzer Elite"
+	PlayerClassName = "Medium Tank", "Panzer Elite"
+	PlayerClassName = "Light Tank" , "Panzer Elite"
+	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Panzer Elite"
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Panzer Elite"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Panzer Elite"
+	PlayerClassName = "M10 Wolverine (Med) (Summer)" , "Panzer Elite"
+	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Panzer Elite"
+	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Panzer Elite"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"   , "Panzer Elite"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"   , "Panzer Elite"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"   , "Panzer Elite"
+}
+
+skill nightmare
+{
+	AmmoFactor = 2
+	FastMonsters
+	DisableCheats
+	RespawnTime = 80
+	SpawnFilter = Nightmare
+	PicName = "M_NMARE"
+	Name = "Very Hard"
+	MustConfirm  = "Do you have what it takes to become a Tank Ace?"
+	PlayerClassName = "Heavy Tank" , "Tank Schock!"
+	PlayerClassName = "Medium Tank", "Tank Schock!"
+	PlayerClassName = "Light Tank" , "Tank Schock!"
+	PlayerClassName = "Tiger 1 (Hvy) (Summer)"    , "Panzer Schreck!"	
+	PlayerClassName = "Tiger 1 (Hvy) (Winter)"    , "Panzer Schreck!"
+	PlayerClassName = "Tiger 1 (Hvy) (Desert)"    , "Panzer Schreck!"
+	PlayerClassName = "M10 Wolverine (Med) (Summer)" , "Tank Schock!"
+	PlayerClassName = "M10 Wolverine (Med) (Winter)" , "Tank Schock!"
+	PlayerClassName = "M10 Wolverine (Med) (Desert)" , "Tank Schock!"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Summer)"    , "Panzer Schreck!"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Winter)"    , "Panzer Schreck!"
+	PlayerClassName = "Panzer II Ausf. L (Lgh) (Desert)"    , "Panzer Schreck!"
+}
+
+

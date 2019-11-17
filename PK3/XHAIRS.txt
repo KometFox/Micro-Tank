@@ -1,0 +1,2 @@
+21 "German styled crosshair"
+50 "Scope 1"

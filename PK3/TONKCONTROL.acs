@@ -1,0 +1,275 @@
+//ACS code credit: Sgt. Mark IV
+//871, 877
+#library "TONKCONTROL"
+#include "zcommon.acs"
+#define C_TID		1000	//Default camera tid
+#define C_TIDX		1000	//Default camera tid
+#define MAX_RX		80 //Maximum radius (or distance from the player)
+#define ADJUST_R	12	//Amount to adjust the camera by
+#define VIEW_HEIGHT	32.0	//The approximate height of the player's view
+#define VIEW_HEIGHTX	16.0	//The approximate height of the player's view
+#define VIEW_HEIGHTXMECH	200.0	//The approximate height of the player's view
+#define MAX_RXMECH		300	//Maximum radius (or distance from the player)
+
+bool camera_mode[8];		//Variable for turning the camera on or off.
+bool camera_mode2[8];		//Variable for turning the camera on or off.
+
+
+
+//Cameras and shieeet [877[
+
+Script "MTACS_Chase" (VOID) NET
+{
+	 if (CheckActorInventory(PlayerNumber(), "MT_ClassToken"))
+		{
+		SetCVAR("chase", 1);
+		delay(15);
+		SetCVAR("chase", 0);		
+		}
+}
+
+Script "MTACS_Veh_CameraOn" (VOID) NET
+{
+	camera_mode2[PlayerNumber ()] = ON;
+    ACS_NamedExecuteAlways ("MTACS_Veh_Camera", 0, PlayerNumber ());
+}
+
+Script "MTACS_Veh_CameraOff" (VOID) NET
+{
+	camera_mode2[PlayerNumber ()] = OFF;
+	Thing_Remove (C_TID + PlayerNumber ());
+}	
+
+
+
+//[801]
+Script "MTACS_Veh_Camera" (int p_num) NET
+{
+	int r = MAX_RX;
+	
+	while (camera_mode2[p_num] == ON)
+	{	
+		int a = GetActorAngle (0);
+		int p = GetActorPitch (0);
+		int x = GetActorX (0);
+		int y = GetActorY (0);
+		int z = GetActorZ (0) + VIEW_HEIGHTX;
+		int xyr = r * cos (p) >> 16;
+		setfont("TNHSA0");
+	hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
+		
+		if (!ThingCountName ("chasecam3", C_TIDX+p_num))
+		{
+			while (!Spawn ("chasecam3", x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, C_TIDX+p_num, a >> 8) && r > 0)
+			{
+				r -= ADJUST_R;
+				xyr = cos (p) * r >> 16;
+			}
+			
+			if (ThingCountName ("chasecam3", C_TIDX + p_num))
+				ChangeCamera (C_TIDX + p_num, 0, 0);
+			else
+			{
+				camera_mode2[p_num] = OFF;
+				print (s:"Camera script failed to initialize.");
+			}
+		}
+
+
+
+
+
+	        else
+		{
+			while (!SetActorPosition (C_TIDX+p_num, x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, 0) && r > 0)
+			{
+				r -= ADJUST_R;
+				xyr = cos (p) * r >> 16;
+			}
+			
+			SetActorAngle (C_TIDX + p_num, a);
+			SetActorPitch (C_TIDX + p_num, p);
+			
+			if (r < MAX_RX) 
+                                r += ADJUST_R;
+		}
+		
+		delay (1);
+	}	
+}
+
+
+script "MTACS_Stuff" (VOID) NET
+{
+ delay(1);
+ delay(5);
+ SetActorAngle (0, GetActorAngle (261));
+ Thing_Move(0, 261, 1);
+ int vehiclepreviousbaseangle = CheckActorInventory(261, "TankBaseDirection");
+ SetUserVariable(0, "user_tankbasedirection", vehiclepreviousbaseangle);
+ delay(1);
+}
+
+//Actuall Vehicle Control
+
+//FORWARD [421]
+script "MTACS_Veh_Forward" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+   
+if (buttons & BT_FORWARD)
+{
+   GiveInventory("Accelerate", 1);
+   
+   delay(1);
+}
+   delay(1);
+   TakeInventory("Accelerate", 1);
+ }
+}
+
+
+//BACKPEDAL [422]
+script "MTACS_Veh_BackPedal" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+if (buttons & BT_BACK)
+{
+    GiveInventory("Reverse", 1);
+	delay(2);
+}
+
+   delay(2);
+   TakeInventory("Reverse", 1);
+ }
+}
+
+
+//LEFT [423]
+script "Veh_TurnLeft" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+if (buttons & BT_MOVELEFT)
+{
+    GiveInventory("TurnLeft", 1);
+}
+
+   delay(1);
+ }
+}
+
+
+
+//RIGHT [424]
+script "MTACS_Veh_TurnRight" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+if (buttons & BT_MOVERIGHT)
+{
+    GiveInventory("TurnRight", 1);
+}
+
+   delay(1);
+   TakeInventory("TurnRight", 1);
+ }
+}
+
+//USE [426]
+/*
+//Placeholder for later. 
+script "MTACS_Veh_PressedUse" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+if (buttons & BT_USE)
+{
+    GiveInventory("PressedUse", 1);
+}
+
+   delay(1);
+ }
+}
+
+//JUMP [427]
+script "MTACS_Veh_PressedJump" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+   
+if (buttons & BT_JUMP)
+{
+    GiveInventory("PressedJump", 1);
+}
+
+   delay(1);
+ }
+}
+
+
+//MOUSE LEFT [431]
+script "MTACS_Veh_MouseLeft" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_YAW);
+   
+if (buttons > 0)
+{
+    GiveInventory("TurnMouseLeft", 1);
+}
+
+   delay(1);
+   TakeInventory("TurnMouseLeft", 1);
+ }
+}
+
+
+
+//MOUSE RIGHT [430]
+script "MTACS_Veh_MouseRight" ENTER
+{
+ int buttons;
+
+ while (TRUE)
+ {
+   buttons = GetPlayerInput(-1, INPUT_YAW);
+   
+if (buttons > 0)
+{
+    GiveInventory("TurnMouseRight", 1);
+}
+
+   delay(1);
+   TakeInventory("TurnMouseRight", 1);
+ }
+}
+*/
