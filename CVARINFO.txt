@@ -1,3 +1,0 @@
-//
-//Default settings, Server only
-server int mtcvar_creditstart = 2700;
