@@ -13,6 +13,7 @@
 #Include "Actor/Classes/MicroMediumTankA1.dec"
 #Include "Actor/Classes/MicroHeavyTankA1.dec"
 #Include "Actor/Classes/Tiger1_Turret.dec"
+#Include "Actor/Classes/StugIII.dec"
 #Include "Actor/Misc/MarineMorph.dec"
 
 
@@ -64,7 +65,7 @@
 #Include "Actor/Weapon/Proj_Fire.dec"
 #Include "Actor/Weapon/CommonWeapons.dec"
 #Include "Actor/Weapon/75mm/75mmWeapon_Func.dec"
-#Include "Actor/Weapon/75mm/75mmWeapon.dec"
+#Include "Actor/Weapon/75mm/75mmWeapon_Stug.dec"
 #Include "Actor/Weapon/75mm/75mmWeapon.dec"
 #Include "Actor/Weapon/75mm/H_Pepperpot.dec"
 #Include "Actor/Weapon/50mm/50mmWeapon_Func.dec"
@@ -111,8 +112,8 @@
 #Include "Actor/Items/PodGrenades/ScudStrike.dec"
 #Include "Actor/Items/PodGrenades/Supplies.dec"
 #Include "Actor/Items/PodGrenades/Lights.dec"
-#Include "Actor/Resource/OldResource.dec"
-#Include "Actor/Resource/Resource.dec"
+#Include "Actor/Items/Resource/OldResource.dec"
+#Include "Actor/Items/Resource/Resource.dec"
 
 #Include "Actor/Environment/Trees.dec"
 #Include "Actor/Environment/Barrels.dec"

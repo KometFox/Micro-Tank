@@ -42,7 +42,7 @@ Actor Item_GrenadePod_SSS_2 : Item_GrenadePod_SSS {
 
 ACTOR MT_Grenade_SSS_Cooldown_Showme : PowerDamage
 {
-  Powerup.Duration -130
+  Powerup.Duration -120
   damagefactor "USELESS", 1.0
   Inventory.Icon "FGRSC0"
   -COUNTITEM
@@ -147,44 +147,86 @@ ACTOR SupplySignal_2 : SupplySignal
 ACTOR MT_SupplyBox : SwitchableDecoration 
 {
 
-  Health 100
-  Radius 15
-  Height 30
-  Mass 10000
-  -NOGRAVITY 
-  Gravity 0.95
-	
-   +SHOOTABLE
-   +NOBLOOD
-   -SOLID
-   //+NOGRAVITY
-   +CANPASS
-   +CANNOTPUSH
-   +PUSHABLE
-   +USESPECIAL
-  Damagefactor Crush,0
+	Health 100
+	Radius 15
+	Height 25
+	Mass 450
+	PushFactor 0.1
+	Gravity 0.95
+	MONSTER
+	-NOGRAVITY 
+	-COUNTKILL
+	+NOBLOOD
+	+FRIENDLY
+	+NOICEDEATH
+    +PUSHABLE
+	+SLIDESONWALLS
+    +WINDTHRUST
+    +TELESTOMP
+	//+NOBLOCKMONST
+	//+MISSILEMORE
+	//+MISSILEEVENMORE
+	+EXTREMEDEATH
+	-DONTHURTSPECIES
+	+DOHARMSPECIES 
+	+USESPECIAL
+  Damagefactor Crush, 0
   Activation THINGSPEC_Switch
-  Renderstyle Translucent
+  Renderstyle Normal
   var int user_Amount;
-  Alpha 1
+  const int spawnflag = SXF_NOCHECKPOSITION;
+  const int spawn_height = 30;
+  const int spawn_velo = 5;
   States
   {
   Spawn:
     KIST A 1
     KIST A 1 
-    KIST A 0 A_SetUserVar("user_Amount",1)
+	TNT1 A 0 A_Jumpif(user_Amount > 0, "Spawn2")    
+    KIST A 0 A_SetUserVar("user_Amount",2)
     Goto Spawn2
   Spawn2:
-    TNT1 A 0 A_Jumpif(user_Amount == 0, "Empty")    
+    TNT1 A 0 A_Jumpif(user_Amount <= 0, "Empty")    
     KIST A 1 
     loop
+  //TODO: Throw items in front of player
   Active:
-    TNT1 A 0 A_Jumpif(user_Amount == 0, "Empty")
-    KIST A 0 A_spawnitem("MT_Items_SupplyBoxContent",1)
-    TNT1 A 0 A_SetUserVar("user_Amount",user_Amount-1)
+	TNT1 A 0 A_JumpIf(user_amount == 1, "Active_Ammo")
+	TNT1 A 0 A_JumpIf(user_amount == 2, "Active_Credit")
+	goto Spawn2
+  Active_Ammo:
+ 	TNT1 A 0 
+    TNT1 A 0 A_Jumpif(user_Amount <= 0, "Empty")
+	TNT1 A 0 A_ChangeFlag(PUSHABLE, 0)
+	TNT1 A 0 A_ChangeFlag(SOLID, 0)
+    KIST A 0 A_spawnitemex("MT_AP", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    KIST A 0 A_spawnitemex("MT_HE", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    KIST AAAAA 0 A_spawnitemex("MT_SC_Bulletbox", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    //KIST A 0 A_spawnitemex("MT_APCR", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    //KIST A 0 A_spawnitemex("MT_HEAT", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+	TNT1 A 0 A_SetUserVar("user_Amount",user_Amount-1)
+    KIST A 15
+	KIST A 0 A_ChangeFlag(PUSHABLE, 1)
+	TNT1 A 0 A_ChangeFlag(SOLID, 1) 
+  Active_Credit:
+	TNT1 A 0 
+    TNT1 A 0 A_Jumpif(user_Amount <= 0, "Empty")
+	TNT1 A 0 A_ChangeFlag(PUSHABLE, 0)
+	TNT1 A 0 A_ChangeFlag(SOLID, 0)
+    KIST AAAAA 0 A_spawnitemex("MT_Credits_Small", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    KIST A 0 A_spawnitemex("MT_Credits_Medium", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    //KIST A 0 A_spawnitemex("MT_Credits_Big", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    KIST AAAAA 0 A_spawnitemex("MT_Metals_Small", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    KIST AAAAA 0 A_spawnitemex("MT_Metals_Small", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    //KIST A 0 A_spawnitemex("MT_Metals_Medium", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+    //KIST A 0 A_spawnitemex("MT_Metals_Big", 0, 0, spawn_height, 0, frandom(-spawn_velo,spawn_velo), 0,random(0,360), spawnflag)
+	TNT1 A 0 A_SetUserVar("user_Amount",user_Amount-1)
+    KIST A 15
+	KIST A 0 A_ChangeFlag(PUSHABLE, 1)
+	TNT1 A 0 A_ChangeFlag(SOLID, 1)
     Goto Spawn2
   Inactive:
-    TNT1 A 0 A_Jumpif(user_Amount == 0, "Empty")  
+    TNT1 A 0 A_Jumpif(user_Amount <= 0, "Empty")  
     KIST A 1
     Goto Spawn2
   Empty:
@@ -297,8 +339,7 @@ ACTOR MT_SupplyBoxEmpty : Actor
 	+PUSHABLE
      +USESPECIAL
   Damagefactor Crush,0
-  Renderstyle Translucent
-  Alpha 1
+  Renderstyle Normal
   States
   {
   Spawn:

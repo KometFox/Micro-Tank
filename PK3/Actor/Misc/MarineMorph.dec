@@ -1,6 +1,7 @@
 ACTOR MT_MorphPlayer : PlayerPawn
 {
   Speed 1
+  player.MaxHealth 200
   Health 200
   Radius 16
   Height 56
@@ -9,7 +10,7 @@ ACTOR MT_MorphPlayer : PlayerPawn
   +NOSKIN
   +PLAYERPAWN.CROUCHABLEMORPH
 //  +CANSUPERMORPH
-  Player.DisplayName "MT_Marine"
+  Player.DisplayName "Vehicle Crew"
   Player.CrouchSprite "PLYC"
   Player.MorphWeapon "MT_Chaingun"
 

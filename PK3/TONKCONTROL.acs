@@ -112,164 +112,39 @@ script "MTACS_Stuff" (VOID) NET
 
 //Actuall Vehicle Control
 
-//FORWARD [421]
-script "MTACS_Veh_Forward" ENTER
+script "MTACS_Chassis" ENTER
 {
  int buttons;
 
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+	//I don't think there is a better way to do this with ACS
+	while (TRUE)
+	{
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
    
-   
-if (buttons & BT_FORWARD)
-{
-   GiveInventory("Accelerate", 1);
-   
-   delay(1);
+		if (buttons & BT_FORWARD)
+			{
+				GiveInventory("Accelerate", 1);
+			}
+
+		if (buttons & BT_BACK)
+			{
+				GiveInventory("Reverse", 1);
+			}
+    
+		if (buttons & BT_MOVELEFT)
+			{
+				GiveInventory("TurnLeft", 1);
+			}
+ 
+		if (buttons & BT_MOVERIGHT)
+			{
+				GiveInventory("TurnRight", 1);
+			}
+
+		delay(1);
+		TakeInventory("Accelerate", 1);
+		TakeInventory("Reverse", 1);
+		TakeInventory("TurnRight", 1); 
+		TakeInventory("TurnLeft", 1);
+	}
 }
-   delay(1);
-   TakeInventory("Accelerate", 1);
- }
-}
-
-
-//BACKPEDAL [422]
-script "MTACS_Veh_BackPedal" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-   
-if (buttons & BT_BACK)
-{
-    GiveInventory("Reverse", 1);
-	delay(2);
-}
-
-   delay(2);
-   TakeInventory("Reverse", 1);
- }
-}
-
-
-//LEFT [423]
-script "Veh_TurnLeft" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-   
-if (buttons & BT_MOVELEFT)
-{
-    GiveInventory("TurnLeft", 1);
-}
-
-   delay(1);
- }
-}
-
-
-
-//RIGHT [424]
-script "MTACS_Veh_TurnRight" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-   
-if (buttons & BT_MOVERIGHT)
-{
-    GiveInventory("TurnRight", 1);
-}
-
-   delay(1);
-   TakeInventory("TurnRight", 1);
- }
-}
-
-//USE [426]
-/*
-//Placeholder for later. 
-script "MTACS_Veh_PressedUse" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-   
-if (buttons & BT_USE)
-{
-    GiveInventory("PressedUse", 1);
-}
-
-   delay(1);
- }
-}
-
-//JUMP [427]
-script "MTACS_Veh_PressedJump" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-   
-if (buttons & BT_JUMP)
-{
-    GiveInventory("PressedJump", 1);
-}
-
-   delay(1);
- }
-}
-
-
-//MOUSE LEFT [431]
-script "MTACS_Veh_MouseLeft" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_YAW);
-   
-if (buttons > 0)
-{
-    GiveInventory("TurnMouseLeft", 1);
-}
-
-   delay(1);
-   TakeInventory("TurnMouseLeft", 1);
- }
-}
-
-
-
-//MOUSE RIGHT [430]
-script "MTACS_Veh_MouseRight" ENTER
-{
- int buttons;
-
- while (TRUE)
- {
-   buttons = GetPlayerInput(-1, INPUT_YAW);
-   
-if (buttons > 0)
-{
-    GiveInventory("TurnMouseRight", 1);
-}
-
-   delay(1);
-   TakeInventory("TurnMouseRight", 1);
- }
-}
-*/

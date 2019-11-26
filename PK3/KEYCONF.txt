@@ -5,6 +5,7 @@
 //addplayerclass Tiger1_Winter
 //addplayerclass Tiger1_Desert
 addplayerclass MT_PlayerClass_TigerTank
+addplayerclass MT_PlayerClass_StugIII
 //addplayerclass MT_PantherM10_Summer
 //addplayerclass MT_PantherM10_Winter
 //addplayerclass MT_PantherM10_Desert
@@ -14,7 +15,7 @@ addplayerclass MT_PlayerClass_TigerTank
 
 WeaponSection Microtank_Wpn
 SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice" "MT_AssaultBridgeTool"
-SetSlot 2 "MHT_75mmCannon" "MHT_Heavy_Pepperpot" "50x441mm Cannon" "MT_QuadMachineGun" 
+SetSlot 2 "MHT_75mmCannon" "MHT_75mmCannon_Stug" "MHT_Heavy_Pepperpot" "50x441mm Cannon" "MT_QuadMachineGun" 
 SetSlot 3 "MT_ShieldGenerator"
 
 
@@ -50,7 +51,9 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MTC_NVLight "use MT_Nightvision_MK1"     
   addmenukey "Use Periscope (Zooming)" MT_PeriscopeMode
   alias MT_PeriscopeMode "use MT_PeriscopeItem"
-  addmenukey "Morph as Marine. (temp)" MTC_MarineMorph
+  addmenukey "Morph as Marine" MTC_MarineMorph
+  alias MTC_MarineMorph "pukename MT_MorphToMarine" 
+  addmenukey "Turn off Engine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
 
    

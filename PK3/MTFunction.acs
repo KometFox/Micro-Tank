@@ -46,12 +46,25 @@ str WeaponType[2] = {
 "MHT_75mmCannon", "MHT_Heavy_Pepperpot",
 };
 
-//75mm Cannon
-str AmmoType[Cannon_Ammo_MAX][2] = {
-{"MHT_BaseGun_AP", "APAMA0"},
-{"MHT_BaseGun_APCR", "ACAMA0"},
-{"MHT_BaseGun_HE", "HEAMA0"},
-{"MHT_BaseGun_HEAT", "HTAMA0"},
+//Ammunition upgrade
+str AmmoUpg[4]= {
+"MTU_APShot_2", 
+"MTU_APShot_2", 
+"MTU_HEShell_2",
+"MTU_HEATShell_2",
+};
+/*
+0 1
+2 3
+4 5
+6 7
+*/
+
+str AmmoType[Cannon_Ammo_MAX][4] = {
+{"MHT_BaseGun_AP", "APAMA0", "APAMB0", "APAMC0"},
+{"MHT_BaseGun_APCR", "ACAMA0", "ACAMA0", "ACAMA0"},
+{"MHT_BaseGun_HE", "HEAMA0", "HEAMB0", "HEAMC0"},
+{"MHT_BaseGun_HEAT", "HTAMA0", "HTAMB0", "HTAMC0"},
 };
 
 str AmmoType_Count[Cannon_Ammo_MAX] = {
@@ -71,6 +84,7 @@ script "MTHUD_Ammo" (VOID) NET
 	int last_wpn, cur_ammo, cur_magsize; 
 	last_wpn = 0;
 	cur_ammo = 0;
+	int cur_upg = 0;
 	cur_magsize = 0;
 	print(s: "Activator: ", d: PlayerNumber());
 	//TODO: Take account for resolution changes, fixed to 1680:1050
@@ -82,6 +96,39 @@ script "MTHUD_Ammo" (VOID) NET
 		//if (CheckWeapon("MHT_75mmCannon") == 1)
 		if ((CheckWeapon("MHT_75mmCannon") || CheckWeapon("MHT_Heavy_Pepperpot")) == 1)
 		{
+
+			//Check first for currently selected ammo type
+			for (int i0 = 0; i0 < Cannon_Ammo_MAX; i0++)
+			{
+				//check for current ammo
+				if (CheckInventory(AmmoType[i0][0]) == 1)
+					cur_ammo = i0;			
+			}
+			
+			
+			//Then check for upgrades
+			/*
+			for (int i1 = 0; i1 < 4; i1++)
+			{
+				if (CheckInventory(AmmoUpg[i1]) == 2 && )
+					cur_upg = 2;
+				else if (CheckInventory(AmmoUpg[i1]) == 1)
+					cur_upg = 1;				
+			}
+			*/
+			
+			
+			if (CheckInventory(AmmoUpg[cur_ammo]) == 2)
+					cur_upg = 3;
+			else if (CheckInventory(AmmoUpg[cur_ammo]) == 1)
+					cur_upg = 2;	
+			else if (CheckInventory(AmmoUpg[cur_ammo]) == 0)
+					cur_upg = 0;
+					
+			
+			SetHudSize(800,600,0);
+			print(s: "Ammo ", s: AmmoType[cur_ammo][0], s: " is upgraded: ", d: cur_upg);
+			
 					
 				//Working pattern...
 				/*
@@ -110,60 +157,50 @@ script "MTHUD_Ammo" (VOID) NET
 					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
 				}
 				*/
-
-			for (int i = 0; i < Cannon_Ammo_MAX; i++) 
+			
+	
+				
+			if (CheckInventory(AmmoType[cur_ammo][0]))
 			{
-						
-				//print(s: AmmoType[0][0]);
-				//print(s: AmmoType[1][0]);
-				//print(s: AmmoType[2][0]);
-				//print(s: AmmoType[3][0]);
+				//Ammo display
+				SetHudSize(1340, 1340, true);
+				SetFont(AmmoType[cur_ammo][1]);
+				HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
 				
-				
-				//print(s: "You have: ", d: (CheckInventory(AmmoType[i][0])), s: " ", s: AmmoType[i][0] );
-				//SetFont("CONFONT");
-				
-				//if (CheckInventory(AmmoType[i][0]) == i)
-				//	print(s: AmmoType[i][0]);
-
-				//print(d: (CheckInventory(AmmoType[i][0]) == 1) );
-				
-				//Then check for current ammo
-				if (CheckInventory(AmmoType[i][0]) == 1)
-					cur_ammo = i;
-				
-				if (CheckInventory(AmmoType[cur_ammo][0]))
+				//Check for upgrades	
+				if (cur_upg > 0)
 				{
-					//Ammo display
 					SetHudSize(1340, 1340, true);
-					SetFont(AmmoType[cur_ammo][1]);
+					SetFont(AmmoType[cur_ammo][cur_upg]);
+					//SetFont(AmmoType[cur_ammo][cur_upg[cur_ammo]]);
 					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-					//Ammo count
-					SetHudSize(1100, 1100, false);
-					SetFont("BIGFONT");
-					HudMessage(d: CheckInventory(AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_UNTRANSLATED, 1048.0, 958.0, 0);
-					HudMessage(s: "/";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_UNTRANSLATED, 1067.0, 958.0, 0);
-					//Ammo count Max
-					SetHudSize(1100, 1100, false);
-					SetFont("BIGFONT");
-					HudMessage(d: GetMaxInventory(0, AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_UNTRANSLATED, 1090.0, 958.0, 0);
-					
-					//Check for Mag/Chamber
-					if (CheckInventory(WPN_Barrel[0]) > 0 && CheckWeapon("MHT_Heavy_Pepperpot"))
-					{
-						cur_magsize = CheckInventory(WPN_Barrel[0]);
-						SetHudSize(1100, 1100, false);
-						SetFont("BIGFONT");
-						HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
-					}
-					else
-					{
-						SetHudSize(1100, 1100, false);
-						SetFont("BIGFONT");
-						HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
-					}
 				}
-				
+					
+					
+				//Ammo count
+				SetHudSize(1100, 1100, false);
+				SetFont("BIGFONT");
+				HudMessage(d: CheckInventory(AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_UNTRANSLATED, 1048.0, 958.0, 0);
+				HudMessage(s: "/";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_UNTRANSLATED, 1067.0, 958.0, 0);
+				//Ammo count Max
+				SetHudSize(1100, 1100, false);
+				SetFont("BIGFONT");
+				HudMessage(d: GetMaxInventory(0, AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_UNTRANSLATED, 1090.0, 958.0, 0);
+					
+				//Check for Mag/Chamber
+				if (CheckInventory(WPN_Barrel[0]) > 0 && CheckWeapon("MHT_Heavy_Pepperpot"))
+				{
+					cur_magsize = CheckInventory(WPN_Barrel[0]);
+					SetHudSize(1100, 1100, false);
+					SetFont("BIGFONT");
+					HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+				}
+				else
+				{
+					SetHudSize(1100, 1100, false);
+					SetFont("BIGFONT");
+					HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+				}
 
 			}
 
@@ -295,19 +332,27 @@ script "MT_CVAR_Things" (void)
     SetResultValue(GetCVar("mtcvar_creditstart"));
 }
 
+//TODO: Add initalization token
 script "MT_GiveMoni" ENTER
 {
-  int creditamount;
-   
-  If (!CheckInventory("MT_Credits") >= 1)
-  {
-   if(GetCVar("mtcvar_creditstart") > 1 )
-    {
-	   creditamount = GetCVar("mtcvar_creditstart");
-	   GiveInventory("MT_Credits", creditamount);	
+ //Remove a few unneccesary token on map change
+ TakeInventory("MT_MorphVCrewToken", 999);
+
+
+  //int creditamount;
+	If (!CheckInventory("MT_Credits") >= 1)
+	{
+		if(GetCVar("mtcvar_creditstart") > 1 )
+		{
+			GiveInventory("MT_Credits", GetCVar("mtcvar_creditstart"));	
+		}
+		if(GetCVar("mtcvar_metalstart") > 1 )
+		{
+			GiveInventory("MT_HighValueMetal", GetCVar("mtcvar_metalstart"));
+		}		
+		
+	Terminate;
 	}
-  Terminate;
-  }
 }
 
 //Placeholder for the Pre-Morph health memory

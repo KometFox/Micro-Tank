@@ -49,6 +49,14 @@ ACTOR TokenInventory2 : Inventory
 } 
 
 
+Actor MT_A_Upgrades2 : TokenInventory2
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+ +INVENTORY.UNDROPPABLE  
+}
+
+
 actor Spawner : Health
 { 
   Inventory.Amount 0
@@ -64,6 +72,8 @@ actor Spawner : Health
 
 
 //Class Tokens
+ACTOR MVHTA1_Token : MT_A_BooleanValue {} //Very-Heavy Tank
+ACTOR MMBT1_Token : MT_A_BooleanValue {} //Main Battle Tank
 ACTOR MHTA1_Token : MT_A_BooleanValue {} //Heavy Tank
 ACTOR MMTA1_Token : MT_A_BooleanValue {} //Medium Tank
 ACTOR MTA1_Token  : MT_A_BooleanValue {} //Light Tank

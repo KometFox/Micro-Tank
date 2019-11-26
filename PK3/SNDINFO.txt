@@ -167,6 +167,14 @@ MecSte4 MecSte4
 TreCru TreCru
 HouCru HouCru
 
+////----------------------------------------------------------------------------
+///Items interaction
+////----------------------------------------------------------------------------
+Items/Pickup DSWPNUP1
+Ammo/Pickup DSWPNUP1
+Material/Pickup1 DSMAT1
+Material/Pickup2 DSMAT2
+$Random Material/Pickup {Material/Pickup1 Material/Pickup2}
 
 
 ////----------------------------------------------------------------------------

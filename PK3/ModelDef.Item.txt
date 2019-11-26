@@ -21,6 +21,10 @@ Model WeaponUpgradeBox_lvl1
    FrameIndex WPNU A 0 0
 }
 */
+
+//----------------------------------------------------------------------------**
+////ITEMS
+//----------------------------------------------------------------------------**
 Model SmallRepairKit
 {
    Path "MODELS\MediumHealthBase"
@@ -87,4 +91,132 @@ Model MT_Fuze_10s
    Scale 3 3 3
    AngleOffset 0
    FrameIndex IDLE A 0 0
+}
+
+//----------------------------------------------------------------------------**
+////CREDITS
+//----------------------------------------------------------------------------**
+Model MT_Credits_Small
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "coinpile_small.md3"
+   Skin  0 "Rubelbase.png"
+   Scale 1.8 1.8 1.8
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Credits_Medium
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "coinpile_medium.md3"
+   Skin  0 "Rubelbase.png"
+   Scale 1.9 1.9 1.9
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Credits_Big
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "coinpile_medium.md3"
+   Skin  0 "Rubelbase.png"
+   Scale 2 2 2
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+
+Model MT_Metals_Small
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "Metalbar.md3"
+   Skin  0 "Metalbar.png"
+   Scale 4.25 4.25 4.25
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Metals_Medium
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "Metalbar.md3"
+   Skin  0 "Metalbar2.png"
+   Scale 5.5 5.5 5.5
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+Model MT_Metals_Big
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "Metalbar.md3"
+   Skin  0 "Metalbar3.png"
+   Scale 6 6 6
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
+//----------------------------------------------------------------------------**
+////AMMUNITION
+//----------------------------------------------------------------------------**
+Model MT_AP
+{
+   Path "MODELS\Ammo"
+   Model 0 "AmmoCrate.md3"
+   Path "MODELS\Ammo"
+   Skin  0 "AP_Box.png"
+ //  PITCHFROMMOMENTUM
+   Scale 8 8 8
+   AngleOffset 0
+   FrameIndex APAM A 0 0
+}
+
+Model MT_APCR
+{
+   Path "MODELS\Ammo"
+   Model 0 "AmmoCrate.md3"
+   Path "MODELS\Ammo"
+   Skin  0 "APCRBC_Box.png"
+ //  PITCHFROMMOMENTUM
+   Scale 8 8 8
+   AngleOffset 0
+   FrameIndex APAM A 0 0
+}
+
+Model MT_HE
+{
+   Path "MODELS\Ammo"
+   Model 0 "AmmoCrate.md3"
+   Path "MODELS\Ammo"
+   Skin  0 "HE_Box.png"
+ //  PITCHFROMMOMENTUM
+   Scale 8 8 8
+   AngleOffset 0
+   FrameIndex APAM A 0 0
+}
+
+Model MT_HEAT
+{
+   Path "MODELS\Ammo"
+   Model 0 "AmmoCrate.md3"
+   Path "MODELS\Ammo"
+   Skin  0 "HEAT_Box.png"
+ //  PITCHFROMMOMENTUM
+   Scale 8 8 8
+   AngleOffset 0
+   FrameIndex APAM A 0 0
+}
+
+Model MT_SC_BulletBox
+{
+   Path "MODELS\Ammo"
+   Model 0 "AmmoCrate.md3"
+   Path "MODELS\Ammo"
+   Skin  0 "HEAT_Box.png"
+ //  PITCHFROMMOMENTUM
+   Scale 4 4 4
+   AngleOffset 0
+   FrameIndex APAM A 0 0
 }

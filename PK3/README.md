@@ -13,6 +13,10 @@ Supported Source Port: Zandronum 3.0-3.1, GZDoom 1.8.6, GZDoom 4.2.0
 Supported IWAD: freedoom*.wad, doom*.wad
 Modules: Enemies, Missionpack 1
 
+Contact::
+IRC:
+server: irc.zandronum.com:6667
+channel: #zandronum
 
 Classes:
 
@@ -40,6 +44,7 @@ this tank takes advance of its lower silohette and tactical position it can wrec
 havoc among unexcepted force.
 
 <Heavy Assault Gun>
+
 Tools used:
 Blender, Slade3
 

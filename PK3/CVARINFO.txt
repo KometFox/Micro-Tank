@@ -1,16 +1,37 @@
 //
 //Default settings, Server/SP only
-server int mtcvar_creditstart = 3500;
-server int mtcvar_metalstart = 100;
+server int mtcvar_creditstart = 5000;
+server int mtcvar_metalstart = 200;
 
 //Supply Crate Setting
-server int mtcvar_supc_metals = 50;
-server int mtcvar_supc_credit = 1000;
+server int mtcvar_supc_ammo_mult = 1;
+server int mtcvar_supc_metals_mult = 1;
+server int mtcvar_supc_credit_mult = 1;
 
 //HUD Settings
 
 //Weapon behavior
 
 //Particle Effects
+server int mtcvar_particlesquality = 2;
+// 1: Low, 2: Medium, 3: High
+server int mtcvar_fancyitems = 1;
+// 1: Off, 2: Fancy, 3: Fancier
 
+//Mutator
+server int mtcvar_regen = 0;
+server int mtcvar_hpregen = 0;
+server int mtcvar_hpregen_amount = 10;
+server int mtcvar_armorregen = 0;
+server int mtcvar_armorregen_amount = 5;
+server int mtcvar_ammoregen = 0;
+server int mtcvar_ammoregen_amount = 2;
+server int mtcvar_superammoregen = 0;
 //Client settings
+user int mtccvar_startup_noise = 1;
+// 1: Announcer + Engine, 2: Announcer only, 3: Engine only, 4: Off
+
+
+//------------------------------------------------------------------------------
+////Player (SP only) save
+//------------------------------------------------------------------------------

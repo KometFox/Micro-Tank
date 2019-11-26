@@ -23,11 +23,72 @@ OptionMenu "OptionsMenu"
 	SafeCommand "Reset to defaults",	"reset2defaults"
 	SafeCommand	"Reset to last saved",	"reset2saved"
 	Command "Go to console",			"menuconsole"
-    SubMenu "Micro Tank Server Settings", "MicroTankServerMenu"
+    SubMenu "Micro Tank Settings", "MicroTankMenu"
 }
 
-OptionMenu "MicroTankServerMenu"
+OptionValue "OffOn"
 {
-   Title "Settings."
-   Slider "Starting Credits", "mtcvar_creditstart", 2500,10000,500
+    0, "Off"
+    1, "On"
+}
+
+OptionValue "Fancy"
+{
+    0, "Off"
+    1, "Fancy"
+	2, "Fancier"
+}
+
+OptionValue "Particles"
+{
+    0, "Low"
+    1, "Medium"
+	2, "High"
+}
+
+OptionValue "Noise"
+{
+    0, "Announcer + Engine"
+    1, "Announcer only"
+	2, "Engine only"
+	3, "Off"
+}
+
+
+OptionMenu "MicroTankMenu"
+{
+   Title "Micro Tank options"
+   StaticText "<Gameplay>"
+   StaticText "First start:", 0
+   Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
+   Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
+   
+   StaticText "Supply Crate:", 0
+   //Slider "Toggle supply crate", 0,1,1,0
+   Slider "Ammo multiplier", "mtcvar_supc_ammo_mult", 1,10,1,0
+   Slider "Credits multiplier", "mtcvar_supc_metals_mult", 0,10,1,0
+   Slider "Metals multiplier", "mtcvar_supc_credits_mult", 0,10,1,0
+      
+   StaticText "<Mutator>"
+   StaticText "Regenation:", 0
+   Option "Toggle regeneration", "mtcvar_regen", "OnOff"
+   ifOption("mtcvar_regen") 
+		{
+		Slider "HP regen delay", "mtcvar_hpregen", 0, 100, 1, 0
+		Slider "HP regen amount", "mtcvar_hpregen_amount", 0,500,10,0
+		Slider "Armor regen delay", "mtcvar_armorregen", 0,100,5,0
+		Slider "Armor regen amount", "mtcvar_armorregen_amount", 0,500,10,0
+		Slider "Ammo regen delay", "mtcvar_ammoregen", 0,100,5,0
+		Slider "Ammo regen amount", "mtcvar_ammoregen_amount", 0,500,10,0
+		Slider "Allow regen of super ammo", "mtcvar_superammoregen", 0,1,1,0
+		}
+
+   StaticText "<Client side>"
+   Option "Startup Noise", "mtccvar_startup_noise", "Noise"
+   Option "Particle Effects", "mtcvar_particlesquality", "Particles"
+   Option "Fancy Items", "mtcvar_fancyitems", "Fancy"
+
+
+
+
 }
