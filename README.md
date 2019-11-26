@@ -37,6 +37,8 @@ Not needed, The PK3 folder can be used as is
 
 Developed with GZDoom 4.2.0 in mind, won't run in source ports without full set of Decorate/ACS support
 
+IWAD support: Freedoom*.wad, Doom*.wad
+
 **Release:**
 
 Old version are currently hosted also at, or check the release tags:
