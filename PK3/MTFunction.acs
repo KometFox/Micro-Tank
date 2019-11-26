@@ -127,7 +127,7 @@ script "MTHUD_Ammo" (VOID) NET
 					
 			
 			SetHudSize(800,600,0);
-			print(s: "Ammo ", s: AmmoType[cur_ammo][0], s: " is upgraded: ", d: cur_upg);
+			//print(s: "Ammo ", s: AmmoType[cur_ammo][0], s: " is upgraded: ", d: cur_upg);
 			
 					
 				//Working pattern...
