@@ -39,6 +39,15 @@ Developed with GZDoom 4.2.0 in mind, won't run in source ports without full set 
 
 IWAD support: Freedoom*.wad, Doom*.wad
 
+**Modules:**
+
+Due to GZDoom flexibility it is possible to seperate the main project to additional components:
+
+Enemy mod: https://gitgud.io/MicroTank/MicroTank_Enemies
+
+Items mod: https://gitgud.io/MicroTank/microtank_items
+
+
 **Release:**
 
 Old version are currently hosted also at, or check the release tags:
