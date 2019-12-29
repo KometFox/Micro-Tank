@@ -34,7 +34,7 @@ QGuLoa5 QGuLoa5
 W_Pepperpot/Load1 Gunloa
 W_Pepperpot/Load2 loaded
 W_Pepperpot/Load3 Gunloa2
-
+H_Cannon/Loaded QGuLoa5
 
 
 //Motor
@@ -226,8 +226,12 @@ V_Interact/Nightvision Click
 MediumCannon/Firing0 Fire05
 MediumCannon/Firing1 Fire07
 MediumCannon/Firing2 Fire08
+HeavyCannon/Firing0 T5Fir1
+HeavyCannon/Firing1 T5Fir2
+HeavyCannon/Firing2 T5Fir1
+
 $Random MediumCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
-$Random HeavyCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
+$Random HeavyCannon/Firing {HeavyCannon/Firing0 HeavyCannon/Firing1 HeavyCannon/Firing2}
 
 
 

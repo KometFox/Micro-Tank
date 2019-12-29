@@ -21,6 +21,9 @@ ACTOR ImCrafting : Inventory {
 	Inventory.MaxAmount 1
 }
 
+ACTOR CameraON : Inventory {
+	Inventory.MaxAmount 1
+}
 
 actor ChaseCam3
 {
@@ -35,3 +38,4 @@ actor ChaseCam3
     stop
   }
 }
+

@@ -1,4 +1,4 @@
-ACTOR MHT_75mmCannon : MT_Baseweapon
+ACTOR MHT_75mmCannon_STUG : MT_Baseweapon
 {
   Weapon.AmmoUse1 1
   Weapon.AmmoUse2 1
@@ -35,7 +35,9 @@ Select:
 	
 Ready2:
 	"####" A 0 
-    "####" A 0 A_JumpIfInventory("75mmReloaded"        ,1, "Loadedb")
+	"####" A 0 A_JumpIf (angle > 270, "TooHighCheck2")
+//	"####" A 0 A_LogInt(angle)
+    "####" A 0 A_JumpIf (angle < 120, "TooLowCheck2")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_APCR"      ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_Buckshot"  ,1, "Ready")
@@ -44,6 +46,40 @@ Ready2:
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "Ready")
 	Goto Give
 	
+	TooHigh2:
+		TNT1 A 0 A_SetAngle(300)
+		Goto ReadyToFire
+		
+	
+	TooLowCheck2:
+		//NULL A 0 A_JumpIf (pitch > 180, "TooHighCheck1")
+		TNT1 A 0 A_SetAngle(16)
+		Goto ReadyToFire
+		
+		
+	TooHighCheck2:
+		TNT1 A 0
+		NULL A 0 A_JumpIf (pitch < 325, "TooHigh2")
+		Goto ReadyToFire
+	
+	
+	
+	TooHigh:
+		TNT1 A 0 A_SetPitch(326)
+		Goto Flash
+		
+	
+	TooLowCheck1:
+		//NULL A 0 A_JumpIf (pitch > 180, "TooHighCheck1")
+		TNT1 A 0 A_SetPitch(16)
+		Goto Flash
+		
+	TooHighCheck1:
+		TNT1 A 0
+		NULL A 0 A_JumpIf (pitch < 325, "TooHigh")
+		Goto Flash
+
+
 	
 //Checks what ammo mode is selected and then checks 
 //if there is any ammo available at all. 
@@ -195,25 +231,15 @@ Empty:
 	Goto Ready
 Loadedb:
     "####" A 0
-	"####" A 0 A_TakeInventory("75mmReloaded", 99)
-	"####" A 0 A_Playsound("H_Cannon/Loaded", 3)
+	"####" A 0 A_Playsound("GunLoa6")
 	Goto Ready	
 Loadedb2:
     "####" A 0
-	"####" A 0 A_TakeInventory("75mmReloaded", 99)
-	"####" A 0 A_Playsound("H_Cannon/Loaded", 3)
+	"####" A 0 A_Playsound("GunLoa6")
 	Goto Ready	  
   
 }}
 
-
-ACTOR 75mmReloaded : Inventory
-{
--COUNTITEM
-Inventory.Amount 2
-Inventory.MaxAmount 2
-Inventory.InterHubAmount 2
-}
 
 
 ACTOR 75mmReloadTimer1 : Inventory

@@ -21,7 +21,7 @@ ACTOR 37mmAPshell
     37MM A 1 Bright A_Spawnitem("ShellTrace")
     Loop
   Death:
-    TNT1 A 1  A_Explode(34,40) //old value is 150
+    TNT1 A 1  A_Explode(34,40, 0, 0) //old value is 150
     TNT1 A 0 A_PlaySound("Boom18")
     Stop
   }
@@ -72,7 +72,7 @@ ACTOR 37mmHEshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("37mmHE_ExplosionSpawner")
-    TNT1 A 1  A_Explode(120,114) 
+    TNT1 A 1  A_Explode(120,114,0 ,0) 
     Stop
   }
 }
@@ -103,7 +103,7 @@ ACTOR 37mmHEATshell
     Loop
   Death:
     TNT1 A 0 A_Spawnitem("37mmHEAT_ExplosionSpawner")
-    TNT1 A 1  A_Explode(136,35) 
+    TNT1 A 1  A_Explode(136,35,0 ,0) 
     Stop
   }
 }

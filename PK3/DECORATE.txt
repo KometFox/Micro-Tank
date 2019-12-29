@@ -37,6 +37,8 @@
 ////----------------------------------------------------------------------------
 //Particles and shieeet
 ////----------------------------------------------------------------------------
+
+
 #Include "Actor/Particles/Particles_Base.dec"
 #Include "Actor/Particles/Particles_Library.dec"
 #Include "Actor/Particles/Particles_Scale.dec"
@@ -58,6 +60,11 @@
 #Include "Actor/Particles/P_Sparks.dec"
 #Include "Actor/Particles/P_Glows.dec"
 #Include "Actor/Particles/TestGlow.dec"
+//#Include "Particles/Puffs.dec"
+
+//New Particles
+#Include "Actor/ParticleSystemV2/ParticleSys.dec"
+
 
 ////----------------------------------------------------------------------------
 //Weapons and shieeet
@@ -128,13 +135,7 @@
 
 
 
-//#Include "Particles/Puffs.dec"
 
 
 //test stuff
-
 #Include "Actor/Weapon/Experimental_Fire1.dec"
-
-
-//New Particel System
-#Include "Actor/ParticleSystemV2/ParticleSys.dec"

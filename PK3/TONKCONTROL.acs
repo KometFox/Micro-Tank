@@ -6,8 +6,8 @@
 #define C_TIDX		1000	//Default camera tid
 #define MAX_RX		80 //Maximum radius (or distance from the player)
 #define ADJUST_R	12	//Amount to adjust the camera by
-#define VIEW_HEIGHT	32.0	//The approximate height of the player's view
-#define VIEW_HEIGHTX	16.0	//The approximate height of the player's view
+#define VIEW_HEIGHT	40.0	//The approximate height of the player's view
+#define VIEW_HEIGHTX	32.0	//The approximate height of the player's view
 #define VIEW_HEIGHTXMECH	200.0	//The approximate height of the player's view
 #define MAX_RXMECH		300	//Maximum radius (or distance from the player)
 
@@ -30,8 +30,10 @@ Script "MTACS_Chase" (VOID) NET
 
 Script "MTACS_Veh_CameraOn" (VOID) NET
 {
+
 	camera_mode2[PlayerNumber ()] = ON;
-    ACS_NamedExecuteAlways ("MTACS_Veh_Camera", 0, PlayerNumber ());
+    
+	//ACS_NamedExecuteAlways ("MTACS_Veh_Camera", 0, PlayerNumber ());
 }
 
 Script "MTACS_Veh_CameraOff" (VOID) NET
@@ -40,13 +42,42 @@ Script "MTACS_Veh_CameraOff" (VOID) NET
 	Thing_Remove (C_TID + PlayerNumber ());
 }	
 
-
+//Delay 1 is too much...
+Script "MTACS_CameraChecker" ENTER
+{
+	//Chase cheat is on 
+	//if (GetCVAR("chase"))
+	while(True)
+	{
+		if (CheckInventory("MT_ChaseCameraToken")) 
+			{	
+				//print(s: "Camera ON: ", d: PlayerNumber());	
+				//GiveActorInventory(0, "CameraON", 2);
+				setfont("TNHSA0");
+				hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
+				SetCVAR("chase", True);
+				//camera_mode2[0] = ON;
+				//ACS_NamedExecuteAlways("MTACS_Veh_CameraOn", 0);
+			}
+		else if (!CheckInventory("MT_ChaseCameraToken"))
+			{
+				//print(s: "Camera OFF: ", d: PlayerNumber());
+				//TakeActorInventory(0, "CameraON", 99);
+				SetCVAR("chase", False);
+				//camera_mode2[0] = OFF;
+				ACS_NamedExecuteAlways("MTACS_Veh_CameraOff", 0);
+			}
+	delay(3);
+	}
+}
 
 //[801]
 Script "MTACS_Veh_Camera" (int p_num) NET
 {
 	int r = MAX_RX;
 	
+
+
 	while (camera_mode2[p_num] == ON)
 	{	
 		int a = GetActorAngle (0);
@@ -96,6 +127,7 @@ Script "MTACS_Veh_Camera" (int p_num) NET
 		
 		delay (1);
 	}	
+	
 }
 
 
@@ -110,7 +142,7 @@ script "MTACS_Stuff" (VOID) NET
  delay(1);
 }
 
-//Actuall Vehicle Control
+//Actual Vehicle Control
 
 script "MTACS_Chassis" ENTER
 {
@@ -140,7 +172,7 @@ script "MTACS_Chassis" ENTER
 			{
 				GiveInventory("TurnRight", 1);
 			}
-
+	
 		delay(1);
 		TakeInventory("Accelerate", 1);
 		TakeInventory("Reverse", 1);
@@ -148,3 +180,4 @@ script "MTACS_Chassis" ENTER
 		TakeInventory("TurnLeft", 1);
 	}
 }
+

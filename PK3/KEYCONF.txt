@@ -53,6 +53,8 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MT_PeriscopeMode "use MT_PeriscopeItem"
   addmenukey "Morph as Marine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
+  addmenukey "P.R Camera" MTC_PRCamera
+  alias MTC_PRCamera "use MT_ChaseCamera_MK1 ; chase"
   addmenukey "Turn off Engine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
 

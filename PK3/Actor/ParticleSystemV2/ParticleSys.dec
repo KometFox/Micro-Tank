@@ -1,4 +1,3 @@
-//
 
 Actor MT_ParticleSystem2
 {
@@ -27,3 +26,6 @@ Actor MT_ParticleSystem2_Interact : MT_ParticleSystem2
 {
   -NOINTERACTION
 }
+
+//
+#include "Actor/ParticleSystemV2/MediumExplosion_Reg.dec"

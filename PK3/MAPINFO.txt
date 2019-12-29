@@ -89,7 +89,7 @@ skill nightmare
 	AmmoFactor = 2
 	FastMonsters
 	DisableCheats
-	RespawnTime = 80
+	RespawnTime = 500
 	SpawnFilter = Nightmare
 	PicName = "M_NMARE"
 	Name = "Very Hard"

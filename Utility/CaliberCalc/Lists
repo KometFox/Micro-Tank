@@ -1,0 +1,44 @@
+Lists of Ammunition damage from various games for comparasion purpose:
+
+Factorio:
+AP Shot:
+Range: 30
+Pen: 300
+DMG (Phys): 200
+DMG (Xplo): 100
+
+Uran AP Shot:
+Range: 30
+Pen: 600
+DMG (Phys): 400
+DMG (Xplo): 200
+
+HE Shell:
+Range: 30
+Pen: 100
+DMG (Phys): 180
+DMG (Xplo): 300
+DMG_RAD (Xplo): 4
+
+Uran HE Shell:
+Range: 30
+Pen: 150
+DMG (Phys): 350
+DMG (Xplo) 315
+DMG_RAD (Xplo) 6.5
+
+Artillery HE Shell:
+Range: 560
+DMG (Xplo): 500
+DMG (Phys): 500
+DMG_RAD (Xplo): 4
+
+Company of Heroes:
+8.8 cm KwK 36 L/56
+Damage: 137.5
+Reloading: 6 Sec
+
+8.8 cm KwK 43 L/71
+Damage: 165.0
+Reload: 8 Sec
+Range: 30m
