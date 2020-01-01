@@ -71,65 +71,6 @@ Script "MTACS_CameraChecker" ENTER
 	}
 }
 
-//[801]
-Script "MTACS_Veh_Camera" (int p_num) NET
-{
-	int r = MAX_RX;
-	
-
-
-	while (camera_mode2[p_num] == ON)
-	{	
-		int a = GetActorAngle (0);
-		int p = GetActorPitch (0);
-		int x = GetActorX (0);
-		int y = GetActorY (0);
-		int z = GetActorZ (0) + VIEW_HEIGHTX;
-		int xyr = r * cos (p) >> 16;
-		setfont("TNHSA0");
-	hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
-		
-		if (!ThingCountName ("chasecam3", C_TIDX+p_num))
-		{
-			while (!Spawn ("chasecam3", x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, C_TIDX+p_num, a >> 8) && r > 0)
-			{
-				r -= ADJUST_R;
-				xyr = cos (p) * r >> 16;
-			}
-			
-			if (ThingCountName ("chasecam3", C_TIDX + p_num))
-				ChangeCamera (C_TIDX + p_num, 0, 0);
-			else
-			{
-				camera_mode2[p_num] = OFF;
-				print (s:"Camera script failed to initialize.");
-			}
-		}
-
-
-
-
-
-	        else
-		{
-			while (!SetActorPosition (C_TIDX+p_num, x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, 0) && r > 0)
-			{
-				r -= ADJUST_R;
-				xyr = cos (p) * r >> 16;
-			}
-			
-			SetActorAngle (C_TIDX + p_num, a);
-			SetActorPitch (C_TIDX + p_num, p);
-			
-			if (r < MAX_RX) 
-                                r += ADJUST_R;
-		}
-		
-		delay (1);
-	}	
-	
-}
-
 
 script "MTACS_Stuff" (VOID) NET
 {

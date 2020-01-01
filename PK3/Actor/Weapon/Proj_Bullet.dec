@@ -167,9 +167,9 @@ ACTOR "7.62x54mm AP" : MT_FastBulletBase
 {
   Radius 8
   Height 8
-  Speed 250
+  Speed 260
   DamageType Bullet
-  damage (random(27,30)*1)
+  damage (random(7,8)*1)
   Obituary "%o <7.62mm AP] %k"
   States
   {
@@ -188,10 +188,10 @@ ACTOR "7.62x54mm AP" : MT_FastBulletBase
 
 ACTOR "7.62x54mm AP 2" : "7.62x54mm AP" 
 {
-  damage (random(25,25)*1)
+  damage (random(9,10)*1)
 }
 
 ACTOR "7.62x54mm AP 3" : "7.62x54mm AP" 
 {
-  damage (random(30,30)*1)
+  damage (random(12,13)*1)
 }

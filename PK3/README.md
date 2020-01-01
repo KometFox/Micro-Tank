@@ -9,7 +9,7 @@ Adds in tank classes about the size of a mice.
 Author:
 DOT
 
-Supported Source Port: Zandronum 3.0-3.1, GZDoom 1.8.6, GZDoom 4.2.0
+Supported Source Port: GZDoom 4.2.0
 Supported IWAD: freedoom*.wad, doom*.wad
 Modules: Enemies, Missionpack 1
 

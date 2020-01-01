@@ -171,27 +171,32 @@ AltFire_MG_N:
     "####" A 0 A_AlertMonsters(250)
 	"####" A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
     "####" HI 2
+	"####" A 0 A_WeaponReady
     "####" A 0 A_Jumpifinventory("MTU_APShot_3",1, "Altfire_MG3_N")
     "####" A 0 A_Jumpifinventory("MTU_APShot_2",1, "Altfire_MG2_N")		
     Goto Altfire_MG1_N
 
 Altfire_MG1_N: 
 	"####" A 0 A_Firecustommissile("7.62x54mm AP",+frandom(-0.2,0.2),1,0,0,0,+frandom(-0.2,0.2))
+	"####" A 0 A_WeaponReady
 	"####" A 0 A_ReFire
 	Goto Altfire_MG1_End
 
 Altfire_MG2_N: 
 	"####" A 0 A_Firecustommissile("7.62x54mm AP 2",+frandom(-0.2,0.2),1,0,0,0,+frandom(-0.2,0.2))
+	"####" A 0 A_WeaponReady
 	"####" A 0 A_ReFire
 	Goto Altfire_MG1_End
 	
 Altfire_MG3_N: 
 	"####" A 0 A_Firecustommissile("7.62x54mm AP 3",+frandom(-0.2,0.2),1,0,0,0,+frandom(-0.2,0.2))
+	"####" A 0 A_WeaponReady
 	"####" A 0 A_ReFire
 	Goto Altfire_MG1_End
 
 Altfire_MG1_End:
 	"####" JKL 2
+	"####" A 0 A_WeaponReady
     Goto Ready
 //------------------------------------------------------------------------------
 ////Heavy Machinegun

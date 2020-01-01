@@ -4,7 +4,8 @@
 //addplayerclass Tiger1_Summer
 //addplayerclass Tiger1_Winter
 //addplayerclass Tiger1_Desert
-addplayerclass MT_PlayerClass_TigerTank
+addplayerclass MT_PlayerClass_TigerTank2
+addplayerclass MT_PlayerClass_TigerTank_Warp
 addplayerclass MT_PlayerClass_StugIII
 //addplayerclass MT_PantherM10_Summer
 //addplayerclass MT_PantherM10_Winter

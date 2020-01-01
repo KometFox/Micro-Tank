@@ -78,14 +78,21 @@ MTMAP06
 MTMAP07
 MTMAP08 Final Battle 
 
+
 MTMAP01:
 Simple Tech Base
 Small
 -
+
 MTMAP02:
 Complex Tech Base
 Large
 
+MTMAP03:
+Underground Tech Base
+
+MTMAP00:
+Player army camp
 
 
 TODO (elaborative):

@@ -1,3 +1,20 @@
+Model MT_Tiger1Chassis_Model
+{
+   IGNORETRANSLATION
+   INTERPOLATEDOUBLEDFRAMES
+   Path "MODELS\MicroHeavyTankA1"
+   Model 0 "Tiger1_Chassis.md3"
+   Skin 0 "TigerTank_Summer"
+   Model 1 "Tiger1_Treads.md3"
+   Skin 1 "Tiger1_Treads1"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+    FrameIndex TNK1 B 0 0
+    FrameIndex TNK1 B 1 0
+}
+
+
+
 Model Tiger1BaseNotRealMoving1
 {
    IGNORETRANSLATION
@@ -57,8 +74,7 @@ Model Tiger1TurretNotReal
     FrameIndex TNK1 T 0 0
 }
 
-
-Model MT_PlayerClass_TigerTank
+Model MT_PlayerClass_TigerTank2
 {
    IGNORETRANSLATION
    INTERPOLATEDOUBLEDFRAMES
@@ -70,6 +86,21 @@ Model MT_PlayerClass_TigerTank
    ZOffset 0
     FrameIndex TNK1 A 0 0
 }
+
+
+Model MT_PlayerClass_TigerTank_Warp
+{
+   IGNORETRANSLATION
+   INTERPOLATEDOUBLEDFRAMES
+   Path "MODELS"
+   Model 0 "Tiger1_Turret.md3"
+   Skin 0 "TigerTank.png"
+   Scale 7.5 7.5 7.5
+   AngleOffset 0
+   ZOffset 0
+    FrameIndex TNK1 A 0 0
+}
+
 //------------------------------------------------------------------------------
 ////STUG III
 //------------------------------------------------------------------------------
