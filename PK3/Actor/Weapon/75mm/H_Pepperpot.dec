@@ -37,9 +37,7 @@ Ready2:
 	"####" A 0 
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_APCR"      ,1, "Ready")
-    "####" A 0 A_JumpIfInventory("MHT_BaseGun_Buckshot"  ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "Ready")
-	"####" A 0 A_JumpIfInventory("MHT_BaseGun_Inc"       ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "Ready")
 	Goto Give
 	
@@ -65,9 +63,7 @@ Fire_FastCan:
 FireNow:	
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "AP_Fire_Check")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_APCR"      ,1, "APCR_Fire_Check")
-    "####" A 0 A_JumpIfInventory("MHT_BaseGun_Buckshot"  ,1, "Buckshot_Fire_Check")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "HE_Fire_Check")
-	"####" A 0 A_JumpIfInventory("MHT_BaseGun_Inc"       ,1, "Inc_Fire_Check")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
    Goto Ready
    
@@ -197,13 +193,13 @@ Reload:
 	
 LoadShells:
     "####" A 0 A_PlaySound("W_Pepperpot/Load1")
-	"####" "KLMNOP" 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	"####" "P" 5 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	"####" "KLMNOP" 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	"####" "P" 5 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	"####" A 0 //A_PlaySound("W_Pepperpot/Load2")
-	"####" "QRSTUVW" 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	"####" "QRSTUVW" 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	"####" A 0 A_PlaySound("W_Pepperpot/Load2")
-	"####" "XYZ[" 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-	"####" "[" 5 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+	"####" "XYZ[" 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+	"####" "[" 5 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
 	//"####" BCD 2
 	//"####" EFG 2
 	"####" CDEFGH 2

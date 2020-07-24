@@ -17,7 +17,7 @@ ACTOR MT_CEG_AnthraxSpark1 : SmallBlueSparky {Scale 0.12 Gravity 0
   
 
 
-actor MT_Item_AnthraxGasGenerator : MT_PlayerInventory
+actor MT_Item_AnthraxGasGenerator : MT_PlayerCustomInventory
 { 
   -COUNTITEM
  // Inventory.InterHubAmount 1
@@ -78,7 +78,7 @@ ACTOR MT_AnthraxSprayer_1
   +BLOODSPLATTER
   +NOTELEPORT
   gravity 0.8
-   damage (random(1,1.5)*5)
+   damage (frandom(1,1.5)*5)
   Deathsound "AcidBoom"
   Obituary "%o <Anthrax] %k" 
   States

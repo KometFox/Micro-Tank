@@ -1,50 +1,26 @@
-#Include "ACSSpecial.txt"
-
 #Include "Actor/Actor_Base.dec"
+#Include "acssrc/acsutils/cvarinfo.acsutils"
+#Include "acssrc/acsutils/decorate.acsutils"
 
 #Include "Actor/Internal/Values.dec"
-#Include "Actor/Internal/Items_Special2.dec"
-#Include "Actor/Internal/SearchLight.dec"
-#Include "Actor/Internal/DefaultWeapon.dec"
-#Include "Actor/Internal/Cannon_AmmoSwitch.dec"
+#Include "Actor/Internal/Item_Sounds.dec"
+#Include "Actor/Internal/Components.dec"
+#Include "Actor/Internal/AmmoSwitcher.dec"
 
 #Include "Actor/Classes/CommonTank.dec"
-#Include "Actor/Classes/MicroTankA1.dec"
-#Include "Actor/Classes/MicroMediumTankA1.dec"
-#Include "Actor/Classes/MicroHeavyTankA1.dec"
-#Include "Actor/Classes/Tiger1_Turret.dec"
-#Include "Actor/Classes/Tiger1_Turret_bp.dec"
-#Include "Actor/Classes/StugIII.dec"
+//#Include "Actor/Classes/HeavyTank.dec"
+#Include "Actor/Classes/HeavyTank_Warp.dec"
+//#Include "Actor/Classes/StugIII.dec"
 #Include "Actor/Misc/MarineMorph.dec"
-
-
 ////----------------------------------------------------------------------------
-//Models
+//Particles
 ////----------------------------------------------------------------------------
-/*
-#Include "MODELS/MODELDEF.txt"
-#Include "MODELS/ModelDef.Gore.txt"
-#Include "MODELS/ModelDef.GoreScale.txt"
-#Include "MODELS/ModelDef.Item.txt"
-#Include "MODELS/ModelDef.Objects.txt"
-#Include "MODELS/ModelDef.PlayerProj.txt"
-#Include "MODELS/ModelDef.Proj.txt"
-#Include "MODELS/ModelDef.Proj2.txt"
-#Include "MODELS/ModelDef.Tiger1.txt"
-#Include "MODELS/ModelDef.Trees.txt"
-#Include "MODELS/ModelDef.Wrecks.txt"
-*/
-
-////----------------------------------------------------------------------------
-//Particles and shieeet
-////----------------------------------------------------------------------------
-
-
+#Include "Actor/Particles/P_Sparks.dec"
 #Include "Actor/Particles/Particles_Base.dec"
 #Include "Actor/Particles/Particles_Library.dec"
 #Include "Actor/Particles/Particles_Scale.dec"
 #Include "Actor/Particles/Particle_37mm.dec"
-#Include "Actor/Particles/Particle_50mm.dec"
+//#Include "Actor/Particles/Particle_50mm.dec"
 #Include "Actor/Particles/Particle_75mm.dec"
 #Include "Actor/Particles/Particle_Nuke.dec"
 #Include "Actor/Particles/Particle_Bullet.dec"
@@ -58,7 +34,6 @@
 #Include "Actor/Particles/Particles_Blood.dec"
 #Include "Actor/Particles/Blood.dec"
 #Include "Actor/Particles/P_GoreChunk.dec"
-#Include "Actor/Particles/P_Sparks.dec"
 #Include "Actor/Particles/P_Glows.dec"
 #Include "Actor/Particles/TestGlow.dec"
 //#Include "Particles/Puffs.dec"
@@ -68,51 +43,35 @@
 
 
 ////----------------------------------------------------------------------------
-//Weapons and shieeet
+//Weapons
 ////----------------------------------------------------------------------------
-#Include "Actor/Weapon/Proj_Fire.dec"
-#Include "Actor/Weapon/Proj_Base/Base_Shells.dec"
+#Include "Actor/Weapon/Projectiles/Proj_Fire.dec"
+#Include "Actor/Weapon/Projectiles/Base_Shells.dec"
 #Include "Actor/Weapon/CommonWeapons.dec"
-#Include "Actor/Weapon/75mm/75mmWeapon_Func.dec"
-#Include "Actor/Weapon/75mm/75mmWeapon_Stug.dec"
-#Include "Actor/Weapon/75mm/75mmWeapon.dec"
+#Include "Actor/Weapon/75mm/Cannon_Func.dec"
+//#Include "Actor/Weapon/75mm/75mmWeapon_Stug.dec"
+#Include "Actor/Weapon/75mm/Cannon.dec"
 #Include "Actor/Weapon/75mm/H_Pepperpot.dec"
-#Include "Actor/Weapon/50mm/50mmWeapon_Func.dec"
-#Include "Actor/Weapon/50mm/50mmWeapon.dec"
-#Include "Actor/Weapon/37mm/37mmWeapon_Func.dec"
-#Include "Actor/Weapon/37mm/37mmWeapon.dec"
-#Include "Actor/Weapon/75mm/75mmShell.dec"
-#Include "Actor/Weapon/75mm/75mmShell_SubProj.dec"
-#Include "Actor/Weapon/50mm/50mmShell.dec"
+#Include "Actor/Weapon/75mm/Cannon_Shell.dec"
+#Include "Actor/Weapon/75mm/Cannon_SubProj.dec"
 #Include "Actor/Weapon/37mm/37mmShell.dec"
-#Include "Actor/Weapon/75mm/75mmShell_Upg.dec"
-#Include "Actor/Weapon/50mm/50mmShell_Upg.dec"
-#Include "Actor/Weapon/37mm/37mmShell_Upg.dec"
-#Include "Actor/Weapon/JetPackShit.dec"
-#Include "Actor/Weapon/SludgeCannon.dec"
-#Include "Actor/Weapon/BridgeTool/BridgeTool.dec"
-#Include "Actor/Weapon/GasClouds.dec"
 #Include "Actor/Weapon/Puffs.dec"
 #Include "Actor/Weapon/QuadMG/QuadMG_Func.dec"
 #Include "Actor/Weapon/QuadMG/QuadMG.dec"
 #Include "Actor/Weapon/OreBoring/OreBoring.dec"
-#Include "Actor/Weapon/ShieldGenerator/ShieldGenerator.dec"
 #Include "Actor/Weapon/DispersionGun/DispersionGun.dec"
 #Include "Actor/Weapon/DispersionGun/DispersionGun_Func.dec"
-#Include "Actor/Weapon/Proj_Special.dec"
-#Include "Actor/Weapon/Proj_Bullet.dec"
-#Include "Actor/Weapon/Proj_Energy.dec"
-#Include "Actor/Weapon/Proj_Rockets.dec"
+#Include "Actor/Weapon/Projectiles/Proj_Special.dec"
+#Include "Actor/Weapon/Projectiles/Proj_Bullet.dec"
+#Include "Actor/Weapon/Projectiles/Proj_Energy.dec"
+#Include "Actor/Weapon/Projectiles/Proj_Rockets.dec"
 
-
-
-#Include "Actor/Misc/Stuff.dec"
 #Include "Actor/Misc/Dump.dec"
 #Include "Actor/Items/Health.dec"
 #Include "Actor/Items/Ammo.dec"
 #Include "Actor/Items/AmmoGiver.dec"
 #Include "Actor/Items/Upgrade.dec"
-#Include "Actor/Items/Utility.dec"
+#Include "Actor/Items/Utility/Utility.dec"
 #Include "Actor/Items/Utility/AnthraxSprayer.dec"
 #Include "Actor/Items/Utility/ArmorAddon.dec"
 #Include "Actor/Items/Demolition/Dynamite.dec"
@@ -121,7 +80,6 @@
 #Include "Actor/Items/PodGrenades/ScudStrike.dec"
 #Include "Actor/Items/PodGrenades/Supplies.dec"
 #Include "Actor/Items/PodGrenades/Lights.dec"
-#Include "Actor/Items/Resource/OldResource.dec"
 #Include "Actor/Items/Resource/Resource.dec"
 
 #Include "Actor/Environment/Trees.dec"
@@ -129,15 +87,3 @@
 #Include "Actor/Environment/Houses.dec"
 
 #Include "Actor/Wreck/Wrecks.dec"
-
-#Include "Actor/Buildings/ConstructingStuff.dec"
-#Include "Actor/Buildings/ConstructingPlacement.dec"
-#Include "Actor/Buildings/ResourceBuildings.dec"
-#Include "Actor/Buildings/Blockade.dec"
-
-
-
-
-
-//test stuff
-#Include "Actor/Weapon/Experimental_Fire1.dec"

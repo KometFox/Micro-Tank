@@ -1,23 +1,10 @@
-//addplayerclass MicroHeavyTankA1_Class
-//addplayerclass MicroMediumTankA1_Class
-//addplayerclass MicroTankA1_Class
-//addplayerclass Tiger1_Summer
-//addplayerclass Tiger1_Winter
-//addplayerclass Tiger1_Desert
-addplayerclass MT_PlayerClass_TigerTank2
-addplayerclass MT_PlayerClass_TigerTank_Warp
-addplayerclass MT_PlayerClass_StugIII
-//addplayerclass MT_PantherM10_Summer
-//addplayerclass MT_PantherM10_Winter
-//addplayerclass MT_PantherM10_Desert
-//addplayerclass MT_PanzerIIAusfL_Summer
-//addplayerclass MT_PanzerIIAusfL_Winter
-//addplayerclass MT_PanzerIIAusfL_Desert
+//addplayerclass MT_PlayerClass_TigerTank2
+//addplayerclass MT_PlayerClass_StugIII
+addplayerclass MT_PlayerClass_HeavyTank
 
 WeaponSection Microtank_Wpn
-SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice" "MT_AssaultBridgeTool"
-SetSlot 2 "MHT_75mmCannon" "MHT_75mmCannon_Stug" "MHT_Heavy_Pepperpot" "50x441mm Cannon" "MT_QuadMachineGun" 
-SetSlot 3 "MT_ShieldGenerator"
+SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice"
+SetSlot 2 "MT_105mmCannon" "MHT_75mmCannon_Stug" "MHT_Heavy_Pepperpot" "MT_QuadMachineGun" 
 
 
 
@@ -50,7 +37,7 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MTC_SLight "use MT_SearchLight"     
   addmenukey "Toggle Nightvision device" MTC_NVLight
   alias MTC_NVLight "use MT_Nightvision_MK1"     
-  addmenukey "Use Periscope (Zooming)" MT_PeriscopeMode
+  addmenukey "Use Periscope" MT_PeriscopeMode
   alias MT_PeriscopeMode "use MT_PeriscopeItem"
   addmenukey "Morph as Marine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
@@ -58,7 +45,8 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MTC_PRCamera "use MT_ChaseCamera_MK1 ; chase"
   addmenukey "Turn off Engine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
-
+  addmenukey "Commander: Taunt" MTC_CMDTaunt
+  alias MTC_CMDTaunt "pukename cmd_taunt"
    
 ////Unneeded stuff for now   
 //   addmenukey "Switch Weapon Mode (Primary)" MTC_Switch_Mode
@@ -70,8 +58,8 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 
 ////Cheats   
    alias ironcurtain "god; Echo Permament Iron Curtain"
-   alias Sheqely "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_HighValueMetal 1000000;"
-   alias Sheqel "Sheqely; Echo A Sheqel for the good goy"
+   alias Credits "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_HighValueMetal 1000000;"
+   alias CashItUp "Credits;Credits; Echo Full credits."
 
 
 

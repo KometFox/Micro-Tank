@@ -1,0 +1,217 @@
+//
+ACTOR MT_BuckShot : MT_Frag
+{
+  DamageType Buckshot
+  Speed 160
+  damage (frandom(1,1.2)*15)
+  Gravity 0.07
+  Obituary "%o <Buckshot] %k" 
+  BounceType None
+  BounceCount 0
+  renderstyle Add
+  decal MT_Bullethit1
+  States{
+    Spawn:
+    FRAG A 1 
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop
+  XDeath:
+    TNT1 AA 0 A_spawnitemex("MT_CEG_7.62mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    Stop	
+}}
+
+ACTOR MT_BuckShot_2 : MT_BuckShot
+{
+  damage (frandom(1,1.2)*18)
+  States{
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop	
+}}
+
+ACTOR MT_BuckShot_3 : MT_BuckShot
+{
+  damage (frandom(1,1.2)*22)
+  States{
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop	
+}}
+
+ACTOR MT_BuckShot_HE : MT_BuckShot
+{
+  DamageType Explosive
+  Speed 150
+  damage (frandom(1,1.2)*5)
+  Obituary "%o <Buckshot] %k" 
+  decal MT_VerySmallHEScorch
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(35,60,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_BuckShot_HE_2 : MT_BuckShot_HE
+{
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(42,72,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_BuckShot_HE_3 : MT_BuckShot_HE
+{
+  States
+{
+	Death:
+	TNT1 A 0 A_SpawnItemEx("Explosion3_S0.25")
+	TNT1 AA 0 A_SpawnItemEx("Smoke1_1F_S0.25",0,0,0,0+random(-1,1),0+random(-1,1),0+random(-1,1))
+	TNT1 A 0 A_SpawnItemEx("Spark3_S0.25")
+	TNT1 A 0 A_Explode(51,87,0,0,1)
+	TNT1 A 1
+	Stop
+}}
+
+ACTOR MT_CEG_7.62mm_OrganHit : Particle
+{
+  renderstyle Translucent
+  alpha 0.7
+  Scale 0.25
+  States
+  {
+  Spawn:
+    BLSR IJKLMNOPQRS 1
+    BLSR TUVWXYZ 1 A_Fadeout(0.10) 
+    TNT1 A 0
+    Stop
+  }
+}
+
+
+ACTOR MT_CEG_7.62mm_OrganHit2 : MT_CEG_7.62mm_OrganHit
+{
+  Scale 0.1
+  alpha 0.45
+}
+
+ACTOR MT_CEG_7.62mm_OrganHit_Trail : MT_CEG_7.62mm_OrganHit
+{
+  Scale 0.12
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAA 1 A_SpawnItemEx("MT_CEG_7.62mm_OrganHit2",0,0,0)
+    Stop
+  }  
+}
+
+
+
+ACTOR "7.62x54mm AP" : MT_FastBulletBase
+{
+  Radius 8
+  Height 8
+  Speed 180
+  DamageType Bullet
+  damage (frandom(1,1.2)*19)
+  Obituary "%o <7.62mm AP] %k"
+  States
+  {
+  Death:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItem("MT_BulletPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+	Stop
+  XDeath:
+    TNT1 A 0 A_spawnitemex("MT_CEG_7.62mm_OrganHit_Trail",0,0,0,+frandom(-4,4),+frandom(-4,4),+frandom(-4,4))  
+    TNT1 AA 0 A_spawnitemex("MT_CEG_7.62mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    Stop	
+  }
+}
+
+ACTOR "7.62x54mm AP 2" : "7.62x54mm AP" 
+{
+  damage (frandom(1,1.2)*24)
+}
+
+ACTOR "7.62x54mm AP 3" : "7.62x54mm AP" 
+{
+  damage (frandom(1,1.4)*27)
+}
+
+
+
+ACTOR MT_Fragmentation : MT_Frag
+{
+  DamageType Buckshot
+  Speed 30
+  damage (frandom(1,1.2)*35)
+  Gravity 0.07
+  Obituary "%o <Buckshot] %k" 
+  BounceType Doom
+  BounceCount 1
+  renderstyle Add
+  decal MT_Bullethit1
+  var int user_ttl;
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SetUserVar("user_ttl", 20)
+  Spawn2:
+    FRAG A 1 A_SpawnItemEx("MT_Fragmentation_Trail",0,0,0)
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl-1)
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Dead")
+    Loop
+  Dead:
+    TNT1 A 0 //A_CustomMissile("Spark1")
+	Stop
+  Death:
+    TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
+    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 1
+    Stop
+  Crash:
+  XDeath:
+    TNT1 AA 0 A_spawnitemex("MT_CEG_7.62mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    Stop	
+}}
+
+ACTOR MT_Fragmentation_Trail : Particle
+{
+  renderstyle Add
+  alpha 1
+  Scale 0.08
+  States
+  {
+  Spawn:
+    AEP9 IJKLMNOPQRST 1 Bright  
+    AEP9 U 1 
+    AEP9 VWXY 1 
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}

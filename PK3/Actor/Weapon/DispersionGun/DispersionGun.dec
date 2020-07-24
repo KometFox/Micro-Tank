@@ -331,8 +331,8 @@ Actor MT_DispersionBall_Charge5_Large : MT_DispersionBall_Charge1_Large
 
 ACTOR MT_CEG_DispersionGun_BigSpark : Particle
 {
-  Height 4
-  Radius 4
+  Height 7
+  Radius 7
   speed 0.005
   Gravity 0
   Scale 1.3

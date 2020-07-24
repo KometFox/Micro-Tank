@@ -12,6 +12,3 @@ Example of a load order:
 MicroTank_v1u.pk3
 MicroTank_v1u_Enemys.pk3
 
-variant 2
-
-MicroTank_v1u.pk3

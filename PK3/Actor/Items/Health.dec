@@ -1,7 +1,7 @@
 
 
 
-actor SmallRepairKit : MT_PlayerInventory
+actor SmallRepairKit : MT_PlayerCustomInventory
 {    
   Height 5
   Radius 5

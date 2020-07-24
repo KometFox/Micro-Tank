@@ -1,0 +1,98 @@
+//ACS code credit: Sgt. Mark IV
+#library "MTank"
+#include "zcommon.acs"
+int vehiclepreviousbaseangle;
+
+script "MTACS_Stuff" (VOID) NET
+{
+ delay(1);
+ delay(5);
+ SetActorAngle (0, GetActorAngle (261));
+ Thing_Move(0, 261, 1);
+ vehiclepreviousbaseangle = CheckActorInventory(261, "TankBaseDirection");
+ SetUserVariable(0, "user_tankbasedirection", vehiclepreviousbaseangle);
+ delay(1);
+}
+
+//Actual Vehicle Control
+
+script "MTACS_Chassis" ENTER
+{
+ int buttons;
+ //int chassisangle = GetUserCVAR(0, "user_chassisangle");	
+ int chassisangle = 270;
+
+	//I don't think there is a better way to do this with ACS
+	while (TRUE)
+	{
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		
+   
+		if (buttons & BT_FORWARD)
+			{
+				GiveInventory("Accelerate", 1);
+			}
+
+		if (buttons & BT_BACK)
+			{
+				GiveInventory("Reverse", 1);
+			}
+    
+		
+		//if (chassisangle > 359) { chassisangle = 0; }
+		//if (chassisangle < 0) { chassisangle = 0; }
+	
+	
+		if (buttons & BT_MOVELEFT)
+			{
+				GiveInventory("TurnLeft", 1);
+				//log(s: "TURN LEFT");
+				//chassisangle += 3;
+				//SetUserCVAR(0, "user_chassisangle", chassisangle); 
+				//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
+				//log(d: GetUserCVAR(0, "user_chassisangle"));
+			}
+ 
+		if (buttons & BT_MOVERIGHT)
+			{
+				GiveInventory("TurnRight", 1);
+				//log(s: "TURN RIGHT");
+				//chassisangle -= 3;
+				//SetUserCVAR(0, "user_chassisangle", chassisangle);
+				//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
+				//log(d: GetUserCVAR(0, "user_chassisangle"));
+			}
+
+		//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);		
+		//log(d: chassisangle);
+		
+//------------------------------------------------------------------------------
+//Chase
+//------------------------------------------------------------------------------
+	//Chase cheat is on 
+		if (CheckInventory("MT_ChaseCameraToken")) 
+			{	
+
+				setfont("TNHSA0");
+				hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
+				SetCVAR("chase", True);
+			}
+
+		else if (!CheckInventory("MT_ChaseCameraToken"))
+			{
+				hudmessage(s:""; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
+				SetCVAR("chase", False);
+			}
+		
+		delay(1);		
+		TakeInventory("Accelerate", 1);
+		TakeInventory("Reverse", 1);
+		TakeInventory("TurnRight", 1); 
+		TakeInventory("TurnLeft", 1);	
+		
+	}
+	
+	
+	
+}
+

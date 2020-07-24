@@ -282,7 +282,7 @@ ACTOR BlueBFGspray : Particle
   Death:
     TNT1 A 0 A_Playsound("")
     TNT1 AAAAAA 0 A_Spawnitemex("SmallBlueSparkyA",0+frandom(0.5,-0.5),0+frandom(0.5,-0.5),0+frandom(0.5,-0.5),0+random(-10,10),0+random(-10,10),0+random(-10,10),0+frandom(-360,360))
-    TNT1 AA  0  A_spawnitemex("37mmLaser_Explosion2",0+random(0.5,-0.5),0+random(0.5,-0.5),0+random(0.5,-0.5),0+random(-1.4,1.4),0+random(-1.4,1.4),0+random(-1.4,1.4),0+random(-360,360))
+    TNT1 AA  0  A_spawnitemex("37mmLaser_Explosion2",0+frandom(0.5,-0.5),0+frandom(0.5,-0.5),0+frandom(0.5,-0.5),0+frandom(-1.4,1.4),0+frandom(-1.4,1.4),0+frandom(-1.4,1.4),0+random(-360,360))
     Stop
   }
 }
@@ -439,7 +439,7 @@ ACTOR MTP_ShockWave : Particle
   scale 0.7
   -NOGRAVITY
   gravity 0
-   damage (random(1,1.2)*15)
+   damage (frandom(1,1.2)*15)
 +EXTREMEDEATH
   +FORCERADIUSDMG
   +BLOODSPLATTER

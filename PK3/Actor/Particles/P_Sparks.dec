@@ -80,6 +80,19 @@ Scale 0.13
   }
 }
 
+ACTOR BlueSpark : SmallBlueSparky
+{
+  States
+  {
+  Spawn:
+    APP4 A 30 
+    APP4 BBCCDDEEFFGG 1 A_Fadeout(0.029)  
+    Goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
 
 ACTOR SmallBlueSparkyA : SmallBlueSparky {Scale 0.075 }
 

@@ -1,0 +1,181 @@
+//This is the most important item
+//By itself it doesn't do much but it is used for switching ammo
+//The Weapon needs to give/take a item that it is currently used
+//then this can work properly and giving the User another item
+//the another item is consumed immediatly and switches the ammo
+actor MT_AmmoSwitcher : MT_SPlayerCustomInventory { 
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  states
+  {
+  Use:
+  TNT1 A 0 A_JumpIfInventory("MT_75x500mmCannon_IsSelected",1,"MHT_Basegun")
+  TNT1 A 0 A_JumpIfInventory("MT_50x441mmCannon_IsSelected",1,"MMT_Basegun")
+  TNT1 A 0 A_JumpIfInventory("MT_37x290mmCannon_IsSelected",1,"MLT_Basegun")
+  TNT1 A 0 A_JumpIfInventory("MT_QuadMachineGun_IsSelected",1,"MT_QuadMG")
+  TNT1 A 0 A_JumpIfInventory("MT_DispersionGun_IsSelected",1,"MT_DispersionGun")
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop
+  
+  ReloadBlock:
+  TNT1 A 0 A_Print("Cannot switch ammo while reloading!")
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop
+  
+//------------------------------------------------------------------------------
+//Heavy Weapon
+//------------------------------------------------------------------------------  
+  
+  MHT_Basegun: 
+  TNT1 A 0 A_GiveInventory("MT_MHT_Basegun_AmmoSwitch",1) 
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop  
+
+//------------------------------------------------------------------------------
+//Medium Weapon
+//------------------------------------------------------------------------------  
+ 
+  MMT_Basegun: 
+  TNT1 A 0 //A_GiveInventory("MT_MMT_Basegun_AmmoSwitch",1) 
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop  
+  
+//------------------------------------------------------------------------------
+//Light Weapon
+//------------------------------------------------------------------------------  
+
+  
+  MLT_Basegun: 
+  TNT1 A 0 //A_GiveInventory("MT_MLT_Basegun_AmmoSwitch",1) 
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop
+  
+  MT_QuadMG: 
+  TNT1 A 0 A_GiveInventory("MT_QuadMG_AmmoSwitch",1) 
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop   
+  
+  MT_DispersionGun: 
+  TNT1 A 0 A_GiveInventory("MT_DispersionGun_AmmoSwitch",1)
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  Stop
+  
+//------------------------------------------------------------------------------
+//Sub Weapon
+//------------------------------------------------------------------------------  
+  
+  
+  DoNothing:
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher",2)
+  stop
+
+ }}
+ 
+//Used for Weapon ammo switcher item
+actor MT_AmmoSwitch_Base : MT_SPlayerCustomInventory { 
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  states
+  {
+  
+ }}
+   
+ 
+ 
+actor MT_AmmoSwitcher_Reverse : MT_SPlayerCustomInventory { 
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  states
+  {
+  Use:
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitch_Reverse",2)
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher_Reverse",2)
+  TNT1 A 0 A_GiveInventory("MT_AmmoSwitcher", 2)
+  TNT1 A 0 ACS_NamedExecuteWithResult("MT_AmmoSwitch_Reverse")
+  Stop
+  }
+}
+
+//------------------------------------------------------------------------------
+//Heavy Weapon
+//------------------------------------------------------------------------------  
+
+
+actor MT_Subgun_Slot : Inventory {
+  inventory.maxamount 4 }
+
+ACTOR MT_Subgun_LightMG  : MT_A_BooleanValue {} 
+ACTOR MT_Subgun_HeavyMG  : MT_A_BooleanValue {} 
+ACTOR MT_Subgun_Autocannon : MT_A_BooleanValue {} 
+
+
+Actor MT_SubgunSwitcher : MT_SPlayerCustomInventory {
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+States {
+Use:
+//It needs to be 1 less else it will jump to it 2x
+TNT1 A 0 A_JumpIfInventory("MT_AmmoSwitch_Reverse",1,"Reverse")
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_Slot",2,"Reset2")
+TNT1 A 0 A_GiveInventory("MT_Subgun_Slot",1)
+TNT1 A 0 A_GiveInventory("MT_SubgunSwitcher",10)
+TNT1 A 0 A_Playsound("GunLoa2")
+Goto ResetCheck
+
+Reverse:
+	//No Zandro 3.1 support...
+	//TNT1 A 0 A_JumpIf(CountInv("MT_Subgun_Slot") == 1, "Reset3")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MT_IsItemOne", 0) == 1, "Reset3")
+	TNT1 A 0 A_TakeInventory("MT_Subgun_Slot", 1)
+	TNT1 A 0 A_TakeInventory("MT_AmmoSwitch_Reverse", 1)
+	Goto ResetCheck
+
+Reset3:
+TNT1 A 0 A_TakeInventory("MT_AmmoSwitch_Reverse", 1)
+TNT1 A 0 A_GiveInventory("MT_Subgun_Slot",2)
+Goto ResetCheck
+
+
+A1:
+TNT1 A 0 A_GiveInventory("MT_Subgun_LightMG",1)
+//TNT1 A 0 A_Print("Armor Piercing Shot loaded")
+stop
+A2:
+TNT1 A 0 A_GiveInventory("MT_Subgun_HeavyMG",1)
+//TNT1 A 0 A_Print("Armor Piercing Shot loaded")
+stop
+A3:
+TNT1 A 0 A_GiveInventory("MT_Subgun_Autocannon",1)
+//TNT1 A 0 A_Print("High Explosive Shell loaded")
+stop
+
+
+ResetCheck:
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_LightMG",        1,"Res1")
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_HeavyMG",      1,"Res2")
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_Autocannon",        1,"Res3")
+Goto Switch
+
+Res1:
+TNT1 A 0 A_TakeInventory("MT_Subgun_LightMG",          1)
+Goto ResetCheck
+Res2:
+TNT1 A 0 A_TakeInventory("MT_Subgun_HeavyMG",        1)
+Goto ResetCheck
+Res3:
+TNT1 A 0 A_TakeInventory("MT_Subgun_Autocannon",          1)
+Goto ResetCheck
+
+
+Switch:
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_Slot",3,"A3")
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_Slot",2,"A2")
+TNT1 A 0 A_JumpIfInventory("MT_Subgun_Slot",1,"A1")
+TNT1 A 0 
+Goto Use
+
+Reset2:
+TNT1 A 0 A_TakeInventory("MT_Subgun_Slot",10)
+Goto Use
+
+}}

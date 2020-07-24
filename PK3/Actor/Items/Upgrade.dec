@@ -38,10 +38,12 @@ ACTOR MTU_HEMortar1 : MT_A_Upgrades2 {}
 ACTOR MTU_FastCannon_2 : MT_A_Upgrades2 {}
 //Ammunition Improvements
 ACTOR MTU_BuckShotShell_2 : MT_A_Upgrades2 {}
+ACTOR MTU_BuckShotShell_3 : MT_A_Upgrades2 {}
 ACTOR MTU_HEATShell_2 : MT_A_Upgrades2 {}
 ACTOR MTU_HEShell_2  : MT_A_Upgrades2 {}
 ACTOR MTU_APShot_2   : MT_A_Upgrades2 {}
 ACTOR MTU_IncShell_2 : MT_A_Upgrades2 {}
+ACTOR MTU_Energy_3 : MT_A_Upgrades2 {}
 ACTOR MTU_Energy_2 : MT_A_Upgrades2 {}
 //2x Items 
 ACTOR MTU_SupplyBox_2 : MT_A_Upgrades2 {}
@@ -378,8 +380,9 @@ ACTOR MT_Upgrade_Armor_EnvironmentCoat : MT_ItemUpgradeBase
 States
 {
  Use:
- TNT1 A 0 A_JumpIfInventory("MT_IAddon_NBC_CoatingA",1,"Refund")
- TNT1 A 1 A_GiveInventory("MT_IAddon_NBC_CoatingA",1)
+ TNT1 A 0 A_JumpIfInventory("PowerMT_NBC_Coating",1,"Refund")
+ TNT1 A 1 A_GiveInventory("MT_IAddon_NBC_CoatingB",99)
+ TNT1 A 1 A_GiveInventory("MT_IAddon_NBC_CoatingB",99)
  Stop
  Refund:
  TNT1 A 0 A_PlaySound("Beep2")

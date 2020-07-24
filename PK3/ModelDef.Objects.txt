@@ -70,33 +70,12 @@ Model MT_Res_LargeCrystal
 }
 
 
-Model MT_FallingComet
-{
-   Path "MODELS\Resource"
-   Model 0 "Comet.md3"
-   Skin  0 "Comet.png"
-   Scale 1 1 1
-   AngleOffset 0
-   FrameIndex IDLE A 0 0
-
-}
-
 Model MT_SludgeBarrel
 {
    Path "MODELS\Misc"
    Model 0 "SludgeBarrel.md3"
    Skin  0 "SludgeBarreL_Tex.png"
    Scale 13.5 13.5 14
-   AngleOffset 0
-   FrameIndex BAR1 A 0 0
-}
-
-Model MT_SludgeBarrel_NoResp
-{
-   Path "MODELS\Misc"
-   Model 0 "SludgeBarrel.md3"
-   Skin  0 "SludgeBarreL_Tex.png"
-   Scale 13 13 13
    AngleOffset 0
    FrameIndex BAR1 A 0 0
 }

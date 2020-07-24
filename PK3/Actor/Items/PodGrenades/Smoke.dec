@@ -1,10 +1,9 @@
-Actor Item_GrenadePod_Smoke : MT_PlayerInventory { 
-  -COUNTITEM
+Actor Item_GrenadePod_Smoke : MT_PlayerCustomInventory { 
   Inventory.Icon "FGRSA0"
   Inventory.PickupMessage "Picked up: Smoke Screen (Pod mount)"
   Inventory.Amount 1
-  Inventory.MaxAmount 50
-  Inventory.InterHubAmount 50
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
   Tag "[Grenade Pod]: Smoke Screen"
   Scale 1
  
@@ -16,7 +15,7 @@ Actor Item_GrenadePod_Smoke : MT_PlayerInventory {
   Use:  
     N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
     N15S A 0 A_GiveInventory("UtilityGrenadeCoolDown")
-    TNT1 A 0 A_Playsound("Fire04")
+    TNT1 A 0 A_Playsound("Grenadepod/Launch")
     TNT1 A 0 A_FireCustomMissile("MT_40mmGrenadeSmoke",0,0,0)
 	TNT1 A 0 A_FireCustomMissile("MT_40mmGrenadeSmoke2",30,0,0)
 	TNT1 A 0 A_FireCustomMissile("MT_40mmGrenadeSmoke2",-30,0,0)

@@ -1,0 +1,112 @@
+//For some stuipd backwards reason it has no arguments for X and Y position
+
+function void ACSUtils_HudDrawHudMessagePOS(int id, int type, str text, bool isText, int HUD_X, int HUD_Y)
+{
+	if (ACSUtils_Ints[30] == 0 || ACSUtils_Ints[51] == 0)
+		return;
+
+	type |= ACSUtils_Ints[27];
+	if (!ACSUtils_Ints[24])
+		type |= HUDMSG_NOTWITH3DVIEW;
+	if (!ACSUtils_Ints[50])
+		type |= HUDMSG_NOTWITHFULLMAP;
+	if (!ACSUtils_Ints[34])
+		type |= HUDMSG_NOTWITHOVERLAYMAP;
+	
+	if (ACSUtils_Ints[39] == HUD_BLENDSTYLE_ADDITIVE)
+		type |= HUDMSG_ADDBLEND;
+	else if (ACSUtils_Ints[25] != 1.0)
+		type |= HUDMSG_ALPHA;
+
+	int x = ACSUtils_Ints[41];
+	int y = ACSUtils_Ints[18];
+	int iScaleX = ACSUtils_Ints[30];
+	int iScaleY = ACSUtils_Ints[51];
+	
+	if (ACSUtils_Ints[52])
+	{
+		ACSUtils_HudRotate3DPoint();
+
+		// Check if point is behind the camera.
+		if (ACSUtils_Ints[14] <= 0)
+		{
+			ClearHudMessage(id);
+			return;
+		}
+			
+		// I don't know what this factor means, but it fixes positioning bugs.
+		int yFactor = 1.6;
+		if (StatusBarVisible())
+			yFactor = 1.9;
+
+		// Half heights.
+		int hw = ((ACSUtils_Ints[23]) / 2);
+		int hh = ((ACSUtils_Ints[46]) / 2);
+
+		// Project point.
+		x = -FixedDiv(ACSUtils_Ints[44], ACSUtils_Ints[14]);
+		y = -FixedDiv(ACSUtils_Ints[22], ACSUtils_Ints[14]);
+		
+		if (ACSUtils_IsYShearing())
+			y += tan(ACSUtils_Ints[11]);
+		
+		// Postprocess projected point.
+		x += ACSUtils_Ints[12] + hw + FixedMul(hw, x);
+		y += ACSUtils_Ints[21] + hh + FixedMul(FixedMul(hh, yFactor), y);
+		
+		if (ACSUtils_Ints[42])
+		{
+			iScaleX = FixedMul(iScaleX, ACSUtils_Ints[14] / CAMERA_BASE_DISTANCE);
+			iScaleY = FixedMul(iScaleY, ACSUtils_Ints[14] / CAMERA_BASE_DISTANCE);
+		}
+	}
+	
+	int w = FixedMul(ACSUtils_Ints[23], iScaleX);
+	int h = FixedMul(ACSUtils_Ints[46], iScaleY);
+	SetHudSize(itrunc(w), itrunc(h), !(ACSUtils_Ints[52] || ACSUtils_Ints[45]));
+
+	x = trunc(FixedMul(x, iScaleX));
+	y = trunc(FixedMul(y, iScaleY));
+	
+	if (ACSUtils_Ints[13] == HUD_ALIGN_LEFT)
+		x += 0.1;
+	else if (ACSUtils_Ints[13] == HUD_ALIGN_RIGHT)
+		x += 0.2;
+		
+	if (ACSUtils_Ints[49] == HUD_ALIGN_TOP)
+		y += 0.1;
+	else if (ACSUtils_Ints[49] == HUD_ALIGN_BOTTOM)
+		y += 0.2;
+		
+	if (ACSUtils_Ints[26])
+		x += 0.4;
+	
+	// BUG: this really simplifies the code, but the messages will only stay
+	// for 9 hours.
+	int stayTime = ACSUtils_Ints[6];
+	if (stayTime < 0.0)
+		stayTime = FIXED_MAX;
+	
+	if (ACSUtils_Ints[37])
+	{
+		HudMessageBold(s:text;
+			type,
+			id,
+			ACSUtils_Ints[3],
+			x + HUD_X, y + HUD_Y,
+			stayTime, ACSUtils_Ints[5], ACSUtils_Ints[48],
+			ACSUtils_Ints[25]
+		);
+	}
+	else
+	{
+		HudMessage(s:text;
+			type,
+			id,
+			ACSUtils_Ints[3],
+			x + HUD_X, y + HUD_Y,
+			stayTime, ACSUtils_Ints[5], ACSUtils_Ints[48],
+			ACSUtils_Ints[25]
+		);
+	}
+}

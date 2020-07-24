@@ -84,7 +84,7 @@ ACTOR MT_QuadMachineGun : Weapon
   	TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
     QUMG A 0 A_GunFlash
     QUMG AB 2
-    QUMG A 0 A_PlaySound("ACFire1")
+    QUMG A 0 A_PlaySound("Machinegun/Fire")
 	TNT1 A 0 A_TakeInventory("A_7u62x54mmR",2)
 	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash",0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",+frandom(-0.2,0.2),0,2,0,0,+frandom(-0.2,0.2))
@@ -97,7 +97,7 @@ ACTOR MT_QuadMachineGun : Weapon
   Fire_AP_B2:
   	TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
 	QUMG CD 2 
-    QUMG A 0 A_PlaySound("ACFire1")
+    QUMG A 0 A_PlaySound("Machinegun/Fire")
 	TNT1 A 0 A_TakeInventory("A_7u62x54mmR",2)
 	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash2",0,0)
     QUMG A 0 A_Firecustommissile("MT_QuadMQ_AP_Proj",+frandom(-0.2,0.2),0,2,-2,0,+frandom(-0.2,0.2))
@@ -115,7 +115,7 @@ ACTOR MT_QuadMachineGun : Weapon
     TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
     QUMG A 0 A_GunFlash
     QUMG AB 2
-    QUMG A 0 A_PlaySound("ACFire1")
+    QUMG A 0 A_PlaySound("Machinegun/Fire")
 	TNT1 A 0 A_TakeInventory("MT_AMMO_7u62x54mmR_HE",2)
 	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash",0,0)
 	QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",+frandom(-0.2,0.2),0,2,0,0,+frandom(-0.2,0.2))
@@ -126,7 +126,7 @@ ACTOR MT_QuadMachineGun : Weapon
   Fire_HE_B2:	
     TNT1 A 0 A_GiveInventory("MT_QuadMachineGun_Burst",1)
 	QUMG CD 2 
-    QUMG A 0 A_PlaySound("ACFire1")
+    QUMG A 0 A_PlaySound("Machinegun/Fire")
 	QUMG A 0 A_TakeInventory("MT_AMMO_7u62x54mmR_HE",2)
 	QUMG A 0 A_FireCustomMissile("MT_QuadMGMuzzleFlash2",0,0)
     QUMG A 0 A_Firecustommissile("MT_QuadMQ_HE_Proj",+frandom(-0.2,0.2),0,2,-2,0,+frandom(-0.2,0.2))

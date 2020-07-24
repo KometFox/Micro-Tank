@@ -1,3 +1,239 @@
+////----------------------------------------------------------------------------
+///Items interaction
+////----------------------------------------------------------------------------
+Items/Pickup DSWPNUP1
+Ammo/Pickup DSWPNUP1
+Material/Pickup1 DSMAT1
+Material/Pickup2 DSMAT2
+$Random Material/Pickup {Material/Pickup1 Material/Pickup2}
+
+////----------------------------------------------------------------------------
+///Engine/Vehicle noise
+////----------------------------------------------------------------------------
+TankEngine/Start MotOn
+TankEngine/Idle MotLop3
+TankEngine/Stop MotOff
+Treads/Mid TNKMOV2
+Treads/Forward TNKMOV2
+Treads/Left TNKSTO
+Treads/Right TNKSTO
+Treads/Backward TNKSTO
+
+$Volume Treads/Forward 0.9
+$Volume Treads/Backward 0.9
+$Volume Treads/Left 0.9
+$Volume Treads/Right 0.9
+$Volume Treads/Mid 0.9
+
+$Limit Treads/Forward 1
+$Limit Treads/Left 1
+$Limit Treads/Right 1
+$Limit Treads/Backward 1
+
+////----------------------------------------------------------------------------
+///Vehicle interaction
+////----------------------------------------------------------------------------
+V_Interact/Button Click
+V_Interact/Zoom Click
+V_Interact/Periscope GScop
+V_Interact/Nightvision Click 
+
+////----------------------------------------------------------------------------
+///Explosions
+////----------------------------------------------------------------------------
+Medium/Explosion1 MXplo1
+Medium/Explosion2 MXplo2
+Medium/Explosion3 MXplo3
+$Volume Medium/Explosion1 2
+$Volume Medium/Explosion2 2
+$Volume Medium/Explosion3 2
+
+$Random Medium/Explosion {Medium/Explosion1 Medium/Explosion2 Medium/Explosion3}
+$Attenuation Medium/Explosion 0.5 
+
+Medium/HEATExplosion1 MHXplo1
+Medium/HEATExplosion2 MHXplo2
+Medium/HEATExplosion3 MHXplo3
+$Random Medium/HEATExplosion {Medium/HEATExplosion1 Medium/HEATExplosion2 Medium/HEATExplosion3}
+$Attenuation Medium/HEATExplosion 0.45
+
+Mininuke/Explosion1 MINUKE2
+Mininuke/Explosion2 MINUKE1
+$Random Mininuke/Explosion {Mininuke/Explosion1 Mininuke/Explosion2}
+$Attenuation Mininuke/Explosion 0.25
+
+Medium/APExplosion1 APXplo1
+Medium/APExplosion2 APXplo2
+Medium/APExplosion3 APXplo3
+$Random Medium/APExplosion {Medium/APExplosion1 Medium/APExplosion2 Medium/APExplosion3}
+$Attenuation Medium/APExplosion 0.6
+
+////----------------------------------------------------------------------------
+///Energy
+////----------------------------------------------------------------------------
+Light/LaserExplosion LaserHi2
+
+
+////----------------------------------------------------------------------------
+///Pods
+////----------------------------------------------------------------------------
+Grenadepod/Launch Fire04
+Grenadepod_HE/Explosion SmlXplo2
+
+////----------------------------------------------------------------------------
+///Rockets
+////----------------------------------------------------------------------------
+SlugRocket/Fire 45ROCKL
+
+////----------------------------------------------------------------------------
+///Autocannon
+////----------------------------------------------------------------------------
+25mmAutocannon/Fire ACFire1
+
+////----------------------------------------------------------------------------
+///Machinegun
+////----------------------------------------------------------------------------
+MG/45ACP1 45ACP1
+MG/45ACP2 45ACP2
+MG/45ACP3 45ACP3
+$random MG/45ACP {MG/45ACP1 MG/45ACP2 MG/45ACP3}
+
+MG/Fire1  MGFire1
+MG/Fire2  MGFire2
+
+$random Machinegun/Fire {MG/Fire1}
+$volume Machinegun/Fire 0.5
+
+////----------------------------------------------------------------------------
+///Small Cannon
+////----------------------------------------------------------------------------
+
+
+////----------------------------------------------------------------------------
+///Big Cannon
+////----------------------------------------------------------------------------
+MediumCannon/Firing0 Fire05
+MediumCannon/Firing1 Fire07
+MediumCannon/Firing2 Fire08
+/*
+HeavyCannon/Firing0 Fire05
+HeavyCannon/Firing1 Fire07
+HeavyCannon/Firing2 Fire08
+*/
+
+HeavyCannon/Firing0 T5Fir1
+HeavyCannon/Firing1 T5Fir2
+HeavyCannon/Firing2 T5Fir1
+
+HeavyCannon/RocketFiring RocketFi
+
+$Random MediumCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
+$Random HeavyCannon/Firing {HeavyCannon/Firing0 HeavyCannon/Firing1 HeavyCannon/Firing2}
+
+W_Pepperpot/Load1 Gunloa
+W_Pepperpot/Load2 loaded
+W_Pepperpot/Load3 Gunloa2
+H_Cannon/Loaded QGuLoa5
+
+$Volume Fire05 2
+$Volume Fire07 2
+$Volume Fire08 2
+
+
+$Volume loaded 2
+$Volume Weapon/Boom5 4
+$Volume Weapon/boom6 4
+$Volume MGFire3 8
+
+//Weapon sounds
+Weapon/Boom1 Boom1
+Weapon/Boom2 Boom2
+Weapon/Boom3 Boom3
+Weapon/Boom4 Boom4
+Weapon/Boom5 Boom5
+Weapon/Boom6 Boom6
+Weapon/Boom7 Boom7
+Weapon/Boom8 Boom8
+Weapon/FireBurs  FireBurs
+Weapon/FireBur2  FireBur2
+Weapon/37mmblas  37mmblas
+Weapon/LaserHit  LaserHit
+Weapon/LaserHit1 LasHit1
+
+//sonstiges
+Sons/loaded loaded
+
+
+
+$Volume MGFire1 2
+$Volume fire03 3
+$Volume Fire05 1.2
+
+$Attenuation Sprk 3
+$Attenuation DSZTankP 3
+
+////----------------------------------------------------------------------------
+///Vehicle
+////----------------------------------------------------------------------------
+vehicle/pain100 MetHit4
+vehicle/pain75 MetHit3
+vehicle/gib boom17
+vehicle/die boom12
+$volume vehicle/pain75 0.8
+
+$playersound	mt_vehicle	male	*death		vehicle/die
+$playersound	mt_vehicle	male	*xdeath		vehicle/gib
+$playersound	mt_vehicle	male	*gibbed		vehicle/gib
+$playersound	mt_vehicle	male	*pain100	vehicle/pain100
+$playersound	mt_vehicle	male	*pain75		vehicle/pain100
+$playersound	mt_vehicle	male	*pain50		vehicle/pain75
+$playersound	mt_vehicle	male	*pain25		vehicle/pain75
+$playersound	mt_vehicle	male	*jump		dsempty
+$playersound	mt_vehicle	male	*fist		dsempty
+$playersound	mt_vehicle	male	*usefail	dsnoway
+$playersound	mt_vehicle	male	*use		dsempty
+$playersound	mt_vehicle	male	*grunt		dsempty
+$playersound	mt_vehicle	male	*taunt		dstaunt
+
+////----------------------------------------------------------------------------
+///Vehicle Crew
+////----------------------------------------------------------------------------
+GCrew/CannonEmpty KanLer
+GCrew/AmmoFilled MuniAuf
+GCrew/MGEmpty KeinMG
+GCrew/StillLoading WirdGel
+GCrew/MissionStart EinsBeg
+
+////----------------------------------------------------------------------------
+///Commander Taunt
+////----------------------------------------------------------------------------
+CMDTAU0 CMDTAU0
+CMDTAU1 CMDTAU1
+CMDTAU2 CMDTAU2
+CMDTAU3 CMDTAU3
+CMDTAU4 CMDTAU4
+CMDTAU5 CMDTAU5
+CMDTAU6 CMDTAU6
+CMDTAU7 CMDTAU7
+CMDTAU8 CMDTAU8
+CMDTAU9 CMDTAU9
+CMDTAU10 CMDTAU10
+CMDTAU11 CMDTAU11
+CMDTAU12 CMDTAU12
+CMDTAU13 CMDTAU12
+CMDTAU14 CMDTAU14
+CMDTAU15 CMDTAU15
+CMDTAU16 CMDTAU16
+CMDTAU17 CMDTAU17
+
+$Random Commander/Taunt {CMDTAU0 CMDTAU1 CMDTAU2 CMDTAU3 CMDTAU4 CMDTAU5 CMDTAU5 CMDTAU6
+CMDTAU7 CMDTAU8 CMDTAU9 CMDTAU10 CMDTAU11 CMDTAU12 CMDTAU13 CMDTAU14 CMDTAU15
+CMDTAU16 CMDTAU17}
+
+
+
+
+
 //Impacts
 BulHi BulHi
 BulHit BulHit2
@@ -31,10 +267,7 @@ GunLoa4 GunLoa4
 GunLoa5 GunLoa5
 GunLoa6 GunLoa6
 QGuLoa5 QGuLoa5
-W_Pepperpot/Load1 Gunloa
-W_Pepperpot/Load2 loaded
-W_Pepperpot/Load3 Gunloa2
-H_Cannon/Loaded QGuLoa5
+
 
 
 //Motor
@@ -83,36 +316,7 @@ FlaFir    FlaFir
 MorFir    MorFir
 DispShot  DispShot
 
-ZSPCMGN3 ZSPCMGN3
-ZSPCMGN2 ZSPCMGN2
-ZSPCMGN1 ZSPCMGN1
-
-$random Machinegun/Fire {ZSPCMGN3 ZSPCMGN2 ZSPCMGN1}
-
-Boom1     Boom1
-Boom2     Boom2
-Boom3     Boom3
-Boom4     Boom4
-Boom5     Boom5 
-Boom6     Boom6
-Boom7     Boom7
-Boom8     Boom8
-Boom10    Boom10
-Boom11    Boom11
-Boom12    Boom12
-Boom13    Boom13
-Boom14    Boom14
-Boom15    Boom15
-Boom16    Boom16
-Boom17    Boom17
-Boom18    Boom18
-37mmBlas  37mmBlas
 DSZTankX  DSZTankX
-DistBoo2  DistBoo2
-DistBoom  DistBoom
-AcidBoom  AcidBoom
-Wbom1     Wbom1
-MorHit    MorHit
 LasHit1   LasHit1
 
 //Misc
@@ -151,13 +355,6 @@ CwDe    CwDe
 CwHit   CwHit
 CwHit2  CwHit2
 
-//German Crew
-GCrew/CannonEmpty KanLer
-GCrew/AmmoFilled MuniAuf
-GCrew/MGEmpty KeinMG
-GCrew/StillLoading WirdGel
-GCrew/MissionStart EinsBeg
-
 //Walker
 MecSte1 MecSte1
 MecSte2 MecSte2
@@ -166,103 +363,3 @@ MecSte4 MecSte4
 
 TreCru TreCru
 HouCru HouCru
-
-////----------------------------------------------------------------------------
-///Items interaction
-////----------------------------------------------------------------------------
-Items/Pickup DSWPNUP1
-Ammo/Pickup DSWPNUP1
-Material/Pickup1 DSMAT1
-Material/Pickup2 DSMAT2
-$Random Material/Pickup {Material/Pickup1 Material/Pickup2}
-
-
-////----------------------------------------------------------------------------
-///Engine/Vehicle noise
-////----------------------------------------------------------------------------
-TankEngine/Start MotOn
-TankEngine/Idle MotLop3
-TankEngine/Stop MotOff
-Treads/Mid H_RPM4
-Treads/Forward H_RPM3
-Treads/Left MotLop3
-Treads/Right MotLop3
-Treads/Backward H_RPM2
-
-$Volume Treads/Forward 0.7
-$Volume Treads/Backward 0.7
-$Volume Treads/Left 0.7
-$Volume Treads/Right 0.7
-$Volume Treads/Mid 0.7
-
-////----------------------------------------------------------------------------
-///Vehicle interaction
-////----------------------------------------------------------------------------
-V_Interact/Button Click
-V_Interact/Zoom Click
-V_Interact/Periscope GScop
-V_Interact/Nightvision Click 
-
-
-////----------------------------------------------------------------------------
-///Autocannon
-////----------------------------------------------------------------------------
-25mmAutocannon/Fire 37mmfire
-
-
-////----------------------------------------------------------------------------
-///Machinegun
-////----------------------------------------------------------------------------
-
-
-////----------------------------------------------------------------------------
-///Small Cannon
-////----------------------------------------------------------------------------
-
-
-////----------------------------------------------------------------------------
-///Big Cannon
-////----------------------------------------------------------------------------
-MediumCannon/Firing0 Fire05
-MediumCannon/Firing1 Fire07
-MediumCannon/Firing2 Fire08
-HeavyCannon/Firing0 T5Fir1
-HeavyCannon/Firing1 T5Fir2
-HeavyCannon/Firing2 T5Fir1
-
-$Random MediumCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
-$Random HeavyCannon/Firing {HeavyCannon/Firing0 HeavyCannon/Firing1 HeavyCannon/Firing2}
-
-
-
-$Volume loaded 2
-$Volume Weapon/Boom5 4
-$Volume Weapon/boom6 4
-$Volume MGFire3 8
-
-//Weapon sounds
-Weapon/Boom1 Boom1
-Weapon/Boom2 Boom2
-Weapon/Boom3 Boom3
-Weapon/Boom4 Boom4
-Weapon/Boom5 Boom5
-Weapon/Boom6 Boom6
-Weapon/Boom7 Boom7
-Weapon/Boom8 Boom8
-Weapon/FireBurs  FireBurs
-Weapon/FireBur2  FireBur2
-Weapon/37mmblas  37mmblas
-Weapon/LaserHit  LaserHit
-Weapon/LaserHit1 LasHit1
-
-//sonstiges
-Sons/loaded loaded
-
-
-
-$Volume MGFire1 2
-$Volume fire03 3
-$Volume Fire05 1.2
-
-$Attenuation Sprk 3
-$Attenuation DSZTankP 3

@@ -1,20 +1,33 @@
 #library "MTFunction"
-#include "zcommon.acs"
+//#include "zcommon.acs"
+#include "zcommon/gzdoom.acs"
+//#include "acsutils_edit.acs"
+//#include "acsutilsp.acs"
 //bool MT_Translocator[64];
 //MP/Player constants
 #define PLAYER_TID_START 300
-//Weapon related constants
-#define Cannon_Ammo_MAX 4
 //Aux
 #define AmmoType_HUD_ID 500
 //HUD Scale
 #define BIGFONT_HUDX 320
 #define BIGFONT_HUDY 640
 
-int marineprevioushealth;
-int marinepreviousarmor;
-int vehicleprevioushealth;
-int vehiclepreviousarmor;
+#define FOREVER 0
+
+#define ALIGN_CENTER 0.4
+#define ALIGN_CENTER_Y 0.0
+#define ALIGN_LEFT 0.1
+#define ALIGN_TOP 0.1
+#define ALIGN_RIGHT 0.2
+#define ALIGN_BOTTOM 0.2
+
+int vehiclerotation;
+
+//Taunting.
+Script "cmd_taunt" (VOID) NET
+{
+ GiveInventory("cmd_taunt", 1);
+}
 
 //Inbuilt search light
 script "MTACS_SearchLight" (void) NET
@@ -41,9 +54,177 @@ script "MTACS_SearchLight" (void) NET
 
 } 
 
+int Shave(int num)
+{
+	return (num>>16)<<16;
+}
 
-str WeaponType[2] = {
-"MHT_75mmCannon", "MHT_Heavy_Pepperpot",
+int ShaveInt(int num)
+{
+	return (num>>16);
+}
+
+void ZTHudMessage (int x, int y, int id, str text, int alignX = ALIGN_CENTER, int alignY = ALIGN_CENTER, int showTime = 0.50, int fadeTime = 0.25, int resX = -1, int resY = -1, \
+					int hudX = 0, int hudY = 0)
+{
+	x = Shave(x);
+	y = Shave(y);
+	
+	if (resX == -1 && resY == -1)
+	{
+	
+		resX = GetScreenWidth() * 1.0;
+		resY = GetScreenHeight() * 1.0;	
+		
+		/*
+		// DO NOT DO THIS IN SINGLEPLAYER
+		if (!IsClientOnly())
+		{
+			resX = CheckInventory("ResolutionX") * 1.0;
+			resY = CheckInventory("ResolutionY") * 1.0;
+		}
+		else
+		{
+			resX = ScreenWidth() * 1.0;
+			resY = ScreenHeight() * 1.0;
+		}
+		*/
+	}
+	
+	int finalX, finalY;
+
+	if (y < 0.0) { finalY = resY + y; }
+	else { finalY = y; }
+
+	if (x < 0.0) { finalX = resX + x; }
+	else { finalX = x; }
+
+	// Typewriter message
+	bool typewriter = false;
+
+	int type = HUDMSG_PLAIN | HUDMSG_FADEOUT;
+	if (showTime <= 0.0)
+		type = HUDMSG_PLAIN;
+	else if (showTime >= 100.0 && showTime < 999.0)
+	{
+		showTime -= 100.0;
+		typewriter = true;
+		type = HUDMSG_TYPEON;
+	}
+
+	SetHUDSize(ShaveInt(resX), ShaveInt(resY), false);
+	
+	if (!typewriter)
+		HudMessage(s:text; type, id, CR_UNTRANSLATED, finalX + alignX, finalY + alignY, showTime, fadeTime);
+	else
+		HudMessage(s:text; type, id, CR_UNTRANSLATED, finalX + alignX, finalY + alignY, showTime, 0.03, fadeTime);
+		
+	SetHUDSize(hudX, hudY, false);
+}
+
+// -- REDUX OF THE PREVIOUS SCRIPTS --
+void HMUSRedux (int xoffset, int yoffset, str text, int alignx, int aligny, int id, int showtime, int side)
+{
+	HMUSReduxExtended(xoffset, yoffset, text, alignx, aligny, id, showtime, side, 0.25, 0);
+}
+
+void HMUSReduxExtended (int xoffset, int yoffset, str text, int alignx, int aligny, int id, int showtime, int side, int fadeTime, int bold)
+{
+	int alignvar_x, alignvar_y;
+	
+	switch (alignx)
+	{
+		case 0:
+		alignvar_x = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_x = ALIGN_CENTER;
+		break;
+
+		case 2:
+		alignvar_x = ALIGN_RIGHT;
+		break;
+	}
+
+	switch (aligny)
+	{
+		case 0:
+		alignvar_y = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_y = ALIGN_CENTER_Y;
+		break;
+
+		case 2:
+		alignvar_y = ALIGN_RIGHT;
+		break;
+	}
+	
+	ZTHudMessage(xoffset, yoffset, id, text, alignvar_x, alignvar_y, showtime, fadeTime);
+}
+
+void HudMessageUnscaled (int xoffset, int yoffset, str text, int alignx, int aligny, int id)
+{
+	int vidres_x = GetCVar("vid_defwidth");
+	int vidres_y = GetCVar("vid_defheight");
+	int vidres_xFixed = vidres_x * 1.0;
+	int vidres_yFixed = vidres_y * 1.0;
+	int vidres_xCenter = FixedDiv(vidres_xFixed, 2.0);
+	int vidres_yCenter = FixedDiv(vidres_yFixed, 2.0);
+	int alignvar_x;
+	int alignvar_y;
+
+	int finaloffset_x;
+	int finaloffset_y;
+
+	if (yoffset < 0) { finaloffset_y = vidres_yFixed + yoffset; }
+	else { finaloffset_y = yoffset; }
+
+	if (xoffset < 0) { finaloffset_x = vidres_xFixed + xoffset; }
+	else { finaloffset_x = xoffset; }
+
+	switch (alignx)
+	{
+		case 0:
+		alignvar_x = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_x = ALIGN_CENTER;
+		break;
+
+		case 2:
+		alignvar_x = ALIGN_RIGHT;
+		break;
+	}
+
+	switch (aligny)
+	{
+		case 0:
+		alignvar_y = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_y = ALIGN_CENTER_Y;
+		break;
+
+		case 2:
+		alignvar_y = ALIGN_RIGHT;
+		break;
+	}
+
+	SetHUDSize(vidres_x, vidres_y, false);
+	HudMessage(s:text; HUDMSG_PLAIN | HUDMSG_FADEOUT, 725+id, CR_WHITE, finaloffset_x + alignvar_x, finaloffset_y + alignvar_y, 2.0);
+}
+
+
+//Weapon related constants
+#Define Cannon_Ammo_MAX 4
+
+str ZZT_WeaponType[1] = {
+"MT_105mmCannon",
 };
 
 //Ammunition upgrade
@@ -67,6 +248,10 @@ str AmmoType[Cannon_Ammo_MAX][4] = {
 {"MHT_BaseGun_HEAT", "HTAMA0", "HTAMB0", "HTAMC0"},
 };
 
+str AmmoType_STR[Cannon_Ammo_MAX] = {
+"APHE", "U-APFSDS", "MPHE", "U-MPHE"
+};
+
 str AmmoType_Count[Cannon_Ammo_MAX] = {
 "MT_75x500mmAP", "MT_75x500mmAPCR", "MT_75x500mmHE", "MT_75x500mmHEAT"};
 
@@ -75,26 +260,73 @@ str AmmoType_Count[Cannon_Ammo_MAX] = {
 str WPN_Barrel[1] = {
 "MT_Heavy_Pepperpot_BarrelsLoad"};
 
+
+//Ammo type icon
+#Define MTHUD_CURAMMO_ICO_Y 900
+#Define MTHUD_CURAMMO_ICO_X -900
+//Current Ammo text
+#Define MTHUD_CURAMMO_STR_Y 800.0
+#Define MTHUD_CURAMMO_STR_X 950.0
+//Current Ammo amount
+#Define MTHUD_CURAMMO_Y 500.0
+#Define MTHUD_CURAMMO_X 300.0
+//Ammo max
+#Define MTHUD_CURAMMOMAX_Y 1090.0
+#Define MTHUD_CURAMMOMAX_X 958.0
+//Current mag size
+#Define MTHUD_CURMAG_Y 1083.0
+#Define MTHUD_CURMAG_X 958.0
+//HUDSize
+#Define MTHUD_SIZE_Y 800
+#Define MTHUD_SIZE_X 600
+
+
 //Ammo/Weapon mode display crap
 //Sbarinfo is pretty shitty and tedious for this
 //And no Graf, I will NOT use ZScript which something Sbarinfo should
 //have a better support for it, + I want Zandronum 3.1 compability 
 script "MTHUD_Ammo" ENTER
 {
+	//Weapon related
 	int last_wpn, cur_ammo, cur_magsize; 
+	bool weapon_show;
+	weapon_show = 0;
 	last_wpn = 0;
 	cur_ammo = 0;
 	int cur_upg = 0;
 	cur_magsize = 0;
-	print(s: "Activator: ", d: PlayerNumber());
-	//TODO: Take account for resolution changes, fixed to 1680:1050
-
+	
+	//print(s: "Activator: ", d: PlayerNumber());
+	//TODO: Take account for resolution changes, fixed to 1680:1050. DONE
+	//TODO: Take account for hud_scale > 1.
+	//TODO: Take account for magazine,clips and chamber amount.
 	while(1)
 	{
-
+		//HUD related
+		int resolution_x = GetScreenWidth();
+		int resolution_y = GetScreenHeight();
+		
+		//resolution_x = (resolution_x - 100);
+		//resolution_y = (resolution_y - 100);
+		
+		//log(d:resolution_x);
+		
 		//First check selected weapon
-		//if (CheckWeapon("MHT_75mmCannon") == 1)
-		if ((CheckWeapon("MHT_75mmCannon") || CheckWeapon("MHT_Heavy_Pepperpot")) == 1)
+		for (int i = 0; i < 1; i++)
+		{
+			//log(s: CheckWeapon(WeaponType[i]) );
+		
+			if (CheckWeapon(ZZT_WeaponType[i]) == true)
+			{
+				//log(s:ZZT_WeaponType[i]);
+				weapon_show = true;
+			}
+			else
+				weapon_show = false;
+		}
+		
+		
+		if (weapon_show == true)
 		{
 
 			//Check first for currently selected ammo type
@@ -106,101 +338,52 @@ script "MTHUD_Ammo" ENTER
 			}
 			
 			
-			//Then check for upgrades
-			/*
-			for (int i1 = 0; i1 < 4; i1++)
-			{
-				if (CheckInventory(AmmoUpg[i1]) == 2 && )
-					cur_upg = 2;
-				else if (CheckInventory(AmmoUpg[i1]) == 1)
-					cur_upg = 1;				
-			}
-			*/
-			
-			
 			if (CheckInventory(AmmoUpg[cur_ammo]) == 2)
 					cur_upg = 3;
 			else if (CheckInventory(AmmoUpg[cur_ammo]) == 1)
 					cur_upg = 2;	
 			else if (CheckInventory(AmmoUpg[cur_ammo]) == 0)
-					cur_upg = 0;
+					cur_upg = 1;
+			else
+					cur_upg = 1;
 					
 			
-			SetHudSize(800,600,0);
-			//print(s: "Ammo ", s: AmmoType[cur_ammo][0], s: " is upgraded: ", d: cur_upg);
-			
-					
-				//Working pattern...
-				/*
-				if (CheckInventory(AmmoType[0][0]) == 1)
-				{
-					SetHudSize(1340, 1340, 0);
-					SetFont(AmmoType[0][1]);
-					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-				}
-				else if (CheckInventory(AmmoType[1][0]) == 1)
-				{
-					SetHudSize(1340, 1340, 0);
-					SetFont(AmmoType[1][1]);
-					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-				}
-				else if (CheckInventory(AmmoType[2][0]) == 1)
-				{
-					SetHudSize(1340, 1340, 0);
-					SetFont(AmmoType[2][1]);
-					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-				}
-				else if (CheckInventory(AmmoType[3][0]) == 1)
-				{
-					SetHudSize(1340, 1340, 0);
-					SetFont(AmmoType[3][1]);
-					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-				}
-				*/
-			
-	
-				
+			//SetHudSize(p_res_x, p_res_y, 1);
+		
 			if (CheckInventory(AmmoType[cur_ammo][0]))
 			{
 				//Ammo display
-				SetHudSize(1340, 1340, true);
-				SetFont(AmmoType[cur_ammo][1]);
-				HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
+				SetFont(AmmoType[cur_ammo][cur_upg]);
+				ZTHudMessage(resolution_x - 105.0, resolution_y - 105.0, AmmoType_HUD_ID, StrParam(s:"A"), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+					
+				//Ammo Name
+				SetFont("BIGFONT");
+				HMUSRedux(resolution_x - 190.0, resolution_y - 100.0, StrParam(s:AmmoType_STR[cur_ammo]), ALIGN_CENTER, ALIGN_RIGHT, AmmoType_HUD_ID+6, FOREVER, 0);
 				
-				//Check for upgrades	
-				if (cur_upg > 0)
-				{
-					SetHudSize(1340, 1340, true);
-					SetFont(AmmoType[cur_ammo][cur_upg]);
-					//SetFont(AmmoType[cur_ammo][cur_upg[cur_ammo]]);
-					HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 1375.0, 1175.0, 0);
-				}
-					
-					
 				//Ammo count
-				SetHudSize(1100, 1100, false);
-				SetFont("BIGFONT");
-				HudMessage(d: CheckInventory(AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_UNTRANSLATED, 1048.0, 958.0, 0);
-				HudMessage(s: "/";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_UNTRANSLATED, 1067.0, 958.0, 0);
+				SetFont("BIGFONT2");
+				ZTHudMessage(resolution_x - 210.0, resolution_y - 130.0, AmmoType_HUD_ID+1, StrParam(d: CheckInventory(AmmoType_Count[cur_ammo])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+
 				//Ammo count Max
-				SetHudSize(1100, 1100, false);
-				SetFont("BIGFONT");
-				HudMessage(d: GetMaxInventory(0, AmmoType_Count[cur_ammo]);HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_UNTRANSLATED, 1090.0, 958.0, 0);
-					
+				SetFont("BIGFONT2");
+				ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+3, StrParam(d: GetMaxInventory(0, AmmoType_Count[cur_ammo])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+
+				/*
 				//Check for Mag/Chamber
 				if (CheckInventory(WPN_Barrel[0]) > 0 && CheckWeapon("MHT_Heavy_Pepperpot"))
 				{
 					cur_magsize = CheckInventory(WPN_Barrel[0]);
-					SetHudSize(1100, 1100, false);
-					SetFont("BIGFONT");
-					HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+					SetFont("BIGFONT2");
+					HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, MTHUD_CURMAG_X, MTHUD_CURMAG_Y + 30.0, 0);
+					ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+4, StrParam(d: cur_magsize), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
 				}
 				else
 				{
-					SetHudSize(1100, 1100, false);
-					SetFont("BIGFONT");
-					HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, 1083.0, 958.0 +30.0, 0);
+					SetFont("BIGFONT2");
+					HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED,  MTHUD_CURMAG_X, MTHUD_CURMAG_Y + 30.0, 0);
+					ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+4, StrParam(d: cur_magsize), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
 				}
+				*/
 
 			}
 
@@ -210,18 +393,20 @@ script "MTHUD_Ammo" ENTER
 		else
 		{
 			SetFont("");
-			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 0, 0, 0);
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 0, 0, 0);
 			SetFont("");
-			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_BLUE, 0, 0, 0);
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID+1, CR_BLUE, 0, 0, 0);
 			SetFont("");
-			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_BLUE, 0, 0, 0);
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID+2, CR_BLUE, 0, 0, 0);
 			SetFont("");
-			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_BLUE, 0, 0, 0);
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID+3, CR_BLUE, 0, 0, 0);
 			SetFont("");
-			HudMessage(s:"A";HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_BLUE, 0, 0, 0);
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_BLUE, 0, 0, 0);
+			SetFont("");
+			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID+6, CR_BLUE, 0, 0, 0);
 		}
 
-		Delay(1);
+		Delay(2);
 	}
 
 } 
@@ -231,14 +416,15 @@ script "MTHUD_Ammo" ENTER
 //Used to add firing delay for cannons so that players can use other
 //weapons in the meanwhile 
 str delayer[4] = {
-//88mm Cannon
+//MBT Cannon
 
-//75mm Cannon
+//MBT Weapon
+
+//Heavy Cannon
 "75mmReloadTimer1", "75mmReloadTimer2",
+//Heavy Weapon
 "MT_Heavy_Pepperpot_ReloadTimer1", "MT_Heavy_Pepperpot_ReloadTimer2"};
-//50mm Cannon
 
-//37mm Cannon
 
 script "MT_Wfiring_delay" (int Item, int duration) 
 {
@@ -264,25 +450,46 @@ script "MT_Wfiring_delay" (int Item, int duration)
 }
 
 
-//This is highly neccessary so movement buttons can be used for Menus 
- 
-script "MT_ItemBuyBugfix" OPEN 
+
+
+//Ugly hack to fix the Morph To Marine health reset bug on map change
+//when the player is morphed
+//TODO: Fix the bug on changemap command
+script "MT_MorphFixer" UNLOADING
 {
-ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+	if (CheckInventory("MT_MorphVCrewToken") > 0)
+		{
+			ACS_NamedExecute("MT_MorphToMarine", 0);
+		}
+	delay(5);
 }
+
+ 
+script "MT_NewMap" OPEN 
+{
+//ZANDRONUM
+//This is highly neccessary so movement buttons can be used for Menus 
+//	ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+	TakeInventory("MT_MorphVCrewToken",999);
+	
+//Remove a few unneccesary token on map change
+	TakeInventory("MT_FirstMorph", 999);
 
 //When the player got the Menu open and enters a map
 //He gets stuck, this ACS removes this bug.
-
-script "MT_MenuJunk" OPEN
-{
 	If(!CheckInventory("ImCrafting"))
 	{
 	    TakeInventory("ImCrafting",1);
 		SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
 	    SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
 	}
+//Sometimes Cannons get stuck at firing
+	for (int i = 0; i < 5; i++)
+	{
+		TakeInventory(delayer[i],999);
+	}
 }
+
 
 //Script to force use a specific item
 script "MT_AmmoSwitch_Reverse" (VOID) NET
@@ -297,9 +504,10 @@ script "MT_IsItemOne" (int item)
 		//str items[1];
 		str items[1] = {"MHT_BaseGun_AmmoSlot"};
 		
+		printbold(d: CheckInventory("MHT_BaseGun_AmmoSlot"));
 		if (CheckActorInventory(0, items[item]) == 1)
 		{
-			SetResultValue(True);
+			SetResultValue(1);
 			//Return True;
 		}
 		/*
@@ -326,41 +534,39 @@ script "MT_MPShit2" RESPAWN
 }
 */
 
-
-//Bullshit for CVAR
+//------------------------------------------------------------------------------
+//CVAR
+//------------------------------------------------------------------------------
 script "MT_CVAR_Things" (void)
 {
     SetResultValue(GetCVar("mtcvar_creditstart"));
 }
 
-//TODO: Add initalization token
 script "MT_GiveMoni" ENTER
 {
- //Remove a few unneccesary token on map change
- TakeInventory("MT_FirstMorph", 999);
-
-
-  //int creditamount;
-	If (!CheckInventory("MT_Credits") >= 1)
+	If (CheckInventory("MT_ClassToken") == 1)
 	{
-		if(GetCVar("mtcvar_creditstart") > 1 )
+		if(GetCVar("mtcvar_creditstart") > 0 )
 		{
 			GiveInventory("MT_Credits", GetCVar("mtcvar_creditstart"));	
 		}
-		if(GetCVar("mtcvar_metalstart") > 1 )
+		if(GetCVar("mtcvar_metalstart") > 0 )
 		{
 			GiveInventory("MT_HighValueMetal", GetCVar("mtcvar_metalstart"));
 		}		
 		
-	Terminate;
 	}
+	GiveInventory("MT_ClassToken", 1);
+	Terminate;
 }
 
 //Placeholder for the Pre-Morph health memory
 //So that morphing cannot be used for reseting the health
 //to spawn amount.
-
-
+int marineprevioushealth;
+int marinepreviousarmor;
+int vehicleprevioushealth;
+int vehiclepreviousarmor;
 
 //Morph to Marine function
 //Probably needs some more refining
@@ -369,12 +575,14 @@ script "MT_GiveMoni" ENTER
 script "MT_MorphToMarine" (VOID) NET
 {
 
-	//Morph marine
- 	 if (!CheckInventory("MT_MorphVCrewToken") & CheckInventory("MT_ClassToken"))
+	//Morph to marine
+ 	 if (!CheckInventory("MT_MorphVCrewToken") & CheckInventory("MT_ClassToken") > 0)
 		{
 			vehicleprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
+			
 			GiveInventory("MT_MorphVCrewToken", 1);
 			//HudMessage(d: vehicleprevioushealth;HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+			
 			delay(1);
 			
 			MorphActor(PlayerNumber(), "MT_MorphPlayer", "", 0xFFFFFF, 0, "", "");
@@ -388,21 +596,30 @@ script "MT_MorphToMarine" (VOID) NET
 			else
 				{
 					//Guarantee at least 75 HP...
-					if (marineprevioushealth < 75)
+					if (marineprevioushealth < 110)
 					{
-						marineprevioushealth = 75;
+						marineprevioushealth = 110;
 					}
 					SetActorProperty(PlayerNumber(), APROP_Health, marineprevioushealth);
 				}
 			GiveInventory("MT_FirstMorph", 1);
 		}
-	//Morph tank
-	else if (CheckInventory("MT_ClassToken"))
+	//Morph to tank
+	else if (CheckInventory("MT_ClassToken") > 0)
 		{
 			marineprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
+			int vehiclepreviousbaseangle = GetUserVariable(0, "user_chassisangle");
+			int vehiclenewangle = GetActorAngle(0);
+			//log(s: "OLD ANGLE: ", d: vehiclenewangle);
+			vehiclenewangle = vehiclenewangle / 182;
+			//log(s: "NEW ANGLE: ", d: vehiclenewangle);
+			
 			delay(1);
 			UnMorphActor(PlayerNumber(), 0);
 			SetActorProperty(PlayerNumber(), APROP_Health, vehicleprevioushealth);
+			
+			ACS_NamedExecuteWithResult("MT_SetVehicleRotation", vehiclenewangle);	
+			SetUserVariable(0, "user_chassisangle", vehiclenewangle);
 			TakeInventory("MT_MorphVCrewToken", 999);
 		}
 		
@@ -427,76 +644,15 @@ script "MT_CheckMaxHealth" (VOID)
 }
 
 
-/*
+script "MT_SetVehicleRotation" (int degree) 
+{
+	vehiclerotation = degree;
+}
 
-//Teleporter stuff
-//Ripped from RGA mod, whoever made it thanks to that dude.
-script "MT_Teleport" (void)
+script "MT_GetVehicleRotation" (VOID) 
 {
-	if(MT_Translocator[PlayerNumber()] == True)
-	{
-		Delay(1);
-		Teleport(PlayerNumber()+600);
-		Delay(1);
-		Thing_Remove(PlayerNumber()+600);
-		SetFont("SMALLFONT");
-		//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
-		//	HudMessageBold(n:0,s:" \cdused Tactical Insertion!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
-		MT_Translocator[PlayerNumber()] = False;
-	}
+	SetResultValue(vehiclerotation);
 }
-//628
-script "MT_Teleport2" (int Which)
-{
-	int byte_angle = GetActorAngle(0) >> 8;
-	int byte_pitch = GetActorPitch(0) >> 8;
-	if(Which == 0)
-	{
-		if(MT_Translocator[PlayerNumber()] == False)
-		{
-			SpawnSpotFacing("MT_TranslocatorPlaced",PlayerNumber()+500,PlayerNumber()+600);
-			MT_Translocator[PlayerNumber()] = True;
-		}
-	}
-	else if(Which == 1)
-	{
-		if(MT_Translocator[PlayerNumber()] == True)
-		{
-			Thing_Remove(PlayerNumber()+600);
-			MT_Translocator[PlayerNumber()] = False;
-			SetFont("SMALLFONT");
-			HudMessage(s:"\cfTactical Insertion Removed";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
-		}
-	}
-	else if(Which == 2)
-	{
-		SetResultValue(MT_Translocator[PlayerNumber()]);
-	}
-	else if(Which == 3)
-	{
-		SetFont("SMALLFONT");
-		HudMessage(s:"\cfYou've already placed one!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,1.0);
-	}
-//projectile stuff
-	
-	else if(Which == 4)
-	{
-		if(MT_Translocator[PlayerNumber()] == False)
-		{
-            SpawnProjectile(0,"MT_TranslocatorProjectile",byte_angle,200,byte_pitch*2,0.2,PlayerNumber()+600);
-			MT_Translocator[PlayerNumber()] = True;
-		}
-	}	
-	else
-	{
-		MT_Translocator[ActivatorTID()-600] = False;
-		SetActivator(ActivatorTID()-600);
-		MT_Translocator[PlayerNumber()] = False;
-		SetFont("SMALLFONT");
-		HudMessage(s:"\cgTactical Insertion destroyed!";HUDMSG_FADEOUT,600+PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
-	}
-}
-*/
 
 
 //This one causes the Player to morph back to tank with 0 health
@@ -581,7 +737,7 @@ script "MT_MorphToMarine" (VOID) NET
 ////Main script
 //It will initalize other scripts on start
 //------------------------------------------------------------------------------
-script "MTACS_Main" (VOID) NET 
+script "MT_Main" (VOID) NET 
 {
-	ACS_NamedExecute("MTHUD_Ammo", 0, 0, 0, 0);
+
 }

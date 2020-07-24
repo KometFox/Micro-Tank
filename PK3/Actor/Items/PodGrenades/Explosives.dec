@@ -1,10 +1,10 @@
-Actor MT_GrenadePod_Explosive : MT_PlayerInventory { 
+Actor MT_GrenadePod_Explosive : MT_PlayerCustomInventory { 
   -COUNTITEM
   Inventory.Icon "FGRNA0"
   Inventory.PickupMessage "Picked up: 40mm Explosive Grenade (Pod mount)"
   Inventory.Amount 1
-  Inventory.MaxAmount 50
-  Inventory.InterHubAmount 50
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
   Tag "[Grenade Pod]: Explosive Grenade"
   Scale 1
 
@@ -16,8 +16,12 @@ Actor MT_GrenadePod_Explosive : MT_PlayerInventory {
   Use:  
     N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
     N15S A 0 A_GiveInventory("UtilityGrenadeCoolDown")
-    TNT1 A 0 A_Playsound("Fire04")
+    TNT1 A 0 A_Playsound("Grenadepod/Launch")
     TNT1 A 0 A_FireCustomMissile("40mm Grenade Explosive")
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Explosive", -4)
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Explosive", -8)
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Explosive", 4)
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Explosive", 8)
     TNT1 A 1   
     Goto Jumpy
   Jumpy:  
@@ -41,8 +45,8 @@ ACTOR "40mm Grenade Explosive"
   +BLOODSPLATTER
   +NOTELEPORT
   gravity 0.75
-  damage (random(1,1.5)*5)
-  Deathsound "Boom3"
+  damage (frandom(1,1.5)*5)
+  Deathsound "Grenadepod_HE/Explosion"
   Obituary "%o <40mm HE Grenade] %k" 
   States
   {
@@ -51,37 +55,13 @@ ACTOR "40mm Grenade Explosive"
     Loop
   Death:
     TNT1 A 0 A_Scream
-	TNT1 AAA 0 A_SpawnItemEx("MT_CEG_40mmGrenadeHE_Smoke1",0,0,0,+frandom(-2,2),+frandom(-2,2),+frandom(1,2))
+	TNT1 AAAAA 0 A_SpawnItemEx("MT_CEG_40mmGrenadeHE_Smoke1",0,0,0,+frandom(-2,2),+frandom(-2,2),+frandom(1,2))
 	TNT1 AA 0 A_SpawnItemEx("MT_CEG_40mmGrenadeHE_Xplo1",0,0,0,+frandom(-1,1),+frandom(-1,1),+frandom(1.5,1.5))
-	TNT1 AAAAAA 0 A_SpawnItemEx("MT_CEG_40mmGrenadeHE_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))
-    TNT1 A 0 A_Explode(90,190,0,0,120)
+    TNT1 A 0 A_Explode(70,100,0,0,80)
     Stop
   }
 }
 
-
-ACTOR MT_CEG_40mmGrenadeHE_TrailC : MT_CEG_7.62mm_OrganHit
-{
-  Scale 0.2
-  alpha 0.45
-  renderstyle Add
-  States {
-  Spawn:
-    APP1 AABBCCDDEEFFGG 1 Bright
-    TNT1 A 0
-    Stop
-}}  
-
-
-ACTOR MT_CEG_40mmGrenadeHE_Trail : MT_CEG_7.62mm_OrganHit
-{
-  States
-  {
-  Spawn:
-    TNT1 AAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("MT_CEG_40mmGrenadeHE_TrailC",0,0,0)
-    Stop
-  }  
-}
 
 
 ACTOR MT_CEG_40mmGrenadeHE_Xplo1 : Particle
@@ -91,15 +71,14 @@ ACTOR MT_CEG_40mmGrenadeHE_Xplo1 : Particle
   States {
   Spawn:
     TNT1 A 0
-    TNT1 A 0 A_Jump(150,"Spawn1")
-    TNT1 A 0 A_Jump(150,"Spawn2")
-   loop
+    TNT1 A 0 A_Jump(256,"Spawn1")
+	loop
   Spawn1:
-    AEP3 ABCDEFGHIJKLMNOPQRSTU 2 Bright  
-    AEP3 UVWXYZ 2 Bright  A_FadeOut(0.20)	
+    AEP3 EFGHIJKLMNOPQRSTU 1 Bright  
+    AEP3 UVWXYZ 1 Bright  A_FadeOut(0.20)	
     Goto Death
   Spawn2: 
-    BEP3 ABCDEFGHIJKLMNOPQRST 2 Bright 
+    BEP3 EFGHIJKLMNOPQRST 1 Bright 
     BEP3 UVWXYZ 2 Bright A_FadeOut(0.20)	
     Goto Death
   Death:
@@ -114,8 +93,8 @@ ACTOR MT_CEG_40mmGrenadeHE_Smoke1 : Particle
   States
   {
   Spawn:
-    ASP1 BCDEFGHIJ 4 
-    ASP1 KLMNO 4 A_Fadeout(0.19)
+    ASP1 BCDEFGHIJ 2 
+    ASP1 KLMNO 2 A_Fadeout(0.19)
     Goto Death
   Death:
     TNT1 A 1
@@ -126,13 +105,13 @@ ACTOR MT_CEG_40mmGrenadeHE_Smoke1 : Particle
 
 ///////////////////////////////////
 
-Actor MT_Item_GrenadePod_MolotovGrenade : MT_PlayerInventory { 
+Actor MT_Item_GrenadePod_MolotovGrenade : MT_PlayerCustomInventory { 
   -COUNTITEM
   Inventory.Icon "FGRNA0"
   Inventory.PickupMessage "Picked up: 40mm Molotov Grenade (Pod mount)"
   Inventory.Amount 1
-  Inventory.MaxAmount 50
-  Inventory.InterHubAmount 50
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
   Tag "[Grenade Pod]: Molotov Grenade"
   Scale 1
 
@@ -144,7 +123,7 @@ Actor MT_Item_GrenadePod_MolotovGrenade : MT_PlayerInventory {
   Use:  
     N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
     N15S A 0 A_GiveInventory("UtilityGrenadeCoolDown")
-    TNT1 A 0 A_Playsound("Fire04")
+    TNT1 A 0 A_Playsound("Grenadepod/Launch")
     TNT1 A 0 A_FireCustomMissile("40mm Molotov Grenade")
     TNT1 A 1   
     Goto Jumpy
@@ -170,7 +149,7 @@ ACTOR "40mm Molotov Grenade"
   +BLOODSPLATTER
   +NOTELEPORT
   gravity 0.75
-   damage (random(1,1.5)*5)
+   damage (frandom(1,1.5)*5)
   
   Deathsound "Weapon/37mmBlas"
   Obituary "%o <40mm HE Grenade] %k" 

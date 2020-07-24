@@ -5,7 +5,11 @@ ACTOR MTCEG_FireDeath_Fire : Particle {
   States{
   Spawn:
     AFP0 ABCDEFGHIJKLMNO 2 Bright A_Fadeout(0.04) 
-    Goto Death }}
+    Goto Death 
+  Death:
+	TNT1 A 0
+	Stop
+	}}
 
 ACTOR MTCEG_FireDeath_Smoke : Particle { 
   Scale 0.5
@@ -14,7 +18,11 @@ ACTOR MTCEG_FireDeath_Smoke : Particle {
   States{
   Spawn:
     ASP3 ABCDEFGHIJKLMNOPQRS 2
-    Goto Death }}
+    Goto Death 
+  Death:
+	TNT1 A 0
+	Stop
+	}}
 	
 ACTOR MTCEG_FireDeath_Spark : Particle{
   renderstyle Add
@@ -26,8 +34,11 @@ ACTOR MTCEG_FireDeath_Spark : Particle{
   Spawn:
     APP1 ABC 1 Bright
     APP1 DEFG 2 Bright A_Fadeout(0.058)  
-    Goto Death
-}}	
+    Goto Death 
+  Death:
+	TNT1 A 0
+	Stop
+	}}	
 
 ACTOR P_FireDeath : Particle
 {
@@ -98,7 +109,11 @@ ACTOR MT_CEG_CorpseBioChemSpark1 : Particle {Scale 0.5 Gravity 0
   Spawn:
   APP2 A 8
   APP2 BBCCDDEEFFGG 1 A_Fadeout(0.029) 
-  Goto Death}}
+  Goto Death 
+  Death:
+	TNT1 A 0
+	Stop
+	}}	
 
 ACTOR MTCEG_CorpseBioChem : Particle
 {

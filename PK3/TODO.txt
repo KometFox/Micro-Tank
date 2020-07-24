@@ -8,30 +8,6 @@ Weapons:
 -Decals (25% Done)
 
 
-5 ammo type maximum
-Remove: Buckshot, Incendiary Shell (Replace them with something else)
-50,75,88mm Cannon:
-AP Shell (Shell, due to small explosive amount, piercing)
-APCR Shell (Improved variant of AP Shell, more expensive, piercing)
-HEAT Shell* (Combo of AP/HE)
-HE Shell (medium explosion radius, medium damage)
-
-Candiates:
-Nuclear Shell, (Or maybe T2 upgrade should have a nuclear like effect)
-Acid shell? Could be actually useful against armors since it can plausible melt
-metals. 
-
-
-Replace Panzer II with Panzer III (50mm Cannon, Long), light tanks are actually 
-useless and they are meant for scouting anyway, my mod is not realism focused 
-but a 37mm cannon against a SU-100, SU-122? C'mon. Appendix: Actually no,
-I'll just leave the light classes as it is. 
-
-
-
-Tank Destroyer class? (Jagd Panther, Stug III/IV, Jagd Panzer IV) 
-Panther/M10 should get 75mm Cannon
-
 Misc:
 -More Dynamic Lights
 -HUD needs some work
@@ -39,7 +15,6 @@ Misc:
 -More Items (15% done)
 -Script organization (10% done) 
 -Improved particles 
--Change camo directly (no classes)
 
 HUD::
 -ACS for displaying the ammo needs the following changes:
@@ -147,11 +122,6 @@ Deployment then Extraction (2x Firing)
 AltFire:
 Cancel
 =100% Done
-
-2nd Resource "Weapon"
-Water Extractor
-Material Atomizer
-
 
 UNKNOWN:
 Missile/Rocket Launcher, Pulse Machine Gun, 2x20mm AutoCannon,

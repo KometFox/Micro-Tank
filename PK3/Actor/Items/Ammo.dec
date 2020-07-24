@@ -1,38 +1,11 @@
-
-ACTOR NukeRocketAmmo : Ammo 
+ACTOR Base_Ammo : Ammo
 {
-  Inventory.PickupMessage "Picked Up: Medium-scale nuke rocket"
-  Inventory.Amount 1
-  Inventory.MaxAmount 1
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 1
-  Inventory.Icon "TNT1A0"
-  Scale 0.2 
-  States
-  {
-  Spawn:
-    NUKE A -1
-    Stop
-  }
-}
-
-
-
-ACTOR Napalm : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Napalm 25 units"
-  Inventory.Amount 25
-  Inventory.MaxAmount 400
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 500
-  Inventory.Icon "TNT1A0"
-  Scale 0.5
-  States
-  {
-  Spawn:
-    NCAM A -1
-    Stop
-  }
+	Inventory.Amount 1
+	Inventory.MaxAmount 999
+    Ammo.BackpackAmount 1
+    Ammo.BackpackMaxAmount 999
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
 }
 
 ACTOR MT_75x500mmAPCR : Ammo 
@@ -44,7 +17,8 @@ ACTOR MT_75x500mmAPCR : Ammo
   Ammo.BackpackMaxAmount 70
   Inventory.Icon "APAMA0"
   Scale 0.5
-  +INVENTORY.UNDROPPABLE  
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
   States
   {
   Spawn:
@@ -52,46 +26,7 @@ ACTOR MT_75x500mmAPCR : Ammo
     Stop
   }
 }
-
-
-ACTOR MT_50x441mmAPCR : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing Composite Rigid shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
-ACTOR MT_37x290mmAPCR : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing Composite Rigid shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
 //---------------------
-
 ACTOR MT_75x500mmAP : Ammo 
 {
   Inventory.PickupMessage "Picked up: Armor Piercing shot"
@@ -101,81 +36,8 @@ ACTOR MT_75x500mmAP : Ammo
   Ammo.BackpackMaxAmount 70
   Inventory.Icon "APAMA0"
   Scale 0.5
-  +INVENTORY.UNDROPPABLE  
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
-
-ACTOR MT_50x441mmAP : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
-ACTOR MT_37x290mmAP : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
-ACTOR MT_37x290mm_IncendiaryAmmo : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 500
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 750
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    APAM A -1
-    Stop
-  }
-}
-
-
-ACTOR MT_37x290mm_EnergyCellAmmo : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Armor Piercing shot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 400
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 800
-  Inventory.Icon "APAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
   States
   {
   Spawn:
@@ -193,7 +55,8 @@ ACTOR MT_75x500mmInc : Ammo
   Ammo.BackpackMaxAmount 70
   Inventory.Icon "HEIAA0"
   Scale 0.5
-  +INVENTORY.UNDROPPABLE 
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
   States
   {
   Spawn:
@@ -201,43 +64,6 @@ ACTOR MT_75x500mmInc : Ammo
     Stop
   }
 }
-
-ACTOR MT_50x441mmInc : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Incendiary shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "HEIAA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    HEAM A -1
-    Stop
-  }
-}
-
-ACTOR MT_37x290mmInc : Ammo 
-{
-  Inventory.PickupMessage "Picked up: Incendiary shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "HEIAA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    HEAM A -1
-    Stop
-  }
-}
-
 
   
 ACTOR MT_75x500mmHE : Ammo 
@@ -249,7 +75,8 @@ ACTOR MT_75x500mmHE : Ammo
   Ammo.BackpackMaxAmount 70
   Inventory.Icon "HEAMA0"
   Scale 0.5
-  +INVENTORY.UNDROPPABLE 
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
   States
   {
   Spawn:
@@ -258,49 +85,15 @@ ACTOR MT_75x500mmHE : Ammo
   }
 }
 
-  
-ACTOR MT_50x441mmHE : Ammo {
-  Inventory.PickupMessage "Picked up: High Explosive shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "HEAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    HEAM A -1
-    Stop
-}}
-
-ACTOR MT_37x290mmHE : Ammo {
-  Inventory.PickupMessage "Picked up: High Explosive shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "HEAMA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    HEAM A -1
-    Stop
-}}
-
-
-
-
- ACTOR MT_75x500mmHEAT : Ammo {
+ACTOR MT_75x500mmHEAT : Ammo {
   Inventory.PickupMessage "Picked up: High Explosive Anti Tank shell"
   Inventory.Amount 1
   Inventory.MaxAmount 60
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 70
   Inventory.Icon "HTAMA0"
+ 	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
   Scale 0.5
   States
   {
@@ -309,118 +102,16 @@ ACTOR MT_37x290mmHE : Ammo {
     Stop
 }}
 
- ACTOR MT_50x441mmHEAT : Ammo {
-  Inventory.PickupMessage "Picked up: High Explosive Anti Tank shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "HTAMA0"
-  Scale 0.5
-  States
-  {
-  Spawn:
-    HTAM A -1
-    Stop
-}}
-
-
- ACTOR MT_37x290mmHEAT : Ammo {
-  Inventory.PickupMessage "Picked up: High Explosive Anti Tank shell"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "HTAMA0"
-  Scale 0.5
-  States
-  {
-  Spawn:
-    HTAM A -1
-    Stop
-}}
-
-
-
-
-
- ACTOR MT_75x500mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Buckshot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 60
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 70
-  Inventory.Icon "ARBCA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    ARBC A -1
-    Stop
-}}
-
-ACTOR MT_50x441mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Buckshot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 90
-  Inventory.Icon "ARBCA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    ARBC A -1
-    Stop
-}}
-
-ACTOR MT_37x290mmBuckshot : Ammo {
-  Inventory.PickupMessage "Picked up: Buckshot"
-  Inventory.Amount 1
-  Inventory.MaxAmount 115
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 130
-  Inventory.Icon "ARBCA0"
-  Scale 0.5
-  +INVENTORY.UNDROPPABLE 
-  States
-  {
-  Spawn:
-    ARBC A -1
-    Stop
-}}
-
-
-
-
-  ACTOR EnergyCell : Ammo {
-  Inventory.PickupMessage "Picked Up: 25 units of Energy Cell"
-  Inventory.Amount 40
-  Inventory.MaxAmount 500
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 1000
-  Inventory.Icon "ENCEA0"
-  Scale 1.5
-  States
-  {
-  Spawn:
-    ENCE A -1
-    Stop
-}}
-
-
-
- ACTOR A_7u62x54mmR : Ammo {
+ACTOR A_7u62x54mmR : Ammo {
   Inventory.PickupMessage "Picked up: 30x 7.62x54mmR rounds"
-  Inventory.Amount 30
+  Inventory.Amount 100
   Inventory.MaxAmount 3000
-  Ammo.BackpackAmount 50
-  Ammo.BackpackMaxAmount 6500
+  Ammo.BackpackAmount 100
+  Ammo.BackpackMaxAmount 6000
   Inventory.Icon "HUBBA0"
   Scale 0.25
-  +INVENTORY.UNDROPPABLE 
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
   States
   {
   Spawn:
@@ -428,7 +119,7 @@ ACTOR MT_37x290mmBuckshot : Ammo {
     Stop
 }}
 
- ACTOR MT_Ammo_7u62x54mmR_HE : Ammo {
+ACTOR MT_Ammo_7u62x54mmR_HE : Ammo {
   Inventory.PickupMessage "Picked up: 50x 7.62x54mmR-HE rounds"
   Inventory.Amount 50
   Inventory.MaxAmount 2000
@@ -436,7 +127,8 @@ ACTOR MT_37x290mmBuckshot : Ammo {
   Ammo.BackpackMaxAmount 4000
   Inventory.Icon "TNT1A0"
   Scale 0.25
-  +INVENTORY.UNDROPPABLE 
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
   States
   {
   Spawn:
@@ -445,56 +137,19 @@ ACTOR MT_37x290mmBuckshot : Ammo {
 }}
 
 
-
-
-
-
-ACTOR MT_Glob : Ammo {
-  Inventory.PickupMessage "Picked Up: 10 units of Acid Globs"
-  Inventory.Amount 10
-  Inventory.MaxAmount 100
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 250
-  Inventory.Icon "ENCEA0"
-  Scale 1.5
-  States
-  {
-  Spawn:
-    ENCE A -1
-    Stop
-}}
-
-  ACTOR MT_IA_GlobCount : Ammo 
-{
-  Inventory.PickupMessage "Picked Up: 10 units of Acid Globs"
-  Inventory.Amount 1
-  Inventory.MaxAmount 5
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 5
-  Inventory.Icon "ENCEA0"
-  Scale 1.5
-  States
-  {
-  Spawn:
-    ENCE A -1
-    Stop
-}}
-
-
-
 ACTOR MT_Spareparts : Ammo {
   Inventory.PickupMessage "-"
-  Inventory.Amount 25
-  Inventory.MaxAmount 1000
+  Inventory.Amount 100
+  Inventory.MaxAmount 2000
   Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 2000
+  Ammo.BackpackMaxAmount 4000
   Inventory.Icon "MSPPA0"
   Scale 0.5
+  	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
   States
   {
   Spawn:
     APAM A -1
     Stop
 }}
-
-

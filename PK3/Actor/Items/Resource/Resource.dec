@@ -1,210 +1,179 @@
 //Actually used shit for buying shit
 actor MT_Credits : ammo
 { 
-      
-  Height 6
-  Radius 6
-  Scale 2
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Credits, 1 unit"
-  Inventory.Amount 1
-  Inventory.MaxAmount 100000
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 100000
-  -COUNTITEM
-  
-  states
-  {
-  Spawn:
-    AAAA A 2000
-    goto Death
-  Death:
-    TNT1 A 0
+Height 6
+Radius 6
+Scale 2
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Credits, 1 unit"
+Inventory.PickupSound "Material/Pickup"
+Inventory.Amount 1
+Inventory.MaxAmount 100000
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 100000
+-COUNTITEM
+states
+	{
+Spawn:
+	AAAA A 2000
+	goto Death
+Death:
+	TNT1 A 0
 	Stop
-  }
+	}
 }
 
 actor MT_HighValueMetal : ammo
-{ 
-      
-  Height 6
-  Radius 6
-  Scale 2
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Highly Valueable Metal, 1 unit"
-  Inventory.Amount 1
-  Inventory.MaxAmount 10000
-  Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 10000
-  -COUNTITEM
-  
-  states
-  {
-  Spawn:
-    AAAA A 2000
-    goto Death
-  Death:
-    TNT1 A 0
+{    
+Height 6
+Radius 6
+Scale 2
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Highly Valueable Metal, 1 unit"
+Inventory.PickupSound "Material/Pickup"
+Inventory.Amount 1
+Inventory.MaxAmount 10000
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 10000
+-COUNTITEM
+states
+	{
+Spawn:
+	AAAA A 2000
+	goto Death
+Death:
+	TNT1 A 0
 	Stop
-  }
+	}
 }
-
 //----------------------------------------------------------------------------**
 ////Coins and Bars
 //----------------------------------------------------------------------------**
 actor MT_Credits_Small : MT_Credits
-{ 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Coin pile, 250 credits"
-  Inventory.Amount 250
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+{    
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Coin pile, 250 credits"
+Inventory.Amount 250
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+	Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
 	Stop
-	
-  }
+	}
 }
 
-
 actor MT_Credits_Medium : MT_Credits
-{ 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Coin pile, 500 credits"
-  Inventory.Amount 500
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+{   
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Coin pile, 500 credits"
+Inventory.Amount 500
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
-	Stop
-	
-  }
+	Stop	
+	}
 }
 
 actor MT_Credits_Big : MT_Credits
-{ 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Coin pile, 1000 credits"
-  Inventory.Amount 1000
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+{       
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Coin pile, 1000 credits"
+Inventory.Amount 1000
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
-	Stop
-	
-  }
+	Stop	
+	}
 }
-
-
 
 actor MT_Metals_Small : MT_HighValueMetal
-{ 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Highly Valueable Metal, 10 units"
-  Inventory.Amount 10
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+{      
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Highly Valueable Metal, 10 units"
+Inventory.Amount 10
+Inventory.PickupSound "Material/Pickup"
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
 	Stop
-  }
+	}
 }
-
 
 actor MT_Metals_Medium : MT_HighValueMetal
 { 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Highly Valueable Metal, 25 units"
-  Inventory.Amount 25
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Highly Valueable Metal, 25 units"
+Inventory.Amount 25
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
 	Stop
-	
-  }
+	}
 }
 
-
 actor MT_Metals_Big : MT_HighValueMetal
-{ 
-      
-  Height 6
-  Radius 25
-  Scale 1
-  Inventory.Icon "RURMA0"
-  Inventory.PickupMessage "Picked up: Highly Valueable Metal, 100 units"
-  Inventory.Amount 100
-  Inventory.PickupSound "Material/Pickup"
-  -COUNTITEM  
-  states
-  {
-  Spawn:
-    IDLE A -1
-    Goto Death
-  Pickup:
+{  
+Height 6
+Radius 25
+Scale 1
+Inventory.Icon "RURMA0"
+Inventory.PickupMessage "Picked up: Highly Valueable Metal, 100 units"
+Inventory.Amount 100
+states
+	{
+Spawn:
+	IDLE A -1
+	Goto Death
+Pickup:
 	TNT1 A 0 
 	TNT1 A 0 A_GiveInventory("HealthBonus")
-	Stop
-	
-  }
+	Stop	
+	}
 }
 
 
 //----------------------------------------------------------------------------**
 ////Ore
 //----------------------------------------------------------------------------**
-
 ACTOR MT_Res_SmallOre
 {
 

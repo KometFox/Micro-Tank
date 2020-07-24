@@ -1,0 +1,327 @@
+////////////////WEAPONS////////////////////////////////////////////////////////
+
+////--------------------------------------------------------------------------**
+//Heavy Cannon
+////--------------------------------------------------------------------------**
+Model "MT_105mmCannon" // Cannon
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon"  
+   Model 1 "PGP_MG.md3"
+   Skin  1 "PGP" 
+   Scale 2 2 2
+   Offset 2 -7 -8
+//   Offset 7 22 -15
+   //Idle
+   FrameIndex MCAN A 1 0
+   FrameIndex MCAN A 0 0
+   //Cannon Fire
+   FrameIndex MCAN B 0 1  
+   FrameIndex MCAN C 0 2  
+   FrameIndex MCAN D 0 3  
+   FrameIndex MCAN E 0 4  
+   FrameIndex MCAN F 0 5  
+   FrameIndex MCAN G 0 6
+   //MG Fire
+   FrameIndex MCAN H 1 8  
+   FrameIndex MCAN I 1 9  
+   FrameIndex MCAN J 1 10  
+   FrameIndex MCAN K 1 11 
+   FrameIndex MCAN L 1 12 
+}
+
+////----------------------------------------------------------------------------
+//Heavy Cannon (Heavy MG)
+////----------------------------------------------------------------------------
+Model "MT_105mmCannon"
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP2"
+   Model 1 "Cannon.md3"
+   Skin  1 "Cannon"  
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 4 -7 -8
+   //Idle   
+   FrameIndex MCA1 A 1 0
+   FrameIndex MCA1 A 0 0
+   //Cannon Fire
+   FrameIndex MCA1 B 1 1  
+   FrameIndex MCA1 C 1 2  
+   FrameIndex MCA1 D 1 3  
+   FrameIndex MCA1 E 1 4  
+   FrameIndex MCA1 F 1 5  
+   FrameIndex MCA1 G 1 6   
+   //MG Fire
+   FrameIndex MCA1 H 0 8  
+   FrameIndex MCA1 I 0 9  
+   FrameIndex MCA1 J 0 10  
+   FrameIndex MCA1 K 0 11 
+   FrameIndex MCA1 L 0 12 
+}
+/////////////////////Quad Machine Gun
+
+
+Model "MT_QuadMachineGun"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "QuadMG.md3"
+   Skin  0 "QuadMachineGun"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 7 24 -15
+   //Idle
+   FrameIndex QUMG A 0 0  
+   //Cannon Fire
+   FrameIndex QUMG B 0 1  
+   FrameIndex QUMG C 0 2  
+   FrameIndex QUMG D 0 3  
+   FrameIndex QUMG E 0 4  
+   FrameIndex QUMG F 0 5   
+}
+
+
+////--------------------------------------------------------------------------**
+//Heavy Pepperpot
+////--------------------------------------------------------------------------**
+Model "MHT_Heavy_Pepperpot" // MG Mode 1
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 1 "Pfeffertopf.md3"
+   Skin  1 "Pfeffertopf_Diffuse"  
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP" 
+   Scale 2 2 2
+   Offset 8 -7 -6
+// Offset 7 22 -15
+	FrameIndex MCA1 A 0 0
+//Idle   
+	FrameIndex MCA1 A 1 0
+	FrameIndex MCAN A 0 0
+	FrameIndex MCAN A 1 0
+//Rotate Barrel
+	FrameIndex MCAN B 1 1 //Don't use
+	FrameIndex MCAN C 1 2
+	FrameIndex MCAN D 1 3
+	FrameIndex MCAN E 1 4
+	FrameIndex MCAN F 1 5 
+	FrameIndex MCAN G 1 6 
+	FrameIndex MCAN H 1 7 
+	FrameIndex MCAN I 1 8 
+	FrameIndex MCAN J 1 9
+//Load Shell
+	FrameIndex MCAN K 1 10
+	FrameIndex MCAN L 1 11
+	FrameIndex MCAN M 1 12
+	FrameIndex MCAN N 1 13
+	FrameIndex MCAN O 1 14
+	FrameIndex MCAN P 1 15
+	FrameIndex MCAN Q 1 16
+	FrameIndex MCAN R 1 17
+	FrameIndex MCAN S 1 18
+//Shell inside
+	FrameIndex MCAN T 1 19
+	FrameIndex MCAN U 1 20
+	FrameIndex MCAN V 1 21
+	FrameIndex MCAN W 1 22
+	FrameIndex MCAN X 1 23
+	FrameIndex MCAN Y 1 24
+//Shell Rammed
+	FrameIndex MCAN Z 1 25
+	FrameIndex MCAN [ 1 26
+//MG Firing
+
+//Cannon Firing
+}
+
+Model "MHT_Heavy_Pepperpot" // MG Mode 2
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 1 "Pfeffertopf.md3"
+   Skin  1 "Pfeffertopf_Diffuse"  
+   Model 0 "PGP_MG.md3"
+   Skin  0 "PGP2" 
+   Scale 2 2 2
+   Offset 8 -7 -6
+// Offset 7 22 -15
+	FrameIndex MCA1 A 0 0
+//Idle   
+	FrameIndex MCA1 A 1 0
+	FrameIndex MCA1 A 0 0
+	FrameIndex MCA1 A 1 0
+//Rotate Barrel
+	FrameIndex MCA1 B 1 1
+	FrameIndex MCA1 C 1 2
+	FrameIndex MCA1 D 1 3
+	FrameIndex MCA1 E 1 4
+	FrameIndex MCA1 F 1 5 
+	FrameIndex MCA1 G 1 6 
+	FrameIndex MCA1 H 1 7 
+	FrameIndex MCA1 I 1 8 
+	FrameIndex MCA1 J 1 9
+//Load Shell
+	FrameIndex MCA1 K 1 10
+	FrameIndex MCA1 L 1 11
+	FrameIndex MCA1 M 1 12
+	FrameIndex MCA1 N 1 13
+	FrameIndex MCA1 O 1 14
+	FrameIndex MCA1 P 1 15
+	FrameIndex MCA1 Q 1 16
+	FrameIndex MCA1 R 1 17
+	FrameIndex MCA1 S 1 18
+//Shell inside
+	FrameIndex MCA1 T 1 19
+	FrameIndex MCA1 U 1 20
+	FrameIndex MCA1 V 1 21
+	FrameIndex MCA1 W 1 22
+	FrameIndex MCA1 X 1 23
+	FrameIndex MCA1 Y 1 24
+//Shell Rammed
+	FrameIndex MCA1 Z 1 25
+	FrameIndex MCA1 [ 1 26
+//MG Firing
+
+//Cannon Firing
+}
+
+
+////////////////////Multi Purpose Device
+Model "Multi Purpose Device"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "MultiPurposeDevice.md3"
+   Skin  0 "MultiPurposeDevice"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 9 28 -16
+   //Idle
+   FrameIndex 0MED A 0 0  
+   //Fire
+   FrameIndex 0MED B 0 2  
+   FrameIndex 0MED C 0 3  
+   FrameIndex 0MED D 0 4  
+   FrameIndex 0MED E 0 5  
+}
+
+////////////////////Deep Ore Boring Device
+Model MT_OreBoringDevice
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "DeepOreExtractor.md3"
+   Skin  0 "DeepOreExtractor"
+   Scale 2 2 2
+//   Offset 2 14 -3
+   Offset 9 25 -16
+   //Idle
+   FrameIndex MBOR A 0 0
+   //Fire   
+   FrameIndex MBOR B 0 1  
+   FrameIndex MBOR C 0 2  
+   FrameIndex MBOR D 0 3  
+   FrameIndex MBOR E 0 4
+   FrameIndex MBOR F 0 5  
+   FrameIndex MBOR G 0 6  
+   FrameIndex MBOR H 0 7  
+   FrameIndex MBOR I 0 8  
+   FrameIndex MBOR J 0 9  
+   FrameIndex MBOR K 0 10  
+   FrameIndex MBOR L 0 11 
+   FrameIndex MBOR M 0 12 
+   FrameIndex MBOR N 0 13 
+   FrameIndex MBOR O 0 14
+   FrameIndex MBOR P 0 15 
+   FrameIndex MBOR Q 0 16 
+   FrameIndex MBOR R 0 17 
+   FrameIndex MBOR S 0 18 
+   FrameIndex MBOR T 0 19 
+}
+
+////////////////////DispersionGun
+Model MT_DispersionGun
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Weapons"
+   Model 0 "DispersionGun.md3"
+   Skin  0 "DispersionGun"
+   Scale 2 2 2
+   Offset 9 25 -16
+   //Idle
+   FrameIndex DISP A 0 0  
+   //Fire   
+   FrameIndex DISP B 0 1	
+}
+
+/*
+Model MT_AssaultBridgeTool
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "BridgeTool.md3"
+   Skin  0 "BridgeTool"
+   Model 1 "BridgeTool_Bridge.md3"
+   Skin  1 "Bridge"  
+   Scale 2 2 2
+   Offset 0 1 -8
+   FrameIndex IDLA A 0 0  
+   FrameIndex FIRA A 0 1
+   FrameIndex QUMG A 0 0
+   FrameIndex IDLA A 1 0  
+   FrameIndex FIRA A 1 1
+   FrameIndex QUMG A 1 0
+   //'Firing' Animation
+   FrameIndex FIRA A 0 1
+   FrameIndex FIRA B 0 2
+   FrameIndex FIRA C 0 3
+   FrameIndex FIRA D 0 4
+   FrameIndex FIRA E 0 5
+   FrameIndex FIRA F 0 6
+   FrameIndex FIRA G 0 7
+   FrameIndex FIRA H 0 8
+   FrameIndex FIRA I 0 9
+   FrameIndex FIRA J 0 10
+   
+   FrameIndex FIRA A 1 1
+   FrameIndex FIRA B 1 2
+   FrameIndex FIRA C 1 3
+   FrameIndex FIRA D 1 4
+   FrameIndex FIRA E 1 5
+   FrameIndex FIRA F 1 6
+   FrameIndex FIRA G 1 7
+   FrameIndex FIRA H 1 8
+   FrameIndex FIRA I 1 9
+   FrameIndex FIRA J 1 10
+}
+
+Model MT_AssaultBridge
+{
+ Scale 1 1 1.2
+ Path "Models\Weapons"
+ Model 0 "Bridge.md3"
+ Skin 0 "Bridge"
+ Frameindex IDLA A 0 0
+}
+
+Model MT_AssaultBridge_Pillar
+{
+ Scale 0.5 0.5 4
+ Path "Models\Weapons"
+ Model 0 "Bridge.md3"
+ Skin 0 "Bridge"
+ Frameindex IDLA A 0 0
+}
+*/
+
+
+

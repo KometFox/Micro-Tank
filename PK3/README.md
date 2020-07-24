@@ -90,11 +90,12 @@ all cannons.
 
 Known bugs:
 -Model looks a bit distorted/fucked up, I have no idea why.
-fixed? I think a other MD3 plugin fixes this issuse
+fixed? I think other MD3 plugin fixes this issuse
 
--Using (Alt)Firing are prone at jamming (not intentional).
+-Using (Alt)Firing is prone at jamming (not intentional). Perhaps its fixed now.
 
--Savegames can get corrupted sometimes.
+-Savegames can get corrupted sometimes. Probably related due to constant ACS 
+changes.
  
 
 //note to self, dont forget to save textures via Gimp
@@ -110,8 +111,8 @@ fixed? I think a other MD3 plugin fixes this issuse
 //XXXX = any sprite, failure to do so will cause unwanted
 //effects 
 
-//4th note: next time when making a model, don't forget to remove empty timelines
-//else it will bloat up for no reason
+//4th note: next time when making a model, don't forget to remove empty 
+//timelines else it will bloat up for no reason
 
 //For Effects, anything with color or is "bright" needs black BG
 // Smoke or "unbright" image should be transparent 

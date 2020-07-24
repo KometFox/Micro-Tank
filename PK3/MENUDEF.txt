@@ -1,6 +1,3 @@
-//I fucking hate you cunts to force me to do this shit instead of like you
-//know adding a recursive support or someshit like that but NOOO
-//I have to do this highly incompitable bullshit 
 OptionMenu "OptionsMenu"
 {
 	Title "OPTIONS"
@@ -32,6 +29,13 @@ OptionValue "OffOn"
     1, "On"
 }
 
+OptionValue "OnOff"
+{
+    0, "On"
+    1, "Off"
+}
+
+
 OptionValue "Fancy"
 {
     0, "Off"
@@ -46,15 +50,6 @@ OptionValue "Particles"
 	2, "High"
 }
 
-OptionValue "Noise"
-{
-    0, "Announcer + Engine"
-    1, "Announcer only"
-	2, "Engine only"
-	3, "Off"
-}
-
-
 OptionMenu "MicroTankMenu"
 {
    Title "Micro Tank options"
@@ -62,7 +57,8 @@ OptionMenu "MicroTankMenu"
    StaticText "First start:", 0
    Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
    Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
-   
+
+/*   
    StaticText "Supply Crate:", 0
    //Slider "Toggle supply crate", 0,1,1,0
    Slider "Ammo multiplier", "mtcvar_supc_ammo_mult", 1,10,1,0
@@ -82,9 +78,9 @@ OptionMenu "MicroTankMenu"
 		Slider "Ammo regen amount", "mtcvar_ammoregen_amount", 0,500,10,0
 		Slider "Allow regen of super ammo", "mtcvar_superammoregen", 0,1,1,0
 		}
-
+*/
    StaticText "<Client side>"
-   Option "Startup Noise", "mtccvar_startup_noise", "Noise"
+   Option "Announcer start", "mtccvar_startup_noise", "OnOff"
    Option "Particle Effects", "mtcvar_particlesquality", "Particles"
    Option "Fancy Items", "mtcvar_fancyitems", "Fancy"
 

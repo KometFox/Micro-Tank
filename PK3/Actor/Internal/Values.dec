@@ -1,83 +1,16 @@
 ////--------------------------------------------------------------------------**
-//Actor base
-////--------------------------------------------------------------------------**
-
-ACTOR MT_Counters : Inventory 
-{
-  +INVENTORY.HUBPOWER
-  +INVENTORY.QUIET
-  -INVBAR
-States
-{
- Spawn:
- TNT1 A -1
- stop
-}
-}
-
-Actor MT_A_BooleanValue : Inventory
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 1
- +INVENTORY.UNDROPPABLE  
-}
-
-ACTOR TokenInventory : CustomInventory 
-{
-  +NOBLOOD
-  +DONTGIB
-  -PUSHABLE
-  +INVENTORY.KEEPDEPLETED
-  +INVENTORY.HUBPOWER
-  +INVENTORY.QUIET
-  +INVENTORY.UNDROPPABLE  
-  -INVBAR
-  -COUNTITEM
-} 
-
-ACTOR TokenInventory2 : Inventory 
-{
-  +NOBLOOD
-  +DONTGIB
-  -PUSHABLE
-  -INVENTORY.KEEPDEPLETED
-  +INVENTORY.HUBPOWER
-  +INVENTORY.QUIET
-  +INVENTORY.UNDROPPABLE  
-  -INVBAR
-  -COUNTITEM
-} 
-
-
-Actor MT_A_Upgrades2 : TokenInventory2
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 2
- +INVENTORY.UNDROPPABLE  
-}
-
-
-actor Spawner : Health
-{ 
-  Inventory.Amount 0
-  Inventory.MaxAmount 999
-  Inventory.RespawnTics 400
-  +INVENTORY.QUIET
-  -COUNTITEM
-}
-
-////--------------------------------------------------------------------------**
 //ID Token, very important...
 ////--------------------------------------------------------------------------**
 
 
 //Class Tokens
-ACTOR MVHTA1_Token : MT_A_BooleanValue {} //Very-Heavy Tank
-ACTOR MMBT1_Token : MT_A_BooleanValue {} //Main Battle Tank
-ACTOR MHTA1_Token : MT_A_BooleanValue {} //Heavy Tank
-ACTOR MMTA1_Token : MT_A_BooleanValue {} //Medium Tank
-ACTOR MTA1_Token  : MT_A_BooleanValue {} //Light Tank
-ACTOR MT_ClassToken  : MT_A_BooleanValue {} //All Tank
+ACTOR MVHTA1_Token : MT_SPlayerInventory {} //Very-Heavy Tank
+ACTOR MMBT1_Token : MT_SPlayerInventory {} //Main Battle Tank
+ACTOR MHTA1_Token : MT_SPlayerInventory {} //Heavy Tank
+ACTOR MT_ClassToken  : MT_SPlayerInventory 
+{
+Inventory.MaxAmount 2
+} //All Tank
 //Morph Token
 ACTOR MT_FirstMorph  : MT_A_BooleanValue //Needed to get the Marine morph health
 {
@@ -89,6 +22,13 @@ ACTOR MT_MorphVCrewToken  : MT_A_BooleanValue {}
 ACTOR MT_Readyjumper : MT_A_BooleanValue {} 
 //Ammo switch trigger
 ACTOR MT_AmmoSwitch_Reverse  : MT_A_BooleanValue {} 
+
+//Vehicle Rotation
+Actor MT_VehicleRotation : Inventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 360
+}
 
 Actor MT_ItemS_AutoD-Count : Inventory
 {
@@ -237,8 +177,6 @@ ACTOR MT_DispersionGun_IsSelected : MT_A_BooleanValue {}
 //How many Ammo types a gun can have
 //AmmoTypes+1
 
-
-
 //Gun Is reloadable?
 ACTOR MT_GunIsReloadable : MT_A_BooleanValue {}
 
@@ -252,3 +190,37 @@ ACTOR MT_Crystal4 : MT_A_BooleanValue {}
 ACTOR MT_Deflect : MT_A_BooleanValue {}
 //used for destroying projectiles
 ACTOR MT_Destroy : MT_A_BooleanValue {}
+
+//DUMP
+ACTOR TestBox {
+	mass 0x7FFFFFFF
+	Radius 16
+	Height 32
+	+NOGRAVITY
+	+SOLID
+
+	States {
+		Spawn:
+			TNT1 A 1
+			Stop
+	}
+}
+
+
+ACTOR ImCrafting : MT_A_BooleanValue {}
+ACTOR CameraON : MT_A_BooleanValue {}
+
+actor ChaseCam3
+{
+  height 8
+  radius 8
+  +NOGRAVITY
+  +THRUACTORS
+  states
+  {
+  Spawn:
+    NULL A -1
+    stop
+  }
+}
+

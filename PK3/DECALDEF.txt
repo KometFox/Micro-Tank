@@ -3,8 +3,8 @@
    {
        pic BULLET1
        shade "50 40 40"
-       x-scale 0.08
-       y-scale 0.08
+       x-scale 0.07
+       y-scale 0.07
        randomflipx
        randomflipy
        solid

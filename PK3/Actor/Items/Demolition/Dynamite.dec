@@ -1,5 +1,5 @@
 
-Actor MT_Item_DynamiteBundle : MT_PlayerInventory { 
+Actor MT_Item_DynamiteBundle : MT_PlayerCustomInventory { 
   -COUNTITEM
   Inventory.Icon "FGRNA0"
   Inventory.PickupMessage "Picked up: a Dynamite Bundle"
@@ -23,7 +23,7 @@ Actor MT_Item_DynamiteBundle : MT_PlayerInventory {
 
 
 
-Actor MT_Item_Fuze10s : MT_PlayerInventory { 
+Actor MT_Item_Fuze10s : MT_PlayerCustomInventory { 
   -COUNTITEM
   Inventory.Icon "FGRNA0"
   Inventory.PickupMessage "Picked up: 10 second timer"
@@ -78,7 +78,7 @@ ACTOR MT_DynamiteBundle
     MESH A 0 A_Scream
     MESH A 0 A_SetUserVar("user_EffectDuration",0)
 	TNT1 A 0 A_Explode (150,150,1,0,120)
-	TNT1 A 0 A_SpawnItem("50mmHE_ExplosionSpawner")
+	TNT1 A 0 A_SpawnItem("37mmHE_ExplosionSpawner")
 	stop
     
   }

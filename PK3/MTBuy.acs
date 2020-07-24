@@ -21,7 +21,7 @@ str recipe_list[RECIPE_ITEMS_MAX][2] = {
 /////Buy Menu
 ////////////////
 
-#define CRAFT_MAX 18
+#define CRAFT_MAX 16
 str craft_list[CRAFT_MAX][3] = {
     {"Spare parts",                    "MT_Spareparts",                      "ISPPA0"}, 
 	
@@ -32,8 +32,6 @@ str craft_list[CRAFT_MAX][3] = {
 	{"HE Shell         (Ammo)",		              "MT_HE",	                 "IHEAA0"},
 	{"Incendiary Shell (Ammo)",		              "MT_AmmoG_HEInc",	         "IINAA0"},	
 	{"HEAT Shell       (Ammo)",		              "MT_HEAT",	             "IHTAA0"},
-	{"Incendiary Fuel  (Ammo)",                   "MT_AmmoG_IncendiaryFuel", "IFLAA0"},
-	{"Energy Cell Pack (Ammo)",                   "MT_AmmoG_EnergyCell", "IENAA0"},
 	
     {"Quad MG (Weapon)",		              "MT_QuadMachineGun",	         "IQMGA0"},
 		
@@ -60,8 +58,6 @@ int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
 	{450},
 	{400,50},
 	{600},
-	{200,10},
-	{350,15},
 	
 	{8500},
 	
@@ -86,9 +82,6 @@ int craft_result[CRAFT_MAX] = {
 5,
 5,
 5,
-50,
-40,
-
 
 1,
 

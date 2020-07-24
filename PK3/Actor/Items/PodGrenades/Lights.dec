@@ -1,11 +1,11 @@
-actor Item_GrenadePod_Illuminating : MT_PlayerInventory
+actor Item_GrenadePod_Illuminating : MT_PlayerCustomInventory
 { 
   -COUNTITEM
   Inventory.Icon "FGRIA0"
   Inventory.PickupMessage "Picked up: 40mm Illumination Grenade (Pod mount)"
   Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Inventory.InterHubAmount 75
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
   Tag "[Grenade Pod]: Illumination Grenade"
   Scale 1
   -COUNTITEM
@@ -18,8 +18,9 @@ actor Item_GrenadePod_Illuminating : MT_PlayerInventory
   Use:  
     N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
     N15S A 0 A_GiveInventory("UtilityGrenadeCoolDown")
-    TNT1 A 0 A_Playsound("Fire04")
-    TNT1 A 0 A_FireCustomMissile("40mm Grenade Illuminating")
+    TNT1 A 0 A_Playsound("Grenadepod/Launch")
+    TNT1 A 0 A_FireCustomMissile("40mm Grenade Illuminating",0,0,-7)
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Illuminating",0,0,7)
     TNT1 A 1   
     Goto Jumpy
   Jumpy:      
@@ -72,14 +73,14 @@ ACTOR "40mm Grenade Illuminating"
 
 
 
-actor MT_Item_GrenadePod_Flare : MT_PlayerInventory
+actor MT_Item_GrenadePod_Flare : MT_PlayerCustomInventory
 { 
   -COUNTITEM
   Inventory.Icon "FGRIA0"
   Inventory.PickupMessage "Picked up: 40mm Flare Grenade (Pod mount)"
   Inventory.Amount 1
-  Inventory.MaxAmount 75
-  Inventory.InterHubAmount 75
+  Inventory.MaxAmount 100
+  Inventory.InterHubAmount 100
   Tag "[Grenade Pod]: Flare Grenade"
   Scale 1
   -COUNTITEM
@@ -92,8 +93,9 @@ actor MT_Item_GrenadePod_Flare : MT_PlayerInventory
   Use:  
     N15S A 1 A_Jumpifinventory("UtilityGrenadeCoolDown",1, "Nein")
     N15S A 0 A_GiveInventory("UtilityGrenadeCoolDown")
-    TNT1 A 0 A_Playsound("Fire04")
-    TNT1 A 0 A_FireCustomMissile("40mm Grenade Flare",0,0,0)
+    TNT1 A 0 A_Playsound("Grenadepod/Launch")
+    TNT1 A 0 A_FireCustomMissile("40mm Grenade Flare",0,0,7)
+	TNT1 A 0 A_FireCustomMissile("40mm Grenade Flare",0,0,-7)
     TNT1 A 1   
     Goto Jumpy
   Jumpy:      

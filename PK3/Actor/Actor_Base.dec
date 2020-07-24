@@ -1,3 +1,86 @@
+////--------------------------------------------------------------------------**
+//Actor base
+////--------------------------------------------------------------------------**
+//For sound fake items
+ACTOR MT_SoundItem : CustomInventory
+{ 
++INVENTORY.AUTOACTIVATE
++INVENTORY.NOATTENPICKUPSOUND
+-INVENTORY.QUIET
+-COUNTITEM
+Inventory.Amount 1
+}
+
+ACTOR MT_Counters : Inventory 
+{
++INVENTORY.HUBPOWER
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE  
++INVENTORY.QUIET
+-INVBAR
+States
+{
+ Spawn:
+ TNT1 A -1
+ stop
+}
+}
+
+Actor MT_A_BooleanValue : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
++INVENTORY.HUBPOWER
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE  
+}
+
+ACTOR TokenInventory : CustomInventory 
+{
++NOBLOOD
++DONTGIB
+-PUSHABLE
++INVENTORY.KEEPDEPLETED
++INVENTORY.QUIET
++INVENTORY.HUBPOWER
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE  
+-INVBAR
+-COUNTITEM
+} 
+
+ACTOR TokenInventory2 : Inventory 
+{
++NOBLOOD
++DONTGIB
+-PUSHABLE
+-INVENTORY.KEEPDEPLETED
++INVENTORY.HUBPOWER
++INVENTORY.HUBPOWER
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE  
+-INVBAR
+-COUNTITEM
+} 
+
+Actor MT_A_Upgrades2 : TokenInventory2
+{
+Inventory.Amount 1
+Inventory.MaxAmount 2
++INVENTORY.HUBPOWER
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE  
+}
+
+actor Spawner : Health
+{ 
+  Inventory.Amount 0
+  Inventory.MaxAmount 999
+  Inventory.RespawnTics 400
+  +INVENTORY.QUIET
+  -COUNTITEM
+}
+
 //Fancy graphics like impact,fog,smoke etc...
 //should use this
 Actor Particle 
@@ -16,15 +99,13 @@ Actor Particle
   -ACTIVATEMCROSS  
   -SHOOTABLE
   Speed 2
-   Gravity 0
+  Gravity 0
 //Anything bigger causes the effects to slide like a JIDF around
   Radius 7
   Height 7
- 
   BounceType Grenade
   BounceCount 10
   BounceFactor 0.5 
- 
 }
 
 Actor ParticleNB : Particle
@@ -51,61 +132,6 @@ Actor DestroyableActor
   Height 6
 }
 
-
-//All Shell/Shot Projectiles should use this
-//as base
-ACTOR MTP_TShellBase {
-  Radius 7
-  Height 7
-  Speed 60
-  DamageType AP
-  Projectile
-  scale 0.7
-  -NOGRAVITY
-  +BLOODSPLATTER
-  +EXTREMEDEATH
- // +FORCEPAIN
-  gravity 0.018
-  damage (random(1,1.2)*100)
-  DeathSound "Weapon/37mmblas"
-  Obituary "%o <75mm AP] %k" 
-  States {
-  Spawn:
-    37MM A 1 Bright A_Spawnitem("ShellTrace")
-	TNT1 A 0 Bright A_Spawnitem("ShellTrace")
-    Loop
-  Death:
-   TNT1 A 0 A_Spawnitem("75mmAP_ExplosionSpawner")
-    TNT1 A 1  A_Explode(50,50)
-    Stop
-}}
-
-ACTOR MTP_TShellBase_FastProj : FastProjectile {
-  Radius 6
-  Height 6
-  Speed 60
-  DamageType AP
-  Projectile
-  scale 0.7
-  +NOGRAVITY
-  +BLOODSPLATTER
- // +FORCEPAIN
-  +EXTREMEDEATH
-  gravity 0
-  damage (random(1,1.2)*100)
-  DeathSound "Weapon/37mmblas"
-  Obituary "%o <75mm AP] %k" 
-  States
-  {
-  Spawn:
-    37MM A 1 Bright A_Spawnitem("ShellTrace")
-    Loop
-  Death:
-   TNT1 A 0 A_Spawnitem("75mmAP_ExplosionSpawner")
-    TNT1 A 1  A_Explode(50,50)
-    Stop
-}}
-
 //////Should be used for Incendiary,Fire,Gas,etc
 Actor AreaEffect
 {
@@ -123,69 +149,24 @@ Actor AreaEffect
     -ACTIVATEPCROSS 	
 }
 
-
-ACTOR MT_Dud
-{
-  Radius 6
-  Height 6
-  Speed 10
-  DamageType AP
-  Projectile
-  scale 0.7
-  -NOGRAVITY
-  +BLOODSPLATTER
- // +FORCEPAIN
-  gravity 0.018
-  damage (random(1,1.2)*5)
-+EXTREMEDEATH
-  DeathSound ""
-  Obituary "%o <dud] %k" 
-  BounceType Doom
-  BounceCount 2
-  BounceFactor 0.45
-  WallBounceFactor 2
-  States
-  
-  {
-  Spawn:
-    IDLE A 1
-    IDLE A 0 A_PlaySound("MetHit3")
-    Goto Spawn2
-  Spawn2:
-    IDLE A 2
-    TNT1 A 0 A_SpawnItem("Smoke1_S0.25")
-    loop
-  Death:
-    TNT1 AAAA 0 A_Spawnitemex("Dirtchunk_S0.75",0,0,0,0+random(-4,4),0+random(4,4),0+frandom(4,8),0+random(-360,360))
-    Stop
-  }
-}
-
-ACTOR MT_AreaCloud
-{
-
-  Health 0
-  Height 4
-  Radius 4
-    +FORCEXYBILLBOARD
-    +DONTSPLASH
-    -ACTIVATEIMPACT 
-    -ACTIVATEPCROSS 
-    +NODAMAGETHRUST
-    +FORCERADIUSDMG
-//    +MISSILE
-    +SKYEXPLODE
-    +CANNOTPUSH
-    +NOTELEPORT
-//    +PAINLESS
-  renderstyle Add
-  BounceType Hexen
-  BounceCount 6
-}
-
+////--------------------------------------------------------------------------**
+//Player related
+////--------------------------------------------------------------------------**
 //This Base Actor will be used for Player
 //useable Items
-ACTOR MT_PlayerInventory : CustomInventory
+ACTOR MT_PlayerCustomInventory : CustomInventory
+{
+  +NOBLOOD
+  +NOBLOCKMONST
+  +DONTGIB
+  -PUSHABLE
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  +INVBAR
+  -COUNTITEM
+}
+
+ACTOR MT_PlayerInventory : Inventory
 {
   +NOBLOOD
   +NOBLOCKMONST
@@ -200,7 +181,7 @@ ACTOR MT_PlayerInventory : CustomInventory
 //used for items like upgrades
 //which in no circumstances should be removeable
 //unless it is a mod feature
-ACTOR MT_Special_PlayerCustomInventory : CustomInventory
+ACTOR MT_SPlayerCustomInventory : CustomInventory
 {
   +NOBLOOD
   +NOBLOCKMONST
@@ -209,11 +190,13 @@ ACTOR MT_Special_PlayerCustomInventory : CustomInventory
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
   +INVENTORY.UNDROPPABLE
-  +INVBAR
+  +INVENTORY.UNCLEARABLE
+  -INVBAR
   -COUNTITEM
+  Inventory.Amount 1
 }
 
-ACTOR MT_Special_PlayerInventory : Inventory
+ACTOR MT_SPlayerInventory : Inventory
 {
   +NOBLOOD
   +NOBLOCKMONST
@@ -222,6 +205,8 @@ ACTOR MT_Special_PlayerInventory : Inventory
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
   +INVENTORY.UNDROPPABLE
-  +INVBAR
+  +INVENTORY.UNCLEARABLE
+  -INVBAR
   -COUNTITEM
+  Inventory.Amount 1
 }

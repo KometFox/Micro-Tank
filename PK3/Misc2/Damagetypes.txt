@@ -1,4 +1,4 @@
-Current:
+Old:
 *Fire    
 *Acid    
 *BioChem 
@@ -13,3 +13,13 @@ Energy
 
 
 * = Special Effect
+
+New:
+Piercing (AP shot)
+Explosive (HE shell)
+Acid (Acid Shell)
+Radiation (Nuclear effect)
+
+Special:
+Reclaim
+Repair

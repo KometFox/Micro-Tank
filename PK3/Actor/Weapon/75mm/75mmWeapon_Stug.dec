@@ -239,19 +239,3 @@ Loadedb2:
 	Goto Ready	  
   
 }}
-
-
-
-ACTOR 75mmReloadTimer1 : Inventory
-{
--COUNTITEM
-Inventory.Amount 1
-Inventory.MaxAmount 120
-Inventory.InterHubAmount 120
-}
-
-ACTOR 75mmReloadTimer2 : 75mmReloadTimer1
-{
-Inventory.MaxAmount 95
-Inventory.InterHubAmount 95
-}

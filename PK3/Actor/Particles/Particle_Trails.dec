@@ -20,6 +20,24 @@ ACTOR MT_DreckRauch : MT_PRT_TrailBase {
     loop
 }}
 
+ACTOR SparkyTrailGlow : Particle
+{
+  renderstyle Add
+  alpha 1.5
+  Scale 0.09
+  reactiontime 7
+  States
+  {
+  Spawn:
+    APP1 A 1 Bright A_SetScale(ScaleX + 0.06, ScaleY + 0.06)
+	APP1 A 1 A_FadeOut(0.14)
+    APP1 A 0 A_CountDown
+	loop
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
 
 ACTOR MT_SparkyTrail : Particle
 {
@@ -40,7 +58,7 @@ ACTOR MT_SparkyTrail : Particle
     TNT1 A 1 A_SetUserVar("User_TTL",1)	
     goto Loopy
   Loopy:
-	APP1 AAAAAAAAAAAAAAA 1 A_Spawnitemex("SmallGlow")
+	APP1 AAAAAAAAAAAAAAA 1 A_Spawnitemex("SparkyTrailGlow")
 	Goto Death
     /*
 	"####"   B 0 A_Spawnitemex("SmallGlow")
@@ -190,9 +208,9 @@ ACTOR RocketFire : Particle
   States
   {
   Spawn: 
-    AFP0 ABCDEF  1 Bright 
-    AFP0 GH 1 A_SpawnItemex("RocketSmoke",0,0,0,0,0,2)
-    AFP0 IJ 1 Bright  A_Fadeout(0.075)
+    BFP9 ABCDEF  1 Bright 
+    BFP9 GH 1 //A_SpawnItemex("RocketSmoke",0,0,0,0,0,2)
+    BFP9 IJ 1 Bright  A_Fadeout(0.075)
     goto Death
   Death:
     TNT1 A 1
@@ -200,7 +218,23 @@ ACTOR RocketFire : Particle
   }
 }
 
-
+ACTOR MT_RocketFire : Particle
+{
+  scale 0.3
+  renderstyle Add
+  alpha 0.4
+  States
+  {
+  Spawn: 
+    BFP9 ABCDEF  1 Bright 
+    BFP9 GH 1 //A_SpawnItemex("RocketSmoke",0,0,0,0,0,2)
+    BFP9 IJ 1 Bright  A_Fadeout(0.075)
+    goto Death
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
 
 
 
@@ -352,7 +386,7 @@ ACTOR IlluminationBlue_Effect : Particle
   States
   {
   Spawn:
-    TNT1 AAAAAAAAAAAA  2  Bright A_spawnitemex("IlluminatingBlue_Fire",0+random(0,-0),0+random(0,-0),0+random(0,-0),0+random(-0.4,0.4),0+random(-0.4,0.4),0+random(0.75,1.95),0+random(-360,360)) 
+    TNT1 AAAAAAAAAAAA  2  Bright A_spawnitemex("IlluminatingBlue_Fire",0+random(0,-0),0+random(0,-0),0+random(0,-0),0+frandom(-0.4,0.4),0+frandom(-0.4,0.4),0+frandom(0.75,1.95),0+random(-360,360)) 
     Goto Death
   Death:
     TNT1 A 1
@@ -372,7 +406,7 @@ ACTOR IlluminationRed_Effect : Particle
   States
   {
   Spawn:
-    TNT1 AAAAAAAAAAAA  2  Bright A_spawnitemex("IlluminatingRed_Fire",0+random(0,-0),0+random(0,-0),0+random(0,-0),0+random(-0.4,0.4),0+random(-0.4,0.4),0+random(0.75,1.95),0+random(-360,360)) 
+    TNT1 AAAAAAAAAAAA  2  Bright A_spawnitemex("IlluminatingRed_Fire",0+random(0,-0),0+random(0,-0),0+random(0,-0),0+frandom(-0.4,0.4),0+frandom(-0.4,0.4),0+frandom(0.75,1.95),0+random(-360,360)) 
     Goto Death
   Death:
     TNT1 A 1
