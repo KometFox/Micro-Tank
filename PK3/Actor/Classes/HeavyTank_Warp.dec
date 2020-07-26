@@ -1,10 +1,5 @@
 Actor MT_HeavyTank_Chassis : MT_ChassisBase
 {
-	+FIXMAPTHINGPOS
-	+DONTINTERPOLATE
-	var int user_chassisangle;
-	const int chassis_spawnflag = SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE;
-	const int chassis_warpflag = WARPF_ABSOLUTEANGLE ;
 	States
 	{
 	Spawn:
@@ -148,7 +143,6 @@ ACTOR MT_PlayerClass_HeavyTank : PlayerPawn
 		TNT1 A 0 ThrustThingZ(0, 100, -1, 1)
 		//TNT1 A 0 A_PlaySound("GCrew/MissionStart")
 		TNT1 A 0 A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE)
-		TNT1 A 0 //ACS_NamedExecuteWithResult("MTACS_Main", 0, 0, 0, 0)
 		TNK1 A 1
 	Spawn2:
 		TNT1 A 0 A_TakeInventory("TurnRight", 1)

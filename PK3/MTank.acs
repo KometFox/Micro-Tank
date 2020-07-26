@@ -1,6 +1,7 @@
 //ACS code credit: Sgt. Mark IV
 #library "MTank"
-#include "zcommon.acs"
+//#include "zcommon.acs"
+#include "zcommon/gzdoom.acs"
 int vehiclepreviousbaseangle;
 
 script "MTACS_Stuff" (VOID) NET
@@ -83,16 +84,17 @@ script "MTACS_Chassis" ENTER
 				hudmessage(s:""; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
 				SetCVAR("chase", False);
 			}
-		
+
 		delay(1);		
 		TakeInventory("Accelerate", 1);
 		TakeInventory("Reverse", 1);
 		TakeInventory("TurnRight", 1); 
 		TakeInventory("TurnLeft", 1);	
-		
+
+//------------------------------------------------------------------------------
+//Cannon timer
+//------------------------------------------------------------------------------
+
 	}
-	
-	
-	
 }
 

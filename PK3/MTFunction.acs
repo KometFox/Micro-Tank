@@ -22,6 +22,13 @@
 #define ALIGN_BOTTOM 0.2
 
 int vehiclerotation;
+//Placeholder for the Pre-Morph health memory
+//So that morphing cannot be used for reseting the health
+//to spawn amount.
+int marineprevioushealth;
+int marinepreviousarmor;
+int vehicleprevioushealth;
+int vehiclepreviousarmor;
 
 //Taunting.
 Script "cmd_taunt" (VOID) NET
@@ -223,9 +230,6 @@ void HudMessageUnscaled (int xoffset, int yoffset, str text, int alignx, int ali
 //Weapon related constants
 #Define Cannon_Ammo_MAX 4
 
-str ZZT_WeaponType[1] = {
-"MT_105mmCannon",
-};
 
 //Ammunition upgrade
 str AmmoUpg[4]= {
@@ -234,26 +238,29 @@ str AmmoUpg[4]= {
 "MTU_HEShell_2",
 "MTU_HEATShell_2",
 };
+
+
 /*
-0 1
-2 3
-4 5
-6 7
+[0][0][0] = Weapon Name
+	[0][1][0] = Weapon [Weapon Mode]
+	[0][1][1] = Weapon [Ammo Name]
+	[0][1][2] = Weapon [Ammo Actor]
+	[0][1][3] = Weapon [Ammo Upgrade 0]
+	[0][1][4] = Weapon [Ammo Upgrade 1]
+	[0][1][5] = Weapon [Ammo Upgrade 2]
 */
 
-str AmmoType[Cannon_Ammo_MAX][4] = {
-{"MHT_BaseGun_AP", "APAMA0", "APAMB0", "APAMC0"},
-{"MHT_BaseGun_APCR", "ACAMA0", "ACAMA0", "ACAMA0"},
-{"MHT_BaseGun_HE", "HEAMA0", "HEAMB0", "HEAMC0"},
-{"MHT_BaseGun_HEAT", "HTAMA0", "HTAMB0", "HTAMC0"},
-};
+str AmmoType_Neo[2][5][6] = {
+	{ {"MT_105mmCannon"}, 
+	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
+	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMA0", "ACAMA0"},
+	  {"MHT_BaseGun_HE","MPHE", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
+	  {"MHT_BaseGun_HEAT","U-MPHE","MT_75x500mmHEAT", "HTAMA0", "HTAMB0", "HTAMC0"}, },
 
-str AmmoType_STR[Cannon_Ammo_MAX] = {
-"APHE", "U-APFSDS", "MPHE", "U-MPHE"
+	{ {"Multi Purpose Device"}, 
+	  {"MT_MultiPurposeDevice_Repair", "Repair", "MT_Spareparts", "MSPPA0", "MSPPA0", "MSPPA0"},
+	  {"MT_MultiPurposeDevice_Reclaim", "Reclaim", "MT_Blankammo","RURMC0", "RURMC0", "RURMC0"}, },
 };
-
-str AmmoType_Count[Cannon_Ammo_MAX] = {
-"MT_75x500mmAP", "MT_75x500mmAPCR", "MT_75x500mmHE", "MT_75x500mmHEAT"};
 
 
 //Mags
@@ -262,8 +269,8 @@ str WPN_Barrel[1] = {
 
 
 //Ammo type icon
-#Define MTHUD_CURAMMO_ICO_Y 900
-#Define MTHUD_CURAMMO_ICO_X -900
+#Define MTHUD_CURAMMO_ICO_Y 105
+#Define MTHUD_CURAMMO_ICO_X 105
 //Current Ammo text
 #Define MTHUD_CURAMMO_STR_Y 800.0
 #Define MTHUD_CURAMMO_STR_X 950.0
@@ -296,100 +303,110 @@ script "MTHUD_Ammo" ENTER
 	int cur_upg = 0;
 	cur_magsize = 0;
 	
+	//NEW
+	int current_weapon, current_ammo, current_ammosize, current_upgrade;
+	current_weapon = 0;
+	current_ammo = 0;
+	current_ammosize = 0;
+	current_upgrade = 0;
+	
 	//print(s: "Activator: ", d: PlayerNumber());
-	//TODO: Take account for resolution changes, fixed to 1680:1050. DONE
 	//TODO: Take account for hud_scale > 1.
 	//TODO: Take account for magazine,clips and chamber amount.
 	while(1)
 	{
 		//HUD related
+		//TODO: Move these 2 calls to somewhere else.
 		int resolution_x = GetScreenWidth();
 		int resolution_y = GetScreenHeight();
-		
-		//resolution_x = (resolution_x - 100);
-		//resolution_y = (resolution_y - 100);
-		
-		//log(d:resolution_x);
-		
+
+
 		//First check selected weapon
-		for (int i = 0; i < 1; i++)
+		//Broken piece of shit
+		/*
+		for (int b = 0; b < 2; b++)
 		{
-			//log(s: CheckWeapon(WeaponType[i]) );
-		
-			if (CheckWeapon(ZZT_WeaponType[i]) == true)
+			//log(s: "A ", s: AmmoType_Neo[b][0][0]);
+			//log(s: "B ", s: ZZT_WeaponType[b]);
+			
+			if (CheckWeapon(AmmoType_Neo[b][0][0]))
 			{
-				//log(s:ZZT_WeaponType[i]);
+				current_weapon = b;
+				log(s: "C ", s: AmmoType_Neo[current_weapon][0][0]);
 				weapon_show = true;
 			}
 			else
+			{
+				log(s: "FALSE");
 				weapon_show = false;
+			}
+			
 		}
+		*/
 		
-		
-		if (weapon_show == true)
+
+		for (int i0 = 0; i0 < 2; i0++)
 		{
-
-			//Check first for currently selected ammo type
-			for (int i0 = 0; i0 < Cannon_Ammo_MAX; i0++)
+			if (CheckWeapon(AmmoType_Neo[i0][0][0]))
 			{
-				//check for current ammo
-				if (CheckInventory(AmmoType[i0][0]) == 1)
-					cur_ammo = i0;			
-			}
-			
-			
-			if (CheckInventory(AmmoUpg[cur_ammo]) == 2)
-					cur_upg = 3;
-			else if (CheckInventory(AmmoUpg[cur_ammo]) == 1)
-					cur_upg = 2;	
-			else if (CheckInventory(AmmoUpg[cur_ammo]) == 0)
-					cur_upg = 1;
-			else
-					cur_upg = 1;
-					
-			
-			//SetHudSize(p_res_x, p_res_y, 1);
-		
-			if (CheckInventory(AmmoType[cur_ammo][0]))
-			{
-				//Ammo display
-				SetFont(AmmoType[cur_ammo][cur_upg]);
-				ZTHudMessage(resolution_x - 105.0, resolution_y - 105.0, AmmoType_HUD_ID, StrParam(s:"A"), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-					
-				//Ammo Name
-				SetFont("BIGFONT");
-				HMUSRedux(resolution_x - 190.0, resolution_y - 100.0, StrParam(s:AmmoType_STR[cur_ammo]), ALIGN_CENTER, ALIGN_RIGHT, AmmoType_HUD_ID+6, FOREVER, 0);
+				//log(s: "WEAPON SELECTED: ", s: AmmoType_Neo[current_weapon][0][0]);
+				current_weapon = i0;
 				
-				//Ammo count
-				SetFont("BIGFONT2");
-				ZTHudMessage(resolution_x - 210.0, resolution_y - 130.0, AmmoType_HUD_ID+1, StrParam(d: CheckInventory(AmmoType_Count[cur_ammo])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-
-				//Ammo count Max
-				SetFont("BIGFONT2");
-				ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+3, StrParam(d: GetMaxInventory(0, AmmoType_Count[cur_ammo])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-
+				for (int i1 = 1; i1 < 5; i1++)					
+					if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
+					{
+						current_ammo = i1;
+						//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
+					}
+				
 				/*
-				//Check for Mag/Chamber
-				if (CheckInventory(WPN_Barrel[0]) > 0 && CheckWeapon("MHT_Heavy_Pepperpot"))
-				{
-					cur_magsize = CheckInventory(WPN_Barrel[0]);
-					SetFont("BIGFONT2");
-					HudMessage(d: cur_magsize ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED, MTHUD_CURMAG_X, MTHUD_CURMAG_Y + 30.0, 0);
-					ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+4, StrParam(d: cur_magsize), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-				}
-				else
-				{
-					SetFont("BIGFONT2");
-					HudMessage(s: "" ;HUDMSG_PLAIN, AmmoType_HUD_ID+4, CR_UNTRANSLATED,  MTHUD_CURMAG_X, MTHUD_CURMAG_Y + 30.0, 0);
-					ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+4, StrParam(d: cur_magsize), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-				}
+				for (int i2 = 0; i2 < 4; i2++)
+					if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
+					{
+						current_ammo = i1;
+						//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
+					}
 				*/
-
+										
 			}
-
 		}
+								
+		
+		if (CheckInventory(AmmoUpg[current_ammo -1]) == 2)
+				current_upgrade = 3;
+		else if (CheckInventory(AmmoUpg[current_ammo -1]) == 1 )
+				current_upgrade = 2;	
+		else if (CheckInventory(AmmoUpg[current_ammo -1]) == 0 )
+				current_upgrade = 1;
+		else
+				current_upgrade = 1;
+		
+		//log(s: AmmoType_Neo[current_weapon][current_ammo][0], s: AmmoUpg[current_ammo -1], s: "upg ", d: current_ammo -1);
+	
+		//log(s: "WEAPON UPGRADE:", s: AmmoType_Neo[current_weapon][current_ammo][0], s: " - ",  s: AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
+
+		//Ammo Display
+		SetFont(AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
+		ZTHudMessage(resolution_x - 105.0, resolution_y - 105.0, AmmoType_HUD_ID, StrParam(s:"A"), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);		
+		
+		//Ammo Count
+		SetFont("BIGFONT2");
+		ZTHudMessage(resolution_x - 210.0, resolution_y - 130.0, AmmoType_HUD_ID+1, StrParam(d: CheckInventory(AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+				
+		//Ammo Max Count
+		SetFont("BIGFONT2");
+		ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+3, StrParam(d: GetMaxInventory(0, AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+				
+		//Ammo Name
+		SetFont("BIGFONT");
+		HMUSRedux(resolution_x - 190.0, resolution_y - 100.0, StrParam(s:AmmoType_Neo[current_weapon][current_ammo][1]), ALIGN_CENTER, ALIGN_RIGHT, AmmoType_HUD_ID+6, FOREVER, 0);
+						
+		//Ammo Size Count
+
+	
 		//If it doesn't use ammo/weapon mode then it shouldn't
-		//display anything.
+		//display anything.		
+		if (1 == 1) {}
 		else
 		{
 			SetFont("");
@@ -432,7 +449,7 @@ script "MT_Wfiring_delay" (int Item, int duration)
 	//print(s: "A ", s: delayer[0]);
 	
 	//GiveInventory(delayer[Item], 1);
-	
+
 	while(True)
 	{
 			
@@ -446,25 +463,10 @@ script "MT_Wfiring_delay" (int Item, int duration)
 			}
 		Delay(1);
 	}
-	
+
 }
 
 
-
-
-//Ugly hack to fix the Morph To Marine health reset bug on map change
-//when the player is morphed
-//TODO: Fix the bug on changemap command
-script "MT_MorphFixer" UNLOADING
-{
-	if (CheckInventory("MT_MorphVCrewToken") > 0)
-		{
-			ACS_NamedExecute("MT_MorphToMarine", 0);
-		}
-	delay(5);
-}
-
- 
 script "MT_NewMap" OPEN 
 {
 //ZANDRONUM
@@ -490,6 +492,26 @@ script "MT_NewMap" OPEN
 	}
 }
 
+//Ugly hack to fix the Morph To Marine health reset bug on map change
+//when the player is morphed
+//TODO: Fix the bug on changemap command
+script "MT_MorphFixer" UNLOADING
+{
+	log(s: "AAAAAA");
+	if (CheckInventory("MT_MorphVCrewToken") == 1)
+		{
+			/*
+			log(s: "FUGGEN");
+			ACS_NamedExecuteWithResult("MT_MorphToMarine", 0);
+			*/
+			log(s: "FUGGEN");
+			SetActorProperty(PlayerNumber(), APROP_Health, vehicleprevioushealth);
+			TakeInventory("MT_MorphVCrewToken",999);
+		}
+	delay(5);
+}
+
+
 
 //Script to force use a specific item
 script "MT_AmmoSwitch_Reverse" (VOID) NET
@@ -510,11 +532,9 @@ script "MT_IsItemOne" (int item)
 			SetResultValue(1);
 			//Return True;
 		}
-		/*
-		Else 
-			Return False;
-		Return False;
-		*/
+		else 
+			SetResultValue(0);
+
 }
 
 
@@ -560,13 +580,6 @@ script "MT_GiveMoni" ENTER
 	Terminate;
 }
 
-//Placeholder for the Pre-Morph health memory
-//So that morphing cannot be used for reseting the health
-//to spawn amount.
-int marineprevioushealth;
-int marinepreviousarmor;
-int vehicleprevioushealth;
-int vehiclepreviousarmor;
 
 //Morph to Marine function
 //Probably needs some more refining
@@ -575,18 +588,20 @@ int vehiclepreviousarmor;
 script "MT_MorphToMarine" (VOID) NET
 {
 
+
 	//Morph to marine
  	 if (!CheckInventory("MT_MorphVCrewToken") & CheckInventory("MT_ClassToken") > 0)
 		{
 			vehicleprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
-			
+			vehiclepreviousarmor = CheckInventory("StoredArmorInsideVehicle");
+	
 			GiveInventory("MT_MorphVCrewToken", 1);
-			//HudMessage(d: vehicleprevioushealth;HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
 			
 			delay(1);
-			
+
 			MorphActor(PlayerNumber(), "MT_MorphPlayer", "", 0xFFFFFF, 0, "", "");
-			
+			GiveInventory("StoredArmorInsideVehicle", marinepreviousarmor);		
+	
 			if (!CheckInventory("MT_FirstMorph")) 
 				{
 					//Initial morphing
@@ -595,7 +610,7 @@ script "MT_MorphToMarine" (VOID) NET
 				}
 			else
 				{
-					//Guarantee at least 75 HP...
+					//Guarantee at least 110 HP...
 					if (marineprevioushealth < 110)
 					{
 						marineprevioushealth = 110;
@@ -607,7 +622,9 @@ script "MT_MorphToMarine" (VOID) NET
 	//Morph to tank
 	else if (CheckInventory("MT_ClassToken") > 0)
 		{
-			marineprevioushealth = GetActorProperty(PlayerNumber(), APROP_Health);
+			//Health, Armor
+			vehiclepreviousarmor = CheckInventory("StoredArmorInsideVehicle");
+			//Angle
 			int vehiclepreviousbaseangle = GetUserVariable(0, "user_chassisangle");
 			int vehiclenewangle = GetActorAngle(0);
 			//log(s: "OLD ANGLE: ", d: vehiclenewangle);
@@ -616,8 +633,10 @@ script "MT_MorphToMarine" (VOID) NET
 			
 			delay(1);
 			UnMorphActor(PlayerNumber(), 0);
+			//Health, Armor
 			SetActorProperty(PlayerNumber(), APROP_Health, vehicleprevioushealth);
-			
+			GiveInventory("StoredArmorInsideVehicle", vehiclepreviousarmor);
+			//Angle
 			ACS_NamedExecuteWithResult("MT_SetVehicleRotation", vehiclenewangle);	
 			SetUserVariable(0, "user_chassisangle", vehiclenewangle);
 			TakeInventory("MT_MorphVCrewToken", 999);

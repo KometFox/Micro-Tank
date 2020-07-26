@@ -160,10 +160,11 @@ Weapon/37mmblas  37mmblas
 Weapon/LaserHit  LaserHit
 Weapon/LaserHit1 LasHit1
 
-//sonstiges
+//miscellaneous 
 Sons/loaded loaded
 
-
+MultiPurposeDevice/Reclaim Recla
+MultiPurposeDevice/Repair Spark
 
 $Volume MGFire1 2
 $Volume fire03 3
@@ -229,6 +230,7 @@ CMDTAU17 CMDTAU17
 $Random Commander/Taunt {CMDTAU0 CMDTAU1 CMDTAU2 CMDTAU3 CMDTAU4 CMDTAU5 CMDTAU5 CMDTAU6
 CMDTAU7 CMDTAU8 CMDTAU9 CMDTAU10 CMDTAU11 CMDTAU12 CMDTAU13 CMDTAU14 CMDTAU15
 CMDTAU16 CMDTAU17}
+
 
 
 

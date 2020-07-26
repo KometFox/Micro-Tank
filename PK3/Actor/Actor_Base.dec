@@ -178,6 +178,19 @@ ACTOR MT_PlayerInventory : Inventory
   -COUNTITEM
 }
 
+ACTOR MT_PlayerWeapon : Weapon
+{
+Weapon.AmmoUse1 0
+Weapon.AmmoUse2 0
+Weapon.AmmoType1 Clip
+//Weapon.AmmoType2 Clip
++WEAPON.ALT_AMMO_OPTIONAL
++WEAPON.AMMO_OPTIONAL
++WEAPON.DONTBOB
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE 
+}
+
 //used for items like upgrades
 //which in no circumstances should be removeable
 //unless it is a mod feature

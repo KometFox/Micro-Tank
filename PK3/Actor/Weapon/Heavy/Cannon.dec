@@ -1,13 +1,7 @@
 ACTOR MT_105mmCannon : MT_Baseweapon
 {
-  Weapon.AmmoUse1 1
-  Weapon.AmmoUse2 1
-  Weapon.AmmoType1 ""
-  Weapon.AmmoType2 A_7u62x54mmR
   Weapon.SlotNumber 2
   Weapon.SlotPriority 1
-  +WEAPON.ALT_AMMO_OPTIONAL
-  +WEAPON.DONTBOB
   Inventory.PickupMessage "What the hell."
   Tag "(Int) 105mm Cannon"
   Var Int User_BuckAmount;

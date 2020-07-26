@@ -101,25 +101,38 @@ ACTOR SmallBlueSparkyA : SmallBlueSparky {Scale 0.075 }
 
 ACTOR ReclaimEffect 
 {
-  Height 5
-  Radius 20
+  Height 7
+  Radius 12
   Scale 1
-  Speed 17
+  Speed 55
   Gravity 0 
   renderstyle Add
   Damage (0)
+  //MONSTER
   +CANNOTPUSH
-  alpha 0.1
+  +SEEKERMISSILE
+  +BLOCKASPLAYER
+  -FRIENDLY
+  -COUNTKILL
+  //+BLOCKEDBYSOLIDACTORS
+  -NOBLOCKMAP
+  alpha 0.8
   States
   {
   Spawn:
-    TNT1 A 10
-    TNT1 A 0 A_ChangeVelocity (-23, 0, -velz, CVF_RELATIVE|CVF_REPLACE)
-    ANP1 ABCDEFGHIJ 1 A_FadeIn(0.025)  
+    TNT1 A 8
+	TNT1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", True)
+    TNT1 A 0 A_ChangeVelocity (-20, 0, -velz, CVF_RELATIVE|CVF_REPLACE)
+    ANP1 ABCDEFGHIJ 1 A_Seekermissile(99,99,SMF_CURSPEED,256,100)
     Goto Death
   Death:
     TNT1 A 0 A_ChangeVelocity (0, 0, 0, CVF_REPLACE)
-    ANP1 ABCDEFGHIJ 1 A_Fadeout(0.095)
+    //ANP1 ABCDEFGHIJ 1 A_Fadeout(0.095)
+	ANP1 ABCDEFGHIJ 1
+	{
+		A_FadeOut(0.095);
+		A_SetScale(scalex -0.12, scaley -0.12);
+	}
     Stop
   }
 }

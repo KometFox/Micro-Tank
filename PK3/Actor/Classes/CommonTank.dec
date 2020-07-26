@@ -1,4 +1,3 @@
-//hue
 ACTOR MT_ChassisBase 
 {
 +THRUACTORS
@@ -6,12 +5,17 @@ ACTOR MT_ChassisBase
 +CLIENTSIDEONLY
 +FLOORCLIP
 +NOGRAVITY
++FIXMAPTHINGPOS
++DONTINTERPOLATE
 -FLOORCLIP
 -FLOAT
 Mass 99999
 Radius 0
 Height 0
 Gravity 0
+var int user_chassisangle;
+const int chassis_spawnflag = SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE;
+const int chassis_warpflag = WARPF_ABSOLUTEANGLE;
 States
 {
 Spawn:

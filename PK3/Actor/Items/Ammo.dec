@@ -1,3 +1,14 @@
+//Buttugly hack
+ACTOR MT_Blankammo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 0
+    Ammo.BackpackAmount 0
+    Ammo.BackpackMaxAmount 0
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE
+}
+
 ACTOR Base_Ammo : Ammo
 {
 	Inventory.Amount 1

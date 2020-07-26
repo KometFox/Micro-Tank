@@ -45,7 +45,7 @@ Model "MT_105mmCannon"
    Skin  1 "Cannon"  
    Scale 2 2 2
 //   Offset 2 14 -3
-   Offset 4 -7 -8
+   Offset 2 -7 -8
    //Idle   
    FrameIndex MCA1 A 1 0
    FrameIndex MCA1 A 0 0
@@ -201,16 +201,51 @@ Model "Multi Purpose Device"
    Path "MODELS\Weapons"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
+   Model 1 "PGP_MG.md3"
+   Skin  1 "PGP" 
    Scale 2 2 2
-//   Offset 2 14 -3
-   Offset 9 28 -16
+   Offset 2 -7 -8
    //Idle
-   FrameIndex 0MED A 0 0  
+   FrameIndex MCAN A 0 0  
+   FrameIndex MCAN A 1 0  
    //Fire
-   FrameIndex 0MED B 0 2  
-   FrameIndex 0MED C 0 3  
-   FrameIndex 0MED D 0 4  
-   FrameIndex 0MED E 0 5  
+   FrameIndex MCAN B 0 2  
+   FrameIndex MCAN C 0 3  
+   FrameIndex MCAN D 0 4  
+   FrameIndex MCAN E 0 5  
+   
+   FrameIndex MCAN H 1 8  
+   FrameIndex MCAN I 1 9  
+   FrameIndex MCAN J 1 10  
+   FrameIndex MCAN K 1 11 
+   FrameIndex MCAN L 1 12 
+}
+
+Model "Multi Purpose Device"
+{	
+   IGNORETRANSLATION
+   //NOINTERPOLATION
+   Path "MODELS\Weapons"
+   Model 0 "MultiPurposeDevice.md3"
+   Skin  0 "MultiPurposeDevice"
+   Model 1 "PGP_MG.md3"
+   Skin  1 "PGP" 
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCA1 A 0 0  
+   FrameIndex MCA1 A 1 0  
+   //Fire
+   FrameIndex MCA1 B 0 2  
+   FrameIndex MCA1 C 0 3  
+   FrameIndex MCA1 D 0 4  
+   FrameIndex MCA1 E 0 5  
+   
+   FrameIndex MCA1 H 1 8  
+   FrameIndex MCA1 I 1 9  
+   FrameIndex MCA1 J 1 10  
+   FrameIndex MCA1 K 1 11 
+   FrameIndex MCA1 L 1 12 
 }
 
 ////////////////////Deep Ore Boring Device

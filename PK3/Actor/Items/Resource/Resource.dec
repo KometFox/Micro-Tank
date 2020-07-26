@@ -12,6 +12,7 @@ Inventory.MaxAmount 100000
 Ammo.BackpackAmount 0
 Ammo.BackpackMaxAmount 100000
 -COUNTITEM
++INVENTORY.UNCLEARABLE
 states
 	{
 Spawn:
@@ -36,6 +37,7 @@ Inventory.MaxAmount 10000
 Ammo.BackpackAmount 0
 Ammo.BackpackMaxAmount 10000
 -COUNTITEM
++INVENTORY.UNCLEARABLE
 states
 	{
 Spawn:
