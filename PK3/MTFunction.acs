@@ -3,7 +3,6 @@
 #include "zcommon/gzdoom.acs"
 //#include "acsutils_edit.acs"
 //#include "acsutilsp.acs"
-//bool MT_Translocator[64];
 //MP/Player constants
 #define PLAYER_TID_START 300
 //Aux
@@ -304,8 +303,9 @@ script "MTHUD_Ammo" ENTER
 	cur_magsize = 0;
 	
 	//NEW
-	int current_weapon, current_ammo, current_ammosize, current_upgrade;
+	int current_weapon, current_ammo, current_ammosize, current_upgrade, current_gun;
 	current_weapon = 0;
+	current_gun = 0;
 	current_ammo = 0;
 	current_ammosize = 0;
 	current_upgrade = 0;
@@ -322,93 +322,113 @@ script "MTHUD_Ammo" ENTER
 
 
 		//First check selected weapon
-		//Broken piece of shit
+
 		/*
-		for (int b = 0; b < 2; b++)
-		{
-			//log(s: "A ", s: AmmoType_Neo[b][0][0]);
-			//log(s: "B ", s: ZZT_WeaponType[b]);
-			
-			if (CheckWeapon(AmmoType_Neo[b][0][0]))
+		//MANUAL TEST
+		if (CheckWeapon(AmmoType_Neo[0][0][0]))
 			{
-				current_weapon = b;
-				log(s: "C ", s: AmmoType_Neo[current_weapon][0][0]);
 				weapon_show = true;
 			}
-			else
+		else if (CheckWeapon(AmmoType_Neo[1][0][0]))
 			{
-				log(s: "FALSE");
-				weapon_show = false;
+				weapon_show = true;
 			}
-			
-		}
+		else
+				weapon_show = false;
+				
+		log(s: "FIXED: ", d: weapon_show);
 		*/
 		
-
-		for (int i0 = 0; i0 < 2; i0++)
+		//New working code
+		for (int b = 0; b < 2; b++)
 		{
-			if (CheckWeapon(AmmoType_Neo[i0][0][0]))
-			{
-				//log(s: "WEAPON SELECTED: ", s: AmmoType_Neo[current_weapon][0][0]);
-				current_weapon = i0;
-				
-				for (int i1 = 1; i1 < 5; i1++)					
-					if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
-					{
-						current_ammo = i1;
-						//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
-					}
-				
-				/*
-				for (int i2 = 0; i2 < 4; i2++)
-					if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
-					{
-						current_ammo = i1;
-						//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
-					}
-				*/
-										
-			}
+		
+			//log(s: "NUMBER: ", d: b);
+			if ( CheckWeapon(AmmoType_Neo[b][0][0]) )
+				{
+					current_weapon = b;
+				}
+			
+			/*
+			if ( CheckWeapon(AmmoType_Neo[current_weapon][0][0]) )
+				weapon_show = true;
+			else
+				weapon_show = false;
+			*/
 		}
+		
+		//log(s: "WEAPON SHOW: ", d: weapon_show, s: " ", s: AmmoType_Neo[current_weapon][0][0]);
+		
+
 								
-		
-		if (CheckInventory(AmmoUpg[current_ammo -1]) == 2)
-				current_upgrade = 3;
-		else if (CheckInventory(AmmoUpg[current_ammo -1]) == 1 )
-				current_upgrade = 2;	
-		else if (CheckInventory(AmmoUpg[current_ammo -1]) == 0 )
-				current_upgrade = 1;
-		else
-				current_upgrade = 1;
-		
-		//log(s: AmmoType_Neo[current_weapon][current_ammo][0], s: AmmoUpg[current_ammo -1], s: "upg ", d: current_ammo -1);
+		if (CheckWeapon(AmmoType_Neo[current_weapon][0][0]))
+		{
 	
-		//log(s: "WEAPON UPGRADE:", s: AmmoType_Neo[current_weapon][current_ammo][0], s: " - ",  s: AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
+			for (int i0 = 0; i0 < 2; i0++)
+			{
+				if (CheckWeapon(AmmoType_Neo[i0][0][0]) == 1)
+				{
+					//log(s: "WEAPON SELECTED: ", s: AmmoType_Neo[current_weapon][0][0]);
+				//current_weapon = i0;
+				
+					for (int i1 = 1; i1 < 5; i1++)					
+						if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
+						{
+							current_ammo = i1;
+							//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
+						}
+				
+					/*
+					for (int i2 = 0; i2 < 4; i2++)
+						if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
+						{
+							current_ammo = i1;
+							//log(s: "WEAPON MODE:", s: AmmoType_Neo[current_weapon][i1][0]);
+						}
+					*/
+										
+				}
 
-		//Ammo Display
-		SetFont(AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
-		ZTHudMessage(resolution_x - 105.0, resolution_y - 105.0, AmmoType_HUD_ID, StrParam(s:"A"), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);		
+			}
+	
+			if (CheckInventory(AmmoUpg[current_ammo -1]) == 2)
+					current_upgrade = 3;
+			else if (CheckInventory(AmmoUpg[current_ammo -1]) == 1 )
+					current_upgrade = 2;	
+			else if (CheckInventory(AmmoUpg[current_ammo -1]) == 0 )
+					current_upgrade = 1;
+			else
+					current_upgrade = 1;
 		
-		//Ammo Count
-		SetFont("BIGFONT2");
-		ZTHudMessage(resolution_x - 210.0, resolution_y - 130.0, AmmoType_HUD_ID+1, StrParam(d: CheckInventory(AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-				
-		//Ammo Max Count
-		SetFont("BIGFONT2");
-		ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+3, StrParam(d: GetMaxInventory(0, AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
-				
-		//Ammo Name
-		SetFont("BIGFONT");
-		HMUSRedux(resolution_x - 190.0, resolution_y - 100.0, StrParam(s:AmmoType_Neo[current_weapon][current_ammo][1]), ALIGN_CENTER, ALIGN_RIGHT, AmmoType_HUD_ID+6, FOREVER, 0);
-						
-		//Ammo Size Count
+			//log(s: AmmoType_Neo[current_weapon][current_ammo][0], s: AmmoUpg[current_ammo -1], s: "upg ", d: current_ammo -1);
+	
+			//log(s: "WEAPON UPGRADE:", s: AmmoType_Neo[current_weapon][current_ammo][0], s: " - ",  s: AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
 
+			//Ammo Display
+			SetFont(AmmoType_Neo[current_weapon][current_ammo][2 + current_upgrade]);
+			ZTHudMessage(resolution_x - 105.0, resolution_y - 105.0, AmmoType_HUD_ID, StrParam(s:"A"), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);		
+		
+			//Ammo Count
+			SetFont("BIGFONT2");
+			ZTHudMessage(resolution_x - 210.0, resolution_y - 130.0, AmmoType_HUD_ID+1, StrParam(d: CheckInventory(AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+				
+			//Ammo Max Count
+			SetFont("BIGFONT2");
+			ZTHudMessage(resolution_x - 155.0, resolution_y - 130.0, AmmoType_HUD_ID+2, StrParam(d: GetMaxInventory(0, AmmoType_Neo[current_weapon][current_ammo][2])), ALIGN_CENTER, ALIGN_RIGHT, FOREVER);
+				
+			//Ammo Name
+			SetFont("BIGFONT");
+			HMUSRedux(resolution_x - 190.0, resolution_y - 100.0, StrParam(s:AmmoType_Neo[current_weapon][current_ammo][1]), ALIGN_CENTER, ALIGN_RIGHT, AmmoType_HUD_ID+3, FOREVER, 0);
+						
+			//Ammo Size Count
+		}
 	
 		//If it doesn't use ammo/weapon mode then it shouldn't
 		//display anything.		
-		if (1 == 1) {}
-		else
+		
+		else if (weapon_show = false | !CheckWeapon(AmmoType_Neo[current_weapon][0][0]))
 		{
+			//log(s: "WEAPON SHOW: FALSE", d: weapon_show);
 			SetFont("");
 			HudMessage(s:"";HUDMSG_PLAIN, AmmoType_HUD_ID, CR_BLUE, 0, 0, 0);
 			SetFont("");
