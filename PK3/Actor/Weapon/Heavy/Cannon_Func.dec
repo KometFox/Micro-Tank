@@ -101,7 +101,7 @@ Inventory.InterHubAmount 2
 }
 
 
-ACTOR 75mmReloadTimer1 : Inventory
+ACTOR I_75mmReloadTimer1 : Inventory
 {
 -COUNTITEM
 Inventory.Amount 1
@@ -109,7 +109,7 @@ Inventory.MaxAmount 120
 Inventory.InterHubAmount 120
 }
 
-ACTOR 75mmReloadTimer2 : 75mmReloadTimer1
+ACTOR I_75mmReloadTimer2 : I_75mmReloadTimer1
 {
 Inventory.MaxAmount 95
 Inventory.InterHubAmount 95

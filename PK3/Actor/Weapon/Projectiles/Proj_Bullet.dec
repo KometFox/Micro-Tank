@@ -139,7 +139,7 @@ ACTOR "7.62x54mm AP" : MT_FastBulletBase
   Death:
     TNT1 A 1
     TNT1 A 0 A_SpawnItem("MT_BulletPuff") 
-    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 0 A_Playsound("Bullet/Impact")
 	Stop
   XDeath:
     TNT1 A 0 A_spawnitemex("MT_CEG_7.62mm_OrganHit_Trail",0,0,0,+frandom(-4,4),+frandom(-4,4),+frandom(-4,4))  
@@ -188,7 +188,7 @@ ACTOR MT_Fragmentation : MT_Frag
 	Stop
   Death:
     TNT1 A 0 A_SpawnItem("MT_BuckshotPuff") 
-    TNT1 A 0 A_Playsound("BulHi")
+    TNT1 A 0 A_Playsound("Bullet/Impact")
     TNT1 A 1
     Stop
   Crash:

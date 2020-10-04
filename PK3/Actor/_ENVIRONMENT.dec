@@ -1,0 +1,3 @@
+#Include "Actor/Environment/Trees.dec"
+#Include "Actor/Environment/Barrels.dec"
+#Include "Actor/Environment/Houses.dec"

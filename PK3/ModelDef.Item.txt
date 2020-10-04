@@ -1,26 +1,6 @@
 //----------------------------------------------------------------------------**
 ////ITEMS
 //----------------------------------------------------------------------------**
-Model SmallRepairKit
-{
-   Path "MODELS\MediumHealthBase"
-   Model 0 "SmallRepairKit.md3"
-   Skin  0 "SmallRepairKit.png"
-   Scale 4 4 4
-   AngleOffset 0
-   FrameIndex NACO A 0 0
-}
-
-Model MediumRepairKit
-{
-   Path "MODELS\MediumHealthBase"
-   Model 0 "SmallRepairKit.md3"
-   Skin  0 "SmallRepairKit.png"
-   Scale 4.25 4.25 4.25
-   AngleOffset 0
-   FrameIndex NACO A 0 0
-}
-
 Model MT_DynamiteBundle
 {
    Path "MODELS\Items"
@@ -115,7 +95,7 @@ Model MT_Metals_Big
 //----------------------------------------------------------------------------**
 Model MT_AP
 {
-   Path "MODELS\Ammo"
+   Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
    Path "MODELS\Ammo"
    Skin  0 "AP_Box.png"
@@ -127,9 +107,8 @@ Model MT_AP
 
 Model MT_APCR
 {
-   Path "MODELS\Ammo"
+   Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
-   Path "MODELS\Ammo"
    Skin  0 "APCRBC_Box.png"
  //  PITCHFROMMOMENTUM
    Scale 8 8 8
@@ -139,9 +118,8 @@ Model MT_APCR
 
 Model MT_HE
 {
-   Path "MODELS\Ammo"
+   Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
-   Path "MODELS\Ammo"
    Skin  0 "HE_Box.png"
  //  PITCHFROMMOMENTUM
    Scale 8 8 8
@@ -151,9 +129,8 @@ Model MT_HE
 
 Model MT_HEAT
 {
-   Path "MODELS\Ammo"
+   Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
-   Path "MODELS\Ammo"
    Skin  0 "HEAT_Box.png"
  //  PITCHFROMMOMENTUM
    Scale 8 8 8
@@ -163,9 +140,8 @@ Model MT_HEAT
 
 Model MT_SC_BulletBox
 {
-   Path "MODELS\Ammo"
+   Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
-   Path "MODELS\Ammo"
    Skin  0 "HEAT_Box.png"
  //  PITCHFROMMOMENTUM
    Scale 4 4 4

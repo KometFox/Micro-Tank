@@ -99,9 +99,11 @@ MG/45ACP3 45ACP3
 $random MG/45ACP {MG/45ACP1 MG/45ACP2 MG/45ACP3}
 
 MG/Fire1  MGFire1
-MG/Fire2  MGFire2
+MG/FireA2  MGFireA2
+MG/FireB2  MGFireB2
+MG/FireC2  MGFireC2
 
-$random Machinegun/Fire {MG/Fire1}
+$random Machinegun/Fire {MG/FireA2 MG/FireB2 MG/FireC2}
 $volume Machinegun/Fire 0.5
 
 ////----------------------------------------------------------------------------
@@ -235,6 +237,13 @@ CMDTAU16 CMDTAU17}
 
 
 
+Bullet/Impact1 BULH1
+Bullet/Impact2 BULH2
+Bullet/Impact3 BULH3
+Bullet/Impact4 BULH4
+Bullet/Impact5 BULH5
+
+$Random Bullet/Impact {Bullet/Impact1 Bullet/Impact2 Bullet/Impact3 Bullet/Impact4 Bullet/Impact5}
 
 //Impacts
 BulHi BulHi

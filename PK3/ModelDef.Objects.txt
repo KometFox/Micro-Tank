@@ -1,85 +1,3 @@
-
-Model MT_Res_SmallOre
-{
-   Path "MODELS\Resource"
-   Model 0 "SmallOre.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 2.5 2.5 2.5
-   AngleOffset 0
-   PITCHFROMMOMENTUM
-   FrameIndex XXX1 A 0 0
-}
-
-Model MT_Res_SmallOre
-{
-   Path "MODELS\Resource"
-   Model 0 "SmallOre2.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 2.5 2.5 2.5
-   AngleOffset 0
-   PITCHFROMMOMENTUM
-   FrameIndex XXX2 A 0 0
-}
-
-
-
-Model MT_Res_LargeOre
-{
-   Path "MODELS\Resource"
-   Model 0 "LargeOre.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 2 2 2
-   AngleOffset 0
-   PITCHFROMMOMENTUM
-   FrameIndex XXX1 A 0 0
-   FrameIndex XXX2 A 0 0
-
-}
-
-
-Model MT_Res_SmallCrystal
-{
-   Path "MODELS\Resource"
-   Model 0 "SmallCrystal.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 2.5 2.5 2.5 
-   AngleOffset 0
-   PITCHFROMMOMENTUM
-   FrameIndex XXX1 A 0 0
-   FrameIndex XXX2 A 0 0
-
-}
-
-
-Model MT_Res_LargeCrystal
-{
-   Path "MODELS\Resource"
-   Model 0 "LargeCrystal.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 2 2 2
-   AngleOffset 0
-   PITCHFROMMOMENTUM
-   FrameIndex XXX1 A 0 0
-   FrameIndex XXX2 A 0 0
-
-}
-
-
-Model MT_SludgeBarrel
-{
-   Path "MODELS\Misc"
-   Model 0 "SludgeBarrel.md3"
-   Skin  0 "SludgeBarreL_Tex.png"
-   Scale 13.5 13.5 14
-   AngleOffset 0
-   FrameIndex BAR1 A 0 0
-}
-
 Model MT_FuelBarrel
 {
   Path "MODELS\Props\Barrels"
@@ -88,8 +6,6 @@ Model MT_FuelBarrel
   Scale 7 7 7
   FrameIndex BAR1 A 0 0
 }
-
-
 
 
 Model MT_Parachute
@@ -109,7 +25,7 @@ Model MT_Parachute
 
 Model MT_SupplyBox
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -119,7 +35,7 @@ Model MT_SupplyBox
 
 Model MT_SupplyBox
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox_empty.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -129,7 +45,7 @@ Model MT_SupplyBox
 
 Model MT_SupplyBoxEmpty
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -139,7 +55,7 @@ Model MT_SupplyBoxEmpty
 
 Model MT_Items_SupplyBoxContent
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "Supplies.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -150,7 +66,7 @@ Model MT_Items_SupplyBoxContent
 
 Model MT_SupplyBox_2
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox_2.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -160,7 +76,7 @@ Model MT_SupplyBox_2
 
 Model MT_SupplyBox_2
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox_empty.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -170,7 +86,7 @@ Model MT_SupplyBox_2
 
 Model MT_SupplyBoxEmpty_2
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "SupplyBox_2.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10
@@ -180,7 +96,7 @@ Model MT_SupplyBoxEmpty_2
 
 Model MT_Items_SupplyBoxContent_2
 {
-   Path "MODELS\Misc"
+   Path "MODELS\Items\Supply"
    Model 0 "Supplies_2.md3"
    Skin  0 "SupplyBox"
    Scale 10 10 10

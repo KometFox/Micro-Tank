@@ -1,6 +1,6 @@
 Model MT_Tree
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Treetest.md3"
    Skin  0 "Treetest.png"
    Scale 12 12 12
@@ -10,7 +10,7 @@ Model MT_Tree
 
 Model MT_PineTree
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "PineTree.md3"
    Skin  0 "PineTree.png"
    Scale 10 10 10
@@ -19,7 +19,7 @@ Model MT_PineTree
 
 Model MT_BirchTree1
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "BirchTree1.md3"
    Skin  0 "BirchTree1.png"
    Model 1 "BirchTree1_Leaves.md3"
@@ -31,7 +31,7 @@ Model MT_BirchTree1
 
 Model MT_Bush1
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush1.md3"
    Skin  0 "Bush1_a.png"
    Scale 10 10 10
@@ -41,7 +41,7 @@ Model MT_Bush1
 
 Model MT_Bush1_Spring
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush1.md3"
    Skin  0 "Bush1_Spring.png"
    Scale 10 10 10
@@ -49,7 +49,7 @@ Model MT_Bush1_Spring
 }
 Model MT_Bush2_Spring
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush6.png"
    Scale 25 25 40
@@ -58,7 +58,7 @@ Model MT_Bush2_Spring
 
 Model MT_Bush3_Spring
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush2.png"
    Scale 25 25 40
@@ -67,7 +67,7 @@ Model MT_Bush3_Spring
 
 Model MT_Bush3_Birch_Spring
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush1.png"
    Scale 25 25 40
@@ -77,7 +77,7 @@ Model MT_Bush3_Birch_Spring
 
 Model MT_Bush3_Autumn
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush4.png"
    Scale 25 25 40
@@ -86,7 +86,7 @@ Model MT_Bush3_Autumn
 
 Model MT_Bush4_Autumn
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush3.png"
    Scale 25 25 40
@@ -96,7 +96,7 @@ Model MT_Bush4_Autumn
 
 Model MT_Bush5_Autumn
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Bush3.md3"
    Skin  0 "Bush5.png"
    Scale 25 25 40
@@ -106,7 +106,7 @@ Model MT_Bush5_Autumn
 
 Model MT_TreeStump
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Treetest.md3"
    Skin  0 "Treetest.png"
    Scale 12 12 12
@@ -115,7 +115,7 @@ Model MT_TreeStump
 
 Model MT_TreeProj
 {
-   Path "MODELS\Nature"
+   Path "MODELS\Props\Nature"
    Model 0 "Treetest_Proj.md3"
    Skin  0 "Treetest.png"
    Scale 12 12 12
@@ -137,7 +137,7 @@ Model MT_TreeProj
 
 Model MT_House1
 {
-   Path "MODELS\Umgebung"
+   Path "MODELS\Props\House"
    Model 0 "House1.md3"
    Skin  0 "House1a.png"
    Scale 14 14 14

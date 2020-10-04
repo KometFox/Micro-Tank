@@ -249,7 +249,7 @@ str AmmoUpg[4]= {
 	[0][1][5] = Weapon [Ammo Upgrade 2]
 */
 
-str AmmoType_Neo[2][5][6] = {
+str AmmoType_Neo[3][5][6] = {
 	{ {"MT_105mmCannon"}, 
 	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
 	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMA0", "ACAMA0"},
@@ -259,6 +259,10 @@ str AmmoType_Neo[2][5][6] = {
 	{ {"Multi Purpose Device"}, 
 	  {"MT_MultiPurposeDevice_Repair", "Repair", "MT_Spareparts", "MSPPA0", "MSPPA0", "MSPPA0"},
 	  {"MT_MultiPurposeDevice_Reclaim", "Reclaim", "MT_Blankammo","RURMC0", "RURMC0", "RURMC0"}, },
+	  
+	{ {"MT_QuadMachineGun"}, 
+	  {"MT_QuadMachineGun_APSelected", "FMJ", "A_7u62x54mmR", "HUBBA0", "HUBBA0", "HUBBA0"},
+	  {"MT_QuadMachineGun_HESelected", "HE","MT_AMMO_7u62x54mmR_HE" , "HEAMA0", "HEAMA0", "HEAMA0"}, },
 };
 
 
@@ -294,18 +298,10 @@ str WPN_Barrel[1] = {
 script "MTHUD_Ammo" ENTER
 {
 	//Weapon related
-	int last_wpn, cur_ammo, cur_magsize; 
+	int current_weapon, current_ammo, current_ammosize, current_upgrade;
 	bool weapon_show;
-	weapon_show = 0;
-	last_wpn = 0;
-	cur_ammo = 0;
-	int cur_upg = 0;
-	cur_magsize = 0;
-	
-	//NEW
-	int current_weapon, current_ammo, current_ammosize, current_upgrade, current_gun;
+	weapon_show = false;
 	current_weapon = 0;
-	current_gun = 0;
 	current_ammo = 0;
 	current_ammosize = 0;
 	current_upgrade = 0;
@@ -340,7 +336,7 @@ script "MTHUD_Ammo" ENTER
 		*/
 		
 		//New working code
-		for (int b = 0; b < 2; b++)
+		for (int b = 0; b < 3; b++)
 		{
 		
 			//log(s: "NUMBER: ", d: b);
@@ -364,7 +360,7 @@ script "MTHUD_Ammo" ENTER
 		if (CheckWeapon(AmmoType_Neo[current_weapon][0][0]))
 		{
 	
-			for (int i0 = 0; i0 < 2; i0++)
+			for (int i0 = 0; i0 < 3; i0++)
 			{
 				if (CheckWeapon(AmmoType_Neo[i0][0][0]) == 1)
 				{
@@ -458,7 +454,7 @@ str delayer[4] = {
 //MBT Weapon
 
 //Heavy Cannon
-"75mmReloadTimer1", "75mmReloadTimer2",
+"I_75mmReloadTimer1", "I_75mmReloadTimer2",
 //Heavy Weapon
 "MT_Heavy_Pepperpot_ReloadTimer1", "MT_Heavy_Pepperpot_ReloadTimer2"};
 

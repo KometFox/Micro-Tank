@@ -6,9 +6,10 @@
 Model "MT_105mmCannon" // Cannon
 {	
    IGNORETRANSLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 0 "Cannon.md3"
    Skin  0 "Cannon"  
+   Path "MODELS\Items\Weapons\Aux"
    Model 1 "PGP_MG.md3"
    Skin  1 "PGP" 
    Scale 2 2 2
@@ -38,9 +39,10 @@ Model "MT_105mmCannon" // Cannon
 Model "MT_105mmCannon"
 {	
    IGNORETRANSLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Aux"
    Model 0 "PGP_MG.md3"
    Skin  0 "PGP2"
+   Path "MODELS\Items\Weapons\Main"
    Model 1 "Cannon.md3"
    Skin  1 "Cannon"  
    Scale 2 2 2
@@ -70,12 +72,11 @@ Model "MT_QuadMachineGun"
 {	
    IGNORETRANSLATION
    //NOINTERPOLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 0 "QuadMG.md3"
    Skin  0 "QuadMachineGun"
    Scale 2 2 2
-//   Offset 2 14 -3
-   Offset 7 24 -15
+   Offset 2 -7 -8
    //Idle
    FrameIndex QUMG A 0 0  
    //Cannon Fire
@@ -93,9 +94,10 @@ Model "MT_QuadMachineGun"
 Model "MHT_Heavy_Pepperpot" // MG Mode 1
 {	
    IGNORETRANSLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 1 "Pfeffertopf.md3"
    Skin  1 "Pfeffertopf_Diffuse"  
+   Path "MODELS\Items\Weapons\Aux"
    Model 0 "PGP_MG.md3"
    Skin  0 "PGP" 
    Scale 2 2 2
@@ -144,9 +146,10 @@ Model "MHT_Heavy_Pepperpot" // MG Mode 1
 Model "MHT_Heavy_Pepperpot" // MG Mode 2
 {	
    IGNORETRANSLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 1 "Pfeffertopf.md3"
    Skin  1 "Pfeffertopf_Diffuse"  
+   Path "MODELS\Items\Weapons\Aux"
    Model 0 "PGP_MG.md3"
    Skin  0 "PGP2" 
    Scale 2 2 2
@@ -198,9 +201,10 @@ Model "Multi Purpose Device"
 {	
    IGNORETRANSLATION
    //NOINTERPOLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
+   Path "MODELS\Items\Weapons\Aux"
    Model 1 "PGP_MG.md3"
    Skin  1 "PGP" 
    Scale 2 2 2
@@ -225,9 +229,10 @@ Model "Multi Purpose Device"
 {	
    IGNORETRANSLATION
    //NOINTERPOLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
+   Path "MODELS\Items\Weapons\Aux"
    Model 1 "PGP_MG.md3"
    Skin  1 "PGP" 
    Scale 2 2 2
@@ -247,46 +252,11 @@ Model "Multi Purpose Device"
    FrameIndex MCA1 K 1 11 
    FrameIndex MCA1 L 1 12 
 }
-
-////////////////////Deep Ore Boring Device
-Model MT_OreBoringDevice
-{	
-   IGNORETRANSLATION
-   Path "MODELS\Weapons"
-   Model 0 "DeepOreExtractor.md3"
-   Skin  0 "DeepOreExtractor"
-   Scale 2 2 2
-//   Offset 2 14 -3
-   Offset 9 25 -16
-   //Idle
-   FrameIndex MBOR A 0 0
-   //Fire   
-   FrameIndex MBOR B 0 1  
-   FrameIndex MBOR C 0 2  
-   FrameIndex MBOR D 0 3  
-   FrameIndex MBOR E 0 4
-   FrameIndex MBOR F 0 5  
-   FrameIndex MBOR G 0 6  
-   FrameIndex MBOR H 0 7  
-   FrameIndex MBOR I 0 8  
-   FrameIndex MBOR J 0 9  
-   FrameIndex MBOR K 0 10  
-   FrameIndex MBOR L 0 11 
-   FrameIndex MBOR M 0 12 
-   FrameIndex MBOR N 0 13 
-   FrameIndex MBOR O 0 14
-   FrameIndex MBOR P 0 15 
-   FrameIndex MBOR Q 0 16 
-   FrameIndex MBOR R 0 17 
-   FrameIndex MBOR S 0 18 
-   FrameIndex MBOR T 0 19 
-}
-
 ////////////////////DispersionGun
 Model MT_DispersionGun
 {	
    IGNORETRANSLATION
-   Path "MODELS\Weapons"
+   Path "MODELS\Items\Weapons\Main"
    Model 0 "DispersionGun.md3"
    Skin  0 "DispersionGun"
    Scale 2 2 2
@@ -296,67 +266,3 @@ Model MT_DispersionGun
    //Fire   
    FrameIndex DISP B 0 1	
 }
-
-/*
-Model MT_AssaultBridgeTool
-{	
-   IGNORETRANSLATION
-   //NOINTERPOLATION
-   Path "MODELS\Weapons"
-   Model 0 "BridgeTool.md3"
-   Skin  0 "BridgeTool"
-   Model 1 "BridgeTool_Bridge.md3"
-   Skin  1 "Bridge"  
-   Scale 2 2 2
-   Offset 0 1 -8
-   FrameIndex IDLA A 0 0  
-   FrameIndex FIRA A 0 1
-   FrameIndex QUMG A 0 0
-   FrameIndex IDLA A 1 0  
-   FrameIndex FIRA A 1 1
-   FrameIndex QUMG A 1 0
-   //'Firing' Animation
-   FrameIndex FIRA A 0 1
-   FrameIndex FIRA B 0 2
-   FrameIndex FIRA C 0 3
-   FrameIndex FIRA D 0 4
-   FrameIndex FIRA E 0 5
-   FrameIndex FIRA F 0 6
-   FrameIndex FIRA G 0 7
-   FrameIndex FIRA H 0 8
-   FrameIndex FIRA I 0 9
-   FrameIndex FIRA J 0 10
-   
-   FrameIndex FIRA A 1 1
-   FrameIndex FIRA B 1 2
-   FrameIndex FIRA C 1 3
-   FrameIndex FIRA D 1 4
-   FrameIndex FIRA E 1 5
-   FrameIndex FIRA F 1 6
-   FrameIndex FIRA G 1 7
-   FrameIndex FIRA H 1 8
-   FrameIndex FIRA I 1 9
-   FrameIndex FIRA J 1 10
-}
-
-Model MT_AssaultBridge
-{
- Scale 1 1 1.2
- Path "Models\Weapons"
- Model 0 "Bridge.md3"
- Skin 0 "Bridge"
- Frameindex IDLA A 0 0
-}
-
-Model MT_AssaultBridge_Pillar
-{
- Scale 0.5 0.5 4
- Path "Models\Weapons"
- Model 0 "Bridge.md3"
- Skin 0 "Bridge"
- Frameindex IDLA A 0 0
-}
-*/
-
-
-

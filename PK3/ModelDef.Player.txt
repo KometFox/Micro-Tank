@@ -1,46 +1,8 @@
-/*
-Model MT_PlayerClass_TigerTank_Warp
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "Tiger1_Turret.md3"
-   Skin 0 "TigerTank_Summer.png"
-   Scale 7 7 7
-   AngleOffset 0
-   ZOffset 0
-    FrameIndex TNK1 A 0 0
-}
-
-Model MT_Tiger1Chassis_Model
-{
-   //IGNORETRANSLATION
-   //INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "Tiger1_Chassis.md3"
-   Skin 0 "TigerTank_Summer.png"
-   Model 1 "Tiger1_Treads.md3"
-   Skin 1 "Tiger1_Treads1.png"
-   Model 2 "Tiger1_Treads.md3"
-   Skin 2 "Tiger1_Treads2.png"
-   Model 3 "Tiger1_Treads.md3"
-   Skin 3 "Tiger1_Treads3.png"
-   Scale 7 7 7
-   AngleOffset 0
-	FrameIndex TNK1 A 0 0
-    FrameIndex TNK1 A 1 0
-	FrameIndex TNK1 B 0 0
-    FrameIndex TNK1 B 2 1
-	FrameIndex TNK1 C 0 0
-    FrameIndex TNK1 C 3 2
-}
-*/
-
 Model MT_PlayerClass_HeavyTank
 {
    IGNORETRANSLATION
    INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
+   Path "MODELS\Vehicles\HeavyTank"
    Model 0 "HeavyTankA2_Turret.md3"
    Path "MODELS"
    Skin 0 "Atlas.png"
@@ -52,109 +14,28 @@ Model MT_PlayerClass_HeavyTank
 
 Model MT_HeavyTank_Chassis
 {
-   IGNORETRANSLATION
    INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA1Track.md3"
-   Model 1 "HeavyTankA2_Chassis.md3"
-   Path "MODELS\Ketten"
-   Skin 0 "StandardTrack_1.png"
-   Skin 1 "StandardTrack_1.png"
-   Skin 2 "StandardTrack_1.png"
+   Path "MODELS\Vehicles\HeavyTank"
+   Model 0 "HeavyTankA2_Chassis.md3"
+   Model 1 "HeavyTankA2_Tread.md3"
+   Model 2 "HeavyTankA2_Tread.md3"
+   Model 3 "HeavyTankA2_Tread.md3"
    Path "MODELS"
-   Skin 1 "Atlas.png"
+   Skin 0 "Atlas.png"
+   Path "MODELS\Vehicles\Ketten"
+   Skin 1 "StandardTrack_1.png"
+   Skin 2 "StandardTrack_2.png"
+   Skin 3 "StandardTrack_3.png"
    Scale 4 4 4
    AngleOffset 0
 	FrameIndex TNK1 A 0 0
-    FrameIndex TNK1 A 0 0
+    FrameIndex TNK1 A 1 0
 	FrameIndex TNK1 B 0 0
-    FrameIndex TNK1 B 1 0
+    FrameIndex TNK1 B 2 0
 	FrameIndex TNK1 C 0 0
-    FrameIndex TNK1 C 2 0
+    FrameIndex TNK1 C 3 0
 }
 /*
-Model Tiger1BaseNotRealMoving1
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA1Track.md3"
-   Model 1 "HeavyTankA2_Chassis.md3"
-   Path "MODELS\Ketten"
-   Skin 0 "StandardTrack_1.png"
-   Path "MODELS"
-   Skin 1 "Atlas.png"
-   Scale 4 4 4
-   AngleOffset 0
-    FrameIndex TNK1 B 0 0
-    FrameIndex TNK1 B 1 0
-}
-
-Model Tiger1BaseNotRealMoving2
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA1Track.md3"
-   Model 1 "HeavyTankA2_Chassis.md3"
-   Path "MODELS\Ketten"
-   Skin 0 "StandardTrack_2.png"
-   Path "MODELS"
-   Skin 1 "Atlas.png"
-   Scale 4 4 4
-   AngleOffset 0
-    FrameIndex TNK1 D 0 0
-	FrameIndex TNK1 D 1 0
-}
-
-
-Model Tiger1BaseNotRealMoving3
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA1Track.md3"
-   Model 1 "HeavyTankA2_Chassis.md3"
-   Path "MODELS\Ketten"
-   Skin 0 "StandardTrack_3.png"
-   Path "MODELS"
-   Skin 1 "Atlas.png"
-   Scale 4 4 4
-   AngleOffset 0
-	FrameIndex TNK1 E 0 0
-	FrameIndex TNK1 E 1 0
-}
-
-Model Tiger1TurretNotReal
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA2_Turret.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 7 7 7
-   AngleOffset 0
-   ZOffset 0
-	FrameIndex TNK1 T 0 0
-}
-
-
-
-Model MT_PlayerClass_TigerTank2
-{
-   IGNORETRANSLATION
-   INTERPOLATEDOUBLEDFRAMES
-   Path "MODELS\MicroHeavyTankA1"
-   Model 0 "HeavyTankA2_Turret.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 4 4 4
-   AngleOffset 0
-   ZOffset 0
-    FrameIndex TNK1 A 0 0
-}
-
 //------------------------------------------------------------------------------
 ////STUG III
 //------------------------------------------------------------------------------
@@ -209,6 +90,3 @@ Model MT_PlayerClass_StugIII
 }
 
 */
-
-
-/**/
