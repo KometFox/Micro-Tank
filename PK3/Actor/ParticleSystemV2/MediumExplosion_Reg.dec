@@ -51,15 +51,12 @@ ACTOR MTCEG_MediumExplosion_HEShell-Xplo : MTCEG_Base_Regular_Explosion
     TNT1 A 0 A_Jump(256,"Spawn1", "Spawn2", "Spawn3")
    loop
   Spawn1:
-	TNT1 A 0 //A_SetTics(100/3)
     AEA3 ABCDEFGHIJKLMNOPQRSTUVWXY 1 Bright// A_FadeOut(0.05)
     Goto Death
   Spawn2: 
-	TNT1 A 0 //A_SetTics(100/4)
     AEB3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 Bright
     Goto Death
   Spawn3:
-    TNT1 A 0 //A_SetTics(100/5)
     AEA3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 Bright
     Goto Death
   }

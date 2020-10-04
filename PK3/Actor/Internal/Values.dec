@@ -98,21 +98,6 @@ ACTOR MT_SupplyBox_Amount : MT_Counters
   Inventory.MaxAmount 11
 }
 
-//Ore Crystal lose power when alone I think
-ACTOR MT_CrystalNoPower : MT_Counters 
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 100
-}
-
-//Ore Crystal infection
-Actor MT_Corruption : MT_Counters
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 20
-}
-
-
 //WIP, Power Active Armor
 ACTOR MT_DeflectionStrength : MT_Counters
 {
@@ -155,8 +140,6 @@ Actor VehicleFallingCount : inventory
 inventory.maxamount 100
 }
 
-
-
 //Weapon technology level
 ACTOR MT_T1    : MT_A_BooleanValue {}
 ACTOR MT_T2    : MT_A_BooleanValue {}
@@ -180,12 +163,6 @@ ACTOR MT_MultiPurposeDevice_IsSelected : MT_A_BooleanValue {}
 
 //Gun Is reloadable?
 ACTOR MT_GunIsReloadable : MT_A_BooleanValue {}
-
-//Crystal Ore Amount
-ACTOR MT_Crystal1 : MT_A_BooleanValue {}
-ACTOR MT_Crystal2 : MT_A_BooleanValue {}
-ACTOR MT_Crystal3 : MT_A_BooleanValue {}
-ACTOR MT_Crystal4 : MT_A_BooleanValue {}
 
 //used for deflecting projectile
 ACTOR MT_Deflect : MT_A_BooleanValue {}

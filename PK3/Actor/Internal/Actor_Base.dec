@@ -9,6 +9,15 @@ ACTOR MT_SoundItem : CustomInventory
 -INVENTORY.QUIET
 -COUNTITEM
 Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.PickupMessage "" 
+Inventory.PickupFlash ""
+  States
+  {
+  Spawn:
+    BON1 A 1
+    Stop
+  }
 }
 
 ACTOR MT_Counters : Inventory 

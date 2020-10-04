@@ -18,23 +18,65 @@ Model MT_HeavyTank_Chassis
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "HeavyTankA2_Chassis.md3"
    Model 1 "HeavyTankA2_Tread.md3"
-   Model 2 "HeavyTankA2_Tread.md3"
-   Model 3 "HeavyTankA2_Tread.md3"
    Path "MODELS"
    Skin 0 "Atlas.png"
    Path "MODELS\Vehicles\Ketten"
    Skin 1 "StandardTrack_1.png"
-   Skin 2 "StandardTrack_2.png"
-   Skin 3 "StandardTrack_3.png"
    Scale 4 4 4
    AngleOffset 0
 	FrameIndex TNK1 A 0 0
     FrameIndex TNK1 A 1 0
-	FrameIndex TNK1 B 0 0
-    FrameIndex TNK1 B 2 0
-	FrameIndex TNK1 C 0 0
-    FrameIndex TNK1 C 3 0
 }
+
+Model MT_HeavyTank_Chassis
+{
+   INTERPOLATEDOUBLEDFRAMES
+   Path "MODELS\Vehicles\HeavyTank"
+   Model 0 "HeavyTankA2_Chassis.md3"
+   Model 1 "HeavyTankA2_Tread.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Path "MODELS\Vehicles\Ketten"
+   Skin 1 "StandardTrack_2.png"
+   Scale 4 4 4
+   AngleOffset 0
+	FrameIndex TNK1 B 0 0
+    FrameIndex TNK1 B 1 0
+}
+
+Model MT_HeavyTank_Chassis
+{
+   INTERPOLATEDOUBLEDFRAMES
+   Path "MODELS\Vehicles\HeavyTank"
+   Model 0 "HeavyTankA2_Chassis.md3"
+   Model 1 "HeavyTankA2_Tread.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Path "MODELS\Vehicles\Ketten"
+   Skin 1 "StandardTrack_3.png"
+   Scale 4 4 4
+   AngleOffset 0
+	FrameIndex TNK1 C 0 0
+    FrameIndex TNK1 C 1 0
+}
+
+Model MT_HeavyTank_Chassis
+{
+   INTERPOLATEDOUBLEDFRAMES
+   Path "MODELS\Vehicles\HeavyTank"
+   Model 0 "HeavyTankA2_Chassis.md3"
+   Model 1 "HeavyTankA2_Tread.md3"
+   Path "MODELS"
+   Skin 0 "Atlas.png"
+   Path "MODELS\Vehicles\Ketten"
+   Skin 1 "StandardTrack_4.png"
+   Scale 4 4 4
+   AngleOffset 0	
+	FrameIndex TNK1 D 0 0
+    FrameIndex TNK1 D 1 0
+}
+
+
 /*
 //------------------------------------------------------------------------------
 ////STUG III

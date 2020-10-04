@@ -1,27 +1,14 @@
 ACTOR MT_Sound_Loaded1 : MT_SoundItem
 {
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "" 
   Inventory.PickupSound QGuLoa5
-  Inventory.PickupFlash ""
-  States
-  {
-  Spawn:
-    BON1 ABCDCB 6
-    Loop
-  }
 }
 
 actor MT_Sound_Click : MT_SoundItem
 { 
   Inventory.UseSound "QGuLoa5"
   Inventory.PickupSound "V_Interact/Button"
-  Inventory.MaxAmount 1
   states
   {
-  Spawn:
-    TNT1 A -1
-    stop
   Use:  
     TNT1 A 0 A_PlaySound("V_Interact/Button")
     Stop
@@ -30,15 +17,10 @@ actor MT_Sound_Click : MT_SoundItem
 
 actor MT_Sound_GunLoaded5 : MT_SoundItem
 { 
-  Inventory.PickupMessage "-"
   Inventory.UseSound "QGuLoa5"
   Inventory.PickupSound "QGuLoa5"
-  Inventory.MaxAmount 1
   states
   {
-  Spawn:
-    TNT1 A -1
-    stop
   Use:  
     TNT1 A 0 A_PlaySound("QGuLoa5")
 //    TNT1 A 0 A_PlaySound("QGuLoa5",3,0.5,0,ATTN_NONE)
@@ -48,13 +30,9 @@ actor MT_Sound_GunLoaded5 : MT_SoundItem
 
 actor MT_Sound_GunLoaded : MT_SoundItem
 { 
-Inventory.PickupMessage "-"
 Inventory.MaxAmount 1
 states
 {
-Spawn:
-	TNT1 A 0
-    stop
 Use:  
 	TNT1 A 0 A_PlaySound("GunLoa",3,0.5,0,ATTN_NONE)
 	TNT1 A 0 A_TakeInventory("MT_Sound_GunLoaded",1)
@@ -64,13 +42,9 @@ Use:
 
 actor MT_Sound_Loaded : MT_SoundItem
 { 
-  Inventory.PickupMessage "-"
   Inventory.MaxAmount 1
   states
   {
-  Spawn:
-    TNT1 A 0
-    stop
   Use:  
     TNT1 A 0 A_PlaySound("Loaded",3,1,0,ATTN_NONE)
     TNT1 A 0 A_TakeInventory("MT_Sound_Loaded",1)
@@ -80,19 +54,11 @@ actor MT_Sound_Loaded : MT_SoundItem
 
 actor MT_Sound_FlaFir : MT_SoundItem
 { 
-  Inventory.PickupMessage "-"
-  Inventory.Amount 1
-  Inventory.MaxAmount 1
   states
   {
-  Spawn:
-    TNT1 A 0
-    stop
   Held:
     TNT1 A 0 A_PlaySoundEx("FlaFir", "SoundSlot7", 1)
     TNT1 A 5
-//    TNT1 A 0 A_StopSoundEX("SoundSlot7")
-//    TNT1 A 0 A_TakeInventory("MT_Sound_FlaFir",1)
     Stop
 }}
 
@@ -106,13 +72,10 @@ States
 
 ACTOR cmd_taunt : CustomInventory 
 {
-  Height 0
   Inventory.PickupSound "commander/taunt"
   -COUNTITEM
  States
   {
-  Spawn:
-  Stop
   Pickup:
   TNT1 A 0 
   TNT1 A 0 A_PlaySound("commander/taunt")

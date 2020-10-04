@@ -76,14 +76,14 @@ InInventory MT_ClassToken, 1
 	//Loading
 	IsSelected MT_105mmCannon
 	{
-		drawbar "MTHHC", "MTHHB", I_75mmReloadTimer1, horizontal, -257, -129, 0;
+		drawbar "MTHHC", "MTHHB", I_75mmReloadTimer1, horizontal, -258, -129, 0;
 	}
 		
 	InInventory MTU_FastCannon_2, 1
 	{
 		IsSelected MT_105mmCannon
 		{
-			drawbar "MTHHC", "MTHHB", I_75mmReloadTimer2, horizontal, -257, -129, 0;
+			drawbar "MTHHC", "MTHHB", I_75mmReloadTimer2, horizontal, -258, -129, 0;
 		}
 	}
 	
