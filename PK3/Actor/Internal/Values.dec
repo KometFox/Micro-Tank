@@ -137,7 +137,7 @@ Actor IsAVehicle : MT_A_BooleanValue {}
 
 Actor VehicleFallingCount : inventory
 {
-inventory.maxamount 100
+inventory.maxamount 250
 }
 
 //Weapon technology level

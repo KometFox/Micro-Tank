@@ -97,7 +97,6 @@ Model MT_AP
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
-   Path "MODELS\Ammo"
    Skin  0 "AP_Box.png"
  //  PITCHFROMMOMENTUM
    Scale 8 8 8

@@ -1,11 +1,7 @@
-#Include "acssrc/acsutils/cvarinfo.acsutils"
-#Include "acssrc/acsutils/decorate.acsutils"
-
 #Include "Actor/_INTERNAL.dec"
 #Include "Actor/_PARTICLES.dec"
 #Include "Actor/_CLASSES.dec"
 #Include "Actor/_WEAPONS.dec"
 #Include "Actor/_ITEMS.dec"
 #Include "Actor/_ENVIRONMENT.dec"
-#Include "Actor/Misc/Dump.dec"
-#Include "Actor/Wreck/Wrecks.dec"
+#Include "Actor/_MISC.dec"
