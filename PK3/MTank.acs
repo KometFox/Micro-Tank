@@ -28,7 +28,7 @@ script "MTACS_Chassis" ENTER
 	{
 		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 		
-		if (!CheckInventory("ImCrafting"))
+		if (!CheckInventory("ImCrafting") & !CheckInventory("MT_MorphVCrewToken"))
 		{
 		
 		if (buttons & BT_FORWARD)

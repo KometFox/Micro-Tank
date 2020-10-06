@@ -20,11 +20,11 @@ Treads/Left TNKSTO
 Treads/Right TNKSTO
 Treads/Backward TNKMOV2
 
-$Volume Treads/Forward 0.9
-$Volume Treads/Backward 0.9
+$Volume Treads/Forward 0.55
+$Volume Treads/Backward 0.55
 $Volume Treads/Left 0.9
 $Volume Treads/Right 0.9
-$Volume Treads/Mid 0.9
+$Volume Treads/Mid 0.55
 
 $Limit Treads/Forward 1
 $Limit Treads/Left 1

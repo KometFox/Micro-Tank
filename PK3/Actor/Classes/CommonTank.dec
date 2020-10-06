@@ -1,6 +1,6 @@
-const int vehicle_Angle0 = 256;
-const int vehicle_Angle1 = 360;
-const int vehicle_Angle2 = 128;
+//const int vehicle_Angle0 = 256;
+//const int vehicle_Angle1 = 360;
+//const int vehicle_Angle2 = 128;
 
 
 //------------------------------------------------------------------------------
@@ -89,23 +89,47 @@ Actor MT_HeavyTank_Chassis : MT_ChassisBase
 	Stay:
 		TNT1 A 0 A_JumpIfInventory("MT_MorphVCrewToken", 1, "Blank", AAPTR_TARGET)
 		TNT1 A 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag)
-		TNT1 A 0 A_JumpIfInventory("Reverse", 1, "MoveB", AAPTR_TARGET)
-		TNT1 A 0 A_JumpIfInventory("Accelerate", 1, "MoveB", AAPTR_TARGET)
-		TNT1 A 0 A_JumpIfInventory("TurnLeft", 1, "MoveB", AAPTR_TARGET)
-		TNT1 A 0 A_JumpIfInventory("TurnRight", 1, "MoveB", AAPTR_TARGET)
+		TNT1 A 0 A_JumpIfInventory("Reverse", 1, "MoveB1", AAPTR_TARGET)
+		TNT1 A 0 A_JumpIfInventory("Accelerate", 1, "MoveF1", AAPTR_TARGET)
+		TNT1 A 0 A_JumpIfInventory("TurnLeft", 1, "MoveF1", AAPTR_TARGET)
+		TNT1 A 0 A_JumpIfInventory("TurnRight", 1, "MoveF1", AAPTR_TARGET)
 		TNK1 A 1 
 		loop
 		
-	MoveB:
+	//
+	//MOVE FORWARD
+	//
+	MoveF1:
 		TNK1 B 1 
 		TNK1 B 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "MoveC")
-	MoveC:
+	MoveF2:
 		TNK1 C 1 
 		TNK1 C 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "MoveD")
-	MoveD:
+	MoveF3:
 		TNK1 D 1 
 		TNK1 D 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "Stay")
 		Goto Stay
+	//
+	//MOVE BACKWARD
+	//
+	MoveB1:
+		TNK1 D 1 
+		TNK1 D 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "MoveC")
+	MoveB2:
+		TNK1 C 1 
+		TNK1 C 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "MoveD")
+	MoveB3:
+		TNK1 B 1 
+		TNK1 B 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "Stay")
+		Goto Stay
+	//
+	//TURN LEFT
+	//
+
+	//
+	//MOVE RIGHT
+	//
+
 	
 	Blank:
 		TNT1 A 1
