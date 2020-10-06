@@ -37,12 +37,10 @@ skill hard
 	PlayerClassName = "Heavy Tank" , "Panzer Elite"
 }
 
-skill nightmare
+skill veryhard
 {
 	AmmoFactor = 2
 	FastMonsters
-	DisableCheats
-	RespawnTime = 500
 	SpawnFilter = Nightmare
 	PicName = "M_NMARE"
 	Name = "Very Hard"

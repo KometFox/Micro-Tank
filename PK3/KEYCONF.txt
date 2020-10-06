@@ -1,9 +1,8 @@
-//addplayerclass MT_PlayerClass_TigerTank2
-//addplayerclass MT_PlayerClass_StugIII
 addplayerclass MT_PlayerClass_HeavyTank
+addplayerclass MT_PlayerClass_HeavyTankA
 
 WeaponSection Microtank_Wpn
-SetSlot 1 "Multi Purpose Device" "MT_OreBoringDevice"
+SetSlot 1 "Multi Purpose Device" 
 SetSlot 2 "MT_105mmCannon" "MHT_75mmCannon_Stug" "MHT_Heavy_Pepperpot" "MT_QuadMachineGun" 
 
 

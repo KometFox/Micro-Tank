@@ -2,6 +2,7 @@
 ///Items interaction
 ////----------------------------------------------------------------------------
 Items/Pickup DSWPNUP1
+Item/Pickup DSWPNUP1
 Ammo/Pickup DSWPNUP1
 Material/Pickup1 DSMAT1
 Material/Pickup2 DSMAT2
@@ -17,7 +18,7 @@ Treads/Mid TNKMOV2
 Treads/Forward TNKMOV2
 Treads/Left TNKSTO
 Treads/Right TNKSTO
-Treads/Backward TNKSTO
+Treads/Backward TNKMOV2
 
 $Volume Treads/Forward 0.9
 $Volume Treads/Backward 0.9
@@ -202,7 +203,7 @@ $playersound	mt_vehicle	male	*fist		dsempty
 $playersound	mt_vehicle	male	*usefail	dsnoway
 $playersound	mt_vehicle	male	*use		dsempty
 $playersound	mt_vehicle	male	*grunt		dsempty
-$playersound	mt_vehicle	male	*taunt		dstaunt
+$playersound	mt_vehicle	male	*taunt		Commander/Taunt
 
 ////----------------------------------------------------------------------------
 ///Vehicle Crew
@@ -238,10 +239,6 @@ CMDTAU17 CMDTAU17
 $Random Commander/Taunt {CMDTAU0 CMDTAU1 CMDTAU2 CMDTAU3 CMDTAU4 CMDTAU5 CMDTAU5 CMDTAU6
 CMDTAU7 CMDTAU8 CMDTAU9 CMDTAU10 CMDTAU11 CMDTAU12 CMDTAU13 CMDTAU14 CMDTAU15
 CMDTAU16 CMDTAU17}
-
-
-
-
 
 Bullet/Impact1 BULH1
 Bullet/Impact2 BULH2
@@ -284,99 +281,3 @@ GunLoa4 GunLoa4
 GunLoa5 GunLoa5
 GunLoa6 GunLoa6
 QGuLoa5 QGuLoa5
-
-
-
-//Motor
-DSZTank1 DSZTank1
-DSZTank2 DSZTank2
-DSZTankD DSZTankD
-TENLO    Tenlo
-MotLop1  MotLop1 
-MotLop2  MotLop2
-MotLop3  MotLop3
-MotLop4  MotLop4
-MotLop5  MotLop5
-MotLop6  MotLop6
-MotLop7  MotLop7
-MotOf MotOf
-MotOn MotOn
-WMTGo WMTGo
-WMTSt WMTSt
-
-DSZTGun   DSZTGun
-MGFire1   MGFire1
-MGFire2   MGFire2
-MGFire3   MGFire3
-ACFire1   ACFire1
-Fire01    Fire01
-Fire02    Fire02
-Fire03    Fire03
-Fire04    Fire04
-Fire05    Fire05
-Fire06    Fire06
-Fire07    Fire07
-Fire08    Fire08
-Fire09    Fire09
-PKMFire1  PKMFire1
-PlsFir    PlsFir
-37mmFire  37mmFire
-50mmFire  50mmFire
-75mmFire  75mmFire
-GFire2    GFire2
-GFire1    GFIre1
-LaserFir  LaserFir
-LasFir1   LasFir1
-RocketFi  RocketFi
-Launch    Launch
-FlaFir    FlaFir
-MorFir    MorFir
-DispShot  DispShot
-
-DSZTankX  DSZTankX
-LasHit1   LasHit1
-
-//Misc
-Spark     Spark
-FireBurs  FireBurs
-FireIdle  FireIdle
-FireBur2  FireBur2
-FlamLoo   FlameLoo
-Radar1    Radar1
-Elec2     Elec2
-Elec1     Elec1
-GunEmp    GunEmp
-Click     Click
-Drill     Drill
-CanRot    CanRot
-GScop     GScop
-InCha     InCha
-TanMov    TanMov
-CarMov    CarMov
-TurRot    TurRot
-TurRott   TurRott
-MServo    MServo
-MexRun    MexRun
-Recla Recla
-Beep1 Beep1
-Beep2 Beep2
-Beep3 Beep3
-DispPowe DispPowe
-
-Shell2 Shell2
-
-
-//Pain
-CwDe2   CwDe2
-CwDe    CwDe
-CwHit   CwHit
-CwHit2  CwHit2
-
-//Walker
-MecSte1 MecSte1
-MecSte2 MecSte2
-MecSte3 MecSte3
-MecSte4 MecSte4
-
-TreCru TreCru
-HouCru HouCru

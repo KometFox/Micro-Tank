@@ -29,82 +29,8 @@ ACTOR Puff_MPD : BulletPuff
   }
 }
 
-
-
-ACTOR Puff_Driller : BulletPuff
-{
-  +NOBLOCKMAP
-  -NOGRAVITY
-  Gravity 0.01
-  +NOEXTREMEDEATH
-  +FORCEXYBILLBOARD
-  +PUFFONACTORS
-  +EXTREMEDEATH
-  RenderStyle Translucent
-  Alpha 0.5
-  VSpeed 1
-  Damagetype Reclaim
-  Mass 5
-  States
-  {
-  Spawn:
-    TNT1 A 0 A_Spawnitem("MPD_Hit")
-    TNT1 AAAA 0 A_Spawnitemex("Bullet_Spark",0,0,0,random(3,-3),random(3,-3),random(3,-3))
-    Stop
-  Death:
-    TNT1 A 0
-    TNT1 A 0
-    Stop
-
-  }
-}
-
-
-
-ACTOR Puff_Stun : BulletPuff
-{
-  +NOBLOCKMAP
-  -NOGRAVITY
-  Gravity 0.01
-  +NOEXTREMEDEATH
-  +FORCEXYBILLBOARD
-  +NOBLOOD
-  +PUFFONACTORS
-  +EXTREMEDEATH
-  -NOEXTREMEDEATH
-  
-  RenderStyle Translucent
-  Alpha 0.5
-  VSpeed 1
-  Damagetype Ice
-  Mass 5
-  States
-  {
-  Spawn:
-    TNT1 A 1 A_Spawnitem("ScavengingEffect")
-  Melee:
-    TNT1 A 1 A_Spawnitem("ScavengingEffect")
-    Stop  
-  }
-}
-
-
-
 ACTOR MT_DefaultPuff : BulletPuff
 {
-  States
-  {
-  Spawn:
-    TNT1 A 1
-    TNT1 A 0 A_Spawnitem("Smoke1_S0.125")
-    Stop  
-  }
-}
-
-ACTOR MT_BadCrystal_BulletPuff : BulletPuff
-{
-DamageType CrystalInfection
-+BLOODLESSIMPACT
   States
   {
   Spawn:

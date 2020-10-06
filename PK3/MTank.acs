@@ -28,44 +28,64 @@ script "MTACS_Chassis" ENTER
 	{
 		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 		
-   
+		if (!CheckInventory("ImCrafting"))
+		{
+		
 		if (buttons & BT_FORWARD)
 			{
+				ThrustThing(ACS_NamedExecuteWithResult("MT_GetVehicleRotation", 0) * 256 / 360, 1, 0);
 				GiveInventory("Accelerate", 1);
 			}
 
 		if (buttons & BT_BACK)
 			{
+				ThrustThing(ACS_NamedExecuteWithResult("MT_GetVehicleRotation", 0) * 256 / 360 + 128, 1, 0);
 				GiveInventory("Reverse", 1);
 			}
-    
-		
-		//if (chassisangle > 359) { chassisangle = 0; }
-		//if (chassisangle < 0) { chassisangle = 0; }
 	
-	
-		if (buttons & BT_MOVELEFT)
+
+		if ( (buttons & BT_MOVELEFT) && (buttons & BT_BACK) )
 			{
 				GiveInventory("TurnLeft", 1);
+				chassisangle -= 4;
+				SetUserCVAR(0, "user_chassisangle", chassisangle); 
+				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
+			}
+			
+		else if (buttons & BT_MOVELEFT)
+			{
 				//log(s: "TURN LEFT");
-				//chassisangle += 3;
-				//SetUserCVAR(0, "user_chassisangle", chassisangle); 
-				//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
-				//log(d: GetUserCVAR(0, "user_chassisangle"));
+				GiveInventory("TurnLeft", 1);
+				chassisangle += 4;
+				SetUserCVAR(0, "user_chassisangle", chassisangle); 
+				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
+			}
+
+
+		if ( (buttons & BT_MOVERIGHT) && (buttons & BT_BACK) )
+			{
+				GiveInventory("TurnLeft", 1);
+				chassisangle += 4;
+				SetUserCVAR(0, "user_chassisangle", chassisangle); 
+				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
  
-		if (buttons & BT_MOVERIGHT)
+		else if (buttons & BT_MOVERIGHT)
 			{
-				GiveInventory("TurnRight", 1);
 				//log(s: "TURN RIGHT");
-				//chassisangle -= 3;
-				//SetUserCVAR(0, "user_chassisangle", chassisangle);
-				//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
-				//log(d: GetUserCVAR(0, "user_chassisangle"));
+				GiveInventory("TurnRight", 1);
+				chassisangle -= 4;
+				SetUserCVAR(0, "user_chassisangle", chassisangle);
+				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
+
+		if (chassisangle <= 0) { chassisangle = 360; }
+		else if (chassisangle >= 360) { chassisangle = 0; }
 
 		//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);		
 		//log(d: chassisangle);
+		//log(d: GetUserCVAR(0, "user_chassisangle"));
+		}
 		
 //------------------------------------------------------------------------------
 //Chase

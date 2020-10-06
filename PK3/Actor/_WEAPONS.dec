@@ -1,6 +1,6 @@
 #Include "Actor/Weapon/Projectiles/Proj_Fire.dec"
 #Include "Actor/Weapon/Projectiles/Base_Shells.dec"
-#Include "Actor/Weapon/CommonWeapons.dec"
+#Include "Actor/Weapon/Common/CommonWeapons.dec"
 #Include "Actor/Weapon/Heavy/Cannon_Func.dec"
 //#Include "Actor/Weapon/75mm/75mmWeapon_Stug.dec"
 #Include "Actor/Weapon/Heavy/Cannon.dec"
