@@ -1,36 +1,61 @@
 //ACS code credit: Sgt. Mark IV
 #library "MTank"
-//#include "zcommon.acs"
 #include "zcommon/gzdoom.acs"
-int vehiclepreviousbaseangle;
 
-script "MTACS_Stuff" (VOID) NET
+/*
+int MTACS_RotationSpawn (int none)
 {
- delay(1);
- delay(5);
- SetActorAngle (0, GetActorAngle (261));
- Thing_Move(0, 261, 1);
- vehiclepreviousbaseangle = CheckActorInventory(261, "TankBaseDirection");
- SetUserVariable(0, "user_tankbasedirection", vehiclepreviousbaseangle);
- delay(1);
+	return (GetActorAngle(0));
+}
+*/
+
+script "MTACS_Chassis_Init" 
+{
+	int defaultchassisangle = ACS_NamedExecuteWithResult("MTACS_RotationSpawn", 0) / 182;
+
+	//Initalization
+	log(s: "CUR ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
+	log(s: "DEF ANGLE:", d: defaultchassisangle);
+	ACS_NamedExecuteWithResult("MT_SetVehicleRotation", defaultchassisangle);
+	SetUserCVAR(0, "user_chassisangle", defaultchassisangle);
+	log(s: "NEW ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
 }
 
 //Actual Vehicle Control
-
-script "MTACS_Chassis" ENTER
+script "MTACS_Chassis"
 {
  int buttons;
- //int chassisangle = GetUserCVAR(0, "user_chassisangle");	
- int chassisangle = 270;
+ int chassisangle = GetUserCVAR(0, "user_chassisangle");	
+ //int chassisangle = 0;
+ int morphangle = 0;
 
-	//I don't think there is a better way to do this with ACS
+	
+
+	ACS_NamedExecuteWithResult("MTACS_Chassis_Init", 0);
+
 	while (TRUE)
 	{
 		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 		
-		if (!CheckInventory("ImCrafting") & !CheckInventory("MT_MorphVCrewToken"))
+		//When the player is morphed.
+		if (CheckInventory("MT_MorphVCrewToken"))
 		{
+			//TODO: Clean it up and use a "morphed" token instead.
+			morphangle = GetActorAngle(0) / 182;
+			SetUserCVAR(0, "user_chassisangle", morphangle); 
+			ACS_NamedExecute("MT_SetVehicleRotation", morphangle);
+			
+			chassisangle = morphangle;
+			ACS_NamedExecute("MT_SetVehicleRotation", chassisangle);			
+			//log(s: "MORPH ANGLE:", d: morphangle);
+		}
 		
+		//TODO: Clean it up and use a "morphed" token instead.
+		ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
+		
+		if (!CheckInventory("ImCrafting") & !CheckInventory("MT_MorphVCrewToken"))
+		{			
+				
 		if (buttons & BT_FORWARD)
 			{
 				ThrustThing(ACS_NamedExecuteWithResult("MT_GetVehicleRotation", 0) * 256 / 360, 1, 0);
@@ -48,7 +73,6 @@ script "MTACS_Chassis" ENTER
 			{
 				GiveInventory("TurnLeft", 1);
 				chassisangle -= 4;
-				SetUserCVAR(0, "user_chassisangle", chassisangle); 
 				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
 			
@@ -56,17 +80,15 @@ script "MTACS_Chassis" ENTER
 			{
 				//log(s: "TURN LEFT");
 				GiveInventory("TurnLeft", 1);
-				chassisangle += 4;
-				SetUserCVAR(0, "user_chassisangle", chassisangle); 
+				chassisangle += 5;
 				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
 
 
 		if ( (buttons & BT_MOVERIGHT) && (buttons & BT_BACK) )
 			{
-				GiveInventory("TurnLeft", 1);
+				GiveInventory("TurnRight", 1);
 				chassisangle += 4;
-				SetUserCVAR(0, "user_chassisangle", chassisangle); 
 				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
  
@@ -74,15 +96,13 @@ script "MTACS_Chassis" ENTER
 			{
 				//log(s: "TURN RIGHT");
 				GiveInventory("TurnRight", 1);
-				chassisangle -= 4;
-				SetUserCVAR(0, "user_chassisangle", chassisangle);
+				chassisangle -= 5;
 				ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);
 			}
 
 		if (chassisangle <= 0) { chassisangle = 360; }
 		else if (chassisangle >= 360) { chassisangle = 0; }
 
-		//ACS_NamedExecuteWithResult("MT_SetVehicleRotation", chassisangle);		
 		//log(d: chassisangle);
 		//log(d: GetUserCVAR(0, "user_chassisangle"));
 		}
@@ -91,18 +111,20 @@ script "MTACS_Chassis" ENTER
 //Chase
 //------------------------------------------------------------------------------
 	//Chase cheat is on 
+		
 		if (CheckInventory("MT_ChaseCameraToken")) 
 			{	
 
 				setfont("TNHSA0");
 				hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
-				SetCVAR("chase", True);
+				//SetCVAR("chase", True);
 			}
 
-		else if (!CheckInventory("MT_ChaseCameraToken"))
+		else
 			{
+				TakeInventory("MT_ChaseCameraToken", 99);
 				hudmessage(s:""; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
-				SetCVAR("chase", False);
+				//SetCVAR("chase", False);
 			}
 
 		delay(1);		

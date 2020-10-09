@@ -1,0 +1,175 @@
+//#library "MCom"
+#include "zcommon/gzdoom.acs"
+
+#define FOREVER 0
+#define ALIGN_CENTER 0.4
+#define ALIGN_CENTER_Y 0.0
+#define ALIGN_LEFT 0.1
+#define ALIGN_TOP 0.1
+#define ALIGN_RIGHT 0.2
+#define ALIGN_BOTTOM 0.2
+
+int Shave(int num)
+{
+	return (num>>16)<<16;
+}
+
+int ShaveInt(int num)
+{
+	return (num>>16);
+}
+
+void ADVHudMessage (int x, int y, int id, str text, int alignX = ALIGN_CENTER, int alignY = ALIGN_CENTER, int showTime = 0.50, int fadeTime = 0.25, int resX = -1, int resY = -1, \
+					int hudX = 0, int hudY = 0)
+{
+	x = Shave(x);
+	y = Shave(y);
+	
+	if (resX == -1 && resY == -1)
+	{
+	
+		resX = GetScreenWidth() * 1.0;
+		resY = GetScreenHeight() * 1.0;	
+		
+		/*
+		// DO NOT DO THIS IN SINGLEPLAYER
+		if (!IsClientOnly())
+		{
+			resX = CheckInventory("ResolutionX") * 1.0;
+			resY = CheckInventory("ResolutionY") * 1.0;
+		}
+		else
+		{
+			resX = ScreenWidth() * 1.0;
+			resY = ScreenHeight() * 1.0;
+		}
+		*/
+	}
+	
+	int finalX, finalY;
+
+	if (y < 0.0) { finalY = resY + y; }
+	else { finalY = y; }
+
+	if (x < 0.0) { finalX = resX + x; }
+	else { finalX = x; }
+
+	// Typewriter message
+	bool typewriter = false;
+
+	int type = HUDMSG_PLAIN | HUDMSG_FADEOUT;
+	if (showTime <= 0.0)
+		type = HUDMSG_PLAIN;
+	else if (showTime >= 100.0 && showTime < 999.0)
+	{
+		showTime -= 100.0;
+		typewriter = true;
+		type = HUDMSG_TYPEON;
+	}
+
+	SetHUDSize(ShaveInt(resX), ShaveInt(resY), false);
+	
+	if (!typewriter)
+		HudMessage(s:text; type, id, CR_UNTRANSLATED, finalX + alignX, finalY + alignY, showTime, fadeTime);
+	else
+		HudMessage(s:text; type, id, CR_UNTRANSLATED, finalX + alignX, finalY + alignY, showTime, 0.03, fadeTime);
+		
+	SetHUDSize(hudX, hudY, false);
+}
+
+// -- REDUX OF THE PREVIOUS SCRIPTS --
+void HMUSRedux (int xoffset, int yoffset, str text, int alignx, int aligny, int id, int showtime, int side)
+{
+	HMUSReduxExtended(xoffset, yoffset, text, alignx, aligny, id, showtime, side, 0.25, 0);
+}
+
+void HMUSReduxExtended (int xoffset, int yoffset, str text, int alignx, int aligny, int id, int showtime, int side, int fadeTime, int bold)
+{
+	int alignvar_x, alignvar_y;
+	
+	switch (alignx)
+	{
+		case 0:
+		alignvar_x = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_x = ALIGN_CENTER;
+		break;
+
+		case 2:
+		alignvar_x = ALIGN_RIGHT;
+		break;
+	}
+
+	switch (aligny)
+	{
+		case 0:
+		alignvar_y = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_y = ALIGN_CENTER_Y;
+		break;
+
+		case 2:
+		alignvar_y = ALIGN_RIGHT;
+		break;
+	}
+	
+	ADVHudMessage(xoffset, yoffset, id, text, alignvar_x, alignvar_y, showtime, fadeTime);
+}
+
+void HudMessageUnscaled (int xoffset, int yoffset, str text, int alignx, int aligny, int id)
+{
+	int vidres_x = GetCVar("vid_defwidth");
+	int vidres_y = GetCVar("vid_defheight");
+	int vidres_xFixed = vidres_x * 1.0;
+	int vidres_yFixed = vidres_y * 1.0;
+	int vidres_xCenter = FixedDiv(vidres_xFixed, 2.0);
+	int vidres_yCenter = FixedDiv(vidres_yFixed, 2.0);
+	int alignvar_x;
+	int alignvar_y;
+
+	int finaloffset_x;
+	int finaloffset_y;
+
+	if (yoffset < 0) { finaloffset_y = vidres_yFixed + yoffset; }
+	else { finaloffset_y = yoffset; }
+
+	if (xoffset < 0) { finaloffset_x = vidres_xFixed + xoffset; }
+	else { finaloffset_x = xoffset; }
+
+	switch (alignx)
+	{
+		case 0:
+		alignvar_x = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_x = ALIGN_CENTER;
+		break;
+
+		case 2:
+		alignvar_x = ALIGN_RIGHT;
+		break;
+	}
+
+	switch (aligny)
+	{
+		case 0:
+		alignvar_y = ALIGN_LEFT;
+		break;
+
+		case 1:
+		alignvar_y = ALIGN_CENTER_Y;
+		break;
+
+		case 2:
+		alignvar_y = ALIGN_RIGHT;
+		break;
+	}
+
+	SetHUDSize(vidres_x, vidres_y, false);
+	HudMessage(s:text; HUDMSG_PLAIN | HUDMSG_FADEOUT, 725+id, CR_WHITE, finaloffset_x + alignvar_x, finaloffset_y + alignvar_y, 2.0);
+}
