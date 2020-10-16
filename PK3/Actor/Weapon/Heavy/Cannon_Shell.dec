@@ -226,7 +226,116 @@ ACTOR MT_105mmMPHErocket_3 : MT_105mmMPHErocket
    
   }
 }
+//----Bee Nest Shell
+ACTOR MT_105mmBeeProjectile : MTP_TShellBase
+{
+  Radius 6
+  Height 6
+  Speed 45
+  DamageType Piercing
+  gravity 0.012
+  scale 1
+  damage (10)
+  DeathSound "Bullet/Impact"
+  Obituary "%o <105mm Bee] %k" 
+  const int sdmg = 25;
+  const int srad = 18;
+  const int sfullrad = 8;
+  renderstyle Add
+  decal MT_BulletHit1
+  +BLOODSPLATTER
+  States
+  {
+  Spawn:
+    37MM A 1 
+    Loop
+  Death:
+	TNT1 A 0 A_Spawnitem("MT_BulletPuff")
+    TNT1 A 0 A_Explode(sdmg,srad,0,0,sfullrad)
+	Stop
+  XDeath:
+    //TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
+    //TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+    Stop
+  Crash:
+    TNT1 A 0 A_Spawnitem("MT_BulletPuff")
+	TNT1 A 0 A_PlaySound("MetHit3")
+    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+    Stop
+  }
+}
 
+
+//----Chemical Shell
+ACTOR MT_105mmChemshell : MTP_TShellBase
+{
+  Radius 6
+  Height 6
+  Speed 54
+  DamageType Explosive
+  gravity 0.025
+  damage (frandom(1,1.2)*60)
+  const int sdmg = 100;
+  const int srad = 150;
+  const int sfullrad = 100;
+  Deathsound "Medium/Explosion"
+  Obituary "%o <105mm U-MPHE] %k" 
+  +FORCERADIUSDMG
+  decal MT_MediumHEATScorch
+  var int user_i;
+  States
+  {
+  Death:
+	TNT1 A 0 A_SetUserVar("user_i", 1)
+	TNT1 A 0 A_Scream
+    TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_HEShell")
+	Goto Impact0
+  Impact0:
+    TNT1 A 0 A_CustomMissile("MT_105mmBioglob", 0, 0, 0, CMF_AIMDIRECTION , 90)
+  Impact1:
+    TNT1 A 0 A_JumpIf(user_i > 6, "FinalDeath")
+	TNT1 A 0 A_CustomMissile("MT_105mmBioglob", 0, 0, (user_i * 30) * 2, CMF_AIMDIRECTION , 16)
+	TNT1 A 0 A_SetUserVar("user_i", user_i + 1)
+	TNT1 A 0
+	loop
+  FinalDeath:
+    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+    Stop
+  }
+}
+
+ACTOR MT_105mmChemshell_2 : MT_105mmChemshell
+{
+  damage (frandom(1,1.2)*60)
+  const int sdmg = 150;
+  const int srad = 150;
+  const int sfullrad = 100;
+  States
+  {
+  FinalDeath:
+	TNT1 A 1  A_Explode(sdmg,srad,0,0,sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmChemshell_3 : MT_105mmChemshell
+{
+  damage (frandom(1,1.2)*60)
+  const int sdmg = 150;
+  const int srad = 150;
+  const int sfullrad = 100;
+  States
+  {
+  FinalDeath:
+	TNT1 A 1  A_Explode(sdmg,srad,0,0,sfullrad)
+	Stop
+  }
+}
+
+
+//OLD
 //----Uranium Multi Purpose High Explosive shell
 ACTOR MT_105mmU_MPHEshell : MTP_TShellBase
 {

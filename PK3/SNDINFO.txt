@@ -139,9 +139,6 @@ HeavyCannon/RocketFiring RocketFi
 $Random MediumCannon/Firing {MediumCannon/Firing0 MediumCannon/Firing1 MediumCannon/Firing2}
 $Random HeavyCannon/Firing {HeavyCannon/Firing0 HeavyCannon/Firing1 HeavyCannon/Firing2}
 
-W_Pepperpot/Load1 Gunloa
-W_Pepperpot/Load2 loaded
-W_Pepperpot/Load3 Gunloa2
 H_Cannon/Loaded QGuLoa5
 
 $Volume Fire05 2
@@ -154,23 +151,9 @@ $Volume Weapon/Boom5 4
 $Volume Weapon/boom6 4
 $Volume MGFire3 8
 
-//Weapon sounds
-Weapon/Boom1 Boom1
-Weapon/Boom2 Boom2
-Weapon/Boom3 Boom3
-Weapon/Boom4 Boom4
-Weapon/Boom5 Boom5
-Weapon/Boom6 Boom6
-Weapon/Boom7 Boom7
-Weapon/Boom8 Boom8
-Weapon/FireBurs  FireBurs
-Weapon/FireBur2  FireBur2
-Weapon/37mmblas  37mmblas
-Weapon/LaserHit  LaserHit
-Weapon/LaserHit1 LasHit1
-
-//miscellaneous 
-Sons/loaded loaded
+////----------------------------------------------------------------------------
+///Multi Purpose Device
+////----------------------------------------------------------------------------
 
 MultiPurposeDevice/Reclaim Recla
 MultiPurposeDevice/Repair Spark
@@ -271,13 +254,3 @@ WoodH1  WoodH1
 WoodH2  WoodH2
 RockFa RockFa
 RockFa2 RockFa2
-
-//Loading
-Loaded  Loaded
-GunLoa  GunLoa
-GunLoa2 GunLoa2
-GunLoa3 GunLoa3
-GunLoa4 GunLoa4
-GunLoa5 GunLoa5
-GunLoa6 GunLoa6
-QGuLoa5 QGuLoa5

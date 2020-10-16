@@ -1,5 +1,4 @@
 ////////////////WEAPONS////////////////////////////////////////////////////////
-
 ////--------------------------------------------------------------------------**
 //Heavy Cannon
 ////--------------------------------------------------------------------------**
@@ -8,13 +7,12 @@ Model "MT_105mmCannon" // Cannon
    IGNORETRANSLATION
    Path "MODELS\Items\Weapons\Main"
    Model 0 "Cannon.md3"
-   Skin  0 "Cannon"  
+   Skin  0 "Cannon.dds"  
    Path "MODELS\Items\Weapons\Aux"
    Model 1 "PGP_MG.md3"
    Skin  1 "PGP" 
    Scale 2 2 2
    Offset 2 -7 -8
-//   Offset 7 22 -15
    //Idle
    FrameIndex MCAN A 1 0
    FrameIndex MCAN A 0 0
@@ -44,9 +42,8 @@ Model "MT_105mmCannon"
    Skin  0 "PGP2"
    Path "MODELS\Items\Weapons\Main"
    Model 1 "Cannon.md3"
-   Skin  1 "Cannon"  
+   Skin  1 "Cannon.dds"  
    Scale 2 2 2
-//   Offset 2 14 -3
    Offset 2 -7 -8
    //Idle   
    FrameIndex MCA1 A 1 0
@@ -66,8 +63,6 @@ Model "MT_105mmCannon"
    FrameIndex MCA1 L 0 12 
 }
 /////////////////////Quad Machine Gun
-
-
 Model "MT_QuadMachineGun"
 {	
    IGNORETRANSLATION
@@ -86,115 +81,6 @@ Model "MT_QuadMachineGun"
    FrameIndex QUMG E 0 4  
    FrameIndex QUMG F 0 5   
 }
-
-
-////--------------------------------------------------------------------------**
-//Heavy Pepperpot
-////--------------------------------------------------------------------------**
-Model "MHT_Heavy_Pepperpot" // MG Mode 1
-{	
-   IGNORETRANSLATION
-   Path "MODELS\Items\Weapons\Main"
-   Model 1 "Pfeffertopf.md3"
-   Skin  1 "Pfeffertopf_Diffuse"  
-   Path "MODELS\Items\Weapons\Aux"
-   Model 0 "PGP_MG.md3"
-   Skin  0 "PGP" 
-   Scale 2 2 2
-   Offset 8 -7 -6
-// Offset 7 22 -15
-	FrameIndex MCA1 A 0 0
-//Idle   
-	FrameIndex MCA1 A 1 0
-	FrameIndex MCAN A 0 0
-	FrameIndex MCAN A 1 0
-//Rotate Barrel
-	FrameIndex MCAN B 1 1 //Don't use
-	FrameIndex MCAN C 1 2
-	FrameIndex MCAN D 1 3
-	FrameIndex MCAN E 1 4
-	FrameIndex MCAN F 1 5 
-	FrameIndex MCAN G 1 6 
-	FrameIndex MCAN H 1 7 
-	FrameIndex MCAN I 1 8 
-	FrameIndex MCAN J 1 9
-//Load Shell
-	FrameIndex MCAN K 1 10
-	FrameIndex MCAN L 1 11
-	FrameIndex MCAN M 1 12
-	FrameIndex MCAN N 1 13
-	FrameIndex MCAN O 1 14
-	FrameIndex MCAN P 1 15
-	FrameIndex MCAN Q 1 16
-	FrameIndex MCAN R 1 17
-	FrameIndex MCAN S 1 18
-//Shell inside
-	FrameIndex MCAN T 1 19
-	FrameIndex MCAN U 1 20
-	FrameIndex MCAN V 1 21
-	FrameIndex MCAN W 1 22
-	FrameIndex MCAN X 1 23
-	FrameIndex MCAN Y 1 24
-//Shell Rammed
-	FrameIndex MCAN Z 1 25
-	FrameIndex MCAN [ 1 26
-//MG Firing
-
-//Cannon Firing
-}
-
-Model "MHT_Heavy_Pepperpot" // MG Mode 2
-{	
-   IGNORETRANSLATION
-   Path "MODELS\Items\Weapons\Main"
-   Model 1 "Pfeffertopf.md3"
-   Skin  1 "Pfeffertopf_Diffuse"  
-   Path "MODELS\Items\Weapons\Aux"
-   Model 0 "PGP_MG.md3"
-   Skin  0 "PGP2" 
-   Scale 2 2 2
-   Offset 8 -7 -6
-// Offset 7 22 -15
-	FrameIndex MCA1 A 0 0
-//Idle   
-	FrameIndex MCA1 A 1 0
-	FrameIndex MCA1 A 0 0
-	FrameIndex MCA1 A 1 0
-//Rotate Barrel
-	FrameIndex MCA1 B 1 1
-	FrameIndex MCA1 C 1 2
-	FrameIndex MCA1 D 1 3
-	FrameIndex MCA1 E 1 4
-	FrameIndex MCA1 F 1 5 
-	FrameIndex MCA1 G 1 6 
-	FrameIndex MCA1 H 1 7 
-	FrameIndex MCA1 I 1 8 
-	FrameIndex MCA1 J 1 9
-//Load Shell
-	FrameIndex MCA1 K 1 10
-	FrameIndex MCA1 L 1 11
-	FrameIndex MCA1 M 1 12
-	FrameIndex MCA1 N 1 13
-	FrameIndex MCA1 O 1 14
-	FrameIndex MCA1 P 1 15
-	FrameIndex MCA1 Q 1 16
-	FrameIndex MCA1 R 1 17
-	FrameIndex MCA1 S 1 18
-//Shell inside
-	FrameIndex MCA1 T 1 19
-	FrameIndex MCA1 U 1 20
-	FrameIndex MCA1 V 1 21
-	FrameIndex MCA1 W 1 22
-	FrameIndex MCA1 X 1 23
-	FrameIndex MCA1 Y 1 24
-//Shell Rammed
-	FrameIndex MCA1 Z 1 25
-	FrameIndex MCA1 [ 1 26
-//MG Firing
-
-//Cannon Firing
-}
-
 
 ////////////////////Multi Purpose Device
 Model "Multi Purpose Device"
@@ -251,18 +137,4 @@ Model "Multi Purpose Device"
    FrameIndex MCA1 J 1 10  
    FrameIndex MCA1 K 1 11 
    FrameIndex MCA1 L 1 12 
-}
-////////////////////DispersionGun
-Model MT_DispersionGun
-{	
-   IGNORETRANSLATION
-   Path "MODELS\Items\Weapons\Main"
-   Model 0 "DispersionGun.md3"
-   Skin  0 "DispersionGun"
-   Scale 2 2 2
-   Offset 9 25 -16
-   //Idle
-   FrameIndex DISP A 0 0  
-   //Fire   
-   FrameIndex DISP B 0 1	
 }

@@ -4,7 +4,6 @@ O = Optional
 numbers = The file is dependent
 
 1  MicroTank_*.pk3
-O  MicroTank_*_ExtremeDeath.pk3
 O1 MicroTank_*_Enemys.pk3
 
 Example of a load order:

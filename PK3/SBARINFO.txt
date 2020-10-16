@@ -31,7 +31,7 @@ InInventory MT_ClassToken, 1
   
     //Metals
    	drawimage "METBA0", 153, -35, centerbottom, 15, 15, forcescale;
-    drawnumber 2147483647, BIGFONT2, WHITE, ammo MT_HighValueMetal , drawshadow ,alignment(left) , 163, -49;
+    drawnumber 2147483647, BIGFONT2, WHITE, ammo MT_Metal , drawshadow ,alignment(left) , 163, -49;
    	
     //Credits
    	drawimage "CREDA0", 152, -14, centerbottom, 15, 15, forcescale;

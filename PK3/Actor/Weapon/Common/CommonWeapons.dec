@@ -1,6 +1,6 @@
 //Delay constants
 const int w75mmCannon_Delay1 = 120;
-const int w75mmCannon_Delay2 = 95;
+const int w75mmCannon_Delay2 = 90;
 
 const int wHPepperpot_Delay1 = 25;
 const int wHPepperpot_Delay2 = 20;

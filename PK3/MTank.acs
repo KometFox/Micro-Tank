@@ -14,15 +14,15 @@ script "MTACS_Chassis_Init"
 	int defaultchassisangle = ACS_NamedExecuteWithResult("MTACS_RotationSpawn", 0) / 182;
 
 	//Initalization
-	log(s: "CUR ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
-	log(s: "DEF ANGLE:", d: defaultchassisangle);
+	//log(s: "CUR ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
+	//log(s: "DEF ANGLE:", d: defaultchassisangle);
 	ACS_NamedExecuteWithResult("MT_SetVehicleRotation", defaultchassisangle);
 	SetUserCVAR(0, "user_chassisangle", defaultchassisangle);
-	log(s: "NEW ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
+	//log(s: "NEW ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
 }
 
 //Actual Vehicle Control
-script "MTACS_Chassis"
+script "MTACS_Chassis" ENTER
 {
  int buttons;
  int chassisangle = GetUserCVAR(0, "user_chassisangle");	

@@ -18,8 +18,12 @@ New:
 Piercing (AP shot)
 Explosive (HE shell)
 Acid (Acid Shell)
+Chemical 
 Radiation (Nuclear effect)
+
+
 
 Special:
 Reclaim
 Repair
+Build

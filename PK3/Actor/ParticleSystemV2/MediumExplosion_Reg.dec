@@ -14,7 +14,7 @@ ACTOR MTCEG_MediumExplosion_HEShell : MT_ParticleSystem2
 	TNT1 AAAAAAA 0 A_Spawnitemex("MTCEG_MediumExplosion_HEShell-Spark",0,0,0,frandom(6,12),frandom(6,12),frandom(6,12),random(-360,360))
 
 
-	TNT1 AAAAAA 0 A_Spawnitemex("MT_CEG_75mmHE_DreckRauch",0,0,0,frandom(10,20),frandom(10,20),frandom(15,27),random(45,360))
+	TNT1 AAAAAA 0 A_Spawnitemex("MT_CEG_75mmHE_DreckRauch",0,0,0,0,+frandom(8,20),frandom(5,15),random(0,360))
     TNT1 A  0  A_SpawnItemEx("MT_CEG_75mmHEShell_Glow",0,0,0,0+frandom(-1,1),0+frandom(-1,1),0+frandom(-1,1),0+frandom(-360,360))
     TNT1 A 0 A_Spawnitemex("Smoke1_S2",0,0,0,0+random(-2,2),0+random(-2,2),0+random(5,8))
     TNT1 A 6

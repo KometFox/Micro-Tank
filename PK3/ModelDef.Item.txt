@@ -93,7 +93,7 @@ Model MT_Metals_Big
 //----------------------------------------------------------------------------**
 ////AMMUNITION
 //----------------------------------------------------------------------------**
-Model MT_AP
+Model MTAmmoBox_AP
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
@@ -104,7 +104,7 @@ Model MT_AP
    FrameIndex APAM A 0 0
 }
 
-Model MT_APCR
+Model MTAmmoBox_APCR
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
@@ -115,7 +115,7 @@ Model MT_APCR
    FrameIndex APAM A 0 0
 }
 
-Model MT_HE
+Model MTAmmoBox_HE
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
@@ -126,7 +126,7 @@ Model MT_HE
    FrameIndex APAM A 0 0
 }
 
-Model MT_HEAT
+Model MTAmmoBox_HEAT
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"
@@ -137,7 +137,7 @@ Model MT_HEAT
    FrameIndex APAM A 0 0
 }
 
-Model MT_SC_BulletBox
+Model MTAmmoBox_SC_BulletBox
 {
    Path "MODELS\Items\Ammo"
    Model 0 "AmmoCrate.md3"

@@ -4,10 +4,10 @@
 Model MT_105mmAPHEshell_dummy
 {
    Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 6.5 6.5 6.5
    AngleOffset 0
    FrameIndex 37MM A 0 0
 }
@@ -15,10 +15,10 @@ Model MT_105mmAPHEshell_dummy
 Model MT_105mmU_APFSDSshell_dummy
 {
    Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 6.5 6.5 6.5
    AngleOffset 0
    FrameIndex 37MM A 0 0
 }
@@ -59,10 +59,10 @@ Model MT_105mmMPHErocket_3
 Model MT_105mmU_MPHEshell
 {
    Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 6.5 6.5 6.5
    AngleOffset 0
    FrameIndex 37MM A 0 0
 }
@@ -70,10 +70,10 @@ Model MT_105mmU_MPHEshell
 Model MT_105mmU_MPHEshell_2
 {
    Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 6.5 6.5 6.5
    AngleOffset 0
    FrameIndex 37MM A 0 0
 }
@@ -82,10 +82,54 @@ Model MT_105mmU_MPHEshell_2
 Model MT_105mmU_MPHEshell_3
 {
    Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex 37MM A 0 0
+}
+//------------------------------------------------------------------------------
+Model MT_105mmChemshell
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex 37MM A 0 0
+}
+
+Model MT_105mmChemshell_2
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex 37MM A 0 0
+}
+
+Model MT_105mmChemshell_3
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex 37MM A 0 0
+}
+//------------------------------------------------------------------------------
+Model "MT_105mmBeeProjectile"
+{
+   Path "MODELS\Projectiles\Tracers"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 6 4 4
    AngleOffset 0
    FrameIndex 37MM A 0 0
 }
@@ -124,7 +168,7 @@ Model "7.62x54mm AP 3"
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
-
+//------------------------------------------------------------------------------
 Model "MT_QuadMQ_AP_Proj"
 {
    Path "MODELS\Projectiles\Tracers"
@@ -147,6 +191,18 @@ Model "MT_QuadMQ_HE_Proj"
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
+//------------------------------------------------------------------------------
+Model MT_Dud
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 5.5 5.5 5.5
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+
 //------------------------------------------------------------------------------
 //PODS
 //------------------------------------------------------------------------------
@@ -193,6 +249,19 @@ Model "40mm Grenade Illuminating"
    rotation-vector 0.005 0.005 0.005
 }
 
+Model "40mm Grenade Flare"
+{
+   Path "MODELS\Projectiles\Pod"
+   Model 0 "PodGrenade.md3"
+   Skin  0 "PodGrenade_Smoke.png"
+   Scale 4 4 4
+   AngleOffset 0
+   PITCHFROMMOMENTUM
+   FrameIndex MESH A 0 0
+   rotating
+   rotation-speed 0
+   rotation-vector 0.005 0.005 0.005
+}
 
 Model "40mm Grenade Explosive"
 {
@@ -236,6 +305,7 @@ Model "40mm GP Scud Missile Marker"
    rotation-speed 0
    rotation-vector 0.005 0.005 0.005
 }
+
 //------------------------------------------------------------------------------
 //ARTILLERY
 //------------------------------------------------------------------------------
@@ -248,38 +318,4 @@ Model MT_ScudMissile
    AngleOffset 180
    PITCHFROMMOMENTUM
    FrameIndex MESH A 0 0
-}
-
-//
-Model MT_Dud
-{
-   Path "MODELS\Projectiles\Cannon"
-   Model 0 "CShell.md3"
-   Skin  0 "CShell.png"
-   PITCHFROMMOMENTUM
-   Scale 5.5 5.5 5.5
-   AngleOffset 0
-   FrameIndex IDLE A 0 0
-}
-
-Model NukeRocket
-{
-   Path "MODELS\Projectiles\Missile"
-   Model 0 "75mmrocket.md3"
-   Skin  0 "75mmrocket_tex.png"
-   PITCHFROMMOMENTUM
-   Scale 9 9 9
-   AngleOffset 0
-   FrameIndex 37MM A 0 0
-}
-
-Model MT_WeakPlasmaShot
-{
-   Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2Blue.png"
-   PITCHFROMMOMENTUM
-   Scale 50 22 22
-   AngleOffset 0
-   FrameIndex TRCR A 0 0
 }

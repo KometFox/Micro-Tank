@@ -53,7 +53,7 @@ Model MT_P_CaseLink
    Model 0 "CaseLink.md3"
    Skin  0 "CaseLink"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 2 2 2
    AngleOffset 0
    FrameIndex MBUL A 0 1
    FrameIndex MBUL B 0 2

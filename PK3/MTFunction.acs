@@ -73,12 +73,13 @@ str AmmoUpg[4]= {
 	[0][1][5] = Weapon [Ammo Upgrade 2]
 */
 
-str AmmoType_Neo[3][5][6] = {
+str AmmoType_Neo[3][6][6] = {
 	{ {"MT_105mmCannon"}, 
 	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
 	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMA0", "ACAMA0"},
-	  {"MHT_BaseGun_HE","MPHE", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
-	  {"MHT_BaseGun_HEAT","U-MPHE","MT_75x500mmHEAT", "HTAMA0", "HTAMB0", "HTAMC0"}, },
+	  {"MHT_BaseGun_HE","HEMP", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
+	  {"MHT_BaseGun_Chem","Chem","MT_75x500mmChem", "CHAMA0", "CHAMB0", "CHAMC0"}, 
+	  {"MHT_BaseGun_Bee","Bee","MT_75x500mmBee", "BHAMA0", "BHAMB0", "BHAMC0"}, },
 
 	{ {"Multi Purpose Device"}, 
 	  {"MT_MultiPurposeDevice_Repair", "Repair", "MT_Spareparts", "MSPPA0", "MSPPA0", "MSPPA0"},
@@ -191,7 +192,7 @@ script "MTHUD_Ammo" ENTER
 					//log(s: "WEAPON SELECTED: ", s: AmmoType_Neo[current_weapon][0][0]);
 				//current_weapon = i0;
 				
-					for (int i1 = 1; i1 < 5; i1++)					
+					for (int i1 = 1; i1 < 6; i1++)					
 						if (CheckInventory(AmmoType_Neo[current_weapon][i1][0]) == 1)
 						{
 							current_ammo = i1;
@@ -337,14 +338,14 @@ script "MT_NewMap" OPEN
 //TODO: Fix the bug on changemap command
 script "MT_MorphFixer" UNLOADING
 {
-	log(s: "AAAAAA");
+	//log(s: "AAAAAA");
 	if (CheckInventory("MT_MorphVCrewToken") == 1)
 		{
 			/*
 			log(s: "FUGGEN");
 			ACS_NamedExecuteWithResult("MT_MorphToMarine", 0);
 			*/
-			log(s: "FUGGEN");
+			//log(s: "FUGGEN");
 			SetActorProperty(PlayerNumber(), APROP_Health, vehicleprevioushealth);
 			TakeInventory("MT_MorphVCrewToken",999);
 		}
@@ -412,7 +413,7 @@ script "MT_GiveMoni" ENTER
 		}
 		if(GetCVar("mtcvar_metalstart") > 0 )
 		{
-			GiveInventory("MT_HighValueMetal", GetCVar("mtcvar_metalstart"));
+			GiveInventory("MT_Metal", GetCVar("mtcvar_metalstart"));
 		}		
 		
 	}

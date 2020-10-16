@@ -113,8 +113,44 @@ ACTOR MT_75x500mmHEAT : Ammo {
     Stop
 }}
 
+ACTOR MT_75x500mmBee : Ammo {
+  Inventory.PickupMessage "Picked up: Bee Nest shell"
+  Inventory.Amount 1
+  Inventory.MaxAmount 60
+  Ammo.BackpackAmount 0
+  Ammo.BackpackMaxAmount 70
+  Inventory.Icon "HTAMA0"
+ 	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
+  Scale 0.5
+  States
+  {
+  Spawn:
+    HTAM A -1
+    Stop
+}}
+
+
+ACTOR MT_75x500mmChem : Ammo {
+  Inventory.PickupMessage "Picked up: Chemical Explosive shell"
+  Inventory.Amount 1
+  Inventory.MaxAmount 60
+  Ammo.BackpackAmount 0
+  Ammo.BackpackMaxAmount 70
+  Inventory.Icon "HTAMA0"
+ 	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNCLEARABLE 
+  Scale 0.5
+  States
+  {
+  Spawn:
+    HTAM A -1
+    Stop
+}}
+
+
 ACTOR A_7u62x54mmR : Ammo {
-  Inventory.PickupMessage "Picked up: 30x 7.62x54mmR rounds"
+  Inventory.PickupMessage "Picked up: 100x 7.62x54mmR rounds"
   Inventory.Amount 100
   Inventory.MaxAmount 3000
   Ammo.BackpackAmount 100

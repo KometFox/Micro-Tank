@@ -1,10 +1,15 @@
+ACTOR MT_105mmBeeHiveCount0 : MT_SPlayerInventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 8
+}
+
 ACTOR MT_105mmCannon : MT_Baseweapon
 {
   Weapon.SlotNumber 2
   Weapon.SlotPriority 1
   Inventory.PickupMessage "What the hell."
   Tag "(Int) 105mm Cannon"
-  Var Int User_BuckAmount;
   States
   {
 
@@ -32,7 +37,8 @@ Ready2:
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_APCR"      ,1, "Ready")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "Ready")
-    "####" A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "Ready")
+    "####" A 0 A_JumpIfInventory("MHT_BaseGun_Bee"      ,1, "Ready")
+	"####" A 0 A_JumpIfInventory("MHT_BaseGun_Chem"      ,1, "Ready")
 	Goto Give
 	
 	
@@ -57,7 +63,8 @@ FireNow:
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_AP"        ,1, "AP_Fire_Check")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_APCR"      ,1, "APCR_Fire_Check")
     "####" A 0 A_JumpIfInventory("MHT_BaseGun_HE"        ,1, "HE_Fire_Check")
-    "####" A 0 A_JumpIfInventory("MHT_BaseGun_HEAT"      ,1, "HEAT_Fire_Check")
+    "####" A 0 A_JumpIfInventory("MHT_BaseGun_Bee"      ,1, "Bee_Fire_Check")
+	"####" A 0 A_JumpIfInventory("MHT_BaseGun_Chem"      ,1, "Chemical_Fire_Check")
    Goto Ready
    
 //It is mandatory they are isolated   
@@ -73,10 +80,14 @@ HE_Fire_Check:
     "####" A 0 A_JumpIfInventory("MT_75x500mmHE",1,"MPHE_Fire")
 	Goto Empty
 	
-HEAT_Fire_Check:
-    "####" A 0 A_JumpIfInventory("MT_75x500mmHEAT",1, "U_MPHE_Fire")
+Bee_Fire_Check:
+    "####" A 0 A_JumpIfInventory("MT_75x500mmBee",1, "Bee_Fire")
 	Goto Empty
 
+Chemical_Fire_Check:
+    "####" A 0 A_JumpIfInventory("MT_75x500mmChem",1, "Chemical_Fire")
+	Goto Empty
+	
 Flash:
     "####" A 0 
     //"####" BCDEFG 2 
@@ -132,13 +143,55 @@ MPHE_Fire:
   "####" A 0 A_Firecustommissile("MT_105mmMPHErocket",0,1,0,0,0)
   Goto MuzzleFlash_Rocket
  
-U_MPHE_Fire:
-  "####" A 0 A_TakeInventory("MT_75x500mmHEAT",1)
-  "####" A 0 A_Jumpifinventory("MTU_HEATShell_2",2, "U_MPHE3_Fire")
-  "####" A 0 A_Jumpifinventory("MTU_HEATShell_2",1, "U_MPHE2_Fire")  
-  "####" A 0 A_Firecustommissile("MT_105mmU_MPHEshell",0,1,0,0,0)
-  Goto MuzzleFlash_Default
+Bee_Fire:
+  "####" A 0 A_TakeInventory("MT_75x500mmBee",1)
+  "####" A 0 A_Jumpifinventory("MTU_BuckShotShell_2",2, "Bee3_FireA")
+  "####" A 0 A_Jumpifinventory("MTU_BuckShotShell_2",1, "Bee2_FireA")
+  "####" A 0
+  Goto Bee_FireA
+Bee_FireA:
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0)
+  Goto Bee_FireB
+Bee_FireB:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 4, "Bee_FireC_Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  //MIDDLE
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0
+  loop
+Bee_FireC_Clear:
+  "####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0", 999)
+  Goto Bee_FireC
+Bee_FireC:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 3, "Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0
+  loop
   
+Chemical_Fire:
+  "####" A 0 A_TakeInventory("MT_75x500mmChem",1)
+  "####" A 0 A_Jumpifinventory("MTU_ChemShell_2",2, "Chemi3_Fire")
+  "####" A 0 A_Jumpifinventory("MTU_ChemShell_2",1, "Chemi2_Fire")  
+  "####" A 0 A_Firecustommissile("MT_105mmChemshell",0,1,0,0,0)
+  Goto MuzzleFlash_Default 
+   
 ////-------------
 //Upgrades
 ////-------------
@@ -173,14 +226,94 @@ MPHE3_Fire:
   "####" A 0 A_Firecustommissile("MT_105mmMPHErocket_3",0,1,0,0,0)
   Goto MuzzleFlash_Rocket 
 
-//Uranium Multi Purpose High Explosive
-U_MPHE2_Fire:
-  "####" A 0 A_Firecustommissile("MT_105mmU_MPHEshell_2",0,1,0,0,0)
+//Bee Nest 
+Bee2_FireA:
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0)
+  Goto Bee_FireB
+Bee2_FireB:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 4, "Bee2_FireC_Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  //MIDDLE
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0
+  loop
+Bee2_FireC_Clear:
+  "####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0", 999)
+  Goto Bee_FireC
+Bee2_FireC:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 3, "Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0
+  loop
+
+Bee3_FireA:
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0)
+  Goto Bee_FireB
+Bee3_FireB:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 4, "Bee3_FireC_Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+  //MIDDLE
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+  "####" A 0
+  loop
+Bee3_FireC_Clear:
+  "####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0", 999)
+  Goto Bee_FireC
+Bee3_FireC:
+  "####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 3, "Clear")
+  "####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
+  //TOP
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 18, 0)
+  //BOTTOM
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -18, 0)
+  "####" A 0
+  loop
+ 
+//Chemical Explosive
+Chemi2_Fire:
+  "####" A 0 A_Firecustommissile("MT_105mmChemshell_2",0,1,0,0,0)
   Goto MuzzleFlash_Default 
 
-U_MPHE3_Fire:
-  "####" A 0 A_Firecustommissile("MT_105mmU_MPHEshell_3",0,1,0,0,0)
+Chemi3_Fire:
+  "####" A 0 A_Firecustommissile("MT_105mmChemshell_3",0,1,0,0,0)
   Goto MuzzleFlash_Default 
+  
+////-------------
+//CLEAR SPECIALS
+////-------------
+Clear:
+  "####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0", 999)
+  Goto MuzzleFlash_Default  
   
 //Loading, Reloading, Empty states 
 StillLoading:

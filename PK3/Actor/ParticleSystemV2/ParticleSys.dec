@@ -1,7 +1,6 @@
-
 Actor MT_ParticleSystem2
 {
-  +ClientSideOnly
+  +CLIENTSIDEONLY
   +FORCEXYBILLBOARD
   +NOTELEPORT
   +NOTELEOTHER

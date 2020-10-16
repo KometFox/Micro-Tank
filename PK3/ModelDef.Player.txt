@@ -1,79 +1,85 @@
 Model MT_PlayerClass_HeavyTank
 {
-   IGNORETRANSLATION
    INTERPOLATEDOUBLEDFRAMES
+   IGNORETRANSLATION
    Path "MODELS\Vehicles\HeavyTank"
-   Model 0 "HeavyTankA2_Turret.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
-   Scale 4 4 4
+   Model 0 "HeavyTankA1_Turret.md3"
+   Skin 0 "Chassis.dds"
+   Scale 1 1 1 
    AngleOffset 0
-   ZOffset 0
-    FrameIndex TNK1 A 0 0
+	FrameIndex TNK1 A 0 0
 }
 
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
    Path "MODELS\Vehicles\HeavyTank"
-   Model 0 "HeavyTankA2_Chassis.md3"
-   Model 1 "HeavyTankA2_Tread.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
+   Model 0 "HeavyTankA1_Chassis.md3"
+   Model 1 "HeavyTankA1_Wheels.md3"
+   Model 2 "HeavyTankA1_Treads.md3"
+   Skin 0 "Chassis.dds"
+   Skin 1 "Treads.dds"
    Path "MODELS\Vehicles\Ketten"
-   Skin 1 "StandardTrack_1.png"
-   Scale 4 4 4
+   Skin 2 "StandardTrack_1.png"
+   Scale 1 1 1 
    AngleOffset 0
 	FrameIndex TNK1 A 0 0
     FrameIndex TNK1 A 1 0
+	FrameIndex TNK1 A 2 0
 }
 
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
    Path "MODELS\Vehicles\HeavyTank"
-   Model 0 "HeavyTankA2_Chassis.md3"
-   Model 1 "HeavyTankA2_Tread.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
+   Model 0 "HeavyTankA1_Chassis.md3"
+   Model 1 "HeavyTankA1_Wheels.md3"
+   Model 2 "HeavyTankA1_Treads.md3"
+   Skin 0 "Chassis.dds"
+   Skin 1 "Treads.dds"
    Path "MODELS\Vehicles\Ketten"
-   Skin 1 "StandardTrack_2.png"
-   Scale 4 4 4
+   Skin 2 "StandardTrack_2.png"
+   Scale 1 1 1
    AngleOffset 0
 	FrameIndex TNK1 B 0 0
     FrameIndex TNK1 B 1 0
+	FrameIndex TNK1 B 2 0
 }
 
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
    Path "MODELS\Vehicles\HeavyTank"
-   Model 0 "HeavyTankA2_Chassis.md3"
-   Model 1 "HeavyTankA2_Tread.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
+   Model 0 "HeavyTankA1_Chassis.md3"
+   Model 1 "HeavyTankA1_Wheels.md3"
+   Model 2 "HeavyTankA1_Treads.md3"
+   Skin 0 "Chassis.dds"
+   Skin 1 "Treads.dds"
    Path "MODELS\Vehicles\Ketten"
-   Skin 1 "StandardTrack_3.png"
-   Scale 4 4 4
+   Skin 2 "StandardTrack_3.png"
+   Scale 1 1 1
    AngleOffset 0
 	FrameIndex TNK1 C 0 0
     FrameIndex TNK1 C 1 0
+	FrameIndex TNK1 C 2 0
 }
 
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
    Path "MODELS\Vehicles\HeavyTank"
-   Model 0 "HeavyTankA2_Chassis.md3"
-   Model 1 "HeavyTankA2_Tread.md3"
-   Path "MODELS"
-   Skin 0 "Atlas.png"
+   Model 0 "HeavyTankA1_Chassis.md3"
+   Model 1 "HeavyTankA1_Wheels.md3"
+   Model 2 "HeavyTankA1_Treads.md3"
+   Skin 0 "Chassis.dds"
+   Skin 1 "Treads.dds"
    Path "MODELS\Vehicles\Ketten"
-   Skin 1 "StandardTrack_4.png"
-   Scale 4 4 4
-   AngleOffset 0	
+   Skin 2 "StandardTrack_4.png"
+   Scale 1 1 1
+   AngleOffset 0
 	FrameIndex TNK1 D 0 0
     FrameIndex TNK1 D 1 0
+	FrameIndex TNK1 D 2 0
 }
 
 

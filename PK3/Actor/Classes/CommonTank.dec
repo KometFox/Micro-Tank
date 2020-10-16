@@ -115,7 +115,7 @@ Actor MT_HeavyTank_Chassis : MT_ChassisBase
 	//MOVE BACKWARD
 	//
 	MoveB1:
-		TNK1 D 1 
+		TNK1 D 1
 		TNK1 D 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, "MoveB2")
 	MoveB2:
 		TNK1 C 1 
@@ -142,8 +142,8 @@ Actor MT_HeavyTank_Chassis : MT_ChassisBase
 ACTOR MT_BaseTank : PlayerPawn
 {
 	player.DisplayName "BASE TANK"
-	player.viewheight 23
-	player.attackzoffset 12
+	player.viewheight 25
+	player.attackzoffset 13
 	player.forwardmove 0
 	player.sidemove 0
 	player.jumpz 0
@@ -185,42 +185,41 @@ ACTOR MT_BaseTank : PlayerPawn
 	Player.StartItem "Multi Purpose Device"       ,1
 //Player.StartItem "MT_OreBoringDevice"         ,1
 //Ammo
-	Player.Startitem "MT_75x500mmHE"                ,25
-	Player.Startitem "MT_75x500mmAP"                ,50
+	Player.Startitem "MT_75x500mmHE"                ,30
+	Player.Startitem "MT_75x500mmAP"                ,40
 	Player.Startitem "A_7u62x54mmR"                 ,1500
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 	Player.startitem "Item_GrenadePod_SSS"          ,1
-	Player.Startitem "MT_GrenadePod_Explosive"      ,20
 	Player.startitem "Item_GrenadePod_Illuminating" ,2
 	Player.startitem "MT_Item_GrenadePod_Flare"     ,30
+	Player.Startitem "MT_GrenadePod_Explosive"      ,20
   
 //MT Damage types
-//Doom Damage types
-	damagefactor "stomp", 0
-//Hexen/Heretic/Strife Damage types
+	DamageFactor "PiercingExplosive" ,0.75
+	DamageFactor "Piercing"          ,0.8
+	DamageFactor "Frag"              ,0.05
+	DamageFactor "Bullet"            ,0.15
+	DamageFactor "Acid"              ,0.5
+	DamageFactor "Chemical"          ,0.5
+	DamageFactor "Build"             ,0
+//Other Damage types
 	DamageFactor "Normal"            ,0.8
 	DamageFactor "Extreme"           ,0.8
 	DamageFactor "Drowning"          ,0.0
 	DamageFactor "Falling"           ,0.1
 	DamageFactor "Ice"               ,0.2
 	DamageFactor "Fire"              ,0.1
-	DamageFactor "Acid"              ,0.5
-	DamageFactor "BioChem"           ,0
-	DamageFactor "Energy"            ,0.62
+	damagefactor "stomp"             ,0
+	DamageFactor "Energy"            ,0.85
 	DamageFactor "Radiation"         ,0.0
-	DamageFactor "Nuclear"           ,1
-	DamageFactor "Explosive"         ,0.15
-	DamageFactor "PiercingExplosive" ,0.75
-	DamageFactor "Piercing"          ,0.8
-	DamageFactor "Frag"              ,0
-	DamageFactor "Bullet"            ,0
+	DamageFactor "Nuclear"           ,0.9
+	DamageFactor "Explosive"         ,0.25
 	DamageFactor "Buckshot"          ,0
 	DamageFactor "Reclaim"           ,0.9
-	DamageFactor "Build"             ,0
 	DamageFactor "Poison"            ,0
 	DamageFactor "PoisonCloud"       ,0    
-	DamageFactor "Electric"          ,0.62	
+	DamageFactor "Electric"          ,0.75
 	
 	States
 	{
@@ -243,11 +242,6 @@ ACTOR MT_BaseTank : PlayerPawn
 	Spawn2:
 		TNK1 A 0 A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
 		TNK1 A 0 A_SetUserVar("user_chassisangle", CallACS("MT_SetVehicleRotation"))
-		TNK1 A 0 ACS_NamedExecute("MTACS_Chassis", 0)
-		TNK1 A 0 A_TakeInventory("TurnRight", 1)
-		TNK1 A 0 A_TakeInventory("TurnLeft", 1)
-		TNK1 A 0 A_TakeInventory("Accelerate", 1)
-		TNK1 A 0 A_TakeInventory("Reverse", 1)
 		TNK1 A 0 A_SpawnItemEx ("MT_HeavyTank_Chassis" , 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag)
 		TNK1 A 1
 		Goto Stay
@@ -273,7 +267,6 @@ ACTOR MT_BaseTank : PlayerPawn
 		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight")
 		"####" AAA 1
 		"####" A 0 A_StopSound(5)
-		"####" A 0 //A_PlaySound("Treads/Forward", 5, 1, 1)
 		"####" A 0 A_PlaySound("Treads/Mid", 2)
 		Goto Stay		
 

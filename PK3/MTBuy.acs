@@ -1,5 +1,6 @@
 #library "MTBuy"
-#include "zcommon.acs"
+//#include "zcommon.acs"
+#include "zcommon/gzdoom.acs"
 
 #define MESSAGE_INSTRUCTION 98
 #define MESSAGE_INSTRUCTSPE 99
@@ -11,7 +12,7 @@
 #define RECIPE_ITEMS_MAX 2
 str recipe_list[RECIPE_ITEMS_MAX][2] = {
 	{"Credits",				"MT_Credits"},
-	{"Metals",		"MT_HighValueMetal"},
+	{"Metals",		"MT_Metal"},
 };
 
 
@@ -21,17 +22,16 @@ str recipe_list[RECIPE_ITEMS_MAX][2] = {
 /////Buy Menu
 ////////////////
 
-#define CRAFT_MAX 16
+#define CRAFT_MAX 15
 str craft_list[CRAFT_MAX][3] = {
     {"Spare parts",                    "MT_Spareparts",                      "ISPPA0"}, 
 	
     {"7.62x54mmR       (Ammo)",                    "A_7u62x54mmR",           "IBUAA0"}, 
-	{"AP Shot          (Ammo)",		              "MT_AP",	                 "IAPAA0"},
-	{"APCR Shot        (Ammo)",		              "MT_APCR",	             "IAPAA0"},
-	{"Buckshot         (Ammo)",		              "MTAmmo_Buckshot",	     "IBKAA0"},
-	{"HE Shell         (Ammo)",		              "MT_HE",	                 "IHEAA0"},
-	{"Incendiary Shell (Ammo)",		              "MT_AmmoG_HEInc",	         "IINAA0"},	
-	{"HEAT Shell       (Ammo)",		              "MT_HEAT",	             "IHTAA0"},
+	{"AP Shot          (Ammo)",		              "MTAmmoBox_AP",	         "IAPAA0"},
+	{"APCR Shot        (Ammo)",		              "MTAmmoBox_APCR",	         "IAPFA0"},
+	{"Buckshot         (Ammo)",		              "MTAmmoBox_Buckshot",	     "IBKAA0"},
+	{"HE Shell         (Ammo)",		              "MTAmmoBox_HE",	         "IHEAA0"},
+	{"Chemical Shell   (Ammo)",		              "MTAmmoBox_Chem",	         "ICHSA0"},	
 	
     {"Quad MG (Weapon)",		              "MT_QuadMachineGun",	         "IQMGA0"},
 		
@@ -56,8 +56,7 @@ int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
 	{800,100},
 	{300},
 	{450},
-	{400,50},
-	{600},
+	{500,50},
 	
 	{8500},
 	
@@ -76,7 +75,6 @@ int craft_recipe[CRAFT_MAX][RECIPE_ITEMS_MAX] = {
 int craft_result[CRAFT_MAX] = {
 50,
 100,
-5,
 5,
 5,
 5,
@@ -230,8 +228,8 @@ str MTUpgrades_list[MTUPGRADES_MAX][3] = {
 	{"Armor Piercing Shot       (T2)",		 "MT_APShot_Upgrader3",	                "IAPAC0"},
 	{"Buckshot                  (T1)",		 "MT_Buckshot_Upgrader2",	            "IBKAB0"},	
 	{"Buckshot                  (T2)",		 "MT_Buckshot_Upgrader3",	            "IBKAC0"},		
-	{"Incendiary Shell          (T1)",		 "MT_IncShell_Upgrader2",	            "IINAB0"},	
-	{"Incendiary Shell          (T2)",		 "MT_IncShell_Upgrader3",	            "IINAC0"},
+	{"Chemical Shell            (T1)",		 "MT_ChemShell_Upgrader2",	            "ICHSB0"},	
+	{"Chemical Shell            (T2)",		 "MT_ChemShell_Upgrader3",	            "ICHSC0"},
 	{"Hollow Charge Shell       (T1)",		 "MT_HEATShell_Upgrader2",	            "IHTAB0"},	
 	{"Hollow Charge Shell       (T2)",		 "MT_HEATShell_Upgrader3",	            "IHTAC0"},	
 	{"Energy Weapon Improvment (T1)",            "MT_Energy_Upgrader2",            "IENCA0"},

@@ -1,10 +1,14 @@
 actor MHT_BaseGun_AmmoSlot : Inventory {
-  inventory.maxamount 5 }
+  inventory.maxamount 6 }
   
-actor MHT_BaseGun_APCR           : MT_A_BooleanValue {}
 actor MHT_BaseGun_AP           : MT_A_BooleanValue {}
+actor MHT_BaseGun_APCR           : MT_A_BooleanValue {}
 actor MHT_BaseGun_HE           : MT_A_BooleanValue {}
+actor MHT_BaseGun_Bee         : MT_A_BooleanValue {}
+actor MHT_BaseGun_Chem         : MT_A_BooleanValue {}
+//OLD
 actor MHT_BaseGun_HEAT         : MT_A_BooleanValue {}
+
 
 Actor MT_MHT_Basegun_AmmoSwitch : CustomInventory {
   +INVENTORY.HUBPOWER
@@ -17,9 +21,9 @@ Actor MT_MHT_Basegun_AmmoSwitch : CustomInventory {
   Inventory.MaxAmount 1
 States {
 Use:
-//It needs to be 1 less else it will jump to it 2x
 TNT1 A 0 A_JumpIfInventory("MT_AmmoSwitch_Reverse",1,"Reverse")
-TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",4,"Reset2")
+//It needs to be 1 less else it will jump to it 2x
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",5,"Reset2")
 TNT1 A 0 A_GiveInventory("MHT_BaseGun_AmmoSlot",1)
 TNT1 A 0 A_Playsound("GunLoa2")
 Goto ResetCheck
@@ -30,54 +34,64 @@ Reverse:
 	//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("MT_IsItemOne", 0) == 1, "Reset3")
 	TNT1 A 0 A_TakeInventory("MHT_BaseGun_AmmoSlot", 1)
 	TNT1 A 0 A_TakeInventory("MT_AmmoSwitch_Reverse", 1)
+	TNT1 A 0 A_Playsound("GunLoa2")
 	Goto ResetCheck
 
 Reset3:
 TNT1 A 0 A_TakeInventory("MT_AmmoSwitch_Reverse", 1)
-TNT1 A 0 A_GiveInventory("MHT_BaseGun_AmmoSlot",3)
+TNT1 A 0 A_GiveInventory("MHT_BaseGun_AmmoSlot",4)
 Goto ResetCheck
 
 
-A1:
-TNT1 A 0 A_GiveInventory("MHT_BaseGun_AP",1)
-//TNT1 A 0 A_Print("Armor Piercing Shot loaded")
+A5:
+TNT1 A 0 A_GiveInventory("MHT_BaseGun_Chem",1)
+//TNT1 A 0 A_Print("CHEMICAL")
 stop
-A2:
-TNT1 A 0 A_GiveInventory("MHT_BaseGun_APCR",1)
-//TNT1 A 0 A_Print("Armor Piercing Shot loaded")
+A4:
+TNT1 A 0 A_GiveInventory("MHT_BaseGun_Bee",1)
+//TNT1 A 0 A_Print("BEE")
 stop
 A3:
 TNT1 A 0 A_GiveInventory("MHT_BaseGun_HE",1)
-//TNT1 A 0 A_Print("High Explosive Shell loaded")
+//TNT1 A 0 A_Print("HE")
 stop
-A4:
-TNT1 A 0 A_GiveInventory("MHT_BaseGun_HEAT",1)
-//TNT1 A 0 A_Print("Hollow Charge/Turbo-* Shell Loaded")
+A2:
+TNT1 A 0 A_GiveInventory("MHT_BaseGun_APCR",1)
+//TNT1 A 0 A_Print("APFSDS")
+stop
+A1:
+TNT1 A 0 A_GiveInventory("MHT_BaseGun_AP",1)
+//TNT1 A 0 A_Print("AP")
 stop
 
 
 ResetCheck:
-TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AP",        1,"Res1")
-TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_APCR",      1,"Res2")
-TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HE",        1,"Res3")
-TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HEAT",      1,"Res4")
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AP", 1,"Res1")
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_APCR", 1,"Res2")
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_HE", 1,"Res3")
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Bee", 1,"Res4")
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_Chem", 1,"Res5")
 Goto Switch
 
 Res1:
-TNT1 A 0 A_TakeInventory("MHT_BaseGun_AP",          1)
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_AP", 99)
 Goto ResetCheck
 Res2:
-TNT1 A 0 A_TakeInventory("MHT_BaseGun_APCR",        1)
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_APCR", 99)
 Goto ResetCheck
 Res3:
-TNT1 A 0 A_TakeInventory("MHT_BaseGun_HE",          1)
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_HE", 99)
 Goto ResetCheck
 Res4:
-TNT1 A 0 A_TakeInventory("MHT_BaseGun_HEAT",        1)
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_Bee", 99)
+Goto ResetCheck
+Res5:
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_Chem", 99)
 Goto ResetCheck
 
 
 Switch:
+TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",5,"A5")
 TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",4,"A4")
 TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",3,"A3")
 TNT1 A 0 A_JumpIfInventory("MHT_BaseGun_AmmoSlot",2,"A2")
@@ -86,7 +100,7 @@ TNT1 A 0
 Goto Use
 
 Reset2:
-TNT1 A 0 A_TakeInventory("MHT_BaseGun_AmmoSlot",10)
+TNT1 A 0 A_TakeInventory("MHT_BaseGun_AmmoSlot",99)
 Goto Use
 
 }}
@@ -111,6 +125,6 @@ Inventory.InterHubAmount 120
 
 ACTOR I_75mmReloadTimer2 : I_75mmReloadTimer1
 {
-Inventory.MaxAmount 95
-Inventory.InterHubAmount 95
+Inventory.MaxAmount 90
+Inventory.InterHubAmount 90
 }
