@@ -35,7 +35,7 @@ ACTOR MT_105mmU_APFSDS_FImpact : Particle
     TNT1 AAAA 0  A_spawnitemex("Spark3_S2",0,0,0,0+random(-2,2),0+random(-2,2),0+random(-2,2),0+frandom(-360,360)) 
 	TNT1 AAAA  0  A_spawnitemex("Smoke1_S1.25",0,0,0,0,0+frandom(-5,5),0+frandom(3,5),0+frandom(-360,360))
     TNT1 AAAAAAAA 0 A_Spawnitemex("MT_Sparks",0,0,0,0,0+frandom(8,18),0+frandom(2,5),0+frandom(-360,360))
-    TNT1 AAAAAAAA 0 A_Spawnitemex("MT_SparkyTrail",0,0,0,0,0+frandom(8,18),0+frandom(2,5),0+frandom(-360,360))
+    TNT1 AAAAA 0 A_Spawnitemex("MT_SparkyTrail",0,0,0,0,0+frandom(8,18),0+frandom(2,5),0+frandom(-360,360))
  Stop
   } 
 }

@@ -360,6 +360,12 @@ script "MT_AmmoSwitch_Reverse" (VOID) NET
 	UseActorInventory(0, "MT_AmmoSwitcher");
 }
 
+//Script to force use a specific item
+script "MT_SubgunSwitch_Reverse" (VOID) NET
+{
+	UseActorInventory(0, "MT_SubgunSwitcher");
+}
+
 //Script to check if a item is exactly one,
 //Zandronum doesn't support CountInv 
 script "MT_IsItemOne" (int item) 

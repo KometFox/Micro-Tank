@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //CHEMICAL
 //------------------------------------------------------------------------------
-ACTOR MT_105mmBioglob
+ACTOR MT_105mmChemgoo
 {
   Projectile
   Height 4
@@ -43,7 +43,7 @@ ACTOR MT_105mmBioglob
   Bounce.Actor:
   Bounce.Actor.Creature:
   SpawnLoop:
-    TNT1 A 0 A_Jumpif(user_ttd == 8, "Drop")
+    TNT1 A 0 A_Jumpif(user_ttd == 14, "Drop")
 	TNT1 A 1 A_SpawnItemEx("MTCEG_105mmBioglob_Trail", 0, 0, 0)
 	TNT1 A 0 A_SetUserVar("user_ttd", user_ttd + 1)
     loop

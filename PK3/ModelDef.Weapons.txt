@@ -9,6 +9,39 @@ Model "MT_105mmCannon" // Cannon
    Model 0 "Cannon.md3"
    Skin  0 "Cannon.dds"  
    Path "MODELS\Items\Weapons\Aux"
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCAN A 0 0
+   FrameIndex MCAN A 1 0
+   FrameIndex MCAN A 2 0
+   //Cannon Fire
+   FrameIndex MCAN B 0 1  
+   FrameIndex MCAN C 0 2  
+   FrameIndex MCAN D 0 3  
+   FrameIndex MCAN E 0 4  
+   FrameIndex MCAN F 0 5  
+   FrameIndex MCAN G 0 6
+   //MG Fire
+   FrameIndex MCAN H 1 8  
+   FrameIndex MCAN I 1 9  
+   FrameIndex MCAN J 1 10  
+   FrameIndex MCAN K 1 11 
+   FrameIndex MCAN L 1 12 
+}
+
+/*
+Model "MT_105mmCannon" // Cannon
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Items\Weapons\Main"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
    Model 1 "PGP_MG.md3"
    Skin  1 "PGP" 
    Scale 2 2 2
@@ -30,6 +63,7 @@ Model "MT_105mmCannon" // Cannon
    FrameIndex MCAN K 1 11 
    FrameIndex MCAN L 1 12 
 }
+*/
 
 ////----------------------------------------------------------------------------
 //Heavy Cannon (Heavy MG)

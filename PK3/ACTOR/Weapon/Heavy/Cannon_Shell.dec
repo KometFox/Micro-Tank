@@ -293,10 +293,10 @@ ACTOR MT_105mmChemshell : MTP_TShellBase
     TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_HEShell")
 	Goto Impact0
   Impact0:
-    TNT1 A 0 A_CustomMissile("MT_105mmBioglob", 0, 0, 0, CMF_AIMDIRECTION , 90)
+    TNT1 A 0 A_SpawnItemEx("MT_105mmChemgoo", 0, 0, 1)
   Impact1:
     TNT1 A 0 A_JumpIf(user_i > 6, "FinalDeath")
-	TNT1 A 0 A_CustomMissile("MT_105mmBioglob", 0, 0, (user_i * 30) * 2, CMF_AIMDIRECTION , 16)
+	TNT1 A 0 A_CustomMissile("MT_105mmChemgoo", 1, 0, (user_i * 30) * 2, CMF_AIMDIRECTION, 0)
 	TNT1 A 0 A_SetUserVar("user_i", user_i + 1)
 	TNT1 A 0
 	loop

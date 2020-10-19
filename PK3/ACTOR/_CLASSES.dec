@@ -1,5 +1,4 @@
 #Include "Actor/Classes/MarineMorph.dec"
 #Include "Actor/Classes/CommonTank.dec"
 #Include "Actor/Classes/HeavyTank.dec"
-//#Include "Actor/Classes/StugIII.dec"
 

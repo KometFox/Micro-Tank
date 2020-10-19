@@ -2,7 +2,7 @@ ACTOR PowerMT_NBC_Coating : PowerProtection
 {
   DamageFactor "Slime", 0.2
   DamageFactor "Fire", 0.2
-  Inventory.Icon "MEGAA0"
+  Inventory.Icon "TNT1"
   -INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
   +INVENTORY.PERSISTENTPOWER

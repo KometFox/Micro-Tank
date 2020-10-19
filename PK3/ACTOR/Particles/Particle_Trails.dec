@@ -25,13 +25,16 @@ ACTOR SparkyTrailGlow : Particle
   renderstyle Add
   alpha 1.5
   Scale 0.09
-  reactiontime 7
+  reactiontime 8
   States
   {
   Spawn:
-    APP1 A 1 Bright A_SetScale(ScaleX + 0.06, ScaleY + 0.06)
-	APP1 A 1 A_FadeOut(0.14)
-    APP1 A 0 A_CountDown
+    APP1 A 1 Bright 
+	{
+	A_SetScale(ScaleX + 0.06, ScaleY + 0.06);
+	A_FadeOut(0.214);
+	A_CountDown;
+	}
 	loop
   Death:
     TNT1 A 1

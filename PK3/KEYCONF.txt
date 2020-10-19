@@ -16,7 +16,7 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MTC_AmoSwcL "use MT_AmmoSwitcher_Reverse"  
 
   addmenukey "Switch Subgun (Right)" MTC_SubgunSwcR
-  alias MTC_SubgunSwcR "use MT_SubgunSwitcher"  
+  alias MTC_SubgunSwcR "use MT_SubgunSwitcher_Reverse"  
   addmenukey "Switch Subgun (Left)" MTC_SubgunSwcL
   alias MTC_SubgunSwcL "use MT_SubgunSwitcher"  
   
@@ -46,13 +46,6 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   addmenukey "Commander: Taunt" MTC_CMDTaunt
   alias MTC_CMDTaunt "pukename cmd_taunt"
    
-////Unneeded stuff for now   
-//   addmenukey "Switch Weapon Mode (Primary)" MTC_Switch_Mode
-//   alias MTC_Switch_Mode "use WPN_Mode_Switch"
-//   addmenukey "Switch Weapon Mode (Secondary)" MTC_Switch_Mode2
-//   alias MTC_Switch_Mode2 "use WPN_Mode_Switch2"
-//    addmenukey "Reload Weapon" MTC_RG
-//   alias MTC_RG "use MT_Reloader" 
 
 ////Cheats   
    alias ironcurtain "god; Echo Permament Iron Curtain"
