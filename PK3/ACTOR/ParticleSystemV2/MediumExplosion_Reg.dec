@@ -1,7 +1,7 @@
 //
 //
 //
-ACTOR MTCEG_MediumExplosion_HEShell : MT_ParticleSystem2
+ACTOR MTCEG_MediumExplosion_HEShell : MT_CustomExplosionGenerator
 {
   States
   {

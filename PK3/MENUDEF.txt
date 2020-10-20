@@ -29,13 +29,6 @@ OptionValue "OffOn"
     1, "On"
 }
 
-OptionValue "OnOff"
-{
-    0, "On"
-    1, "Off"
-}
-
-
 OptionValue "Fancy"
 {
     0, "Off"
@@ -54,9 +47,10 @@ OptionMenu "MicroTankMenu"
 {
    Title "Micro Tank options"
    StaticText "<Gameplay>"
-   StaticText "First start:", 0
+   StaticText ":First start:", 0
    Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
    Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
+   StaticText "Receive all upgrades:"
    Option "Technology War", "mtcvar_techwars", "OffOn"
 
 /*   
@@ -81,7 +75,7 @@ OptionMenu "MicroTankMenu"
 		}
 */
    StaticText "<Client side>"
-   Option "Announcer start", "mtccvar_startup_noise", "OnOff"
+   Option "Announcer start", "mtccvar_startup_noise", "OffOn"
    Option "Particle Effects", "mtcvar_particlesquality", "Particles"
    Option "Fancy Items", "mtcvar_fancyitems", "Fancy"
 

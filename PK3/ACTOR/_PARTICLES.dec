@@ -3,7 +3,6 @@
 #Include "Actor/Particles/Particles_Library.dec"
 #Include "Actor/Particles/Particles_Scale.dec"
 #Include "Actor/Particles/Particle_37mm.dec"
-//#Include "Actor/Particles/Particle_50mm.dec"
 #Include "Actor/Particles/Particle_75mm.dec"
 #Include "Actor/Particles/Particle_Nuke.dec"
 #Include "Actor/Particles/Particle_Bullet.dec"
@@ -19,7 +18,6 @@
 #Include "Actor/Particles/P_GoreChunk.dec"
 #Include "Actor/Particles/P_Glows.dec"
 #Include "Actor/Particles/TestGlow.dec"
-//#Include "Particles/Puffs.dec"
 
 //New Particles
 #Include "Actor/ParticleSystemV2/ParticleSys.dec"

@@ -1,4 +1,4 @@
-Actor MT_ParticleSystem2
+Actor MT_CustomExplosionGenerator
 {
   +CLIENTSIDEONLY
   +FORCEXYBILLBOARD
@@ -21,7 +21,7 @@ Actor MT_ParticleSystem2
   BounceFactor 0.0001 
 }
 
-Actor MT_ParticleSystem2_Interact : MT_ParticleSystem2
+Actor MT_CustomExplosionGenerator_Interact : MT_CustomExplosionGenerator
 {
   -NOINTERACTION
 }

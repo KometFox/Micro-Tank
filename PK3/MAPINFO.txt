@@ -48,4 +48,3 @@ skill veryhard
 	PlayerClassName = "Heavy Tank" , "Tank Schock!"
 }
 
-

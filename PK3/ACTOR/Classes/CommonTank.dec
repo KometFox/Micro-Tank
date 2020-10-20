@@ -172,6 +172,7 @@ ACTOR MT_BaseTank : PlayerPawn
 //Internal stuff, very important
 	Player.StartItem "MT_ClassToken"              ,1
 	Player.StartItem "MHTA1_Token"                ,1
+	Player.StartItem "MTU_SupplyBox_2"            ,1
 	Player.StartItem "MT_AmmoSwitcher"            ,1
 	Player.StartItem "MT_AmmoSwitcher_Reverse"    ,1	
 	Player.StartItem "MT_SubgunSwitcher"          ,1
@@ -236,9 +237,15 @@ ACTOR MT_BaseTank : PlayerPawn
 	//
 	Spawn:
 		TNK1 A 0
-		TNK1 A 0 A_SetUserVar("user_chassisangle", 0)
+		TNK1 A 0 A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
 		TNK1 A 0 ThrustThingZ(0, 100, -1, 1)
 		TNK1 A 0 A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE)
+		TNK1 A 0 {
+				if ( GetCVAR("mtccvar_startup_noise") == 1 )
+				{
+					A_PlaySound("GCrew/MissionStart");
+				}
+		}
 		TNK1 A 1
 	Spawn2:
 		TNK1 A 0 A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))

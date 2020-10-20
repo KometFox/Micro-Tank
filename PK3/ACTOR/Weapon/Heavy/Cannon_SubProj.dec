@@ -111,6 +111,8 @@ ACTOR MTCEG_105mmBioglob_Effect0 : Particle
   Scale 0.45
   renderstyle Translucent
   alpha 1.25
+  radius 5
+  height 5
   States
   {   
   Spawn:

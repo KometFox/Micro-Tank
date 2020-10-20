@@ -14,9 +14,9 @@ server int mtcvar_supc_credit_mult = 1;
 //Weapon behavior
 
 //Particle Effects
-server int mtcvar_particlesquality = 2;
+user int mtcvar_particlesquality = 2;
 // 1: Low, 2: Medium, 3: High
-server int mtcvar_fancyitems = 1;
+user int mtcvar_fancyitems = 1;
 // 1: Off, 2: Fancy, 3: Fancier
 
 //Mutator
@@ -30,8 +30,6 @@ server int mtcvar_ammoregen_amount = 2;
 server int mtcvar_superammoregen = 0;
 //Client settings
 user int mtccvar_startup_noise = 1;
-// 1: Announcer + Engine, 2: Announcer only, 3: Engine only, 4: Off
-
 
 //------------------------------------------------------------------------------
 ////Player (SP only) save

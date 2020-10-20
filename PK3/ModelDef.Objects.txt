@@ -52,7 +52,7 @@ Model MT_SupplyBoxEmpty
    AngleOffset 0
    FrameIndex KIST A 0 0
 }
-
+/*
 Model MT_Items_SupplyBoxContent
 {
    Path "MODELS\Items\Supply"
@@ -63,6 +63,16 @@ Model MT_Items_SupplyBoxContent
    FrameIndex IDLE A 0 0
 }
 
+Model MT_Items_SupplyBoxContent_2
+{
+   Path "MODELS\Items\Supply"
+   Model 0 "Supplies_2.md3"
+   Skin  0 "SupplyBox"
+   Scale 10 10 10
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
+*/
 
 Model MT_SupplyBox_2
 {
@@ -94,13 +104,4 @@ Model MT_SupplyBoxEmpty_2
    FrameIndex KIST A 0 0
 }
 
-Model MT_Items_SupplyBoxContent_2
-{
-   Path "MODELS\Items\Supply"
-   Model 0 "Supplies_2.md3"
-   Skin  0 "SupplyBox"
-   Scale 10 10 10
-   AngleOffset 0
-   FrameIndex IDLE A 0 0
-}
 

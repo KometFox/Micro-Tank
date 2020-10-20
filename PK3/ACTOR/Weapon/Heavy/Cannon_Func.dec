@@ -6,9 +6,6 @@ actor MHT_BaseGun_APCR           : MT_A_BooleanValue {}
 actor MHT_BaseGun_HE           : MT_A_BooleanValue {}
 actor MHT_BaseGun_Bee         : MT_A_BooleanValue {}
 actor MHT_BaseGun_Chem         : MT_A_BooleanValue {}
-//OLD
-actor MHT_BaseGun_HEAT         : MT_A_BooleanValue {}
-
 
 Actor MT_MHT_Basegun_AmmoSwitch : CustomInventory {
   +INVENTORY.HUBPOWER

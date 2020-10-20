@@ -9,6 +9,7 @@
 		-Added taunt button.
 		-Fixed bug where credits gets reset on map change when the amount 
 		 of it is 0.
+		-Added "Technology War" cvar option, gives player all upgrades. 
 	
 	"Weapons"
 		-Weapons correctly use their upgrades now.

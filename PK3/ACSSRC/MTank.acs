@@ -16,9 +16,10 @@ script "MTACS_Chassis_Init"
 	//Initalization
 	//log(s: "CUR ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
 	//log(s: "DEF ANGLE:", d: defaultchassisangle);
-	ACS_NamedExecuteWithResult("MT_SetVehicleRotation", defaultchassisangle);
 	SetUserCVAR(0, "user_chassisangle", defaultchassisangle);
+	ACS_NamedExecuteWithResult("MT_SetVehicleRotation", defaultchassisangle);
 	//log(s: "NEW ANGLE: ", d: GetUserCVAR(0, "user_chassisangle"));
+	SetResultValue(defaultchassisangle);
 }
 
 //Actual Vehicle Control

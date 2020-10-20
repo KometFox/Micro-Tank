@@ -10,15 +10,16 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 //------------------------------------------------------------------------------
 //Weapon
 //------------------------------------------------------------------------------
-  addmenukey "Switch Weapon Ammo (Right)" MTC_AmoSwcR
-  alias MTC_AmoSwcR "use MT_AmmoSwitcher"  
   addmenukey "Switch Weapon Ammo (Left)" MTC_AmoSwcL
-  alias MTC_AmoSwcL "use MT_AmmoSwitcher_Reverse"  
+  alias MTC_AmoSwcL "use MT_AmmoSwitcher"  
+  addmenukey "Switch Weapon Ammo (Right)" MTC_AmoSwcR
+  alias MTC_AmoSwcR "use MT_AmmoSwitcher_Reverse"  
 
-  addmenukey "Switch Subgun (Right)" MTC_SubgunSwcR
-  alias MTC_SubgunSwcR "use MT_SubgunSwitcher_Reverse"  
   addmenukey "Switch Subgun (Left)" MTC_SubgunSwcL
   alias MTC_SubgunSwcL "use MT_SubgunSwitcher"  
+  addmenukey "Switch Subgun (Right)" MTC_SubgunSwcR
+  alias MTC_SubgunSwcR "use MT_SubgunSwitcher_Reverse"  
+
   
 //------------------------------------------------------------------------------
 //Menu
@@ -49,7 +50,7 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 
 ////Cheats   
    alias ironcurtain "god; Echo Permament Iron Curtain"
-   alias Credits "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_HighValueMetal 1000000;"
+   alias Credits "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Metal 1000000;"
    alias CashItUp "Credits;Credits; Echo Full credits."
 
 

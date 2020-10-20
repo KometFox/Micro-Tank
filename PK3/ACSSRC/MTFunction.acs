@@ -53,7 +53,6 @@ script "MTACS_SearchLight" (void) NET
 //Weapon related constants
 #Define Cannon_Ammo_MAX 4
 
-
 //Ammunition upgrade
 str AmmoUpg[5]= {
 "MTU_APShot_2", 

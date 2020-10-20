@@ -26,12 +26,12 @@ str recipe_list[RECIPE_ITEMS_MAX][2] = {
 str craft_list[CRAFT_MAX][3] = {
     {"Spare parts",                    "MT_Spareparts",                      "ISPPA0"}, 
 	
-    {"7.62x54mmR       (Ammo)",                    "A_7u62x54mmR",           "IBUAA0"}, 
-	{"AP Shot          (Ammo)",		              "MTAmmoBox_AP",	         "IAPAA0"},
-	{"APCR Shot        (Ammo)",		              "MTAmmoBox_APCR",	         "IAPFA0"},
-	{"Buckshot         (Ammo)",		              "MTAmmoBox_Buckshot",	     "IBKAA0"},
-	{"HE Shell         (Ammo)",		              "MTAmmoBox_HE",	         "IHEAA0"},
-	{"Chemical Shell   (Ammo)",		              "MTAmmoBox_Chem",	         "ICHSA0"},	
+    {"Ball Cartridges   (Ammo)",                      "A_7u62x54mmR",            "IBUAA0"}, 
+	{"AP Shot           (Ammo)",		              "MTAmmoBox_AP",	         "IAPAA0"},
+	{"APCR Shot         (Ammo)",		              "MTAmmoBox_APCR",	         "IAPFA0"},
+	{"Buckshot          (Ammo)",		              "MTAmmoBox_Buckshot",	     "IBKAA0"},
+	{"HE Shell          (Ammo)",		              "MTAmmoBox_HE",	         "IHEAA0"},
+	{"Chemical Shell    (Ammo)",		              "MTAmmoBox_Chem",	         "ICHSA0"},	
 	
     {"Quad MG (Weapon)",		              "MT_QuadMachineGun",	         "IQMGA0"},
 		
