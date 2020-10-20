@@ -55,11 +55,12 @@ script "MTACS_SearchLight" (void) NET
 
 
 //Ammunition upgrade
-str AmmoUpg[4]= {
+str AmmoUpg[5]= {
 "MTU_APShot_2", 
 "MTU_APShot_2", 
 "MTU_HEShell_2",
-"MTU_HEATShell_2",
+"MTU_ChemShell_2",
+"MTU_BuckShotShell_2",
 };
 
 
@@ -76,7 +77,7 @@ str AmmoUpg[4]= {
 str AmmoType_Neo[3][6][6] = {
 	{ {"MT_105mmCannon"}, 
 	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
-	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMA0", "ACAMA0"},
+	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMB0", "ACAMC0"},
 	  {"MHT_BaseGun_HE","HEMP", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
 	  {"MHT_BaseGun_Chem","Chem","MT_75x500mmChem", "CHAMA0", "CHAMB0", "CHAMC0"}, 
 	  {"MHT_BaseGun_Bee","Bee","MT_75x500mmBee", "BHAMA0", "BHAMB0", "BHAMC0"}, },
@@ -420,8 +421,12 @@ script "MT_GiveMoni" ENTER
 		if(GetCVar("mtcvar_metalstart") > 0 )
 		{
 			GiveInventory("MT_Metal", GetCVar("mtcvar_metalstart"));
-		}		
+		}	
 		
+		if( GetCvar("mtcvar_techwars") > 0 )
+		{
+			GiveInventory("MT_AllTech", 1);
+		}
 	}
 	GiveInventory("MT_ClassToken", 1);
 	Terminate;

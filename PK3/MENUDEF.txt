@@ -57,6 +57,7 @@ OptionMenu "MicroTankMenu"
    StaticText "First start:", 0
    Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
    Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
+   Option "Technology War", "mtcvar_techwars", "OffOn"
 
 /*   
    StaticText "Supply Crate:", 0

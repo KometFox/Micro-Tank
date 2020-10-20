@@ -12,6 +12,35 @@ ACTOR MTU_Energy_2 : MT_A_Upgrades2 {}
 ACTOR MTU_SupplyBox_2 : MT_A_Upgrades2 {}
 
 
+//------ALL UPGRADES------------------------------------------------------------
+ACTOR MT_AllTech : CustomInventory
+{
+  Scale 1
+ +INVENTORY.AUTOACTIVATE
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.PickupMessage "Picked Up: N/A Upgrade"
+  Inventory.Icon "TNT1A0"
+States
+{
+ Spawn:
+ MOUP A -1
+ stop
+ Use:
+ TNT1 A 0 {
+ A_GiveInventory("MTU_FastCannon_2", 2);
+ A_GiveInventory("MTU_BuckShotShell_2", 2);
+ A_GiveInventory("MTU_HEATShell_2", 2);
+ A_GiveInventory("MTU_HEShell_2", 2);
+ A_GiveInventory("MTU_APShot_2", 2);
+ A_GiveInventory("MTU_IncShell_2", 2);
+ A_GiveInventory("MTU_ChemShell_2", 2);
+ A_GiveInventory("MTU_Energy_2", 2);
+ A_GiveInventory("MTU_SupplyBox_2", 2);
+ }
+ Stop
+}}
+
 //------AMMUNITION UPGRADE------------------------------------------------------
 ACTOR MT_ItemUpgradeBase : CustomInventory
 {

@@ -2,6 +2,7 @@
 //Default settings, Server/SP only
 server int mtcvar_creditstart = 1000;
 server int mtcvar_metalstart = 100;
+server int mtcvar_techwars = 0;
 
 //Supply Crate Setting
 server int mtcvar_supc_ammo_mult = 1;
