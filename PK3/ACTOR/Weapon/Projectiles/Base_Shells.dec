@@ -1,55 +1,111 @@
-//All Shell/Shot Projectiles should use this
-//as base
-ACTOR MTP_TShellBase {
-  Radius 7
-  Height 7
-  Speed 60
-  DamageType AP
-  Projectile
-  scale 0.7
-  -NOGRAVITY
-  +BLOODSPLATTER
-  +EXTREMEDEATH
- // +FORCEPAIN
-  gravity 0.018
-  damage (frandom(1,1.2)*100)
-  DeathSound "Weapon/37mmblas"
-  Obituary "%o <75mm AP] %k" 
-  States {
-  Spawn:
-    37MM A 1 Bright A_Spawnitemex("ShellTrace")
-	37MM A 0 Bright A_Spawnitemex("ShellTrace")
+//All Projectiles should use it as a base. Unless a Projectile has a specific
+//needs.
+ACTOR MTP_ShellBase {
+Radius 7
+Height 7
+Speed 60
+DamageType AP
+Projectile
+-NOGRAVITY
++BLOODSPLATTER
++EXTREMEDEATH
+//+FORCEPAIN
+gravity 0.018
+damage (frandom(1,1.2)*100)
+DeathSound "Weapon/37mmblas"
+Obituary "%o <75mm AP] %k" 
+var int user_ttl;
+var int user_mode;
+States {
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(256, "Setter")
+	Goto Setter
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 1)
+	TNT1 A 0 A_SetUserVar("user_mode", -1)
+	Goto Jumper
+Drop:	
+Jumper:
+	TNT1 A 0 A_JumpIf(user_mode == 0, "Spawn_NoTracer")
+	TNT1 A 0 A_JumpIf(user_mode == 1, "Spawn_Tracer")
+	Goto Spawn_Blank
+Spawn_Default:
+    SHEL A 1 Bright A_Spawnitemex("ShellTrace")
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
     Loop
-  Death:
-   TNT1 A 0 A_Spawnitem("37mmAP_ExplosionSpawner")
-    TNT1 A 1  A_Explode(50,50)
-    Stop
+Spawn_NoTracer:
+	SHEL A 1 
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Spawn_Tracer:
+	SHET A 1 A_SpawnItemEx("ShellTrace")
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Spawn_Blank:
+	37MM A 1 
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Death:
+	TNT1 A 0 
+	Stop
 }}
 
-ACTOR MTP_TShellBase_FastProj : FastProjectile {
-  Radius 6
-  Height 6
-  Speed 60
-  DamageType AP
-  Projectile
-  scale 0.7
-  +NOGRAVITY
-  +BLOODSPLATTER
- // +FORCEPAIN
-  +EXTREMEDEATH
-  gravity 0
-  damage (frandom(1,1.2)*100)
-  DeathSound "Weapon/37mmblas"
-  Obituary "%o <75mm AP] %k" 
-  States
-  {
-  Spawn:
-    37MM A 1 Bright A_Spawnitem("ShellTrace")
+ACTOR MTP_ShellBase_Fast : FastProjectile {
+Radius 7
+Height 7
+Speed 60
+DamageType AP
+Projectile
++BLOODSPLATTER
++EXTREMEDEATH
+//+FORCEPAIN
+damage (frandom(1,1.2)*100)
+DeathSound "Weapon/37mmblas"
+Obituary "%o <75mm AP] %k" 
+var int user_ttl;
+var int user_mode;
+States {
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(256, "Setter")
+	Goto Setter
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 1)
+	TNT1 A 0 A_SetUserVar("user_mode", -1)
+	Goto Jumper
+Drop:	
+Jumper:
+	TNT1 A 0 A_JumpIf(user_mode == 0, "Spawn_NoTracer")
+	TNT1 A 0 A_JumpIf(user_mode == 1, "Spawn_Tracer")
+	Goto Spawn_Blank
+Spawn_Default:
+    SHEL A 1 Bright A_Spawnitemex("ShellTrace")
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
     Loop
-  Death:
-   TNT1 A 0 A_Spawnitem("37mmAP_ExplosionSpawner")
-    TNT1 A 1  A_Explode(50,50)
-    Stop
+Spawn_NoTracer:
+	SHEL A 1 
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Spawn_Tracer:
+	SHET A 1 A_SpawnItemEx("ShellTrace")
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Spawn_Blank:
+	37MM A 1 
+	TNT1 A 0 A_JumpIf(user_ttl <= 0, "Drop")
+	TNT1 A 0 A_SetUserVar("user_ttl", user_ttl - 1)
+	Loop
+Death:
+	TNT1 A 0 
+	Stop
 }}
 
 

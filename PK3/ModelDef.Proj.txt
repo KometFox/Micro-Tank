@@ -9,7 +9,20 @@ Model MT_105mmAPHEshell_dummy
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
+}
+
+Model MT_105mmAPHEshell_drop_dummy
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 //------------------------------------------------------------------------------
 Model MT_105mmU_APFSDSshell_dummy
@@ -20,7 +33,20 @@ Model MT_105mmU_APFSDSshell_dummy
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
+}
+
+Model MT_105mmU_APFSDSshell_drop_dummy
+{
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
+   PITCHFROMMOMENTUM
+   Scale 6.5 6.5 6.5
+   AngleOffset 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 //------------------------------------------------------------------------------
 Model MT_105mmMPHErocket
@@ -64,7 +90,8 @@ Model MT_105mmU_MPHEshell
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 
 Model MT_105mmU_MPHEshell_2
@@ -75,7 +102,8 @@ Model MT_105mmU_MPHEshell_2
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 
 
@@ -87,7 +115,8 @@ Model MT_105mmU_MPHEshell_3
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 //------------------------------------------------------------------------------
 Model MT_105mmChemshell
@@ -98,7 +127,8 @@ Model MT_105mmChemshell
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 
 Model MT_105mmChemshell_2
@@ -109,7 +139,8 @@ Model MT_105mmChemshell_2
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 
 Model MT_105mmChemshell_3
@@ -120,7 +151,8 @@ Model MT_105mmChemshell_3
    PITCHFROMMOMENTUM
    Scale 6.5 6.5 6.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0
 }
 //------------------------------------------------------------------------------
 Model "MT_105mmBeeProjectile"

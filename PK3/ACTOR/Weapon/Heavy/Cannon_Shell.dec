@@ -1,63 +1,173 @@
 //----Armor Piercing High Explosive Shell
 //AP is shot 7x times.
-ACTOR MT_105mmAPHEshell : MTP_TShellBase
+const int p105mmAPHE_ttd = 55;
+const int p105mmAPHE_dd = 100;
+const int p105mmAPHE_sdmg = 50;
+const int p105mmAPHE_srad = 90;
+const int p105mmAPHE_sfullrad = 80;
+//UPG1
+const int p105mmAPHE_2_dd = 120;
+const int p105mmAPHE_2_sdmg = 72;
+const int p105mmAPHE_2_srad = 108;
+const int p105mmAPHE_2_sfullrad = 90;
+//UPG2
+const int p105mmAPHE_3_dd = 144;
+const int p105mmAPHE_3_sdmg = 87;
+const int p105mmAPHE_3_srad = 130;
+const int p105mmAPHE_3_sfullrad = 120;
+
+ACTOR MT_105mmAPHEshell : MTP_ShellBase_Fast
 {
-  Speed 60
+  Speed 95
   DamageType Piercing
-  gravity 0.018
-  scale 1
-  damage (100)
-  DeathSound "Medium/APExplosion"
+  damage (p105mmAPHE_dd)
   Obituary "%o <105mm APHE] %k" 
-  const int sdmg = 50;
-  const int srad = 90;
-  const int sfullrad = 80;
   +BLOODSPLATTER
   States
   {
-  Death:
-	TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
-    TNT1 A 0 A_Explode(sdmg,srad,0,0,sfullrad)
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", p105mmAPHE_ttd)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmAPHEshell_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
 	Stop
-  XDeath:
-    TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-    TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+XDeath:
+	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
+	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
 	TNT1 A 0 A_PlaySound("MeaHit3")
-    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
     Stop
-  Crash:
-    TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
+Crash:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
 	TNT1 A 0 A_PlaySound("MetHit3")
-    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
-    Stop
-  Deflect:
-    TNT1 A 0 A_CustomMissile("MT_Dud",0,0,+15)
-    TNT1 A 0
-    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
+	Stop
   }
 }
 
-ACTOR MT_105mmAPHEshell_2 : MT_105mmAPHEshell 
-{
-  damage (frandom(1,1.2)*120)
-  const int sdmg = 72;
-  const int srad = 108;
-  const int sfullrad = 90;
-}
-
-ACTOR MT_105mmAPHEshell_3 : MT_105mmAPHEshell 
-{
-  damage (frandom(1,1.2)*144)
-  const int sdmg = 87;
-  const int srad = 130;
-  const int sfullrad = 120;
-}
-
-ACTOR MT_105mmAPHEshell_Dummy : MTP_TShellBase
+ACTOR MT_105mmAPHEshell_Drop : MTP_ShellBase
 {
   Speed 60
+  Gravity 0.25
+  DamageType Piercing
+  damage (p105mmAPHE_dd)
+  Obituary "%o <105mm APHE] %k" 
+  +BLOODSPLATTER
+  States
+  {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 9999)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
+	Stop
+XDeath:
+	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
+	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
+    Stop
+Crash:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("MetHit3")
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmAPHEshell_2 : MT_105mmAPHEshell
+{
+  States
+  {
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmAPHEshell_2_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmAPHEshell_2_Drop : MT_105mmAPHEshell_Drop
+{
+  States
+  {
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_2_sdmg,p105mmAPHE_2_srad,0,0,p105mmAPHE_2_sfullrad)
+	Stop
+  }
+}
+
+
+ACTOR MT_105mmAPHEshell_3 : MT_105mmAPHEshell
+{
+  States
+  {
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmAPHEshell_3_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmAPHEshell_3_Drop : MT_105mmAPHEshell_Drop
+{
+  States
+  {
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPHE_3_sdmg,p105mmAPHE_3_srad,0,0,p105mmAPHE_3_sfullrad)
+	Stop
+  }
+}
+
+
+ACTOR MT_105mmAPHEshell_Dummy : MTP_ShellBase_Fast
+{
+  Speed 95
   Damagetype Piercing
-  gravity 0.018
   damage (0)
   DeathSound "Medium/APExplosion"
   Obituary "%o <105mm APHE] %k" 
@@ -65,71 +175,218 @@ ACTOR MT_105mmAPHEshell_Dummy : MTP_TShellBase
   decal MT_LargeAPHit 
   States
   {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", p105mmAPHE_ttd)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmAPHEshell_Drop_Dummy", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
   Death:
-    TNT1 A 0 A_Spawnitem("MT_105mmAPHE_FImpact")
+    TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHE")
     TNT1 A 0 A_PlaySound("Medium/APExplosion")
 	TNT1 A 1
     Stop
-  Deflect:
-    TNT1 A 0 A_CustomMissile("MT_Dud",0,0,+15)
-    TNT1 A 0
-	Stop
   }
 }
 
+ACTOR MT_105mmAPHEshell_Drop_Dummy : MTP_ShellBase
+{
+Speed 60
+Damagetype Piercing
+gravity 0.25
+damage (0)
+DeathSound "Medium/APExplosion"
+Obituary "%o <105mm APHE] %k" 
++BLOODSPLATTER
+decal MT_LargeAPHit 
+  States
+  {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 9999)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper  
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHE")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+	TNT1 A 1
+    Stop
+  }
+}
 
 //----Uranium Armor Piercing Fin Stabilized Discarding Sabot
 //AP is shot 9x times.
-ACTOR MT_105mmU_APFSDSshell : MT_105mmAPHEshell
+const int p105mmAPFSDS_ttd = 60;
+const int p105mmAPFSDS_dd = 170;
+const int p105mmAPFSDS_sdmg = 60;
+const int p105mmAPFSDS_srad = 20;
+const int p105mmAPFSDS_sfullrad = 15;
+//UPG1
+const int p105mmAPFSDS_2_dd = 204;
+const int p105mmAPFSDS_2_sdmg = 75;
+const int p105mmAPFSDS_2_srad = 30;
+const int p105mmAPFSDS_2_sfullrad = 25;
+//UPG2
+const int p105mmAPFSDS_3_dd = 245;
+const int p105mmAPFSDS_3_sdmg = 85;
+const int p105mmAPFSDS_3_srad = 45;
+const int p105mmAPFSDS_3_sfullrad = 30;
+
+
+ACTOR MT_105mmU_APFSDSshell : MTP_ShellBase_Fast
 {
-  gravity 0.017
-  damage (frandom(1,1.2)*170)
-  Obituary "%o <105mm U-APFSDS] %k" 
-  const int sdmg = 60;
-  const int srad = 20;
-  const int sfullrad = 15;
-  +FORCERADIUSDMG
+  Speed 135
+  DamageType Piercing
+  damage (p105mmAPFSDS_dd)
+  Obituary "%o <105mm APHE] %k" 
+  +BLOODSPLATTER
   States
   {
-  Death:
-    TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
-    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", p105mmAPFSDS_ttd)
+	TNT1 A 0 A_SetUserVar("user_mode", -1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmU_APFSDSshell_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
 	Stop
-  XDeath:
-    TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-    TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+XDeath:
+	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
+	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
 	TNT1 A 0 A_PlaySound("MeaHit3")
-    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
     Stop
-  Crash:
-    TNT1 A 0 A_Spawnitem("Explosion0_S0.5")
+Crash:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
 	TNT1 A 0 A_PlaySound("MetHit3")
-    TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
-    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
+	Stop
   }
 }
 
-ACTOR MT_105mmU_APFSDSshell_2 : MT_105mmU_APFSDSshell 
-{
- damage (frandom(1,1.2)*204)
-  const int sdmg = 75;
-  const int srad = 30;
-  const int sfullrad = 25;
-}
-
-ACTOR MT_105mmU_APFSDSshell_3 : MT_105mmU_APFSDSshell 
-{
- damage (frandom(1,1.2)*245)
-  const int sdmg = 85;
-  const int srad = 45;
-  const int sfullrad = 30;
-}
-
-ACTOR MT_105mmU_APFSDSshell_Dummy : MTP_TShellBase
+ACTOR MT_105mmU_APFSDSshell_Drop : MTP_ShellBase
 {
   Speed 60
+  Gravity 0.25
+  DamageType Piercing
+  damage (p105mmAPFSDS_dd)
+  Obituary "%o <105mm APHE] %k" 
+  +BLOODSPLATTER
+  States
+  {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 9999)
+	TNT1 A 0 A_SetUserVar("user_mode", -1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
+	Stop
+XDeath:
+	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
+	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
+	TNT1 A 0 A_PlaySound("MeaHit3")
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
+    Stop
+Crash:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHEFlash_EX")
+	TNT1 A 0 A_PlaySound("MetHit3")
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmU_APFSDSshell_2 : MT_105mmU_APFSDSshell
+{
+  States
+  {
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmU_APFSDSshell_2_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmU_APFSDSshell_2_Drop : MT_105mmU_APFSDSshell_Drop
+{
+  States
+  {
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_2_sdmg,p105mmAPFSDS_2_srad,0,0,p105mmAPFSDS_2_sfullrad)
+	Stop
+  }
+}
+
+
+ACTOR MT_105mmU_APFSDSshell_3 : MT_105mmU_APFSDSshell
+{
+  States
+  {
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmU_APFSDSshell_3_Drop", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+	Stop
+  }
+}
+
+ACTOR MT_105mmU_APFSDSshell_3_Drop : MT_105mmU_APFSDSshell_Drop
+{
+  States
+  {
+FDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+	Stop
+FXDeath:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+    Stop
+FCrash:
+	TNT1 A 1 A_Explode(p105mmAPFSDS_3_sdmg,p105mmAPFSDS_3_srad,0,0,p105mmAPFSDS_3_sfullrad)
+	Stop
+  }
+}
+
+
+ACTOR MT_105mmU_APFSDSshell_Dummy : MTP_ShellBase_Fast
+{
+  Speed 135
   Damagetype Piercing
-  gravity 0.017
   damage (0)
   DeathSound "Medium/APExplosion"
   Obituary "%o <105mm APHE] %k" 
@@ -137,20 +394,49 @@ ACTOR MT_105mmU_APFSDSshell_Dummy : MTP_TShellBase
   decal MT_LargeAPHit 
   States
   {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", p105mmAPFSDS_ttd)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Drop:
+	TNT1 A 0 A_CustomMissile("MT_105mmU_APFSDSshell_Drop_Dummy", 0, 0, 0, CMF_AIMDIRECTION, velz / 2)
+	Stop  
   Death:
-    TNT1 A 0 A_Spawnitem("MT_105mmU_APFSDS_FImpact")
+    TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHE")
     TNT1 A 0 A_PlaySound("Medium/APExplosion")
 	TNT1 A 1
     Stop
-  Deflect:
-    TNT1 A 0 A_CustomMissile("MT_Dud",0,0,+15)
-    TNT1 A 0
+  }
+}
+
+ACTOR MT_105mmU_APFSDSshell_Drop_Dummy : MTP_ShellBase
+{
+Speed 60
+Damagetype Piercing
+gravity 0.25
+damage (0)
+DeathSound "Medium/APExplosion"
+Obituary "%o <105mm APHE] %k" 
++BLOODSPLATTER
+decal MT_LargeAPHit 
+  States
+  {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 9999)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	TNT1 A 0 A_Jump(256, "Jumper")
+	Goto Jumper
+Death:
+	TNT1 A 0 A_Spawnitem("MTCEG_MediumExplosion_APHE")
+	TNT1 A 0 A_PlaySound("Medium/APExplosion")
+	TNT1 A 1
     Stop
   }
 }
 
 //----Multi Purpose High Explosive rocket
-ACTOR MT_105mmMPHErocket : MTP_TShellBase
+ACTOR MT_105mmMPHErocket : MTP_ShellBase
 {
   Speed 50
   DamageType Explosive
@@ -184,10 +470,9 @@ ACTOR MT_105mmMPHErocket : MTP_TShellBase
     IDLE A 1
 	Loop 
   Death:
-	//TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("MT_Fragmentation",0,0,0+frandom(0,360),frag,0+frandom(0,32))
-    //TNT1 A 0 A_CustomBulletAttack(0+frandom(0,360),+frandom(-32,32),40,35,"BulletPuff",300,0,AAPTR_MASTER)
-	//TNT1 A 0 A_FireBullets(0+frandom(0,360),0+frandom(-32,32),40,(35),"BulletPuff",0,300)
-	TNT1 A 1
+	//TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("MT_Fragmentation",0,0,0+frandom(0,360),CMF_AIMDIRECTION,0+frandom(0,32))
+    TNT1 A 1 A_CustomBulletAttack(0+frandom(0,360),+frandom(-32,32),40,35,"MT_BuckshotPuff",300,0,AAPTR_MASTER)
+	TNT1 A 0
     Goto FinalDeath
   FinalDeath:
     TNT1 A 0  A_Spawnitem("MTCEG_MediumExplosion_HEShell")
@@ -227,7 +512,7 @@ ACTOR MT_105mmMPHErocket_3 : MT_105mmMPHErocket
   }
 }
 //----Bee Nest Shell
-ACTOR MT_105mmBeeProjectile : MTP_TShellBase
+ACTOR MT_105mmBeeProjectile : MTP_ShellBase
 {
   Radius 6
   Height 6
@@ -267,7 +552,7 @@ ACTOR MT_105mmBeeProjectile : MTP_TShellBase
 
 
 //----Chemical Shell
-ACTOR MT_105mmChemshell : MTP_TShellBase
+ACTOR MT_105mmChemshell : MTP_ShellBase
 {
   Radius 6
   Height 6
@@ -285,6 +570,10 @@ ACTOR MT_105mmChemshell : MTP_TShellBase
   var int user_i;
   States
   {
+Setter:
+	TNT1 A 0 A_SetUserVar("user_ttl", 99999)
+	TNT1 A 0 A_SetUserVar("user_mode", 1)
+	Goto Jumper
   Death:
 	TNT1 A 0 A_SetUserVar("user_i", 1)
 	TNT1 A 0 A_Scream
@@ -335,7 +624,7 @@ ACTOR MT_105mmChemshell_3 : MT_105mmChemshell
 
 //OLD
 //----Uranium Multi Purpose High Explosive shell
-ACTOR MT_105mmU_MPHEshell : MTP_TShellBase
+ACTOR MT_105mmU_MPHEshell : MTP_ShellBase
 {
   Radius 6
   Height 6

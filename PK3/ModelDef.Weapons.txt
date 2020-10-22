@@ -34,37 +34,6 @@ Model "MT_105mmCannon" // Cannon
    FrameIndex MCAN L 1 12 
 }
 
-/*
-Model "MT_105mmCannon" // Cannon
-{	
-   IGNORETRANSLATION
-   Path "MODELS\Items\Weapons\Main"
-   Model 0 "Cannon.md3"
-   Skin  0 "Cannon.dds"  
-   Path "MODELS\Items\Weapons\Aux"
-   Model 1 "PGP_MG.md3"
-   Skin  1 "PGP" 
-   Scale 2 2 2
-   Offset 2 -7 -8
-   //Idle
-   FrameIndex MCAN A 1 0
-   FrameIndex MCAN A 0 0
-   //Cannon Fire
-   FrameIndex MCAN B 0 1  
-   FrameIndex MCAN C 0 2  
-   FrameIndex MCAN D 0 3  
-   FrameIndex MCAN E 0 4  
-   FrameIndex MCAN F 0 5  
-   FrameIndex MCAN G 0 6
-   //MG Fire
-   FrameIndex MCAN H 1 8  
-   FrameIndex MCAN I 1 9  
-   FrameIndex MCAN J 1 10  
-   FrameIndex MCAN K 1 11 
-   FrameIndex MCAN L 1 12 
-}
-*/
-
 ////----------------------------------------------------------------------------
 //Heavy Cannon (Heavy MG)
 ////----------------------------------------------------------------------------
@@ -72,14 +41,17 @@ Model "MT_105mmCannon"
 {	
    IGNORETRANSLATION
    Path "MODELS\Items\Weapons\Aux"
-   Model 0 "PGP_MG.md3"
-   Skin  0 "PGP2"
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
    Path "MODELS\Items\Weapons\Main"
    Model 1 "Cannon.md3"
    Skin  1 "Cannon.dds"  
    Scale 2 2 2
    Offset 2 -7 -8
    //Idle   
+   FrameIndex MCA1 A 2 0
    FrameIndex MCA1 A 1 0
    FrameIndex MCA1 A 0 0
    //Cannon Fire
@@ -125,13 +97,16 @@ Model "Multi Purpose Device"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
    Path "MODELS\Items\Weapons\Aux"
-   Model 1 "PGP_MG.md3"
-   Skin  1 "PGP" 
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
    Scale 2 2 2
    Offset 2 -7 -8
    //Idle
    FrameIndex MCAN A 0 0  
-   FrameIndex MCAN A 1 0  
+   FrameIndex MCAN A 1 0
+   FrameIndex MCAN A 2 0
    //Fire
    FrameIndex MCAN B 0 2  
    FrameIndex MCAN C 0 3  
@@ -153,13 +128,16 @@ Model "Multi Purpose Device"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
    Path "MODELS\Items\Weapons\Aux"
-   Model 1 "PGP_MG.md3"
-   Skin  1 "PGP" 
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
    Scale 2 2 2
    Offset 2 -7 -8
    //Idle
    FrameIndex MCA1 A 0 0  
-   FrameIndex MCA1 A 1 0  
+   FrameIndex MCA1 A 1 0
+   FrameIndex MCA1 A 2 0
    //Fire
    FrameIndex MCA1 B 0 2  
    FrameIndex MCA1 C 0 3  

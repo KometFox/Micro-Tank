@@ -1,0 +1,166 @@
+//------------------------------------------------------------------------------
+//Medium Explosion, HE Shell
+//------------------------------------------------------------------------------
+ACTOR MTCEG_MediumExplosion_APHE : MT_CustomExplosionGenerator
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 
+	TNT1 AA 0 A_Spawnitemex("MTCEG_MediumExplosion_APHEFlash_EX",0,0,0,0,frandom(0.2,0.2),frandom(-0.2,0.2),random(0,360))
+	TNT1 AAAAAAAAA 0 A_Spawnitemex("MTCEG_MediumExplosion_APHE_EX",0,0,0,0,frandom(5,10),frandom(-2,2),random(0,360))
+	TNT1 AAAAAAAAAAA 0 A_Spawnitemex("MTCEG_MediumExplosion_APHE_SP",0,0,0,0,frandom(8,14),frandom(5,8),random(0,360))
+	TNT1 AAAA 0 A_Spawnitemex("MTCEG_MediumExplosion_APHE_DITrail",0,0,0,0,+frandom(8,20),frandom(5,15),random(0,360))
+    TNT1 A  0  A_SpawnItemEx("MT_CEG_75mmHEShell_Glow",0,0,0,0+frandom(-1,1),0+frandom(-1,1),0+frandom(-1,1),0+frandom(-360,360))
+    TNT1 A 6
+    TNT1 AAAAA 0 A_Spawnitemex("MTCEG_MediumExplosion_APHE_SM",0,0,0,0+random(-2,2),0+random(-2,2),0+random(5,8))
+    Stop  
+  } 
+}
+
+ACTOR MTCEG_MediumExplosion_APHE_EX : MT_CustomExplosionGenerator_Irt
+{
+  Scale 0.26
+  Renderstyle Add
+  Alpha 0.99
+  -RANDOMIZE
+  const float scaler = 1.07;
+  Bouncecount 0
+  States
+  {
+Setter:
+	XPLA A 0 A_SetUserVar("user_ttl", 12)
+	Goto Looping  
+Looping:
+	XPLA D 0 
+	"####" D 0 A_SetSpriteAngle(frandom(0,360))
+	"####" D 0 A_SetSpriteRotation(frandom(0,360))
+    "####" D 1 Bright {
+	A_SetScale(scalex * scaler, scaley * scaler);
+	}
+    Goto Spawn_Default
+Death:
+    "####" DDDDD 1 Bright {
+	A_Fadeout(0.19);
+	A_SetScale(scalex * scaler, scaley * scaler);
+	}
+	Goto Kill
+  }
+}
+
+ACTOR MTCEG_MediumExplosion_APHEFlash_EX : MT_CustomExplosionGenerator_Irt
+{
+  Scale 0.07
+  Renderstyle Add
+  Alpha 0.99
+  -RANDOMIZE
+  const float scaler = 0.15;
+  Bouncecount 0
+  States
+  {
+Setter:
+	XPLA A 0 A_SetUserVar("user_ttl", 3)
+	Goto Looping  
+Looping:
+	XPLA A 0 
+	"####" A 0 A_SetSpriteAngle(frandom(0,360))
+	"####" A 0 A_SetSpriteRotation(frandom(0,360))
+    "####" A 1 Bright {
+	A_SetScale(scalex + scaler, scaley + scaler);
+	}
+    Goto Spawn_Default
+Death:
+    "####" AAAAA 1 Bright {
+	A_Fadeout(0.19);
+	A_SetScale(scalex + scaler, scaley + scaler);
+	}
+	Goto Kill
+  }
+}
+
+ACTOR MTCEG_MediumExplosion_APHE_SP : Particle
+{
+  Radius 4
+  Height 4
+  Scale 0.1
+  Gravity 0.38
+  Alpha 0.99
+  Speed 7
+  Bouncecount 2
+  BounceFactor 0.3
+  WallBounceFactor 0.001
+  Bouncetype Grenade
+  +USEBOUNCESTATE
+  +NOBLOCKMAP
+  Renderstyle Add
+  var int user_tta;
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	SPRA A 0 A_SetUserVar("user_tta", 5)
+	SPRA AAAAA 1 A_SetUserVar("user_tta", user_tta - 1)
+    SPRA A 60 Bright
+    Goto Death
+  Bounce.Wall:
+  Bounce.Floor:
+	SPRA A 0 A_JumpIf(user_tta > 0, 3) 
+    SPRA A 0 A_SetGravity(0)
+	SPRA A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	SPRA A 30 Bright
+	Goto Death
+  Death:
+    SPRA AAAAAA 2 Bright A_Fadeout(0.1667)  
+	Stop
+  }
+}
+
+ACTOR MTCEG_MediumExplosion_APHE_DITrail : MT_PRT_TrailBase {
+  Gravity 0.45
+  BounceFactor 0.75
+  Bouncecount 1
+  Bouncetype Doom
+  Scale 0.25
+  renderstyle Normal
+  States {
+ Spawn:
+    TNT1 A 1 A_SetUserVar("User_TTL",1)	
+    goto Loopy  
+  Loopy:
+     DRCK    A 1
+    "####"   A 0 A_Spawnitemex("MTCEG_MediumExplosion_APHE_DI_S_Trail")
+    "####"   A 0 A_SetUserVar("User_TTL",User_TTL+1)
+    "####"   A 0 A_JumpIf(User_TTL==30,"Death")
+    loop
+}}
+
+
+ACTOR MTCEG_MediumExplosion_APHE_DI_S_Trail : Particle
+{
+  Scale 0.25
+  alpha 0.8
+  States
+  {
+  Spawn:
+    ASP3 ABCDEFGHIJKLMNOP 1 
+  Death:
+    Stop
+  }
+}
+
+ACTOR MTCEG_MediumExplosion_APHE_SM : MTCEG_MediumExplosion_APHE_DI_S_Trail
+{
+  Scale 0.875
+  States
+  {
+  Spawn:
+    ASP3 ABCDEFGHIJKLMNOPSTUV 2
+  Death:
+    Stop
+  }  
+}
+
+
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
