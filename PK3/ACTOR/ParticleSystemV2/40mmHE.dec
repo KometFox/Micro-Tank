@@ -1,0 +1,54 @@
+ACTOR MTCEG_40mmHEExplosion : MT_CustomExplosionGenerator
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 
+	TNT1 AA 0 A_Spawnitemex("MTCEG_40mmHE_Flash_EX",0,0,0,0,frandom(0.2,0.2),frandom(-0.2,0.2),random(0,360))
+    TNT1 AAA 0 A_Spawnitemex("MTCEG_40mmHE_SM",0,0,0,0+random(-2,2),0+random(-2,2),0+frandom(1,2.5))
+    Stop  
+  } 
+}
+
+
+ACTOR MTCEG_40mmHE_Flash_EX : MT_CustomExplosionGenerator_Irt
+{
+  Scale 0.006
+  Renderstyle Add
+  Alpha 0.99
+  -RANDOMIZE
+  const float scaler = 0.10;
+  Bouncecount 0
+  States
+  {
+Setter:
+	XPLA A 0 A_SetUserVar("user_ttl", 3)
+	Goto Looping  
+Looping:
+	XPLA A 0 
+	"####" A 0 A_SetSpriteAngle(frandom(0,360))
+	"####" A 0 A_SetSpriteRotation(frandom(0,360))
+    "####" A 1 Bright {
+	A_SetScale(scalex + scaler, scaley + scaler);
+	}
+    Goto Spawn_Default
+Death:
+    "####" AAAAA 1 Bright {
+	A_Fadeout(0.19);
+	A_SetScale(scalex + scaler, scaley + scaler);
+	}
+	Goto Kill
+  }
+}
+
+ACTOR MTCEG_40mmHE_SM : MTCEG_MediumExplosion_APHE_DI_S_Trail
+{
+  Scale 0.42
+  States
+  {
+  Spawn:
+    ASP3 ABCDEFGHIJKLMNOPSTUV 2
+  Death:
+    Stop
+  }  
+}

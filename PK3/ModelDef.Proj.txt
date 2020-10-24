@@ -200,6 +200,39 @@ Model "7.62x54mm AP 3"
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
+
+Model "12.7x99mm_AP"
+{
+   Path "MODELS\Projectiles\Tracers"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 110 22 22
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "12.7x99mm_AP2"
+{
+   Path "MODELS\Projectiles\Tracers"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 110 22 22
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
+
+Model "12.7x99mm_AP3"
+{
+   Path "MODELS\Projectiles\Tracers"
+   Model 0 "Plane2.md3"
+   Skin  0 "Trace2_1.png"
+   PITCHFROMMOMENTUM
+   Scale 110 22 22
+   AngleOffset 0
+   FrameIndex TRCR A 0 0
+}
 //------------------------------------------------------------------------------
 Model "MT_QuadMQ_AP_Proj"
 {

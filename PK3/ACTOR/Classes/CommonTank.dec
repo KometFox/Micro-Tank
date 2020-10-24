@@ -173,6 +173,7 @@ ACTOR MT_BaseTank : PlayerPawn
 	Player.StartItem "MT_ClassToken"              ,1
 	Player.StartItem "MHTA1_Token"                ,1
 	Player.StartItem "MTU_SupplyBox_2"            ,1
+	Player.StartItem "MT_Subgun_Slot"             ,1
 	Player.StartItem "MT_AmmoSwitcher"            ,1
 	Player.StartItem "MT_AmmoSwitcher_Reverse"    ,1	
 	Player.StartItem "MT_SubgunSwitcher"          ,1
@@ -185,11 +186,10 @@ ACTOR MT_BaseTank : PlayerPawn
 //Weapons
 	Player.StartItem "MT_105mmCannon"             ,1
 	Player.StartItem "Multi Purpose Device"       ,1
-//Player.StartItem "MT_OreBoringDevice"         ,1
 //Ammo
-	Player.Startitem "MT_75x500mmHE"                ,30
+	Player.Startitem "MT_75x500mmHE"                ,20
 	Player.Startitem "MT_75x500mmAP"                ,40
-	Player.Startitem "A_7u62x54mmR"                 ,1500
+	Player.Startitem "A_7u62x54mmR"                 ,2000
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 	Player.startitem "Item_GrenadePod_SSS"          ,1

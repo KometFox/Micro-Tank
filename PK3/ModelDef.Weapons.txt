@@ -1,6 +1,6 @@
 ////////////////WEAPONS////////////////////////////////////////////////////////
 ////--------------------------------------------------------------------------**
-//Heavy Cannon
+//Heavy Cannon (Light MG)
 ////--------------------------------------------------------------------------**
 Model "MT_105mmCannon" // Cannon
 {	
@@ -40,33 +40,33 @@ Model "MT_105mmCannon" // Cannon
 Model "MT_105mmCannon"
 {	
    IGNORETRANSLATION
-   Path "MODELS\Items\Weapons\Aux"
-   Model 1 "UKM-2000.md3"
-   Skin  1 "UKM-2000.dds" 
-   Model 2 "UKM-2000_belt.md3"
-   Skin  2 "BulletBelt1.png" 
    Path "MODELS\Items\Weapons\Main"
-   Model 1 "Cannon.md3"
-   Skin  1 "Cannon.dds"  
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
+   Model 1 "HK25.md3"
+   Skin  1 "HK25.dds" 
+   Model 2 "HK25_Belt.md3"
+   Skin  2 "BulletBelt1.png"    
    Scale 2 2 2
    Offset 2 -7 -8
-   //Idle   
-   FrameIndex MCA1 A 2 0
-   FrameIndex MCA1 A 1 0
+   //Idle
    FrameIndex MCA1 A 0 0
+   FrameIndex MCA1 A 1 0
+   FrameIndex MCA1 A 2 0
    //Cannon Fire
-   FrameIndex MCA1 B 1 1  
-   FrameIndex MCA1 C 1 2  
-   FrameIndex MCA1 D 1 3  
-   FrameIndex MCA1 E 1 4  
-   FrameIndex MCA1 F 1 5  
-   FrameIndex MCA1 G 1 6   
+   FrameIndex MCA1 B 0 1  
+   FrameIndex MCA1 C 0 2  
+   FrameIndex MCA1 D 0 3  
+   FrameIndex MCA1 E 0 4  
+   FrameIndex MCA1 F 0 5  
+   FrameIndex MCA1 G 0 6
    //MG Fire
-   FrameIndex MCA1 H 0 8  
-   FrameIndex MCA1 I 0 9  
-   FrameIndex MCA1 J 0 10  
-   FrameIndex MCA1 K 0 11 
-   FrameIndex MCA1 L 0 12 
+   FrameIndex MCA1 H 1 8  
+   FrameIndex MCA1 I 1 9  
+   FrameIndex MCA1 J 1 10  
+   FrameIndex MCA1 K 1 11 
+   FrameIndex MCA1 L 1 12 
 }
 /////////////////////Quad Machine Gun
 Model "MT_QuadMachineGun"
@@ -128,9 +128,9 @@ Model "Multi Purpose Device"
    Model 0 "MultiPurposeDevice.md3"
    Skin  0 "MultiPurposeDevice"
    Path "MODELS\Items\Weapons\Aux"
-   Model 1 "UKM-2000.md3"
-   Skin  1 "UKM-2000.dds" 
-   Model 2 "UKM-2000_belt.md3"
+   Model 1 "HK25.md3"
+   Skin  1 "HK25.dds" 
+   Model 2 "HK25_Belt.md3"
    Skin  2 "BulletBelt1.png" 
    Scale 2 2 2
    Offset 2 -7 -8

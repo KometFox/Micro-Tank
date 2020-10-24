@@ -13,8 +13,8 @@ TODO: Fix Deselect/Select animation
 //------------------------------------------------------------------------------
 ACTOR MT_Baseweapon : MT_PlayerWeapon
 {
-Weapon.AmmoUse1 1
-Weapon.AmmoUse2 1
+Weapon.AmmoUse1 0
+Weapon.AmmoUse2 0
 Weapon.AmmoType1 ""
 Weapon.AmmoType2 A_7u62x54mmR
 +WEAPON.CHEATNOTWEAPON
@@ -68,7 +68,7 @@ Deselect:
 	Goto Deselect+4	
 
 SelectAnim:
-	"####" A 0 A_PlaySoundEx("newmg42/quick","SoundSlot5")
+	"####" A 0 A_PlaySoundEx("V_Interact/SwitchGun","SoundSlot5")
 	"####" A 0 
 	"####" A 0 A_GiveInventory("MT_ReadyJumper",1)
 	"####" AA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
@@ -121,7 +121,7 @@ AltFire:
 	Goto AltFire_MG_Ammo
 
 AltFire_AC_Ammo:
-    "####" A 0 A_JumpIfInventory("A_7u62x54mmR",1, "AltFire_AC_N")
+    "####" A 0 A_JumpIfInventory("A_7u62x54mmR",2, "AltFire_AC_N")
 	Goto AltFire_Empty
 
 AltFire_MG_Ammo:
@@ -138,12 +138,13 @@ AltFire_Empty:
 	Goto Ready
 	
 AltFire_MG_N:  
-    "####" A 0 A_Playsound("Machinegun/Fire")
+    "####" A 0 A_Playsound("LMachinegun/Fire")
     "####" A 0 A_GunFlash
-    "####" A 0 A_AlertMonsters(250)
+    "####" A 0 A_AlertMonsters(300)
 	"####" A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
+	"####" A 0 //A_TakeInventory("A_7u62x54mmR", 1)
     "####" H 2
-	"####" I 2
+	"####" I 1
 	"####" A 0 A_WeaponReady 
 	"####" A 0 A_Jumpifinventory("MTU_APShot_2",2, "Altfire_MG3_N")
     "####" A 0 A_Jumpifinventory("MTU_APShot_2",1, "Altfire_MG2_N")		
@@ -179,37 +180,34 @@ Altfire_MG1_End:
 //------------------------------------------------------------------------------
 ////Autocannon
 //------------------------------------------------------------------------------
-	
 AltFire_AC_N:  
-    "####" A 0 A_Playsound("25mmAutocannon/Fire")
+    "####" A 0 A_Playsound("HMachinegun/Fire")
     "####" A 0 A_GunFlash
-    "####" A 0 A_AlertMonsters(250)
+    "####" A 0 A_AlertMonsters(350)
 	"####" A 0 A_FireCustomMissile("MT_MGMuzzleFlash",0,0,0)
+	"####" A 0 A_TakeInventory("A_7u62x54mmR", 1)
     "####" A 0 A_Jumpifinventory("MTU_APShot_2",2, "Altfire_AC3_N")
     "####" A 0 A_Jumpifinventory("MTU_APShot_2",1, "Altfire_AC2_N")		
     Goto Altfire_AC1_N
 
 Altfire_AC1_N: 
-	"####" AA 0 A_Firecustommissile("37mmAPshell",0,0,0,0,0)
-	"####" A 0 A_Firecustommissile("MT_37mmAPshell_Dummy",0,1,0,0,0)  
-    "####" HI 3
-	"####" JKL 3
+	"####" A 0 A_Firecustommissile("12.7x99mm_AP",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15))
+    "####" H 2
+	"####" I 2
 	"####" A 0 A_ReFire
 	Goto Altfire_AC1_End
 
 Altfire_AC2_N: 
-	"####" AA 0 A_Firecustommissile("37mmAPshell_2",0,0,0,0,0)
-	"####" A 0 A_Firecustommissile("MT_37mmAPshell_Dummy",0,1,0,0,0)  
-    "####" HI 3
-	"####" JKL 3
+	"####" A 0 A_Firecustommissile("12.7x99mm_AP2",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15))
+    "####" H 2
+	"####" I 2
 	"####" A 0 A_ReFire
 	Goto Altfire_AC1_End
 	
 Altfire_AC3_N: 
-	"####" AA 0 A_Firecustommissile("37mmAPshell_3",0,0,0,0,0)
-	"####" A 0 A_Firecustommissile("MT_37mmAPshell_Dummy",0,1,0,0,0)  
-    "####" HI 3
-	"####" JKL 3
+	"####" A 0 A_Firecustommissile("12.7x99mm_AP3",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15))
+    "####" H 2
+	"####" I 2
 	"####" A 0 A_ReFire
 	Goto Altfire_AC1_End
 

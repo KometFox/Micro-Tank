@@ -31,34 +31,6 @@ ACTOR SupplySmokeScreen : Smoke1
 }
 
 
-
-
-
-ACTOR "20mmExplosion2_S0.125" : Explosion2
-{
-Scale 0.125
-  States
-  {
-  Spawn:
-    AEP2 ABCDEFGHIJKLMNOPQRSTU 1 Bright  
-    AEP2 VWXYZ 1 A_Fadeout(0.198)
-    Goto Death
-  }
-}
-
-ACTOR "37mmExplosion5_S0.25" : Explosion2
-{
-Scale 0.25
-  States
-  {
-  Spawn:
-    AEP5 ABCDEFGHIJKLMNOPQRSTU 1 Bright  
-    AEP5 VWXYZ 1 A_Fadeout(0.198)
-    Goto Death
-  }
-}
-
-
 ACTOR IlluminatingBlue_Fire : Particle
 {
   Health 0
@@ -121,25 +93,6 @@ ACTOR IlluminatingBlue_BigFire : Particle
     Goto Death
   Death:
     TNT1 A 1
-    Stop
-  }
-}
-
-ACTOR 80mmHE_G_ExplosionSpawner : Particle
-{
-  Health 0
-  Radius 0
-  Height 0
-
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    Goto Death
-  Death:
-    TNT1 AAA 0 A_Spawnitemex("Explosion3_S0.75",0,0,0,0+frandom(2,-2),0+frandom(2,-2),0+frandom(2,-2))
-    TNT1 AAAAAAAAA  0  A_spawnitemex("G_Spark_S0.25",0,0,0,0+frandom(7,-7),0+frandom(7,-7),0+frandom(7,-7))
-    TNT1 AAAAAA  0  A_spawnitemex("Smoke1_S0.5",0,0,0,0+frandom(2.5,-2.5),0+frandom(2.5,-2.5),0+frandom(2.5,-2.7))
     Stop
   }
 }

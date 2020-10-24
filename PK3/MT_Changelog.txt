@@ -15,6 +15,7 @@
 		-Weapons correctly use their upgrades now.
 		-All weapons are inheriting from a base class now. 
 		-MPD primary mode is switchable (repair/reclaim). Alt fire is subgun.
+		-2 Subguns: Heavy and Light Machinegun.
 	
 	"Classes"
 		-Tank turrets can rotate now (render interpolation causes visual bug).

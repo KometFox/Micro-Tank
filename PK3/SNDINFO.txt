@@ -38,6 +38,9 @@ V_Interact/Button Click
 V_Interact/Zoom Click
 V_Interact/Periscope GScop
 V_Interact/Nightvision Click 
+V_Interact/SwitchAmmo GunLoa4
+V_Interact/SwitchSubGun GunLoa3
+V_Interact/SwitchGun GunLoa3
 
 ////----------------------------------------------------------------------------
 ///Vehicle 
@@ -54,8 +57,12 @@ Medium/Explosion3 MXplo3
 $Volume Medium/Explosion1 2
 $Volume Medium/Explosion2 2
 $Volume Medium/Explosion3 2
+Medium/ExplosionA1 MXplA1
+Medium/ExplosionA2 MXplA2
+Medium/ExplosionA3 MXplA3
 
-$Random Medium/Explosion {Medium/Explosion1 Medium/Explosion2 Medium/Explosion3}
+$Random Medium/Explosion {Medium/ExplosionA1 Medium/ExplosionA2 Medium/ExplosionA3}
+//$Random Medium/Explosion {Medium/Explosion1 Medium/Explosion2 Medium/Explosion3}
 $Attenuation Medium/Explosion 0.5 
 
 Medium/HEATExplosion1 MHXplo1
@@ -110,10 +117,16 @@ MG/FireA2  MGFireA2
 MG/FireB2  MGFireB2
 MG/FireC2  MGFireC2
 MG/PKMFire PKMFire1
+MG/FireA3  MGFireA3
+MG/MG42A MG42FIR1
+MG/MG42B MG42FIR2
+MG/MG42C MG42FIR3
+$random LMachinegun/Fire {MG/MG42A MG/MG42B MG/MG42C}
+$random HMachinegun/Fire {MG/FireA3}
 
-$random Machinegun/Fire {MG/PKMFire}
 //$random Machinegun/Fire //{MG/FireA2 MG/FireB2 MG/FireC2}
-$volume Machinegun/Fire 1.1
+$volume LMachinegun/Fire 0.75
+$volume HMachinegun/Fire 0.7
 
 ////----------------------------------------------------------------------------
 ///Small Cannon
