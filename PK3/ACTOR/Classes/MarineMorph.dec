@@ -2,6 +2,7 @@ ACTOR MT_MorphPlayer : PlayerPawn
 {
   Speed 1
   player.MaxHealth 200
+  Player.Face "STF"
   Health 200
   Radius 16
   Height 56

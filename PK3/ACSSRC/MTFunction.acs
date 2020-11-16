@@ -19,6 +19,17 @@ int marinepreviousarmor;
 int vehicleprevioushealth;
 int vehiclepreviousarmor;
 
+//PLAYER 
+int player_velx = 0.0;
+int player_vely = 0.0;
+int player_velz = 0.0;
+//Player vertex height
+int player_vertex_B0;
+int player_vertex_B1;
+int player_vertex_A0;
+int player_vertex_A1;
+
+
 //Taunting.
 Script "cmd_taunt" (VOID) NET
 {
@@ -73,7 +84,7 @@ str AmmoUpg[5]= {
 	[0][1][5] = Weapon [Ammo Upgrade 2]
 */
 
-str AmmoType_Neo[3][6][6] = {
+str AmmoType_Neo[4][6][6] = {
 	{ {"MT_105mmCannon"}, 
 	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
 	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMB0", "ACAMC0"},
@@ -81,13 +92,20 @@ str AmmoType_Neo[3][6][6] = {
 	  {"MHT_BaseGun_Chem","Chem","MT_75x500mmChem", "CHAMA0", "CHAMB0", "CHAMC0"}, 
 	  {"MHT_BaseGun_Bee","Bee","MT_75x500mmBee", "BHAMA0", "BHAMB0", "BHAMC0"}, },
 
-	{ {"Multi Purpose Device"}, 
+	{ {"MT_105mmCannonZS"}, 
+	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
+	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMB0", "ACAMC0"},
+	  {"MHT_BaseGun_HE","HEMP", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
+	  {"MHT_BaseGun_Chem","Chem","MT_75x500mmChem", "CHAMA0", "CHAMB0", "CHAMC0"}, 
+	  {"MHT_BaseGun_Bee","Bee","MT_75x500mmBee", "BHAMA0", "BHAMB0", "BHAMC0"}, },
+
+	{ {"Multi_Purpose_Device"}, 
 	  {"MT_MultiPurposeDevice_Repair", "Repair", "MT_Spareparts", "MSPPA0", "MSPPA0", "MSPPA0"},
 	  {"MT_MultiPurposeDevice_Reclaim", "Reclaim", "MT_Blankammo","RURMC0", "RURMC0", "RURMC0"}, },
 	  
 	{ {"MT_QuadMachineGun"}, 
 	  {"MT_QuadMachineGun_APSelected", "FMJ", "A_7u62x54mmR", "HUBBA0", "HUBBA0", "HUBBA0"},
-	  {"MT_QuadMachineGun_HESelected", "HE","MT_AMMO_7u62x54mmR_HE" , "HEAMA0", "HEAMA0", "HEAMA0"}, },
+	  {"MT_QuadMachineGun_HESelected", "HE","MT_Ammo_7u62x54mmR_HE" , "HEAMA0", "HEAMA0", "HEAMA0"}, },
 };
 
 
@@ -185,7 +203,7 @@ script "MTHUD_Ammo" ENTER
 		if (CheckWeapon(AmmoType_Neo[current_weapon][0][0]))
 		{
 	
-			for (int i0 = 0; i0 < 3; i0++)
+			for (int i0 = 0; i0 < 4; i0++)
 			{
 				if (CheckWeapon(AmmoType_Neo[i0][0][0]) == 1)
 				{
@@ -527,6 +545,91 @@ script "MT_SetVehicleRotation" (int degree)
 script "MT_GetVehicleRotation" (VOID) 
 {
 	SetResultValue(vehiclerotation);
+}
+
+script "MT_ChangeTid" (int old_tid, int new_tid)
+{
+	Thing_ChangeTid(old_tid, new_tid);
+}
+
+script "MT_ReturnHeight" (int tid)
+{
+	int z;
+	z = 0;
+	z = GetActorZ(tid) >> 16;
+	//log(s: "HEIGHT:", d: z);
+	SetResultValue(z);	
+}
+
+//Vector Crap
+script "MT_GetVector_X" ()
+{
+	SetResultValue(player_velx);
+}
+script "MT_GetVector_Y" ()
+{
+	SetResultValue(player_vely);
+}
+script "MT_GetVector_Z" ()
+{
+	SetResultValue(player_velz);
+}
+script "MT_SetVector_X" (int X)
+{
+	player_velx = X;
+}
+script "MT_SetVector_Y" (int Y)
+{
+	player_vely = Y;
+}
+script "MT_SetVector_Z" (int Z)
+{
+	player_velz = Z;
+}
+
+//Player Vertex Stuff
+script "MT_Set_Vertex_Height" (int cases, int height)
+{
+	switch (cases)
+	{
+		case 1:
+		player_vertex_B0 = height;
+		break;
+		case 2:
+		player_vertex_B1 = height;
+		break;
+		case 3:
+		player_vertex_A0 = height;
+		break;
+		case 4:
+		player_vertex_A1 = height;		
+		break;
+		default:
+		Log(s: "Invalid case.");
+		break;
+	}
+}
+
+script "MT_Get_Vertex_Height" (int cases)
+{
+	switch (cases)
+	{
+		case 1:
+		SetResultValue(player_vertex_B0);
+		break;
+		case 2:
+		SetResultValue(player_vertex_B1);
+		break;
+		case 3:
+		SetResultValue(player_vertex_A0);
+		break;
+		case 4:
+		SetResultValue(player_vertex_A1);
+		break;
+		default:
+		Log(s: "Invalid case.");
+		break;
+	}
 }
 
 

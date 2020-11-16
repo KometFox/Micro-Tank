@@ -60,3 +60,5 @@ Actor MT_CustomExplosionGenerator_Irt : MT_CustomExplosionGenerator
 #Include "Actor/ParticleSystemV2/PiercingExplosion.dec"
 #Include "Actor/ParticleSystemV2/40mmHE.dec"
 #Include "Actor/ParticleSystemV2/BulletPuff.dec"
+
+#Include "Actor/ParticleSystemV2/SmallBlood.dec"

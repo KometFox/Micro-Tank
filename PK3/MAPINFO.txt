@@ -39,7 +39,7 @@ skill hard
 
 skill veryhard
 {
-	AmmoFactor = 2
+	AmmoFactor = 1
 	FastMonsters
 	SpawnFilter = Nightmare
 	PicName = "M_NMARE"

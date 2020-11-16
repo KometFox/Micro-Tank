@@ -5,7 +5,6 @@
 #Include "Actor/Particles/Particle_37mm.dec"
 #Include "Actor/Particles/Particle_75mm.dec"
 #Include "Actor/Particles/Particle_Nuke.dec"
-#Include "Actor/Particles/Particle_Bullet.dec"
 #Include "Actor/Particles/Particle_Trails.dec"
 
 #Include "Actor/Particles/Scud.dec"

@@ -2,7 +2,7 @@
 #Include "Actor/Weapon/Projectiles/Base_Shells.dec"
 #Include "Actor/Weapon/Common/CommonWeapons.dec"
 #Include "Actor/Weapon/Heavy/Cannon_Func.dec"
-#Include "Actor/Weapon/Heavy/Cannon.dec"
+//#Include "Actor/Weapon/Heavy/Cannon.dec"
 #Include "Actor/Weapon/Heavy/Cannon_Shell.dec"
 #Include "Actor/Weapon/Heavy/Cannon_SubProj.dec"
 #Include "Actor/Weapon/Hitscan/Puffs.dec"

@@ -378,7 +378,7 @@ Goto Use
 
 }}
 
-
+/*
 ACTOR "Multi Purpose Device" : MT_Baseweapon 
 {
   Weapon.SlotNumber 1
@@ -483,6 +483,7 @@ Spawn:
     Stop
   }
 }
+*/
 
 ACTOR MT_Power_RepairSlowdown : PowerSpeed
 {

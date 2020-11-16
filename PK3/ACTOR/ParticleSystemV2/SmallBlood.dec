@@ -1,0 +1,95 @@
+ACTOR MT_CEG_SmallBloodHit : MT_CustomExplosionGenerator
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 
+	TNT1 AAA 0 A_Spawnitemex("MTCEG_SmallBloodHit",0,0,0,0,frandom(-3,3),frandom(-4,4),random(0,360))
+	TNT1 AAAA 0 A_Spawnitemex("MTCEG_SmallBloodDrop",0,0,0,0,frandom(-5,5),frandom(3,7),random(0,360))
+    Stop  
+  } 
+}
+
+
+ACTOR MTCEG_SmallBloodHit : Particle
+{
+  Scale 0.65
+  alpha 0.8
+  States
+  {
+  Spawn:
+	BLS0 A 1
+	BLS0 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    BLS0 ABCDEFGHIJ 1
+  Death:
+    Stop
+  }
+}
+
+
+ACTOR MTCEG_SmallBloodDrop : Particle
+{
+  Radius 4
+  Height 4
+  Scale 0.1
+  Gravity 0.38
+  Alpha 0.99
+  Speed 7
+  Bouncecount 1
+  BounceFactor 10
+  WallBounceFactor 0.5
+  Bouncetype Grenade
+  //+USEBOUNCESTATE
+  +NOBLOCKMAP
+  Renderstyle Add
+  var int user_tta;
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	BLSR A 0 A_SetUserVar("user_tta", 5)
+	BLSR AAAAA 1 A_SetUserVar("user_tta", user_tta - 1)
+    BLSR A 20 Bright
+    Goto Death
+  Bounce.Wall:
+  Bounce.Floor:
+	BLSR A 0 A_JumpIf(user_tta > 0, 3) 
+    BLSR A 0 A_SetGravity(0)
+	BLSR A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	BLSR A 15 Bright
+	Goto Death
+  Death:
+    BLSR AAAAAA 2 Bright A_Fadeout(0.1667)  
+	Stop
+  }
+}
+
+//LARGE IMPACT
+ACTOR MT_CEG_LargeBloodHit : MT_CustomExplosionGenerator
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 
+	TNT1 AAA 0 A_Spawnitemex("MTCEG_LargeBloodHit",0,0,0,0,frandom(-3,3),frandom(-4,4),random(0,360))
+	TNT1 AAAAAAAA 0 A_Spawnitemex("MTCEG_SmallBloodDrop",0,0,0,0,frandom(-4,14),frandom(3,7),random(0,360))
+    Stop  
+  } 
+}
+
+
+ACTOR MTCEG_LargeBloodHit : Particle
+{
+  Scale 1.45
+  alpha 0.8
+  States
+  {
+  Spawn:
+	BLS0 A 1
+	BLS0 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    BLS0 ABCDEFGHIJ 1
+  Death:
+    Stop
+  }
+}
+

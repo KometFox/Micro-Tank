@@ -40,9 +40,8 @@ FDeath:
 	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
 	Stop
 XDeath:
-	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
-	TNT1 A 0 A_PlaySound("MeaHit3")
+	TNT1 A 0 A_spawnitemex("MT_CEG_LargeBloodHit", 0, 0, 0)  
+	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
 FXDeath:
 	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
     Stop
@@ -77,9 +76,8 @@ FDeath:
 	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
 	Stop
 XDeath:
-	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
-	TNT1 A 0 A_PlaySound("MeaHit3")
+	TNT1 A 0 A_spawnitemex("MT_CEG_LargeBloodHit", 0, 0, 0)
+	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
 FXDeath:
 	TNT1 A 1 A_Explode(p105mmAPHE_sdmg,p105mmAPHE_srad,0,0,p105mmAPHE_sfullrad)
     Stop
@@ -259,9 +257,8 @@ FDeath:
 	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
 	Stop
 XDeath:
-	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
-	TNT1 A 0 A_PlaySound("MeaHit3")
+	TNT1 A 0 A_spawnitemex("MT_CEG_LargeBloodHit", 0, 0, 0)
+	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
 FXDeath:
 	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
     Stop
@@ -296,9 +293,8 @@ FDeath:
 	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
 	Stop
 XDeath:
-	TNT1 A 0 A_spawnitemex("MT_CEG_75mm_OrganHit_Trail",0,0,0,+frandom(-12,12),+frandom(-12,12),+frandom(-12,12))  
-	TNT1 AAAA 0 A_spawnitemex("MT_CEG_75mm_OrganHit",0,0,0,+frandom(-3,3),+frandom(-3,3),+frandom(-3,3))
-	TNT1 A 0 A_PlaySound("MeaHit3")
+	TNT1 A 0 A_spawnitemex("MT_CEG_LargeBloodHit", 0, 0, 0)
+	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
 FXDeath:
 	TNT1 A 1 A_Explode(p105mmAPFSDS_sdmg,p105mmAPFSDS_srad,0,0,p105mmAPFSDS_sfullrad)
     Stop
@@ -539,7 +535,8 @@ ACTOR MT_105mmBeeProjectile : MTP_ShellBase
     TNT1 A 0 A_Explode(sdmg,srad,0,0,sfullrad)
 	Stop
   XDeath:
-	TNT1 A 0 A_PlaySound("MeaHit3")
+	TNT1 A 0 A_SpawnItemEx("MT_CEG_SmallBloodHit", 0, 0, 0)
+	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
     TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
     Stop
   Crash:

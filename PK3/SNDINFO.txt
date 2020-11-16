@@ -82,6 +82,9 @@ Medium/APExplosion3 APXplo3
 $Random Medium/APExplosion {Medium/APExplosion1 Medium/APExplosion2 Medium/APExplosion3}
 $Attenuation Medium/APExplosion 0.6
 
+$Random LargeShot/OrganImpact {BLFLSHI1 BLFLSHI2 BLFLSHI3}
+
+
 ////----------------------------------------------------------------------------
 ///Energy
 ////----------------------------------------------------------------------------
@@ -113,6 +116,7 @@ MG/45ACP3 45ACP3
 $random MG/45ACP {MG/45ACP1 MG/45ACP2 MG/45ACP3}
 
 MG/Fire1  MGFire1
+MG/Fire2 MGFire2
 MG/FireA2  MGFireA2
 MG/FireB2  MGFireB2
 MG/FireC2  MGFireC2
@@ -123,10 +127,19 @@ MG/MG42B MG42FIR2
 MG/MG42C MG42FIR3
 $random LMachinegun/Fire {MG/MG42A MG/MG42B MG/MG42C}
 $random HMachinegun/Fire {MG/FireA3}
+$random QMachinegun/Fire {MG/Fire2}
 
 //$random Machinegun/Fire //{MG/FireA2 MG/FireB2 MG/FireC2}
 $volume LMachinegun/Fire 0.75
 $volume HMachinegun/Fire 0.7
+
+BLFLSHI1 BLFLSHI1
+BLFLSHI2 BLFLSHI2
+BLFLSHI3 BLFLSHI3
+$Random Bullet/OrganImpact {BLFLSHI1 BLFLSHI2 BLFLSHI3}
+$Volume Bullet/OrganImpact 0.62
+
+Casing/Bounce Shell2
 
 ////----------------------------------------------------------------------------
 ///Small Cannon

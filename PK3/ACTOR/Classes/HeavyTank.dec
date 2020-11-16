@@ -1,5 +1,6 @@
-ACTOR MT_PlayerClass_HeavyTank : MT_BaseTank
+ACTOR MT_PlayerClass_HeavyTank : MT_CommonTank_New
 {
 	player.DisplayName "Heavy Tank"
 	Player.SoundClass "mt_vehicle"
 }
+

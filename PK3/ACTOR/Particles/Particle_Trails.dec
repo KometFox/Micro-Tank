@@ -483,8 +483,8 @@ ACTOR MT_P_BulletCaseTest : Particle
   Gravity 0.75
   Bouncecount 2
   alpha 1
-  BounceSound "Shell2"
-  WallBounceSound "Shell2"
+  BounceSound "Casing/Bounce"
+  WallBounceSound "Casing/Bounce"
   States
   {
   Spawn:

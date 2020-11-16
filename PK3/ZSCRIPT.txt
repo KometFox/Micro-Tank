@@ -1,0 +1,5 @@
+#Include "ZSCRIPT/ACTOR/Internal/Actor_Base.zs"
+#Include "ZSCRIPT/ACTOR/Classes/CommonTank.zs"
+#Include "ZSCRIPT/ACTOR/Classes/HeavyTank.zs"
+#Include "ZSCRIPT/ACTOR/Weapon/Common/Baseweapon.zs"
+#Include "ZSCRIPT/ACTOR/Weapon/Heavy/Cannon.zs"

@@ -2,6 +2,7 @@
 ////--------------------------------------------------------------------------**
 //Heavy Cannon (Light MG)
 ////--------------------------------------------------------------------------**
+
 Model "MT_105mmCannon" // Cannon
 {	
    IGNORETRANSLATION
@@ -34,9 +35,11 @@ Model "MT_105mmCannon" // Cannon
    FrameIndex MCAN L 1 12 
 }
 
+
 ////----------------------------------------------------------------------------
 //Heavy Cannon (Heavy MG)
 ////----------------------------------------------------------------------------
+
 Model "MT_105mmCannon"
 {	
    IGNORETRANSLATION
@@ -68,6 +71,8 @@ Model "MT_105mmCannon"
    FrameIndex MCA1 K 1 11 
    FrameIndex MCA1 L 1 12 
 }
+
+
 /////////////////////Quad Machine Gun
 Model "MT_QuadMachineGun"
 {	
@@ -89,7 +94,8 @@ Model "MT_QuadMachineGun"
 }
 
 ////////////////////Multi Purpose Device
-Model "Multi Purpose Device"
+
+Model "Multi_Purpose_Device"
 {	
    IGNORETRANSLATION
    //NOINTERPOLATION
@@ -120,7 +126,7 @@ Model "Multi Purpose Device"
    FrameIndex MCAN L 1 12 
 }
 
-Model "Multi Purpose Device"
+Model "Multi_Purpose_Device"
 {	
    IGNORETRANSLATION
    //NOINTERPOLATION

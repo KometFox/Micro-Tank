@@ -1,7 +1,47 @@
+/*
+Model US_Sherman
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Chassis.md3"
+	Model 1 "Tiger1_Treads.md3"
+	Skin 0 "TigerTank_Summer.dds"
+	Skin 1 "Tiger1_Treads.png"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex MDLA A 0 0
+    FrameIndex MDLA A 1 0
+	FrameIndex MDLA B 0 0
+    FrameIndex MDLA B 1 0
+
+}
+
+Model US_ShermanTurret
+{
+   INTERPOLATEDOUBLEDFRAMES
+   IGNORETRANSLATION
+   USEACTORPITCH
+   USEACTORROLL
+   Path "MODELS\Vehicles\HeavyTank"
+   Model 0 "Tiger1_Turret.md3"
+   Skin 0 "TigerTank_Summer.dds"
+   Scale 7 7 7
+   AngleOffset 0
+	FrameIndex MDLA A 0 0
+	FrameIndex MDLA B 0 0
+}
+*/
+
+/*
+//TIGER 1 MODEL
 Model MT_PlayerClass_HeavyTank
 {
    INTERPOLATEDOUBLEDFRAMES
    IGNORETRANSLATION
+   //USEACTORPITCH
+   USEACTORROLL
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "Tiger1_Turret.md3"
    Skin 0 "TigerTank_Summer.dds"
@@ -13,6 +53,8 @@ Model MT_PlayerClass_HeavyTank
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
+   USEACTORPITCH
+   USEACTORROLL
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "Tiger1_Chassis.md3"
    Model 1 "Tiger1_Treads.md3"
@@ -27,6 +69,8 @@ Model MT_HeavyTank_Chassis
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
+   USEACTORPITCH
+   USEACTORROLL
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "Tiger1_Chassis.md3"
    Model 1 "Tiger1_Treads.md3"
@@ -41,6 +85,8 @@ Model MT_HeavyTank_Chassis
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
+   USEACTORPITCH
+   USEACTORROLL
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "Tiger1_Chassis.md3"
    Model 1 "Tiger1_Treads.md3"
@@ -55,6 +101,8 @@ Model MT_HeavyTank_Chassis
 Model MT_HeavyTank_Chassis
 {
    INTERPOLATEDOUBLEDFRAMES
+   USEACTORPITCH
+   USEACTORROLL
    Path "MODELS\Vehicles\HeavyTank"
    Model 0 "Tiger1_Chassis.md3"
    Model 1 "Tiger1_Treads.md3"
@@ -65,7 +113,7 @@ Model MT_HeavyTank_Chassis
 	FrameIndex TNK1 D 0 0
     FrameIndex TNK1 D 1 0
 }
-
+*/
 
 /*
 Model MT_PlayerClass_HeavyTank
