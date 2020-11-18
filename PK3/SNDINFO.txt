@@ -82,7 +82,9 @@ Medium/APExplosion3 APXplo3
 $Random Medium/APExplosion {Medium/APExplosion1 Medium/APExplosion2 Medium/APExplosion3}
 $Attenuation Medium/APExplosion 0.6
 
-$Random LargeShot/OrganImpact {BLFLSHI1 BLFLSHI2 BLFLSHI3}
+BLFLSHX0 BLFLSHX0
+$Random LargeShot/OrganImpact {BLFLSHX0}
+$Volume LargeShot/OrganImpact 0.45
 
 
 ////----------------------------------------------------------------------------
@@ -133,12 +135,16 @@ $random QMachinegun/Fire {MG/Fire2}
 $volume LMachinegun/Fire 0.75
 $volume HMachinegun/Fire 0.7
 
-BLFLSHI1 BLFLSHI1
-BLFLSHI2 BLFLSHI2
-BLFLSHI3 BLFLSHI3
-$Random Bullet/OrganImpact {BLFLSHI1 BLFLSHI2 BLFLSHI3}
-$Volume Bullet/OrganImpact 0.62
+BLFLSHI1 BLFLSHI0
+BLFLSHI2 BLFLSHI1
+BLFLSHI3 BLFLSHI2
+$Random Bullet/OrganImpact {BLFLSHI0 BLFLSHI1 BLFLSHI2}
+$Volume Bullet/OrganImpact 1.0
 
+HVCAS1 HVCAS1
+HVCAS2 HVCAS2
+HVCAS3 HVCAS3
+$Random HeavyCasing/Bounce {HVCAS1 HVCAS2 HVCAS3}
 Casing/Bounce Shell2
 
 ////----------------------------------------------------------------------------

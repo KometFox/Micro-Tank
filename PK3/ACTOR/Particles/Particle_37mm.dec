@@ -3,7 +3,7 @@ ACTOR 37mmAP_ExplosionSpawner : Particle
   Health 0
   Radius 4
   Height 4
-
+  
   States
   {
   Spawn:

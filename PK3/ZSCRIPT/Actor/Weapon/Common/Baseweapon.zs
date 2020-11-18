@@ -16,7 +16,7 @@ Class MT_BaseweaponZS : MT_PlayerWeapon
 Default 
 {
 Weapon.AmmoUse1 0;
-Weapon.AmmoUse2 0;
+Weapon.AmmoUse2 1;
 Weapon.AmmoType1 "";
 Weapon.AmmoType2 "A_7u62x54mmR";
 +WEAPON.CHEATNOTWEAPON;
@@ -222,10 +222,6 @@ Class MT_BasecannonZS : MT_BaseweaponZS
 {
 Default
 {
-Weapon.AmmoUse1 1;
-Weapon.AmmoUse2 1;
-Weapon.AmmoType1 "";
-Weapon.AmmoType2 "A_7u62x54mmR";
 +WEAPON.CHEATNOTWEAPON;
 Inventory.PickupMessage "The weapon is supposed to be used as a base to inherit from.";
 Tag "Baseweapon";
@@ -371,11 +367,9 @@ Reclaim2:
 
 //Reclaim
 Reclaim:
-    "####" A 0 A_SpawnItemEx("ReclaimEffect",0,0,15,25,0,0,0,SXF_SETTARGET | SXF_ISTARGET);
-	"####" A 0; //A_FireProjectile("ReclaimEffect",0,0,0,0,AAPTR_TARGET)
-    "####" E 4 A_FireProjectile("MPD_Projectile2",0,0,0,0,0);
-    "####" A 0 A_SpawnItemEx("ReclaimEffect",0,0,15,25,0,0,0,SXF_SETTARGET | SXF_ISMASTER);
-	"####" A 0; //A_FireProjectile("ReclaimEffect",0,0,0,0,AAPTR_MASTER)
+	"####" A 0 A_RailAttack(10, 0, 0, 0, 0, RGF_SILENT|RGF_NOPIERCING|RGF_NORANDOMPUFFZ, 0.5, "", 0.5, 0.5, 600, 25, 5, 1.5, "ReclaimEffect");
+	"####" A 0 A_FireBullets(0, 0, 1, 0, "ReclaimEffect_Impact", FBF_NORANDOMPUFFZ, 600);
+	"####" E 2;
     "####" E 0 A_Jump(32,"Reclaim2");
     "####" E 0 A_ReFire("Reclaim");
 	"####" EDCBA 2;

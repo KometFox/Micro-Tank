@@ -504,6 +504,8 @@ ACTOR MT_P_ShellCase : MT_P_BulletCaseTest { Scale 0.2 }
 
 ACTOR MT_P_BulletCaseTest_Medium : MT_P_BulletCaseTest 
 {
+BounceSound "HeavyCasing/Bounce"
+WallBounceSound "HeavyCasing/Bounce"
 Scale 0.5
   States
   {
