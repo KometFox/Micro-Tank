@@ -7,7 +7,7 @@ Model MT_105mmAPHEshell_dummy
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -19,7 +19,7 @@ Model MT_105mmAPHEshell_drop_dummy
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -31,7 +31,7 @@ Model MT_105mmU_APFSDSshell_dummy
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 6 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -43,7 +43,7 @@ Model MT_105mmU_APFSDSshell_drop_dummy
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 6 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -55,7 +55,7 @@ Model MT_105mmMPHErocket
    Model 0 "75mmrocket.md3"
    Skin  0 "75mmrocket_tex.png"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 10 10 10
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
@@ -66,7 +66,7 @@ Model MT_105mmMPHErocket_2
    Model 0 "75mmrocket.md3"
    Skin  0 "75mmrocket_tex.png"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 10 10 10
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
@@ -77,7 +77,7 @@ Model MT_105mmMPHErocket_3
    Model 0 "75mmrocket.md3"
    Skin  0 "75mmrocket_tex.png"
    PITCHFROMMOMENTUM
-   Scale 20 20 20
+   Scale 10 10 10
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
@@ -88,7 +88,7 @@ Model MT_105mmU_MPHEshell
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -100,7 +100,7 @@ Model MT_105mmU_MPHEshell_2
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -113,7 +113,7 @@ Model MT_105mmU_MPHEshell_3
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -125,7 +125,7 @@ Model MT_105mmChemshell
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -137,7 +137,7 @@ Model MT_105mmChemshell_2
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -149,7 +149,7 @@ Model MT_105mmChemshell_3
    Model 0 "GenericShell.md3"
    Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6.5 6.5 6.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex SHEL A 0 0
    FrameIndex SHET A 0 0
@@ -157,13 +157,15 @@ Model MT_105mmChemshell_3
 //------------------------------------------------------------------------------
 Model "MT_105mmBeeProjectile"
 {
-   Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Path "MODELS\Projectiles\Cannon"
+   Model 0 "GenericShell.md3"
+   Skin  0 "GenericShell.dds"
    PITCHFROMMOMENTUM
-   Scale 6 4 4
+   Scale 2 1.5 1.5
    AngleOffset 0
-   FrameIndex 37MM A 0 0
+   FrameIndex SHEL A 0 0
+   FrameIndex SHET A 0 0  
+   
 }
 //------------------------------------------------------------------------------
 //MACHINE GUNS
@@ -171,10 +173,10 @@ Model "MT_105mmBeeProjectile"
 Model "7.62x54mm AP"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 100 20 20
+   Scale 70 40 40
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -182,10 +184,10 @@ Model "7.62x54mm AP"
 Model "7.62x54mm AP 2"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 100 20 20
+   Scale 70 40 40
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -193,10 +195,10 @@ Model "7.62x54mm AP 2"
 Model "7.62x54mm AP 3"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 100 20 20
+   Scale 70 40 40
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -204,10 +206,10 @@ Model "7.62x54mm AP 3"
 Model "12.7x99mm_AP"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 110 22 22
+   Scale 80 50 50
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -215,10 +217,10 @@ Model "12.7x99mm_AP"
 Model "12.7x99mm_AP2"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 110 22 22
+   Scale 80 50 50
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -226,10 +228,10 @@ Model "12.7x99mm_AP2"
 Model "12.7x99mm_AP3"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
-   Scale 110 22 22
+   Scale 80 50 50
    AngleOffset 0
    FrameIndex TRCR A 0 0
 }
@@ -237,8 +239,8 @@ Model "12.7x99mm_AP3"
 Model "MT_QuadMQ_AP_Proj"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
    Scale 100 20 20
    AngleOffset 0
@@ -249,8 +251,8 @@ Model "MT_QuadMQ_AP_Proj"
 Model "MT_QuadMQ_HE_Proj"
 {
    Path "MODELS\Projectiles\Tracers"
-   Model 0 "Plane2.md3"
-   Skin  0 "Trace2_1.png"
+   Model 0 "Tracer.md3"
+   Skin  0 "Tracer.png"
    PITCHFROMMOMENTUM
    Scale 100 40 40
    AngleOffset 0

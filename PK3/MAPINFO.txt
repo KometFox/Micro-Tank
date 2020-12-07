@@ -1,4 +1,4 @@
-clearskills 
+//clearskills 
 
 skill baby
 {
@@ -46,5 +46,15 @@ skill veryhard
 	Name = "Very Hard"
 	MustConfirm  = "Do you have what it takes to become a Tank Ace?"
 	PlayerClassName = "Heavy Tank" , "Tank Schock!"
+}
+
+//------------------------------------------------------------------------------
+//HUD INFO
+//------------------------------------------------------------------------------
+gameinfo
+{
+	AddEventHandlers = "HPICube_Func"
+	AddEventHandlers = "HPICube_Items"
+	AddEventHandlers = "CrossHair_Display"
 }
 

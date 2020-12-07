@@ -1,5 +1,6 @@
 //ACS code credit: Sgt. Mark IV
 #library "MTank"
+//#Include "MCom.acs"
 #include "zcommon/gzdoom.acs"
 
 /*
@@ -112,22 +113,23 @@ script "MTACS_Chassis" ENTER
 //Chase
 //------------------------------------------------------------------------------
 	//Chase cheat is on 
-		
+		/*
 		if (CheckInventory("MT_ChaseCameraToken")) 
 			{	
-
+				SetHUDSize(ShaveInt(GetScreenWidth() * 1.0), ShaveInt(GetScreenHeight() * 1.0), false);
 				setfont("TNHSA0");
-				hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);		
+				//hudmessage(s:"A"; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.65, 1.0);
+				hudmessage(s:"A"; HUDMSG_PLAIN, 998, CR_UNTRANSLATED, 0.5, 0.54, 1.0);		
 				//SetCVAR("chase", True);
 			}
 
 		else
 			{
 				TakeInventory("MT_ChaseCameraToken", 99);
-				hudmessage(s:""; HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
+				hudmessage(s:""; HUDMSG_PLAIN, 998, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
 				//SetCVAR("chase", False);
 			}
-
+		*/
 		delay(1);		
 		TakeInventory("Accelerate", 1);
 		TakeInventory("Reverse", 1);

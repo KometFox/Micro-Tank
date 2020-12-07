@@ -24,10 +24,8 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 //------------------------------------------------------------------------------
 //Menu
 //------------------------------------------------------------------------------
-  addmenukey "Open Items Menu" MTC_UseConMenu
-  alias MTC_UseConMenu "pukename MT_BuyMenu always" 
-  addmenukey "Open Upgrades Menu" MTC_UseUpgMenu
-  alias MTC_UseUpgMenu "pukename MT_Upgrades always"   
+  addmenukey "Open HPI Cube" MTC_UseHPICube
+  alias MTC_UseHPICube "use MT_HPICube_Item"
   
 //------------------------------------------------------------------------------
 //Vehicle
@@ -47,6 +45,10 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   addmenukey "Commander: Taunt" MTC_CMDTaunt
   alias MTC_CMDTaunt "pukename cmd_taunt"
    
+//------------------------------------------------------------------------------
+//Auxillary
+//------------------------------------------------------------------------------
+
 
 ////Cheats   
    alias ironcurtain "god; Echo Permament Iron Curtain"

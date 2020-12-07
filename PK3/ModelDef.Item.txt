@@ -31,30 +31,39 @@ Model MT_Fuze_10s
 Model MT_Credits_Small
 {
    Path "MODELS\Items\Resources"
-   Model 0 "coinpile_small.md3"
-   Skin  0 "Rubelbase.png"
-   Scale 1.8 1.8 1.8
+   Model 0 "SmallOre.md3"
+   Skin  0 "Ore.dds"
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
 
+Model MT_OldAmmo
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "OldAmmo.md3"
+   Skin  0 "OldAmmo.dds"
+   Scale 5 5 5
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+}
 
 Model MT_Credits_Medium
 {
    Path "MODELS\Items\Resources"
-   Model 0 "coinpile_medium.md3"
-   Skin  0 "Rubelbase.png"
-   Scale 1.9 1.9 1.9
+   Model 0 "MediumOre.md3"
+   Skin  0 "Ore.dds"
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
 
-Model MT_Credits_Big
+Model MT_Credits_Large
 {
    Path "MODELS\Items\Resources"
-   Model 0 "coinpile_medium.md3"
-   Skin  0 "Rubelbase.png"
-   Scale 2 2 2
+   Model 0 "Gem.md3"
+   Skin  0 "Gem.dds"
+   Scale 8 8 8
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
@@ -63,9 +72,9 @@ Model MT_Credits_Big
 Model MT_Metals_Small
 {
    Path "MODELS\Items\Resources"
-   Model 0 "Metalbar.md3"
-   Skin  0 "Metalbar.png"
-   Scale 4.25 4.25 4.25
+   Model 0 "MetalIngot_1.md3"
+   Skin  0 "Metalbar2.png"
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
@@ -73,19 +82,19 @@ Model MT_Metals_Small
 Model MT_Metals_Medium
 {
    Path "MODELS\Items\Resources"
-   Model 0 "Metalbar.md3"
+   Model 0 "MetalIngot_3.md3"
    Skin  0 "Metalbar2.png"
-   Scale 5.5 5.5 5.5
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }
 
-Model MT_Metals_Big
+Model MT_Metals_Large
 {
    Path "MODELS\Items\Resources"
-   Model 0 "Metalbar.md3"
-   Skin  0 "Metalbar3.png"
-   Scale 6 6 6
+   Model 0 "MetalIngot_6.md3"
+   Skin  0 "Metalbar2.png"
+   Scale 4 4 4
    AngleOffset 0
    FrameIndex IDLE A 0 0
 }

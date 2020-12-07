@@ -5,7 +5,8 @@
 		-Added MorphToMarine function which saves also tank/marine health.
 		-New HUD graphics.
 		-Code cleanup.
-		-Removed concept of structures, inplace of ammo/upgrade menu.
+		-Removed concept of structures.
+		-Added a new crafting menu ([H]yper [P]roduction of [I]tems cube)
 		-Added taunt button.
 		-Fixed bug where credits gets reset on map change when the amount 
 		 of it is 0.

@@ -42,6 +42,12 @@ States
 }}
 
 //------AMMUNITION UPGRADE------------------------------------------------------
+ACTOR MT_AmmoExtender : BackPack
+{
++INVENTORY.UNDROPPABLE
++INVENTORY.UNCLEARABLE
+}
+
 ACTOR MT_ItemUpgradeBase : CustomInventory
 {
   Scale 1

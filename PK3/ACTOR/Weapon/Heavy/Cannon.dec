@@ -154,17 +154,17 @@ Bee_FireA:
 	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0)
 	Goto Bee_FireB
 Bee_FireB:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 4, "Bee_FireC_Clear")
+	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 1, "Bee_FireC_Clear")
 	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
 	//TOP
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)
 	//MIDDLE
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -1.2 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 1.2 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 0, 0)
 	//BOTTOM
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
-	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
+	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, -10, 0)
 	"####" A 0
 	loop
 Bee_FireC_Clear:
@@ -232,7 +232,7 @@ Bee2_FireA:
 	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0)
 	Goto Bee_FireB
 Bee2_FireB:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 4, "Bee2_FireC_Clear")
+	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0") >= 2, "Bee2_FireC_Clear")
 	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0", 1)
 	//TOP
 	"####" A 0 A_Firecustommissile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0"), 0, 0, 10, 0)

@@ -491,6 +491,7 @@ player.sidemove 0;
 player.jumpz 0;
 player.face "TKF";
 player.maxhealth 1600;
+Player.DamageScreenColor "Yellow", 0.1;
 health 1600;
 Speed 0.0;
 Species "TankPlayer";
@@ -517,21 +518,22 @@ Player.Startitem "MT_SubgunSwitcher_Reverse"  ,1;
 Player.Startitem "MT_Searchlight"             ,1;
 Player.StartItem "MT_Nightvision_MK1"         ,1;
 Player.StartItem "MT_ChaseCamera_MK1"         ,1;
+Player.StartItem "MT_ChaseCameraToken"        ,2;
 Player.StartItem "MT_PeriscopeItem"           ,1;
+Player.StartItem "MT_HPICube_Item"            ,1;
 //Lockers
 //Weapons
 Player.StartItem "MT_105mmCannon"           ,1;
 Player.StartItem "Multi_Purpose_Device"       ,1;
 //Ammo
-Player.Startitem "MT_75x500mmHE"                ,20;
-Player.Startitem "MT_75x500mmAP"                ,40;
-Player.Startitem "A_7u62x54mmR"                 ,2000;
+Player.Startitem "MT_75x500mmHE"                ,10;
+Player.Startitem "MT_75x500mmAP"                ,20;
+Player.Startitem "A_7u62x54mmR"                 ,800;
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 Player.startitem "Item_GrenadePod_SSS"          ,1;
-Player.startitem "Item_GrenadePod_Illuminating" ,2;
-Player.startitem "MT_Item_GrenadePod_Flare"     ,30;
-Player.Startitem "MT_GrenadePod_Explosive"      ,20;
+Player.startitem "MT_Item_GrenadePod_Flare"     ,20;
+Player.Startitem "MT_GrenadePod_Explosive"      ,4;
   
 //MT Damage types
 DamageFactor "PiercingExplosive" ,0.75;

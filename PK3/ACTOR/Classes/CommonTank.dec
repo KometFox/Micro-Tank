@@ -180,6 +180,7 @@ ACTOR MT_BaseTank : PlayerPawn
 	Player.Startitem "MT_SubgunSwitcher_Reverse"  ,1
 	Player.Startitem "MT_Searchlight"             ,1
 	Player.StartItem "MT_Nightvision_MK1"         ,1
+	Player.StartItem "MT_ChaseCameraToken"        ,1
 	Player.StartItem "MT_ChaseCamera_MK1"         ,1
 	Player.StartItem "MT_PeriscopeItem"           ,1
 //Lockers

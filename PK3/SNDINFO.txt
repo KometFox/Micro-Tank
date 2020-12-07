@@ -4,8 +4,8 @@
 Items/Pickup DSWPNUP1
 Item/Pickup DSWPNUP1
 Ammo/Pickup DSWPNUP1
-Material/Pickup1 DSMAT1
-Material/Pickup2 DSMAT2
+Material/Pickup1 DSMAT3
+Material/Pickup2 DSMAT3
 $Random Material/Pickup {Material/Pickup1 Material/Pickup2}
 
 ////----------------------------------------------------------------------------
@@ -127,12 +127,13 @@ MG/FireA3  MGFireA3
 MG/MG42A MG42FIR1
 MG/MG42B MG42FIR2
 MG/MG42C MG42FIR3
-$random LMachinegun/Fire {MG/MG42A MG/MG42B MG/MG42C}
+$random LMachinegun/Fire {MG/PKMFire}
+//$random LMachinegun/Fire {MG/FireA2 MG/FireB2 MG/FireC2}
 $random HMachinegun/Fire {MG/FireA3}
 $random QMachinegun/Fire {MG/Fire2}
 
 //$random Machinegun/Fire //{MG/FireA2 MG/FireB2 MG/FireC2}
-$volume LMachinegun/Fire 0.75
+$volume LMachinegun/Fire 0.95
 $volume HMachinegun/Fire 0.7
 
 BLFLSHI1 BLFLSHI0
@@ -145,7 +146,11 @@ HVCAS1 HVCAS1
 HVCAS2 HVCAS2
 HVCAS3 HVCAS3
 $Random HeavyCasing/Bounce {HVCAS1 HVCAS2 HVCAS3}
-Casing/Bounce Shell2
+RIFCAS1 RIFCAS1
+RIFCAS2 RIFCAS2
+RIFCAS3 RIFCAS3
+
+$Random Casing/Bounce {RIFCAS1 RIFCAS2 RIFCAS13}
 
 ////----------------------------------------------------------------------------
 ///Small Cannon
@@ -260,10 +265,8 @@ CMDTAU16 CMDTAU17}
 Bullet/Impact1 BULH1
 Bullet/Impact2 BULH2
 Bullet/Impact3 BULH3
-Bullet/Impact4 BULH4
-Bullet/Impact5 BULH5
 
-$Random Bullet/Impact {Bullet/Impact1 Bullet/Impact2 Bullet/Impact3 Bullet/Impact4 Bullet/Impact5}
+$Random Bullet/Impact {Bullet/Impact1 Bullet/Impact2 Bullet/Impact3}
 
 //Impacts
 BulHi BulHi

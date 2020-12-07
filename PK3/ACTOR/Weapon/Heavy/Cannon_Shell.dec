@@ -434,7 +434,7 @@ Death:
 //----Multi Purpose High Explosive rocket
 ACTOR MT_105mmMPHErocket : MTP_ShellBase
 {
-  Speed 50
+  Speed 60
   DamageType Explosive
   gravity 0
   damage (frandom(1,1.2)*30)
@@ -508,40 +508,41 @@ ACTOR MT_105mmMPHErocket_3 : MT_105mmMPHErocket
   }
 }
 //----Bee Nest Shell
-ACTOR MT_105mmBeeProjectile : MTP_ShellBase
+ACTOR MT_105mmBeeProjectile : FastProjectile
 {
   Radius 6
   Height 6
-  Speed 45
-  DamageType Piercing
+  Speed 100
+  DamageType Explosive
   gravity 0.012
   scale 1
-  damage (10)
-  DeathSound "Bullet/Impact"
+  damage (5)
+  DeathSound "Medium/Explosion2"
   Obituary "%o <105mm Bee] %k" 
-  const int sdmg = 25;
-  const int srad = 18;
-  const int sfullrad = 8;
-  renderstyle Add
+  const int sdmg = 35;
+  const int srad = 99;
+  const int sfullrad = 80;
   decal MT_BulletHit1
   +BLOODSPLATTER
+  +EXTREMEDEATH
   States
   {
   Spawn:
-    37MM A 1 
+    SHEL A 1 
     Loop
   Death:
-	TNT1 A 0 A_Spawnitem("MT_BulletPuff")
+	TNT1 A 0 A_Spawnitem("MTCEG_SmallExplosion_BeeProj")
     TNT1 A 0 A_Explode(sdmg,srad,0,0,sfullrad)
 	Stop
   XDeath:
 	TNT1 A 0 A_SpawnItemEx("MT_CEG_SmallBloodHit", 0, 0, 0)
+	TNT1 A 0 A_SpawnItemEx("MTCEG_SmallExplosion_BeeProj", 0, 0, 0)
 	TNT1 A 0 A_PlaySound("LargeShot/OrganImpact")
     TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
     Stop
   Crash:
-    TNT1 A 0 A_Spawnitem("MT_BulletPuff")
-	TNT1 A 0 A_PlaySound("MetHit3")
+    TNT1 A 0 A_Spawnitem("MTCEG_SmallExplosion_BeeProj")
+	//TNT1 A 0 A_PlaySound("MetHit3")
     TNT1 A 1 A_Explode(sdmg,srad,0,0,sfullrad)
     Stop
   }

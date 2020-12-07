@@ -3,9 +3,12 @@ Class MT_105mmBeeHiveCount0_ZS : Inventory
 Default
 {
 Inventory.Amount 1;
-Inventory.MaxAmount 8;
+Inventory.MaxAmount 5;
 }
 }
+
+const BEE_PROJFLAG = FPF_NOAUTOAIM;
+
 
 Class MT_105mmCannon : MT_BasecannonZS
 {
@@ -152,40 +155,24 @@ Bee_Fire:
 	"####" A 0 A_Jumpifinventory("MTU_BuckShotShell_2",1, "Bee2_FireA");
 	"####" A 0;
 	Goto Bee_FireA;
+	
 Bee_FireA:
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, 0);
 	Goto Bee_FireB;
+
 Bee_FireB:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 4, "Bee_FireC_Clear");
+	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 2, "Clear");
 	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	//MIDDLE
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0;
-	loop;
-Bee_FireC_Clear:
-	"####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0_ZS", 999);
-	Goto Bee_FireC;
-Bee_FireC:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 3, "Clear");
-	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0;
+	
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
 	loop;
 
 Chemical_Fire:
@@ -231,75 +218,41 @@ MPHE3_Fire:
 
 //Bee Nest 
 Bee2_FireA:
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, 0);
 	Goto Bee_FireB;
+
 Bee2_FireB:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 4, "Bee2_FireC_Clear");
+	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 2, "Clear");
 	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	//MIDDLE
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0;
-	loop;
-Bee2_FireC_Clear:
-	"####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0_ZS", 999);
-	Goto Bee_FireC;
-Bee2_FireC:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 3, "Clear");
-	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0;
+	
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
 	loop;
 
 Bee3_FireA:
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, -18, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0, 0, 0, 0, BEE_PROJFLAG, 0);
 	Goto Bee_FireB;
+
 Bee3_FireB:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 4, "Bee3_FireC_Clear");
+	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 2, "Clear");
 	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 10, 0);
-	//MIDDLE
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.9 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.7 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -10, 0);
-	"####" A 0;
-	loop;
-Bee3_FireC_Clear:
-	"####" A 0 A_TakeInventory("MT_105mmBeeHiveCount0_ZS", 999);
-	Goto Bee_FireC;
-Bee3_FireC:
-	"####" A 0 A_JumpIf(CountInv("MT_105mmBeeHiveCount0_ZS") >= 3, "Clear");
-	"####" A 0 A_GiveInventory("MT_105mmBeeHiveCount0_ZS", 1);
-	//TOP
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 18, 0);
-	//BOTTOM
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", 0.5 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, -18, 0);
-	"####" A 0;
+	
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", +0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.14 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, 0);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, -0.1);
+	"####" A 0 A_FireProjectile("MT_105mmBeeProjectile", -0.10 * CountInv("MT_105mmBeeHiveCount0_ZS"), 0, 0, 0, BEE_PROJFLAG, +0.1);
 	loop;
  
 //Chemical Explosive

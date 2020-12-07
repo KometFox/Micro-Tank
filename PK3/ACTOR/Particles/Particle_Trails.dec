@@ -494,7 +494,7 @@ ACTOR MT_P_BulletCaseTest : Particle
     Goto Death
   Death:
     MBUL HHHHHH 2  A_Spawnitemex("MT_P_BulletCaseTest_Smoke",0+frandom(0.5,-0.5),0+frandom(0.5,-2.5),0+frandom(0.5,-0.5),0,0,+random(0,2)) 
-    MBUL H 80
+    MBUL H 100
     MBUL HHHHHHHHHHHHHHH 2 A_Fadeout(0.05)
     Stop
   }
@@ -511,7 +511,7 @@ Scale 0.5
   {
   Death:
     MBUL HHHHHHHHHHHHHHHHHHHHH 2  A_Spawnitemex("MT_P_ShellCase_Smoke",0+frandom(0.5,-0.5),0+frandom(0.5,-2.5),0+frandom(0.5,-0.5),0,0,+random(0,2)) 
-    MBUL H 110
+    MBUL H 160
     MBUL HHHHHHHHHHHHHHH 2 A_Fadeout(0.05)
     Stop
   }
