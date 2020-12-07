@@ -41,7 +41,7 @@ IWAD support: Freedoom*.wad, Doom*.wad
 
 **Modules:**
 
-Due to GZDoom flexibility it is possible to seperate the main project to additional components:
+Due to GZDoom flexibility it is possible to seperate the main project to additional components. It is recommend to load up the items module after the main mod in order to being able to collect resources from the map that replaces all the regular doom items.
 
 Enemy mod: https://gitgud.io/MicroTank/MicroTank_Enemies
 
