@@ -9,7 +9,7 @@ skill baby
 	SpawnFilter = Baby
 	PicName = "M_JKILL"
 	Name = "Very Easy"
-	PlayerClassName = "Heavy Tank" , "Sunday Driver"
+	PlayerClassName = "Tank" , "Sunday Driver"
 }
 
 skill easy
@@ -18,7 +18,7 @@ skill easy
 	SpawnFilter = Easy
 	PicName = "M_ROUGH"
 	Name = "Easy"
-	PlayerClassName = "Heavy Tank" , "Private"
+	PlayerClassName = "Tank" , "Private"
 }	
 
 skill normal
@@ -26,7 +26,7 @@ skill normal
 	SpawnFilter = Normal
 	PicName = "M_HURT"
 	Name = "Normal"
-	PlayerClassName = "Heavy Tank" , "Experienced"
+	PlayerClassName = "Tank" , "Experienced"
 }
 
 skill hard
@@ -34,7 +34,7 @@ skill hard
 	SpawnFilter = Hard
 	PicName = "M_ULTRA"
 	Name = "Hard"
-	PlayerClassName = "Heavy Tank" , "Panzer Elite"
+	PlayerClassName = "Tank" , "Panzer Elite"
 }
 
 skill veryhard
@@ -45,16 +45,30 @@ skill veryhard
 	PicName = "M_NMARE"
 	Name = "Very Hard"
 	MustConfirm  = "Do you have what it takes to become a Tank Ace?"
-	PlayerClassName = "Heavy Tank" , "Tank Schock!"
+	PlayerClassName = "Tank" , "Tank Schock!"
 }
 
 //------------------------------------------------------------------------------
-//HUD INFO
+//Gameinfo
 //------------------------------------------------------------------------------
 gameinfo
 {
+	//HUD
+	//StatusBarClass = "MT_HUD"
+	//AddEventHandlers = "HUD_RetrieveInfo"
+	//Tables
+	AddEventHandlers = "Explosives_Table"	
+	//Classes
+	AddEventHandlers = "ClassSwitcher"
+	//Weapons
+	AddEventHandlers = "WeaponClass"
+	AddEventHandlers = "AmmoSwitcher"
+	AddEventHandlers = "LoadingTimer"
+	AddEventHandlers = "HUD_AmmoDisplay"
+	//Buy menu
 	AddEventHandlers = "HPICube_Func"
 	AddEventHandlers = "HPICube_Items"
+	//Crosshair
 	AddEventHandlers = "CrossHair_Display"
 }
 

@@ -84,15 +84,8 @@ str AmmoUpg[5]= {
 	[0][1][5] = Weapon [Ammo Upgrade 2]
 */
 
-str AmmoType_Neo[4][6][6] = {
+str AmmoType_Neo[3][6][6] = {
 	{ {"MT_105mmCannon"}, 
-	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
-	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMB0", "ACAMC0"},
-	  {"MHT_BaseGun_HE","HEMP", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
-	  {"MHT_BaseGun_Chem","Chem","MT_75x500mmChem", "CHAMA0", "CHAMB0", "CHAMC0"}, 
-	  {"MHT_BaseGun_Bee","Bee","MT_75x500mmBee", "BHAMA0", "BHAMB0", "BHAMC0"}, },
-
-	{ {"MT_105mmCannonZS"}, 
 	  {"MHT_BaseGun_AP", "APHE", "MT_75x500mmAP", "APAMA0", "APAMB0", "APAMC0"},
 	  {"MHT_BaseGun_APCR", "U-APFSDS","MT_75x500mmAPCR" , "ACAMA0", "ACAMB0", "ACAMC0"},
 	  {"MHT_BaseGun_HE","HEMP", "MT_75x500mmHE", "HEAMA0", "HEAMB0", "HEAMC0"},
@@ -203,7 +196,7 @@ script "MTHUD_Ammo" ENTER
 		if (CheckWeapon(AmmoType_Neo[current_weapon][0][0]))
 		{
 	
-			for (int i0 = 0; i0 < 4; i0++)
+			for (int i0 = 0; i0 < 3; i0++)
 			{
 				if (CheckWeapon(AmmoType_Neo[i0][0][0]) == 1)
 				{

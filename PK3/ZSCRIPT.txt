@@ -1,9 +1,5 @@
 version "4.2"
-#Include "ZSCRIPT/Actor/Internal/Actor_Base.zs"
-#Include "ZSCRIPT/Actor/Internal/ChaseCrosshair.zs"
-#Include "ZSCRIPT/Actor/Internal/HPIc/HPIc_Items.zs"
-#Include "ZSCRIPT/Actor/Internal/HPIc/HPIc.zs"
-#Include "ZSCRIPT/Actor/Classes/CommonTank.zs"
-#Include "ZSCRIPT/Actor/Classes/HeavyTank.zs"
-#Include "ZSCRIPT/Actor/Weapon/Common/Baseweapon.zs"
-#Include "ZSCRIPT/Actor/Weapon/Heavy/Cannon.zs"
+#Include "ZSCRIPT/_INTERNAL.zs"
+#Include "ZSCRIPT/_CLASSES.zs"
+#Include "ZSCRIPT/_WEAPONS.zs"
+

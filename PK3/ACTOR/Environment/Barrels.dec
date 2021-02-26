@@ -33,7 +33,7 @@ ACTOR MT_SludgeBarrel
 }
 
 
-ACTOR MT_FuelBarrel 15000
+ACTOR MT_FuelBarrel
 {
   Tag "Fuel Barrel"
   Health 100

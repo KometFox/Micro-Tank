@@ -1,6 +1,8 @@
-
+//------------------------------------------------------------------------------
+//LEOPARD 1
+//------------------------------------------------------------------------------
 //TURRET
-Model MT_PlayerClass_HeavyTank
+Model MT_PlayerClass_Tank
 {
 	INTERPOLATEDOUBLEDFRAMES
 	IGNORETRANSLATION
@@ -11,12 +13,12 @@ Model MT_PlayerClass_HeavyTank
 	Skin 0 "Leopard1_Turret.dds"
 	Scale 8.5 8.5 8.5
 	AngleOffset 0
-	FrameIndex TNK1 A 0 0
+	FrameIndex LEO1 A 0 0
 }
 
 //CHASSIS
 //FORWARD/BACKWARD
-Model MT_HeavyTank_Chassis
+Model MT_Tank_Chassis
 {
 	INTERPOLATEDOUBLEDFRAMES
 	USEACTORPITCH
@@ -30,13 +32,13 @@ Model MT_HeavyTank_Chassis
 	Skin 2 "Leopard1_Treads0.dds"
 	Scale 8.5 8.5 8.5
 	AngleOffset 0
-	FrameIndex TNK1 A 0 0
-	FrameIndex TNK1 A 1 0
-	FrameIndex TNK1 A 2 0
+	FrameIndex LEO1 A 0 0
+	FrameIndex LEO1 A 1 0
+	FrameIndex LEO1 A 2 0
 }
 
 
-Model MT_HeavyTank_Chassis
+Model MT_Tank_Chassis
 {
 	INTERPOLATEDOUBLEDFRAMES
 	USEACTORPITCH
@@ -50,13 +52,13 @@ Model MT_HeavyTank_Chassis
 	Skin 2 "Leopard1_Treads1.dds"
 	Scale 8.5 8.5 8.5
 	AngleOffset 0
-	FrameIndex TNK1 B 0 0
-	FrameIndex TNK1 B 1 1
-	FrameIndex TNK1 B 2 1
+	FrameIndex LEO1 B 0 0
+	FrameIndex LEO1 B 1 1
+	FrameIndex LEO1 B 2 1
 }
 
 
-Model MT_HeavyTank_Chassis
+Model MT_Tank_Chassis
 {
 	INTERPOLATEDOUBLEDFRAMES
 	USEACTORPITCH
@@ -70,13 +72,13 @@ Model MT_HeavyTank_Chassis
 	Skin 2 "Leopard1_Treads2.dds"
 	Scale 8.5 8.5 8.5
 	AngleOffset 0
-	FrameIndex TNK1 C 0 0
-	FrameIndex TNK1 C 1 2
-	FrameIndex TNK1 C 2 2
+	FrameIndex LEO1 C 0 0
+	FrameIndex LEO1 C 1 2
+	FrameIndex LEO1 C 2 2
 }
 
 
-Model MT_HeavyTank_Chassis
+Model MT_Tank_Chassis
 {
 	INTERPOLATEDOUBLEDFRAMES
 	USEACTORPITCH
@@ -90,8 +92,199 @@ Model MT_HeavyTank_Chassis
 	Skin 2 "Leopard1_Treads3.dds"
 	Scale 8.5 8.5 8.5
 	AngleOffset 0
-	FrameIndex TNK1 D 0 0
-	FrameIndex TNK1 D 1 3
-	FrameIndex TNK1 D 2 3
+	FrameIndex LEO1 D 0 0
+	FrameIndex LEO1 D 1 3
+	FrameIndex LEO1 D 2 3
+}
+//TURN AROUND
+
+//------------------------------------------------------------------------------
+//TIGER 1
+//------------------------------------------------------------------------------
+
+//TURRET
+Model MT_PlayerClass_Tank
+{
+	INTERPOLATEDOUBLEDFRAMES
+	IGNORETRANSLATION
+	//USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Turret.md3"
+	Skin 0 "Tiger1_Summer.dds"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex TIG1 A 0 0
+}
+
+//CHASSIS
+//FORWARD/BACKWARD
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Chassis.md3"
+	Model 1 "Tiger1_Treads.md3"
+	Skin 0 "Tiger1_Summer.dds"
+	Skin 1 "Tiger1_Treads1.png"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex TIG1 A 0 0
+	FrameIndex TIG1 A 1 0
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Chassis.md3"
+	Model 1 "Tiger1_Treads.md3"
+	Skin 0 "Tiger1_Summer.dds"
+	Skin 1 "Tiger1_Treads2.png"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex TIG1 B 0 0
+	FrameIndex TIG1 B 1 1
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Chassis.md3"
+	Model 1 "Tiger1_Treads.md3"
+	Skin 0 "Tiger1_Summer.dds"
+	Skin 1 "Tiger1_Treads3.png"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex TIG1 C 0 0
+	FrameIndex TIG1 C 1 2
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\HeavyTank"
+	Model 0 "Tiger1_Chassis.md3"
+	Model 1 "Tiger1_Treads.md3"
+	Skin 0 "Tiger1_Summer.dds"
+	Skin 1 "Tiger1_Treads1.png"
+	Scale 7 7 7
+	AngleOffset 0
+	FrameIndex TIG1 D 0 0
+	FrameIndex TIG1 D 1 3
+}
+//TURN AROUND
+
+
+//------------------------------------------------------------------------------
+//PANZER III J
+//------------------------------------------------------------------------------
+
+//TURRET
+Model MT_PlayerClass_Tank
+{
+	INTERPOLATEDOUBLEDFRAMES
+	IGNORETRANSLATION
+	//USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\PanzerIII"
+	Model 0 "PanzerIIIJ_Turret.md3"
+	Skin 0 "PanzerIIIJ_Turret.dds"
+	Scale 10 10 10
+	AngleOffset 0
+	FrameIndex PZJ3 A 0 0
+}
+
+//CHASSIS
+//FORWARD/BACKWARD
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\PanzerIII"
+	Model 0 "PanzerIIIJ_Chassis.md3"
+	Model 1 "PanzerIIIJ_LTread.md3"
+	Model 2 "PanzerIIIJ_RTread.md3"
+	Skin 0 "PanzerIIIJ_Chassis.dds"
+	Skin 1 "PanzerIIIJ_Suspension.dds"
+	Skin 2 "PanzerIIIJ_Suspension.dds"
+	Scale 10 10 10
+	AngleOffset 0
+	FrameIndex PZJ3 A 0 0
+	FrameIndex PZJ3 A 1 0
+	FrameIndex PZJ3 A 2 0
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\PanzerIII"
+	Model 0 "PanzerIIIJ_Chassis.md3"
+	Model 1 "PanzerIIIJ_LTread.md3"
+	Model 2 "PanzerIIIJ_RTread.md3"
+	Skin 0 "PanzerIIIJ_Chassis.dds"
+	Skin 1 "PanzerIIIJ_Suspension.dds"
+	Skin 2 "PanzerIIIJ_Suspension.dds"
+	Scale 10 10 10
+	AngleOffset 0
+	FrameIndex PZJ3 B 0 0
+	FrameIndex PZJ3 B 1 0
+	FrameIndex PZJ3 B 2 0
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\PanzerIII"
+	Model 0 "PanzerIIIJ_Chassis.md3"
+	Model 1 "PanzerIIIJ_LTread.md3"
+	Model 2 "PanzerIIIJ_RTread.md3"
+	Skin 0 "PanzerIIIJ_Chassis.dds"
+	Skin 1 "PanzerIIIJ_Suspension.dds"
+	Skin 2 "PanzerIIIJ_Suspension.dds"
+	Scale 10 10 10
+	AngleOffset 0
+	FrameIndex PZJ3 C 0 0
+	FrameIndex PZJ3 C 1 0
+	FrameIndex PZJ3 C 2 0
+}
+
+
+Model MT_Tank_Chassis
+{
+	INTERPOLATEDOUBLEDFRAMES
+	USEACTORPITCH
+	USEACTORROLL
+	Path "MODELS\Vehicles\PanzerIII"
+	Model 0 "PanzerIIIJ_Chassis.md3"
+	Model 1 "PanzerIIIJ_LTread.md3"
+	Model 2 "PanzerIIIJ_RTread.md3"
+	Skin 0 "PanzerIIIJ_Chassis.dds"
+	Skin 1 "PanzerIIIJ_Suspension.dds"
+	Skin 2 "PanzerIIIJ_Suspension.dds"
+	Scale 10 10 10
+	AngleOffset 0
+	FrameIndex PZJ3 D 0 0
+	FrameIndex PZJ3 D 1 0
+	FrameIndex PZJ3 D 2 0
 }
 //TURN AROUND

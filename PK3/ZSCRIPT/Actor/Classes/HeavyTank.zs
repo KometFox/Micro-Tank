@@ -1,8 +1,8 @@
-Class MT_PlayerClass_HeavyTank : MT_BaseTank
+Class MT_PlayerClass_Tank : MT_BaseTank
 {
 Default
 {
-	player.DisplayName "Heavy Tank (ZSCRIPT)";
+	player.DisplayName "Tank";
 	Player.SoundClass "mt_vehicle";
 }
 }

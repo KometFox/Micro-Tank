@@ -87,6 +87,7 @@ InInventory MT_ClassToken, 1
 		}
 	}
 	
+
    	gamemode deathmatch
    	{
    		drawnumber 2147483647, BIGFONT2, untranslated, frags, drawshadow, -3, 1;

@@ -2,8 +2,81 @@
 ////--------------------------------------------------------------------------**
 //Heavy Cannon (Light MG)
 ////--------------------------------------------------------------------------**
-
+/*
 Model "MT_105mmCannon" // Cannon
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Items\Weapons\Main"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCAN A 0 0
+   FrameIndex MCAN A 1 0
+   FrameIndex MCAN A 2 0
+   //Cannon Fire
+   FrameIndex MCAN B 0 1  
+   FrameIndex MCAN C 0 2  
+   FrameIndex MCAN D 0 3  
+   FrameIndex MCAN E 0 4  
+   FrameIndex MCAN F 0 5  
+   FrameIndex MCAN G 0 6
+   //MG Fire
+   FrameIndex MCAN H 1 8  
+   FrameIndex MCAN I 1 9  
+   FrameIndex MCAN J 1 10  
+   FrameIndex MCAN K 1 11 
+   FrameIndex MCAN L 1 12 
+}
+*/
+
+////----------------------------------------------------------------------------
+//Heavy Cannon (Heavy MG)
+////----------------------------------------------------------------------------
+/*
+Model "MT_105mmCannon"
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Items\Weapons\Main"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
+   Model 1 "HK25.md3"
+   Skin  1 "HK25.dds" 
+   Model 2 "HK25_Belt.md3"
+   Skin  2 "BulletBelt1.png"    
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCA1 A 0 0
+   FrameIndex MCA1 A 1 0
+   FrameIndex MCA1 A 2 0
+   //Cannon Fire
+   FrameIndex MCA1 B 0 1  
+   FrameIndex MCA1 C 0 2  
+   FrameIndex MCA1 D 0 3  
+   FrameIndex MCA1 E 0 4  
+   FrameIndex MCA1 F 0 5  
+   FrameIndex MCA1 G 0 6
+   //MG Fire
+   FrameIndex MCA1 H 1 8  
+   FrameIndex MCA1 I 1 9  
+   FrameIndex MCA1 J 1 10  
+   FrameIndex MCA1 K 1 11 
+   FrameIndex MCA1 L 1 12 
+}
+*/
+
+////--------------------------------------------------------------------------**
+//90mm Cannon (Light MG)
+////--------------------------------------------------------------------------**
+Model "MT_90mmCannon" // Cannon
 {	
    IGNORETRANSLATION
    Path "MODELS\Items\Weapons\Main"
@@ -37,10 +110,9 @@ Model "MT_105mmCannon" // Cannon
 
 
 ////----------------------------------------------------------------------------
-//Heavy Cannon (Heavy MG)
+//90mm Cannon (Heavy MG)
 ////----------------------------------------------------------------------------
-
-Model "MT_105mmCannon"
+Model "MT_90mmCannon"
 {	
    IGNORETRANSLATION
    Path "MODELS\Items\Weapons\Main"
@@ -73,7 +145,80 @@ Model "MT_105mmCannon"
 }
 
 
-/////////////////////Quad Machine Gun
+////--------------------------------------------------------------------------**
+//50mm Cannon (Light MG)
+////--------------------------------------------------------------------------**
+Model "MT_50mmCannon" // Cannon
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Items\Weapons\Main"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
+   Model 1 "UKM-2000.md3"
+   Skin  1 "UKM-2000.dds" 
+   Model 2 "UKM-2000_belt.md3"
+   Skin  2 "BulletBelt1.png" 
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCAN A 0 0
+   FrameIndex MCAN A 1 0
+   FrameIndex MCAN A 2 0
+   //Cannon Fire
+   FrameIndex MCAN B 0 1  
+   FrameIndex MCAN C 0 2  
+   FrameIndex MCAN D 0 3  
+   FrameIndex MCAN E 0 4  
+   FrameIndex MCAN F 0 5  
+   FrameIndex MCAN G 0 6
+   //MG Fire
+   FrameIndex MCAN H 1 8  
+   FrameIndex MCAN I 1 9  
+   FrameIndex MCAN J 1 10  
+   FrameIndex MCAN K 1 11 
+   FrameIndex MCAN L 1 12 
+}
+
+
+////----------------------------------------------------------------------------
+//50mm Cannon (Heavy MG)
+////----------------------------------------------------------------------------
+Model "MT_50mmCannon"
+{	
+   IGNORETRANSLATION
+   Path "MODELS\Items\Weapons\Main"
+   Model 0 "Cannon.md3"
+   Skin  0 "Cannon.dds"  
+   Path "MODELS\Items\Weapons\Aux"
+   Model 1 "HK25.md3"
+   Skin  1 "HK25.dds" 
+   Model 2 "HK25_Belt.md3"
+   Skin  2 "BulletBelt1.png"    
+   Scale 2 2 2
+   Offset 2 -7 -8
+   //Idle
+   FrameIndex MCA1 A 0 0
+   FrameIndex MCA1 A 1 0
+   FrameIndex MCA1 A 2 0
+   //Cannon Fire
+   FrameIndex MCA1 B 0 1  
+   FrameIndex MCA1 C 0 2  
+   FrameIndex MCA1 D 0 3  
+   FrameIndex MCA1 E 0 4  
+   FrameIndex MCA1 F 0 5  
+   FrameIndex MCA1 G 0 6
+   //MG Fire
+   FrameIndex MCA1 H 1 8  
+   FrameIndex MCA1 I 1 9  
+   FrameIndex MCA1 J 1 10  
+   FrameIndex MCA1 K 1 11 
+   FrameIndex MCA1 L 1 12 
+}
+
+////----------------------------------------------------------------------------
+//Quad Machine Gun
+////----------------------------------------------------------------------------
 Model "MT_QuadMachineGun"
 {	
    IGNORETRANSLATION

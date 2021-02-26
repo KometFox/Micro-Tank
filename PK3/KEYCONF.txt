@@ -1,10 +1,6 @@
-addplayerclass MT_PlayerClass_HeavyTank
+addplayerclass MT_PlayerClass_Tank
 
-WeaponSection Microtank_Wpn
-SetSlot 1 "Multi_Purpose_Device" 
-SetSlot 2 "MT_105mmCannon" "MT_105mmCannonZS" "MHT_Heavy_Pepperpot" "MT_QuadMachineGun" 
-
-
+//WeaponSection Microtank_Wpn
 
 addkeysection "Micro Tank Commands" MicroTankCommands
 //------------------------------------------------------------------------------
@@ -26,6 +22,8 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 //------------------------------------------------------------------------------
   addmenukey "Open HPI Cube" MTC_UseHPICube
   alias MTC_UseHPICube "use MT_HPICube_Item"
+  addmenukey "Open Class switcher menu" MTC_UseClassMenu
+  alias MTC_UseClassMenu "use MT_Classmenu_Item"
   
 //------------------------------------------------------------------------------
 //Vehicle
@@ -34,15 +32,15 @@ addkeysection "Micro Tank Commands" MicroTankCommands
   alias MTC_SLight "use MT_SearchLight"     
   addmenukey "Toggle Nightvision device" MTC_NVLight
   alias MTC_NVLight "use MT_Nightvision_MK1"     
-  addmenukey "Use Periscope" MT_PeriscopeMode
+  addmenukey "Toggle Periscope" MT_PeriscopeMode
   alias MT_PeriscopeMode "use MT_PeriscopeItem"
+  addmenukey "Toggle secondary crosshair" MTC_PRCamera
+  alias MTC_PRCamera "use MT_ChaseCamera_MK1"
   addmenukey "Morph as Marine" MTC_MarineMorph
   alias MTC_MarineMorph "pukename MT_MorphToMarine" 
-  addmenukey "P.R Camera" MTC_PRCamera
-  alias MTC_PRCamera "use MT_ChaseCamera_MK1 ; chase"
-  addmenukey "Turn off Engine" MTC_MarineMorph
-  alias MTC_MarineMorph "pukename MT_MorphToMarine" 
-  addmenukey "Commander: Taunt" MTC_CMDTaunt
+  //addmenukey "Turn off Engine" MTC_MarineMorph
+  //alias MTC_MarineMorph "pukename MT_MorphToMarine" 
+  addmenukey "Taunt" MTC_CMDTaunt
   alias MTC_CMDTaunt "pukename cmd_taunt"
    
 //------------------------------------------------------------------------------

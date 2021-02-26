@@ -13,7 +13,7 @@ Class CrossHair_Display : EventHandler
 
 override void WorldLoaded(WorldEvent e)
 {
-	Crosshair = TexMan.CheckForTexture ("TNHSA0", TexMan.Type_Any); 
+	Crosshair = TexMan.CheckForTexture ("TNHSAA0", TexMan.Type_Any); 
 	Periscope = 0;
 }
 
@@ -45,18 +45,19 @@ override void renderOverlay(RenderEvent e)	// UI scope
 			
 	if (showpic)
 	{	
+
 	
 	if (Event.Periscope == 0)
 	{
-		Screen.DrawTexture(Event.Crosshair, false, 800, 510, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768);					
+		Screen.DrawTexture(Event.Crosshair, false, 800, 510, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768, DTA_KeepRatio, true);
 	}
 	else if (Event.Periscope == 1)
 	{
-		Screen.DrawTexture(Event.Crosshair, false, 800, 530, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768);					
+		Screen.DrawTexture(Event.Crosshair, false, 800, 530, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768, DTA_KeepRatio, true);					
 	}
 	else if (Event.Periscope == 2)
 	{
-		Screen.DrawTexture(Event.Crosshair, false, 800, 570, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768);					
+		Screen.DrawTexture(Event.Crosshair, false, 800, 570, true, DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768, DTA_KeepRatio, true);					
 	}
 	
 	
@@ -105,7 +106,7 @@ static void CH_Display(Actor self)
 //-----------------------------------------------------------------------------
 Class MT_ChaseCameraToken : Inventory { Default {Inventory.MaxAmount 2;} }
 
-Class MT_ChaseCamera_MK1 : CustomInventory
+Class MT_ChaseCamera_MK1 : MT_SPlayerCustomInventory
 { 
 
 Default
@@ -155,10 +156,7 @@ static void CC_CallEm(Actor self)
 
 			if (playa != null)
 			{
-
-				Console.PrintF("FUCKED");
 				CC_handler.CH_Display(playa);
-
 			}
 		}
 

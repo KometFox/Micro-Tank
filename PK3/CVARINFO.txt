@@ -1,11 +1,11 @@
 //
 //Default settings, Server/SP only
-server int mtcvar_creditstart = 1000;
-server int mtcvar_metalstart = 100;
+server int mtcvar_creditstart = 5000;
+server int mtcvar_metalstart = 500;
 server int mtcvar_techwars = 0;
+server int mtcvar_fullammo = 0;
 
 //Supply Crate Setting
-server int mtcvar_supc_ammo_mult = 1;
 server int mtcvar_supc_metals_mult = 1;
 server int mtcvar_supc_credit_mult = 1;
 
@@ -19,17 +19,11 @@ user int mtcvar_particlesquality = 2;
 user int mtcvar_fancyitems = 1;
 // 1: Off, 2: Fancy, 3: Fancier
 
-//Mutator
-server int mtcvar_regen = 0;
-server int mtcvar_hpregen = 0;
-server int mtcvar_hpregen_amount = 10;
-server int mtcvar_armorregen = 0;
-server int mtcvar_armorregen_amount = 5;
-server int mtcvar_ammoregen = 0;
-server int mtcvar_ammoregen_amount = 2;
-server int mtcvar_superammoregen = 0;
 //Client settings
 user int mtccvar_startup_noise = 1;
+
+//Player settings
+server string mtccvar_player_class = "MT_PanzerIIIJ";
 
 //------------------------------------------------------------------------------
 ////Player (SP only) save

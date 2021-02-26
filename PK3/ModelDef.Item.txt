@@ -69,6 +69,32 @@ Model MT_Credits_Large
 }
 
 
+Model MT_Credits_OreCrate_Small
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "Crate.md3"
+   Model 1 "Crate_Ore.md3"
+   Skin  0 "Crate.dds"
+   Skin  1 "Crate_Ore.dds"
+   Scale 4 4 4
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+   FrameIndex IDLE A 0 1
+}
+
+Model MT_Credits_OreCrate_Medium
+{
+   Path "MODELS\Items\Resources"
+   Model 0 "Crate1.md3"
+   Model 1 "Crate1_Ore.md3"
+   Skin  0 "Crate1.dds"
+   Skin  1 "Crate_Ore.dds"
+   Scale 4 4 4
+   AngleOffset 0
+   FrameIndex IDLE A 0 0
+   FrameIndex IDLE A 0 1
+}
+
 Model MT_Metals_Small
 {
    Path "MODELS\Items\Resources"

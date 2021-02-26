@@ -1,27 +1,28 @@
 	_______________________
 	Changelog V1U (WIP, possible final update):
-	Sourceport tested: GZDoom 4.2.0 - 4.4.2
+	Sourceport tested: GZDoom 4.5.0
 	"Misc"
 		-Added MorphToMarine function which saves also tank/marine health.
 		-New HUD graphics.
 		-Code cleanup.
 		-Removed concept of structures.
-		-Added a new crafting menu ([H]yper [P]roduction of [I]tems cube)
+		-Added a buy menu
+		-Added a class menu
 		-Added taunt button.
 		-Fixed bug where credits gets reset on map change when the amount 
 		 of it is 0.
 		-Added "Technology War" cvar option, gives player all upgrades. 
+		-Added "Player Class" cvar option
 	
 	"Weapons"
-		-Weapons correctly use their upgrades now.
 		-All weapons are inheriting from a base class now. 
 		-MPD primary mode is switchable (repair/reclaim). Alt fire is subgun.
 		-2 Subguns: Heavy and Light Machinegun.
 	
 	"Classes"
-		-Tank turrets can rotate now (render interpolation causes visual bug).
-		-Removed Light and Medium Tank classes.
-		-New heavy tank model.
+		-Tank turret can rotate now (render interpolation causes visual bug).
+		-Removed light tank class
+		-Added 3 types: Panzer III Ausf. J, Panzer VI Tiger 1, Leopard 1
 		
 	_______________________
 	Changelog V1U (RC 1.5)

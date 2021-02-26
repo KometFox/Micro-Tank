@@ -318,35 +318,60 @@ double MFunc_CalcPitch(double A = 1)
 
 }
 
-Class MT_HeavyTank_Chassis : MT_ChassisBase
+Class MT_Tank_Chassis : MT_ChassisBase
 {
+	//Function for switching model
+	Static void SwitchModel(actor mo)
+	{
+		if (mo.CheckInventory("MT_Leopard1", 1, AAPTR_TARGET))
+		{ mo.SetStateLabel("Leopard1"); }
+		else if (mo.CheckInventory("MT_Tiger1", 1, AAPTR_TARGET))
+		{ mo.SetStateLabel("Tiger1"); }	
+		else if (mo.CheckInventory("MT_PanzerIIIJ", 1, AAPTR_TARGET))
+		{ mo.SetStateLabel("PanzerIIIJ"); }
+	}
+
+	//Execute functions
+	Static void CallFunctions(actor Player)
+	{
+		SwitchModel(Player);
+	}
+
+
 	States
 	{
 	Spawn:
-		TNT1 A 0;
-		TNT1 A 0 
+		LEO1 A 0;
+		LEO1 A 0 
 		{
 			user_chassisangle = 0;
 			user_chassispitch = 0;
 			user_pitch = 0;
 			user_chassisangle = CallACS("MT_GetVehicleRotation");
+			//Send its variable to the Eventhandler of Class Switcher
+			ClassSwitcher.Send_Actor(invoker, self, "chassis");
+			SwitchModel(invoker);
+			
 		}
-		TNT1 A 1;
+		LEO1 A 1;
 		Goto Spawn2;
 
 	Spawn2:
-		TNK1 A 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, "Stay");
+		LEO1 A 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, "Stay");
 		Goto Stay;
 	
 	DeMorph:
-		TNK1 "#" 1;
+		"####" "#" 0 
+		{
+			SwitchModel(invoker);
+		}
 		Goto Stay;
 		
 	Stay:
 		"####" "#" 0 A_JumpIfInventory("MT_MorphVCrewToken", 1, "Blank", AAPTR_TARGET);
 		//PITCH CHECK
 		"####" "#" 0
-		{
+		{		
 			
 			/*
 			MFunc_VertexPitcher();
@@ -380,8 +405,8 @@ Class MT_HeavyTank_Chassis : MT_ChassisBase
 			{
 				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
 			}
+						
 			
-
 			
 		}		
 		//END PITCH CHECK
@@ -467,6 +492,22 @@ Class MT_HeavyTank_Chassis : MT_ChassisBase
 		TNT1 A 1;
 		TNT1 A 0 A_JumpIf(CountInv("MT_MorphVCrewToken") == 0, "DeMorph");
 		loop;
+		
+	//Available Models
+	//Leopard 1
+	Leopard1:
+		LEO1 A 0;
+		Goto Stay;
+	//Tiger 1
+	Tiger1:
+		TIG1 A 0;
+		Goto Stay;	
+	//Panzer III Ausf J
+	PanzerIIIJ:
+		PZJ3 A 0;
+		Goto Stay;
+	
+		
 	}	
 }
 
@@ -481,6 +522,25 @@ const turnrate_move = 3;
 const accelerate = 1;
 const reverse = 1;
 int user_chassisangle;
+
+	//Function for switching model
+	Static void SwitchModel(actor Player)
+	{
+		if (player.CheckInventory("MT_Leopard1", 1, AAPTR_DEFAULT))
+		{ player.SetStateLabel("Leopard1", true); }
+		else if (player.CheckInventory("MT_Tiger1", 1, AAPTR_DEFAULT))
+		{ player.SetStateLabel("Tiger1", true); }	
+		else if (player.CheckInventory("MT_PanzerIIIJ", 1, AAPTR_DEFAULT))
+		{ player.SetStateLabel("PanzerIIIJ", true); }
+	}
+	
+	//Function to force switch weapon
+	Static void Call_SelectWeapon(actor Player, string Wepon)
+	{
+		player.A_SelectWeapon(wepon);
+	}
+	
+	
 Default
 {
 player.DisplayName "BASE TANK";
@@ -508,7 +568,7 @@ BloodType "TankBlood", "TankBlood", "TankBlood";
 Player.ColorRange 112, 127;
 //Internal stuff, very important
 Player.StartItem "MT_ClassToken"              ,1;
-Player.StartItem "MHTA1_Token"                ,1;
+//Player.StartItem "MHTA1_Token"                ,1;
 Player.StartItem "MTU_SupplyBox_2"            ,1;
 Player.StartItem "MT_Subgun_Slot"             ,1;
 Player.StartItem "MT_AmmoSwitcher"            ,1;
@@ -521,14 +581,15 @@ Player.StartItem "MT_ChaseCamera_MK1"         ,1;
 Player.StartItem "MT_ChaseCameraToken"        ,2;
 Player.StartItem "MT_PeriscopeItem"           ,1;
 Player.StartItem "MT_HPICube_Item"            ,1;
+Player.StartItem "MT_Classmenu_Item"          ,1;
 //Lockers
 //Weapons
-Player.StartItem "MT_105mmCannon"           ,1;
+//Player.StartItem "MT_90mmCannon"       ,1;
 Player.StartItem "Multi_Purpose_Device"       ,1;
 //Ammo
-Player.Startitem "MT_75x500mmHE"                ,10;
-Player.Startitem "MT_75x500mmAP"                ,20;
-Player.Startitem "A_7u62x54mmR"                 ,800;
+Player.Startitem "MT_75x500mmHE"                ,20;
+Player.Startitem "MT_75x500mmAP"                ,40;
+Player.Startitem "A_7u62x54mmR"                 ,1200;
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 Player.startitem "Item_GrenadePod_SSS"          ,1;
@@ -576,37 +637,44 @@ DamageFactor "Electric"          ,0.75;
 	//INITALIZATION
 	//
 	Spawn:
-		TNK1 A 0;
-		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
-		TNK1 A 0 ThrustThingZ(0, 100, -1, 1);
-		TNK1 A 0 A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE);
-		TNK1 A 0 
+		TNK1 A 0 NoDelay;
+		TNK1 A 0
 		{
-			CallACS("MT_ChangeTid", 0, 44440);
-		
-			if ( GetCVAR("mtccvar_startup_noise") == 1 )
+			user_chassisangle = 0;
+
+			cvar tankcv;
+
+			if (!tankcv)
 			{
-				A_PlaySound("GCrew/MissionStart");
+				//Get Chassis CVAR
+				tankcv = CVAR.GetCVAR("mtccvar_player_class");
 			}
+			if (tankcv)
+			{
+				GiveInventory(tankcv.GetString(), 1);
+				WeaponClass.ChangeWeapons(Self, tankcv.GetString());
+			}
+		
+			ThrustThingZ(0, 100, -1, 1);
+			A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE);
+
+			SwitchModel(Self);
+			ClassSwitcher.Send_Actor(self, self, "turret");
+			
+			A_SpawnItemEx ("MT_Tank_Chassis" , 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);
+
+			
+			CallACS("MT_ChangeTid", 0, 44440);
 		}
 		TNK1 A 1;
 	Spawn2:
-		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
-		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MT_SetVehicleRotation"))
-		TNK1 A 0 {int user_chassisangle = 0;}
-		TNK1 A 0 A_SpawnItemEx ("MT_HeavyTank_Chassis" , 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);
-		TNK1 A 1;
+		TNK1 A 0;
 		Goto Stay;
 	
 	DoNothing:
 		"####" A 1;
 		Goto Stay;
 		
-	//
-	//CHANGE MODEL/VISUAL
-	//
-
-
 	//
 	//DRIVE
 	//
@@ -618,8 +686,8 @@ DamageFactor "Electric"          ,0.75;
 		"####" A 0 A_JumpIfInventory("TurnLeft", 1, "TurnLeft");
 		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight");
 		"####" AAA 1;
-		"####" A 0 A_StopSound(5);
-		"####" A 0 A_PlaySound("Treads/Mid", 2);
+		"####" A 0 A_StopSound(4);
+		"####" A 0 A_PlaySound("Treads/Mid", 4);
 		Goto Stay;	
 
 	CheckIfStillMoves2:
@@ -630,8 +698,8 @@ DamageFactor "Electric"          ,0.75;
 		"####" A 0 A_JumpIfInventory("TurnLeft", 1, "TurnLeft");
 		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight");
 		"####" AAA 1;
-		"####" A 0 A_StopSound(5);
-		"####" A 0 A_PlaySound("Treads/Left", 2);
+		"####" A 0 A_StopSound(4);
+		"####" A 0 A_PlaySound("Treads/Left", 4);
 		Goto Stay;	
 	
 	Stay:
@@ -644,21 +712,21 @@ DamageFactor "Electric"          ,0.75;
 		
 	Accelerate:
 		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Forward", 5, 1, 1);
+		"####" A 0 A_PlaySound("Treads/Forward", 4, 1, 1);
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;
 		Goto CheckIfStillMoves;
 
 	Reverse:
 		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Backward", 5, 1, 1);
+		"####" A 0 A_PlaySound("Treads/Backward", 4, 1, 1);
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;
 		Goto CheckIfStillMoves;
 		
 	TurnRight:
 		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Left", 5, 1, 1);
+		"####" A 0 A_PlaySound("Treads/Left", 4, 1, 1);
 		"####" A 0 A_TakeInventory("TurnLeft", 999);
 		"####" A 0 A_TakeInventory("TurnRight", 999);
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
@@ -667,7 +735,7 @@ DamageFactor "Electric"          ,0.75;
 
 	TurnLeft:		
 		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Right", 5, 1, 1);
+		"####" A 0 A_PlaySound("Treads/Right", 4, 1, 1);
 		"####" A 0 A_TakeInventory("TurnLeft", 999);
 		"####" A 0 A_TakeInventory("TurnRight", 999);
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
@@ -697,7 +765,7 @@ DamageFactor "Electric"          ,0.75;
 		"####" A 0 A_SpawnItem("CrashTankIntotheGround2");
 		"####" A 0; //A_SpawnItemEx ("LargeMassWaterImpact", 0, 0, -10)
 		"####" A 0; //Radius_Quake(1, 6, 0, 4, 0)
-		"####" A 0 A_PlaySound("V_LightCrash", 2);
+		"####" A 0 A_PlaySound("V_LightCrash", 41);
 		"####" A 0 A_TakeInventory("VehicleFallingCount", 9999);
 		Goto Stay;
 		
@@ -710,8 +778,8 @@ DamageFactor "Electric"          ,0.75;
 		"####" A 0; //A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -10)
 		
 		"####" A 0; //Radius_Quake(8, 24, 0, 4, 0)
-		"####" A 0 A_PlaySound("V_LightCrash", 1);
-		"####" A 0 A_PlaySound("V_MediumCrash", 2);
+		"####" A 0 A_PlaySound("V_LightCrash", 41);
+		"####" A 0 A_PlaySound("V_MediumCrash", 42);
 		"####" AAAA 0; //A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))
 		"####" A 0 A_TakeInventory("VehicleFallingCount", 9999);
 		"####" A 0 A_SetPitch(-8.0 + pitch);
@@ -739,6 +807,20 @@ DamageFactor "Electric"          ,0.75;
 		"####" A 100;
 		"####" A -1;
 		Stop;
+
+	//Available Models
+	//Leopard 1
+	Leopard1:
+		LEO1 A 0;
+		Goto Stay;
+	//Tiger 1
+	Tiger1:
+		TIG1 A 0;
+		Goto Stay;		
+	//Panzer III Ausf J
+	PanzerIIIJ:
+		PZJ3 A 0;
+		Goto Stay;		
 	}	
 	
 }

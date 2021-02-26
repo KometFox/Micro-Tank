@@ -2,11 +2,11 @@
 //ID Token, very important...
 ////--------------------------------------------------------------------------**
 
-
 //Class Tokens
-ACTOR MVHTA1_Token : MT_SPlayerInventory {} //Very-Heavy Tank
-ACTOR MMBT1_Token : MT_SPlayerInventory {} //Main Battle Tank
-ACTOR MHTA1_Token : MT_SPlayerInventory {} //Heavy Tank
+ACTOR MT_Leopard1: MT_SPlayerInventory {} 
+ACTOR MT_Tiger1: MT_SPlayerInventory {}
+ACTOR MT_PanzerIIIJ: MT_SPlayerInventory {}
+
 ACTOR MT_ClassToken  : MT_SPlayerInventory 
 {
 Inventory.MaxAmount 2
@@ -68,41 +68,11 @@ Actor StoredArmorInsideMarine : MT_Counters
 }
 
 
-
-
-Actor ItemS_GiftGasmenge_Delay : MT_Counters
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 1000
-}
-
-Actor ItemS_Stunned : MT_Counters
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 100
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ADDITIVETIME
-  States
-  {
-  Held:
-  TNT1 A 1 A_ClearTarget
-  TNT1 A 1 A_ClearTarget
-  loop
-  }
-}
-
 //Supply Box amount
 ACTOR MT_SupplyBox_Amount : MT_Counters 
 {
   Inventory.Amount 1
   Inventory.MaxAmount 11
-}
-
-//WIP, Power Active Armor
-ACTOR MT_DeflectionStrength : MT_Counters
-{
-  Inventory.Amount 1
-  Inventory.MaxAmount 50
 }
 
 //P = Postive, Yes, 1
@@ -112,7 +82,6 @@ Actor MT_N_Reload     : MT_A_BooleanValue {}
 
 //Lock Upgrades
 Actor MT_MortarLock1  : MT_A_BooleanValue {}
-
 
 ////--------------------------------------------------------------------------**
 //Tank/Vehicle movement
@@ -164,11 +133,6 @@ ACTOR MT_MultiPurposeDevice_IsSelected : MT_A_BooleanValue {}
 //Gun Is reloadable?
 ACTOR MT_GunIsReloadable : MT_A_BooleanValue {}
 
-//used for deflecting projectile
-ACTOR MT_Deflect : MT_A_BooleanValue {}
-//used for destroying projectiles
-ACTOR MT_Destroy : MT_A_BooleanValue {}
-
 //DUMP
 ACTOR TestBox {
 	mass 0x7FFFFFFF
@@ -186,19 +150,3 @@ ACTOR TestBox {
 
 
 ACTOR ImCrafting : MT_A_BooleanValue {}
-ACTOR CameraON : MT_A_BooleanValue {}
-
-actor ChaseCam3
-{
-  height 8
-  radius 8
-  +NOGRAVITY
-  +THRUACTORS
-  states
-  {
-  Spawn:
-    NULL A -1
-    stop
-  }
-}
-

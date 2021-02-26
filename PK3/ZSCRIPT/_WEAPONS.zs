@@ -1,0 +1,7 @@
+#Include "ZSCRIPT/Actor/Weapon/Common/Baseweapon.zs"
+#Include "ZSCRIPT/Actor/Weapon/Common/MultiPurposeDevice.zs"
+#Include "ZSCRIPT/Actor/Weapon/Common/Cannon.zs"
+#Include "ZSCRIPT/Actor/Weapon/Common/Shell.zs"
+#Include "ZSCRIPT/Actor/Weapon/Heavy/Cannon.zs"
+#Include "ZSCRIPT/Actor/Weapon/Medium/Cannon.zs"
+#Include "ZSCRIPT/Actor/Weapon/Medium/Cannon_Proj.zs"

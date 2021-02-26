@@ -3,6 +3,16 @@ Class MT_Actor : Actor
 //TODO: Do stuff.
 }
 
+Class MT_TimerBase : Inventory
+{
+Default
+{
+	-COUNTITEM;
+	Inventory.Amount 1;
+}
+
+}
+
 Class MT_PlayerWeapon : Weapon
 {
 Default
@@ -43,6 +53,28 @@ Weapon.AmmoType2 "Clip";
 		Stop;
 	}
 }
+
+//used for items like upgrades
+//which in no circumstances should be removeable
+//unless it is a mod feature
+Class MT_SPlayerCustomInventory : CustomInventory
+{
+Default
+{
+  +NOBLOOD;
+  +NOBLOCKMONST;
+  +DONTGIB;
+  -PUSHABLE;
+//  +INVENTORY.INVBAR;
+  +INVENTORY.HUBPOWER;
+  +INVENTORY.UNDROPPABLE;
+  +INVENTORY.UNCLEARABLE;
+  -INVENTORY.INVBAR;
+  -COUNTITEM;
+  Inventory.Amount 1;
+}
+}
+
 
 //------------------------------------------------------------------------------
 //CUSTOM FUNCTIONS

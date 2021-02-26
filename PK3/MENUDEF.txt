@@ -1,27 +1,8 @@
-OptionMenu "OptionsMenu"
+AddOptionMenu "OptionsMenu"
 {
-	Title "OPTIONS"
-	Submenu "Multiplayer Options",		"ZA_MultiplayerOptions" // [TP]
-	StaticText " " // [TP]
-	Submenu "Customize Controls",		"CustomizeControls"
-	Submenu "Mouse options",			"MouseOptions"
-	Submenu "Joystick options",			"JoystickOptions"
-	StaticText " "
-	Submenu "Player Setup",				"PlayerMenu"
-	Submenu "Gameplay Options",			"GameplayOptions"
-	Submenu "Compatibility Options",	"CompatibilityOptions"
-	Submenu "Automap Options",			"AutomapOptions"
-	Submenu "HUD Options",				"HUDOptions"
-	Submenu "Miscellaneous Options",	"MiscOptions"
-	Submenu "Sound Options",			"SoundOptions"
-	Submenu "Display Options",			"VideoOptions"
-	Submenu "Set video mode",			"VideoModeMenu"
-	StaticText " "
-	SafeCommand "Reset to defaults",	"reset2defaults"
-	SafeCommand	"Reset to last saved",	"reset2saved"
-	Command "Go to console",			"menuconsole"
-    SubMenu "Micro Tank Settings", "MicroTankMenu"
+Submenu "Micro Tank Settings", "MicroTankMenu"
 }
+
 
 OptionValue "OffOn"
 {
@@ -43,43 +24,29 @@ OptionValue "Particles"
 	2, "High"
 }
 
+OptionString "Classes"
+{
+	"MT_PanzerIIIJ", "Panzer III J"
+	"MT_Tiger1", "Tiger 1"
+	"MT_Leopard1", "Leopard 1"
+}
+
+
+
 OptionMenu "MicroTankMenu"
 {
-   Title "Micro Tank options"
-   StaticText "<Gameplay>"
-   StaticText ":First start:", 0
-   Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
-   Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
-   StaticText "Receive all upgrades:"
-   Option "Technology War", "mtcvar_techwars", "OffOn"
+	Title "Micro Tank options"
+	StaticText "<Gameplay>"
+	Slider "Starting Credits", "mtcvar_creditstart", 0,100000,1000,0
+	Slider "Starting Metals", "mtcvar_metalstart", 0,10000,100,0
+	StaticText "Upgrades:"
+	Option "Technology War", "mtcvar_techwars", "OffOn"
 
-/*   
-   StaticText "Supply Crate:", 0
-   //Slider "Toggle supply crate", 0,1,1,0
-   Slider "Ammo multiplier", "mtcvar_supc_ammo_mult", 1,10,1,0
-   Slider "Credits multiplier", "mtcvar_supc_metals_mult", 0,10,1,0
-   Slider "Metals multiplier", "mtcvar_supc_credits_mult", 0,10,1,0
-      
-   StaticText "<Mutator>"
-   StaticText "Regenation:", 0
-   Option "Toggle regeneration", "mtcvar_regen", "OnOff"
-   ifOption("mtcvar_regen") 
-		{
-		Slider "HP regen delay", "mtcvar_hpregen", 0, 100, 1, 0
-		Slider "HP regen amount", "mtcvar_hpregen_amount", 0,500,10,0
-		Slider "Armor regen delay", "mtcvar_armorregen", 0,100,5,0
-		Slider "Armor regen amount", "mtcvar_armorregen_amount", 0,500,10,0
-		Slider "Ammo regen delay", "mtcvar_ammoregen", 0,100,5,0
-		Slider "Ammo regen amount", "mtcvar_ammoregen_amount", 0,500,10,0
-		Slider "Allow regen of super ammo", "mtcvar_superammoregen", 0,1,1,0
-		}
-*/
-   StaticText "<Client side>"
-   Option "Announcer start", "mtccvar_startup_noise", "OffOn"
-   Option "Particle Effects", "mtcvar_particlesquality", "Particles"
-   Option "Fancy Items", "mtcvar_fancyitems", "Fancy"
+	StaticText "<Player setting>"
+	Option "Class", "mtccvar_player_class", "Classes"
 
-
-
-
+	StaticText "<Client side>"
+	Option "Announcer start", "mtccvar_startup_noise", "OffOn"
+	Option "Particle Effects", "mtcvar_particlesquality", "Particles"
+	Option "Fancy Items", "mtcvar_fancyitems", "Fancy"
 }

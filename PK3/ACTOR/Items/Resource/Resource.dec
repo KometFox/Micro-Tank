@@ -96,6 +96,18 @@ Inventory.PickupMessage "Picked up: gem"
 Inventory.Amount 150
 }
 
+
+actor MT_Credits_OreCrate_Small : MT_Credits_Small
+{    
+Inventory.PickupMessage "Picked up: small ore crate"
+Inventory.Amount 25
+}
+
+actor MT_Credits_OreCrate_Medium : MT_Credits_Small
+{    
+Inventory.PickupMessage "Picked up: medium ore crate"
+Inventory.Amount 100
+}
 //----------------------------------------------------------------------------**
 //Metals
 //----------------------------------------------------------------------------**
