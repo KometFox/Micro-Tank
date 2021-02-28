@@ -4,6 +4,20 @@ TODO: Fix Deselect/Select animation
 //------------------------------------------------------------------------------
 ////Baseweapon
 //------------------------------------------------------------------------------
+
+//Subclasses for sending info to EventHandler renderoverlay
+Mixin Class HUD_Ammo
+{
+
+	void Send_Info2HUD(string name_, TextureID ID, string AmmoItem)
+	{
+		HUD_AmmoDisplay.Set_AmmoName(name_);
+		HUD_AmmoDisplay.Set_Sprite(ID);
+		HUD_AmmoDisplay.Set_AmmoItem(AmmoItem);
+	}	
+
+}
+
 Class MT_BaseweaponZS : MT_PlayerWeapon
 {
 
@@ -11,7 +25,16 @@ Class MT_BaseweaponZS : MT_PlayerWeapon
 	{
 		mo.A_PlaySound(Sound_, 3);
 	}
-
+	
+	/*
+	override state GetReadyState()
+	{
+		Super.GetReadyState();
+		AmmoSwitcher.Set_Gun_Invoker(invoker);
+		
+		return FindState('Ready');
+	}
+	*/
 
 Default 
 {
@@ -47,7 +70,10 @@ BaseJumper_End:
 	Goto SelectAnim;
 		
 Ready:
-	TNT1 A 0;
+	TNT1 A 0 
+	{
+		AmmoSwitcher.Set_Gun_Invoker(invoker);
+	}
     Goto BaseJumper;	
 			
 Select:
@@ -214,15 +240,7 @@ AltFlash:
 	
 	}
 }
-//----------------------------------------------------------------------------**
-////Common Heavy Weapon
-//----------------------------------------------------------------------------**
 
-//----------------------------------------------------------------------------**
-////Common Medium Weapon
-//----------------------------------------------------------------------------**
 
-//----------------------------------------------------------------------------**
-////Common Light Weapon
-//----------------------------------------------------------------------------**
+
 

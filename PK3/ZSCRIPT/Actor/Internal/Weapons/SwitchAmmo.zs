@@ -2,6 +2,8 @@ Class AmmoSwitcher : EventHandler
 {
 
 	int Ammo_Selected, AmmoType_Max;
+	object gun_invoker;
+
 
 override void Networkprocess(ConsoleEvent e)
 {
@@ -21,7 +23,13 @@ override void Networkprocess(ConsoleEvent e)
 			{
 				Ammo_Selected = 0;
 			}
+			
+			if (gun_invoker != null)
+			{
+				MT_BaseCannon.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
+			}
 			//Console.PrintF("%d", Ammo_Selected);
+			
 		}
 		else if ((MR1 && MR1 == e.Args[0]) || (MR2 && MR2 == e.Args[0]))
 		{
@@ -33,12 +41,16 @@ override void Networkprocess(ConsoleEvent e)
 			{
 				Ammo_Selected = AmmoType_Max;
 			}
+			
+			if (gun_invoker != null)
+			{
+				MT_BaseCannon.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
+			}
 			//Console.PrintF("%d", Ammo_Selected);
 		}
 
 
 }
-
 
 
 //Setters
@@ -56,6 +68,14 @@ static void Set_AmmoType_Max(int amount)
 	AS = AmmoSwitcher(EventHandler.Find("AmmoSwitcher"));
 	
 	AS.AmmoType_Max = amount;
+}
+
+static void Set_Gun_Invoker(object mo)
+{
+	AmmoSwitcher AS;
+	AS = AmmoSwitcher(EventHandler.Find("AmmoSwitcher"));
+
+	AS.Gun_Invoker = mo;	
 }
 
 //Getters

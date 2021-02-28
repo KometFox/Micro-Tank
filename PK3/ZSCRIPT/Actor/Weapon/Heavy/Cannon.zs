@@ -21,7 +21,7 @@ Class MT_90mmCannon : MT_BaseCannon
 
 	Mixin Cannon_Ammunition;
 	//Mixin Cannon_Def;
-	Mixin HUD_Cannon;
+	Mixin HUD_Ammo;
 
 	S_AmmoDef AmmoTypes[4];
 
@@ -29,7 +29,6 @@ Class MT_90mmCannon : MT_BaseCannon
 override void PostBeginPlay()
 {
 	Max_AmmoType = 3;
-	AmmoSwitcher.Set_AmmoType_Max(Max_AmmoType);
 
 	//Define the ammunition
 	//APHE
@@ -69,15 +68,6 @@ override void PostBeginPlay()
 
 override void Tick()
 {
-	//Get the current value
-	Loaded_Projectile = AmmoSwitcher.Get_Ammo_Selected();
-
-	//Dirty fix...
-	if (Loaded_Projectile > 3)
-	{
-		Loaded_Projectile = 0;
-	}
-
 	
 	Send_Info2HUD(AmmoTypes[Loaded_Projectile].Ammo_Name, 
 				AmmoTypes[Loaded_Projectile].Ammo_Sprite,

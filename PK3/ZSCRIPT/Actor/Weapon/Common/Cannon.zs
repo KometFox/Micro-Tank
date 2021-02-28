@@ -25,31 +25,25 @@ Mixin Class Cannon_Def
 
 }
 
-//Subclasses for sending info to EventHandler renderoverlay
-Mixin Class HUD_Cannon
-{
-
-	
-	void Send_Info2HUD(string name_, TextureID ID, string AmmoItem)
-	{
-		HUD_AmmoDisplay.Set_AmmoName(name_);
-		HUD_AmmoDisplay.Set_Sprite(ID);
-		HUD_AmmoDisplay.Set_AmmoItem(AmmoItem);
-	}
-	
-
-}
-
 Class MT_BaseCannon : MT_BaseweaponZS
 {
 	//Ammunition def
 	int Loaded_Projectile;
 	int Max_AmmoType;
 
+Static void Set_Loaded_Projectile(object g_i, int set)
+{
+	let gun_invoker = MT_BaseCannon(g_i);
+	
+	if (gun_invoker != null)
+	{
+		gun_invoker.Loaded_Projectile = set;
+	}
+}
+
 
 Action void Cannon_Fire(string ProjID, string Fake_ProjID = "", int shoot_count = 1, string FiringSound = "")
 {
-
 	A_PlaySound(FiringSound, CHAN_WEAPON);
 
 	if (shoot_count == 1)
@@ -68,7 +62,6 @@ Action void Cannon_Fire(string ProjID, string Fake_ProjID = "", int shoot_count 
 	{
 		A_FireProjectile(Fake_ProjID, 0, 0);
 	}
-
 }
 
 
@@ -76,16 +69,19 @@ Action void Cannon_BeeFire(string projectile)
 {
 	int loop = 1;
 
+	//Crosshair center
 	A_FireProjectile(projectile, 0, 0, 0, 0, FPF_NOAUTOAIM, +0.1);
 	A_FireProjectile(projectile, 0, 0, 0, 0, FPF_NOAUTOAIM, -0.1);
 	A_FireProjectile(projectile, 0, 0, 0, 0, FPF_NOAUTOAIM, 0);	
 
 	for (loop; loop < 3; loop++)
 	{
+		//Up
 		A_FireProjectile(projectile, +0.10 * loop, 0, 0, 0, FPF_NOAUTOAIM, +0.1);
 		A_FireProjectile(projectile, +0.10 * loop, 0, 0, 0, FPF_NOAUTOAIM, -0.1);
 		A_FireProjectile(projectile, +0.14 * loop, 0, 0, 0, FPF_NOAUTOAIM, 0);
 
+		//Down
 		A_FireProjectile(projectile, -0.14 * loop, 0, 0, 0, FPF_NOAUTOAIM, 0);
 		A_FireProjectile(projectile, -0.10 * loop, 0, 0, 0, FPF_NOAUTOAIM, -0.1);
 		A_FireProjectile(projectile, -0.10 * loop, 0, 0, 0, FPF_NOAUTOAIM, +0.1);
@@ -118,6 +114,7 @@ Deselect:
 Select:
 	MCAN A 0
 	{
+		AmmoSwitcher.Set_Gun_Invoker(invoker);
 		AmmoSwitcher.Set_AmmoType_Max(invoker.Max_AmmoType);
 		GiveInventory("MT_75x500mmCannon_IsSelected", 1);
 	}
@@ -129,7 +126,6 @@ Ready2:
 	"####" A 0
 	{
 		//Send how many ammo type this weapon has
-		AmmoSwitcher.Set_AmmoType_Max(invoker.Max_AmmoType);		
 	}
 	Goto Ready;
 

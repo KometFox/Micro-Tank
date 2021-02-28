@@ -21,7 +21,7 @@ Class MT_50mmCannon : MT_BaseCannon
 
 	Mixin Cannon_Ammunition;
 	//Mixin Cannon_Def;
-	Mixin HUD_Cannon;
+	Mixin HUD_Ammo;
 
 	S_AmmoDef AmmoTypes[3];
 
@@ -29,8 +29,7 @@ Class MT_50mmCannon : MT_BaseCannon
 override void PostBeginPlay()
 {
 	Max_AmmoType = 2;
-	AmmoSwitcher.Set_AmmoType_Max(Max_AmmoType);
-
+	
 	//Define the ammunition
 	//APHE
 	AmmoTypes[0].AmmoItem = "MT_75x500mmAP";
@@ -62,14 +61,6 @@ override void PostBeginPlay()
 
 override void Tick()
 {
-	//Get the current value
-	Loaded_Projectile = AmmoSwitcher.Get_Ammo_Selected();
-	
-	//Dirty fix...
-	if (Loaded_Projectile > 2)
-	{
-		Loaded_Projectile = 0;
-	}
 	
 	Send_Info2HUD(AmmoTypes[Loaded_Projectile].Ammo_Name, 
 				AmmoTypes[Loaded_Projectile].Ammo_Sprite,

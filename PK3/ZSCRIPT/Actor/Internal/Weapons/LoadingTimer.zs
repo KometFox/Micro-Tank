@@ -1,6 +1,7 @@
 /*
- * This is probably a stupid way to do this but I cannot find a better method. 
- */
+This is probably a stupid way to do this but I cannot find a better method. 
+TODO: Add a function for getting MaxAmount variable.
+*/
  
 Class LoadingTimer : EventHandler
 {
