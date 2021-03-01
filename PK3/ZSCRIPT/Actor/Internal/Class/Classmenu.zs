@@ -153,6 +153,15 @@ static void Change_Class(actor player)
 	
 }
 
+static actor Get_Chassis()
+{
+	ClassSwitcher CS;
+	CS = ClassSwitcher(EventHandler.Find("ClassSwitcher"));
+	
+	return CS.P_Chassis;
+}
+
+
 //Get actors from the chassis and the player class
 static void Send_Actor(actor mo, actor mo2, string type)
 {
@@ -447,20 +456,6 @@ static void CM_OpenMenu(actor player)
 {
 	ClassSwitcher Event;
 	Event = ClassSwitcher(EventHandler.Find("ClassSwitcher"));
-	/*
-	if (player.CountInv("MT_Classmenu_Item") == 1)
-	{
-		Event.toggle = 0; 
-		player.SetInventory("MT_Classmenu_Item", 2);
-		player.TakeInventory("ImCrafting", 99);
-	}
-	else if (player.CountInv("MT_Classmenu_Item") == 2)	
-	{
-		Event.toggle = 1;
-		player.SetInventory("MT_Classmenu_Item", 1);
-		player.GiveInventory("ImCrafting", 99);
-	}
-	*/
 	
 	Switch (player.CountInv("MT_Classmenu_Item"))
 	{

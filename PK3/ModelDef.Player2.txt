@@ -202,7 +202,7 @@ Model MT_PlayerClass_Tank
 	Path "MODELS\Vehicles\PanzerIII"
 	Model 0 "PanzerIIIJ_Turret.md3"
 	Skin 0 "PanzerIIIJ_Turret.dds"
-	Scale 10 10 10
+	Scale 8.5 8.5 8.5
 	AngleOffset 0
 	FrameIndex PZJ3 A 0 0
 }
@@ -221,7 +221,7 @@ Model MT_Tank_Chassis
 	Skin 0 "PanzerIIIJ_Chassis.dds"
 	Skin 1 "PanzerIIIJ_Suspension.dds"
 	Skin 2 "PanzerIIIJ_Suspension.dds"
-	Scale 10 10 10
+	Scale 8.5 8.5 8.5
 	AngleOffset 0
 	FrameIndex PZJ3 A 0 0
 	FrameIndex PZJ3 A 1 0
@@ -241,7 +241,7 @@ Model MT_Tank_Chassis
 	Skin 0 "PanzerIIIJ_Chassis.dds"
 	Skin 1 "PanzerIIIJ_Suspension.dds"
 	Skin 2 "PanzerIIIJ_Suspension.dds"
-	Scale 10 10 10
+	Scale 8.5 8.5 8.5
 	AngleOffset 0
 	FrameIndex PZJ3 B 0 0
 	FrameIndex PZJ3 B 1 0
@@ -261,7 +261,7 @@ Model MT_Tank_Chassis
 	Skin 0 "PanzerIIIJ_Chassis.dds"
 	Skin 1 "PanzerIIIJ_Suspension.dds"
 	Skin 2 "PanzerIIIJ_Suspension.dds"
-	Scale 10 10 10
+	Scale 8.5 8.5 8.5
 	AngleOffset 0
 	FrameIndex PZJ3 C 0 0
 	FrameIndex PZJ3 C 1 0
@@ -281,7 +281,7 @@ Model MT_Tank_Chassis
 	Skin 0 "PanzerIIIJ_Chassis.dds"
 	Skin 1 "PanzerIIIJ_Suspension.dds"
 	Skin 2 "PanzerIIIJ_Suspension.dds"
-	Scale 10 10 10
+	Scale 8.5 8.5 8.5
 	AngleOffset 0
 	FrameIndex PZJ3 D 0 0
 	FrameIndex PZJ3 D 1 0

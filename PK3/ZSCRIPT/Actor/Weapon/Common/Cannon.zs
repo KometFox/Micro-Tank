@@ -110,29 +110,14 @@ Deselect:
 	"####" A 1 A_Lower;
 	Goto Deselect+4;
 
-
-Select:
-	MCAN A 0
+Ready2:
+	"####" A 0
 	{
 		AmmoSwitcher.Set_Gun_Invoker(invoker);
 		AmmoSwitcher.Set_AmmoType_Max(invoker.Max_AmmoType);
 		GiveInventory("MT_75x500mmCannon_IsSelected", 1);
 	}
-	MCAN A 0 A_Raise;
-	Goto BaseJumper;
-
-
-Ready2:
-	"####" A 0
-	{
-		//Send how many ammo type this weapon has
-	}
 	Goto Ready;
-
-/*Note: Do not forget to add this function.*/
-//Get the current value
-//invoker.Loaded_Projectile = AmmoSwitcher.Get_Ammo_Selected();
-
 
 
 Fire_End:

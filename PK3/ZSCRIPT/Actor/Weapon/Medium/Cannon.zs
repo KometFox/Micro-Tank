@@ -79,10 +79,6 @@ Default
 States
 {
 
-Ready2:
-	"####" A 0;
-	Goto RealReady;
-
 Fire:
 	"####" A 1;
 	"####" A 0
