@@ -263,7 +263,6 @@ Default
 {
 +THRUACTORS;
 +NOTIMEFREEZE;
-+CLIENTSIDEONLY;
 +FLOORCLIP;
 +NOGRAVITY;
 +FIXMAPTHINGPOS;
@@ -284,6 +283,13 @@ TNK1 C 1;
 Stop;
 }
 
+
+/*
+static object Get_Self()
+{
+	return self;
+}
+*/
 
 double MFunc_ResetPitch(double pitch = 0)
 {
@@ -320,6 +326,22 @@ double MFunc_CalcPitch(double A = 1)
 
 Class MT_Tank_Chassis : MT_ChassisBase
 {
+
+static void Set_ChassisAngle(actor mo, int angle)
+{
+	let chassis = MT_Tank_Chassis(mo);
+
+	if (chassis != null)
+	{
+
+		CallACS("MT_SetVehicleRotation", angle);
+		chassis.user_chassisangle = angle;
+
+		//Console.PrintF("angle %d user %d", angle, chassis.user_chassisangle);
+		chassis.SetStateLabel("GetRotation", false);
+	}
+}
+
 	//Function for switching model
 	Static void SwitchModel(actor mo)
 	{
@@ -339,7 +361,16 @@ Class MT_Tank_Chassis : MT_ChassisBase
 
 
 	States
-	{
+	{		
+	GetRotation:
+		"####" A 0 
+		{
+			user_chassisangle = user_chassisangle;
+			A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, user_chassispitch);		
+		}
+		Goto Stay;
+	
+	
 	Spawn:
 		LEO1 A 0;
 		LEO1 A 0 
@@ -349,7 +380,7 @@ Class MT_Tank_Chassis : MT_ChassisBase
 			user_pitch = 0;
 			user_chassisangle = CallACS("MT_GetVehicleRotation");
 			//Send its variable to the Eventhandler of Class Switcher
-			ClassSwitcher.Send_Actor(invoker, self, "chassis");
+			ClassSwitcher.Send_Actor(self, self, "chassis");
 			SwitchModel(invoker);
 			
 		}
@@ -372,7 +403,6 @@ Class MT_Tank_Chassis : MT_ChassisBase
 		//PITCH CHECK
 		"####" "#" 0
 		{		
-			
 			/*
 			MFunc_VertexPitcher();
 			vertex_B0 = CallACS("MT_Get_Vertex_Height", 1) - CallACS("MT_ReturnHeight", 44440);
@@ -393,17 +423,20 @@ Class MT_Tank_Chassis : MT_ChassisBase
 			
 			if (user_chassispitch > 0)
 			{
-				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
-				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, user_chassispitch);		
+				user_chassisangle = CallACS("MT_GetVehicleRotation");
+				A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+				A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, user_chassispitch);		
 			}
 			else if (user_chassispitch < 0)
 			{
-				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
-				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, -user_chassispitch);		
+				user_chassisangle = CallACS("MT_GetVehicleRotation");
+				A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+				A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, -user_chassispitch);		
 			}
 			else if (user_chassispitch == 0)
 			{
-				A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+				user_chassisangle = CallACS("MT_GetVehicleRotation");
+				A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
 			}
 						
 			
@@ -411,7 +444,8 @@ Class MT_Tank_Chassis : MT_ChassisBase
 		}		
 		//END PITCH CHECK
 	Movement:
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" "#" 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 		"####" "#" 0 A_JumpIfInventory("Reverse", 1, "MoveB1", AAPTR_TARGET);
 		"####" "#" 0 A_JumpIfInventory("Accelerate", 1, "MoveF1", AAPTR_TARGET);
 		"####" "#" 0 A_JumpIfInventory("TurnLeft", 1, "MoveF1", AAPTR_TARGET);
@@ -425,9 +459,10 @@ Class MT_Tank_Chassis : MT_ChassisBase
 		"####" "#" 0 A_JumpIfInventory("MT_PitchReset", 1, "PitchClear");
 		"####" "#" 0 A_JumpIfInventory("MT_PitchToRear", 3, "PitchRear");
 		//"####" "#" 0 A_Log("FRONT");
+		"####" "#" 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
 		"####" "#" 0 {user_chassispitch = -user_pitch * countinv("MT_PitchRearToken");}
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, user_chassispitch);
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, user_chassispitch);
 		"####" "#" 1;
 		Goto ItemClear;
 
@@ -435,9 +470,10 @@ Class MT_Tank_Chassis : MT_ChassisBase
 	PitchRear:
 		"####" "#" 0 A_JumpIfInventory("MT_PitchReset", 1, "PitchClear");
 		//"####" "#" 0 A_Log("REAR");
+		"####" "#" 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
 		"####" "#" 0 {user_chassispitch = user_pitch * countinv("MT_PitchFrontToken");}
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, -user_chassispitch);
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, -user_chassispitch);
 		"####" "#" 1;
 		Goto ItemClear;
 
@@ -445,17 +481,19 @@ Class MT_Tank_Chassis : MT_ChassisBase
 	PitchClear:
 		"####" "#" 0 {
 			//A_Log("CLEAR");
+			user_chassisangle = CallACS("MT_GetVehicleRotation");
 			user_chassispitch_old = MFunc_ResetPitch(pitch);
 			A_TakeInventory("MT_PitchToRear", 999);
 			A_TakeInventory("MT_PitchReset", 999);
 			A_TakeInventory("MT_PitchRearToken", 999);
 			A_TakeInventory("MT_PitchFrontToken", 999);
 		}
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, MFunc_ResetPitch(pitch));
 		Goto Movement;
 	
 	ItemClear:
 		"####" "#" 0 {
+			user_chassisangle = CallACS("MT_GetVehicleRotation");
 			user_chassispitch_old = user_chassispitch; 
 			user_chassispitch = 0;
 			A_TakeInventory("MT_PitchToRear", 999);
@@ -463,25 +501,31 @@ Class MT_Tank_Chassis : MT_ChassisBase
 			A_TakeInventory("MT_PitchRearToken", 999);
 			A_TakeInventory("MT_PitchFrontToken", 999);
 		}
-		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag, null, 0, 0, user_chassispitch);
+		"####" "#" 0 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag, null, 0, 0, user_chassispitch);
 		Goto Stay;
 	
 	//FORWARD
 	MoveF1:
-		"####" B 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" B 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" B 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 	MoveF2:
-		"####" C 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" C 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" C 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 	MoveF3:
-		"####" D 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" D 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" D 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 		Goto Stay;
 		
 	//BACKWARD
 	MoveB1:
-		"####" D 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" D 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" D 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 	MoveB2:
-		"####" C 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" C 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" C 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 	MoveB3:
-		"####" B 1 A_Warp(AAPTR_TARGET, 0, 0, 0, CallACS("MT_GetVehicleRotation"), chassis_warpflag);
+		"####" B 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" B 1 A_Warp(AAPTR_TARGET, 0, 0, 0, user_chassisangle, chassis_warpflag);
 		Goto Stay;
 		
 	//TURN LEFT
@@ -522,6 +566,23 @@ const turnrate_move = 3;
 const accelerate = 1;
 const reverse = 1;
 int user_chassisangle;
+//Actor p_chassis;
+
+	//Corrects the chassis angle when it gets teleported.
+	override void PostTeleport(Vector3 destpos, double destangle, int flags)
+	{
+
+		Super.PostTeleport(destpos, destangle, flags);
+	
+		let p_chassis = ClassSwitcher.Get_Chassis();
+		if (p_chassis)
+		{
+			let	Chassis_Base = MT_Tank_Chassis(p_chassis);
+			
+			Chassis_Base.Set_ChassisAngle(p_chassis, destangle - 180);
+		}
+	}
+
 
 	//Function for switching model
 	Static void SwitchModel(actor Player)
@@ -584,7 +645,6 @@ Player.StartItem "MT_HPICube_Item"            ,1;
 Player.StartItem "MT_Classmenu_Item"          ,1;
 //Lockers
 //Weapons
-//Player.StartItem "MT_90mmCannon"       ,1;
 Player.StartItem "Multi_Purpose_Device"       ,1;
 //Ammo
 Player.Startitem "MT_75x500mmHE"                ,20;
@@ -593,7 +653,7 @@ Player.Startitem "A_7u62x54mmR"                 ,1200;
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 Player.startitem "Item_GrenadePod_SSS"          ,1;
-Player.startitem "MT_Item_GrenadePod_Flare"     ,20;
+Player.startitem "MT_Item_GrenadePod_Flare"     ,6;
 Player.Startitem "MT_GrenadePod_Explosive"      ,4;
   
 //MT Damage types
@@ -640,8 +700,6 @@ DamageFactor "Electric"          ,0.75;
 		TNK1 A 0 NoDelay;
 		TNK1 A 0
 		{
-			user_chassisangle = 0;
-
 			cvar tankcv;
 
 			if (!tankcv)
@@ -661,8 +719,7 @@ DamageFactor "Electric"          ,0.75;
 			SwitchModel(Self);
 			ClassSwitcher.Send_Actor(self, self, "turret");
 			
-			A_SpawnItemEx ("MT_Tank_Chassis" , 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);
-
+			A_SpawnItemEx("MT_Tank_Chassis", 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);			
 			
 			CallACS("MT_ChangeTid", 0, 44440);
 		}

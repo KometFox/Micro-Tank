@@ -26,7 +26,7 @@ override void Networkprocess(ConsoleEvent e)
 			
 			if (gun_invoker != null)
 			{
-				MT_BaseCannon.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
+				MT_BaseWeaponZS.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
 			}
 			//Console.PrintF("%d", Ammo_Selected);
 			
@@ -44,7 +44,7 @@ override void Networkprocess(ConsoleEvent e)
 			
 			if (gun_invoker != null)
 			{
-				MT_BaseCannon.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
+				MT_BaseWeaponZS.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
 			}
 			//Console.PrintF("%d", Ammo_Selected);
 		}

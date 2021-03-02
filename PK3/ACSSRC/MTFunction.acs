@@ -128,10 +128,7 @@ str WPN_Barrel[1] = {
 
 
 //Ammo/Weapon mode display crap
-//Sbarinfo is pretty shitty and tedious for this
-//And no Graf, I will NOT use ZScript which something Sbarinfo should
-//have a better support for it, + I want Zandronum 3.1 compability 
-script "MTHUD_Ammo" ENTER
+script "MTHUD_Ammo" 
 {
 	//Weapon related
 	int current_weapon, current_ammo, current_ammosize, current_upgrade;

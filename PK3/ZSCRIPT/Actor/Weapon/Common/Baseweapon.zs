@@ -5,6 +5,21 @@ TODO: Fix Deselect/Select animation
 ////Baseweapon
 //------------------------------------------------------------------------------
 
+//Subclasses needs to modifiy these variables, used for static array
+Mixin Class Cannon_Ammunition
+{
+	Struct S_AmmoDef
+	{
+		//For weapon
+		String ProjectileID, Fake_ProjectileID;
+		String AmmoItem, FireSound;
+		int Shoots_Per_Proj;
+		//For graphic
+		String Ammo_Name;
+		TextureID Ammo_Sprite;
+	}
+} 
+
 //Subclasses for sending info to EventHandler renderoverlay
 Mixin Class HUD_Ammo
 {
@@ -18,23 +33,74 @@ Mixin Class HUD_Ammo
 
 }
 
+//Mixin Class HUD_Ammo2
+//{
+//	void Send_Info2HUD2()
+//	{
+//		HUD_AmmoDisplay.Set_AmmoName(AmmoTypes[Loaded_Projectile].Ammo_Name);
+//		HUD_AmmoDisplay.Set_Sprite(AmmoTypes[Loaded_Projectile].Ammo_Sprite);
+//		HUD_AmmoDisplay.Set_AmmoItem(AmmoTypes[Loaded_Projectile].AmmoItem);	
+//	}
+//	/*
+//	override State GetReadyState()
+//	{
+//		Super.GetReadyState();
+//		
+//		Send_Info2HUD2();	
+//		
+//		return FindState('Ready');
+//	}
+//	*/
+//}
+
+//Mixin Class HUD_Ammo3
+//{
+//	void Send_Info2HUD()
+//	{
+//		HUD_AmmoDisplay.Set_Cur_Gun(WeaponName);
+//		HUD_AmmoDisplay.Set_Cur_AmmoMode(Loaded_Projectile);	
+//	}
+//}
+
+
 Class MT_BaseweaponZS : MT_PlayerWeapon
 {
+	String WeaponName;
+	Property WeaponName: WeaponName;
+	int Loaded_Projectile, Max_AmmoType;
+	bool Active;
+	
+	Override State GetUpState()
+	{
+		Active = True;
+
+		Super.GetUpState();
+		Return FindState('Select');
+	}
+	
+	Override State GetDownState()
+	{
+		Active = False;
+
+		Super.GetDownState();
+		Return FindState('Deselect');
+	}
+
+	Static void Set_Loaded_Projectile(object g_i, int set)
+	{
+		let gun_invoker = MT_BaseweaponZS(g_i);
+	
+		if (gun_invoker != null)
+		{
+			gun_invoker.Loaded_Projectile = set;
+		}
+	}
+
 
 	Static void Play_LoadingSound(Actor mo, string Sound_)
 	{
 		mo.A_PlaySound(Sound_, 3);
 	}
-	
-	/*
-	override state GetReadyState()
-	{
-		Super.GetReadyState();
-		AmmoSwitcher.Set_Gun_Invoker(invoker);
-		
-		return FindState('Ready');
-	}
-	*/
 
 Default 
 {
@@ -70,10 +136,7 @@ BaseJumper_End:
 	Goto SelectAnim;
 		
 Ready:
-	TNT1 A 0 
-	{
-		AmmoSwitcher.Set_Gun_Invoker(invoker);
-	}
+	TNT1 A 0;
     Goto BaseJumper;	
 			
 Select:

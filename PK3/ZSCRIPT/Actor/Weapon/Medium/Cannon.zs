@@ -21,10 +21,23 @@ Class MT_50mmCannon : MT_BaseCannon
 
 	Mixin Cannon_Ammunition;
 	//Mixin Cannon_Def;
+	//Mixin HUD_Ammo;
 	Mixin HUD_Ammo;
 
 	S_AmmoDef AmmoTypes[3];
 
+override void Tick()
+{
+	Super.Tick();
+	
+	if (Active == True)
+	{
+		Send_Info2HUD(
+				AmmoTypes[Loaded_Projectile].Ammo_Name,
+				AmmoTypes[Loaded_Projectile].Ammo_Sprite,
+				AmmoTypes[Loaded_Projectile].AmmoItem);
+	}
+}
 
 override void PostBeginPlay()
 {
@@ -57,19 +70,6 @@ override void PostBeginPlay()
 
 	Super.PostBeginPlay();
 }
-
-
-override void Tick()
-{
-	
-	Send_Info2HUD(AmmoTypes[Loaded_Projectile].Ammo_Name, 
-				AmmoTypes[Loaded_Projectile].Ammo_Sprite,
-				AmmoTypes[Loaded_Projectile].AmmoItem);
-
-	super.Tick();
-}
-
-
 
 Default
 {

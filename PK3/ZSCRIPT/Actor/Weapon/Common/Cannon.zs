@@ -5,42 +5,16 @@
 //------------------------------------------------------------------------------
 
 
-//Subclasses needs to modifiy these variables, used for static array
-Mixin Class Cannon_Ammunition
-{
-	Struct S_AmmoDef
-	{
-		//For weapon
-		String ProjectileID, Fake_ProjectileID;
-		String AmmoItem, FireSound;
-		int Shoots_Per_Proj;
-		//For graphic
-		String Ammo_Name;
-		TextureID Ammo_Sprite;
-	}
-} 
-
 Mixin Class Cannon_Def
 {
+
 
 }
 
 Class MT_BaseCannon : MT_BaseweaponZS
 {
 	//Ammunition def
-	int Loaded_Projectile;
-	int Max_AmmoType;
-
-Static void Set_Loaded_Projectile(object g_i, int set)
-{
-	let gun_invoker = MT_BaseCannon(g_i);
-	
-	if (gun_invoker != null)
-	{
-		gun_invoker.Loaded_Projectile = set;
-	}
-}
-
+	//Mixin HUD_Ammo2;
 
 Action void Cannon_Fire(string ProjID, string Fake_ProjID = "", int shoot_count = 1, string FiringSound = "")
 {
@@ -110,6 +84,12 @@ Deselect:
 	"####" A 1 A_Lower;
 	Goto Deselect+4;
 
+
+Fire_End:
+	"####" BCDEFG 2;
+	Goto Ready;
+
+
 Ready2:
 	"####" A 0
 	{
@@ -118,12 +98,6 @@ Ready2:
 		GiveInventory("MT_75x500mmCannon_IsSelected", 1);
 	}
 	Goto Ready;
-
-
-Fire_End:
-	"####" BCDEFG 2;
-	Goto Ready;
-
 
 }
 

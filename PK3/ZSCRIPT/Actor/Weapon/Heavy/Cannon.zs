@@ -25,6 +25,18 @@ Class MT_90mmCannon : MT_BaseCannon
 
 	S_AmmoDef AmmoTypes[4];
 
+override void Tick()
+{
+	Super.Tick();
+
+	if (Active == True)
+	{
+		Send_Info2HUD(
+				AmmoTypes[Loaded_Projectile].Ammo_Name,
+				AmmoTypes[Loaded_Projectile].Ammo_Sprite,
+				AmmoTypes[Loaded_Projectile].AmmoItem);
+	}
+}
 
 override void PostBeginPlay()
 {
@@ -65,19 +77,6 @@ override void PostBeginPlay()
 	Super.PostBeginPlay();
 }
 
-
-override void Tick()
-{
-	
-	Send_Info2HUD(AmmoTypes[Loaded_Projectile].Ammo_Name, 
-				AmmoTypes[Loaded_Projectile].Ammo_Sprite,
-				AmmoTypes[Loaded_Projectile].AmmoItem);
-
-	super.Tick();
-}
-
-
-
 Default
 {
 	Tag "90mm Cannon";
@@ -85,7 +84,6 @@ Default
 
 States
 {
-
 
 Fire:
 	"####" A 1;

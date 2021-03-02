@@ -1,13 +1,13 @@
 Class HUD_AmmoDisplay : EventHandler
 {
-	//Get player resolution
+	//Define player resolution
 	int vid_Width, vid_Height;
 
 	//Ammo...
 	TextureID Sprite;
 	String AmmoName, AmmoItem;
 	Int AmmoCount, AmmoCount_Max;
-	
+
 override void renderOverlay(RenderEvent e)	// UI scope
 {
 	//Needs to be part of the loop.
@@ -15,10 +15,8 @@ override void renderOverlay(RenderEvent e)	// UI scope
 	int vw = screen.GetWidth() / hudScale.x;
     int vh = screen.GetHeight() / hudScale.x;
 
-
-	if (Sprite && AmmoName)
-	{
-	
+	if (AmmoName)	
+	{	
 		///
 		//Screen.DrawText(CONFONT, Font.CR_WHITE, (150) + (vid_Width), (-80) + (vid_Height), AmmoName);
 		///
@@ -42,7 +40,7 @@ override void WorldTick()
 
 	if (player != null)
 	{
-		AmmoCount = player.CountInv(AmmoItem, AAPTR_DEFAULT);	
+		AmmoCount = player.CountInv(AmmoItem, AAPTR_DEFAULT);
 	}
 }
 
@@ -79,100 +77,7 @@ Static void Set_Sprite(TextureID ID)
 	HUD_AD.Sprite = ID;
 }
 
-
 }
 
-
-
-/*
-Class MT_HUD : BaseStatusBar
-{
-	//Constants
-	const AMMODISPLAY_X = 568;
-	const AMMODISPLAY_Y = 200;
-
-	//HUD Shit
-	HUDFont Blin;
-	
-	TextureID AmmoDisplay, StatusDisplay;
-
-	//Ammo
-	TextureID AmmoSprite;
-	String AmmoName, AmmoItem;
-	Int AmmoCount, AmmoCount_Max;
-
-
-override void Init()
-{
-	Super.Init();
-	
-	Blin = HUDFont.Create(SMALLFONT);
-	AmmoDisplay = TexMan.CheckForTexture ("MTHSA", TexMan.Type_Any);
-}
-
-override void Draw(int state, double TicFrac)
-{
-	Super.Draw(state, TicFrac);
-	
-	if (state == HUD_StatusBar)
-	{
-		Draw_HUD();
-	}
-	else if (state == HUD_FullScreen)
-	{
-		Draw_HUD();
-	}
-	
-}
-
-
-void Draw_HUD()
-{
-
-	//StatusBar.DrawText(CONFONT, Font.CR_WHITE, 160, 120, String.Format("%d", AmmoCount));
-	DrawString(Blin, String.Format("%d", AmmoCount), (AMMODISPLAY_X - 35, AMMODISPLAY_Y - 60));
-	
-	//Left Display
-	
-	//Right Display
-	DrawTexture(AmmoDisplay, (AMMODISPLAY_X, AMMODISPLAY_Y), 0, 1, (-1, -1), (0.5, 0.5));
-}
-
-
-
-override void Tick()
-{
-	Super.Tick();
-
-	AmmoCount = HUD_RetrieveInfo.get_AmmoCount();
-}
-
-
-
-}
-
-Class HUD_RetrieveInfo : EventHandler
-{
-	Int AmmoCount;
-
-	static void set_AmmoCount(int amount)
-	{
-		HUD_RetrieveInfo HUD_RI;
-		HUD_RI = HUD_RetrieveInfo(EventHandler.Find("HUD_RetrieveInfo"));
-		
-		HUD_RI.AmmoCount = amount;
-	}
-	
-	ui static int get_AmmoCount()
-	{
-		HUD_RetrieveInfo HUD_RI;
-		HUD_RI = HUD_RetrieveInfo(EventHandler.Find("HUD_RetrieveInfo"));
-	
-		return HUD_RI.AmmoCount;
-	}
-
-}
-
-*/
 
 
