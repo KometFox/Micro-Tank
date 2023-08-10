@@ -1,3 +1,30 @@
+//------------------------------------------------------------------------------
+//Gameinfo
+//------------------------------------------------------------------------------
+gameinfo
+{
+	AddEventHandlers = "DummyEH"
+	//HUD
+	//StatusBarClass = "MT_HUD"
+	//AddEventHandlers = "HUD_RetrieveInfo"
+	//Tables
+	//AddEventHandlers = "Explosives_Table"	
+	//Classes
+	AddEventHandlers = "ClassSwitcher"
+	//Weapons
+	AddEventHandlers = "WeaponClass"
+	AddEventHandlers = "AmmoSwitcher"
+	AddEventHandlers = "LoadingTimer"
+	AddEventHandlers = "HUD_AmmoDisplay"
+	//Money
+	AddEventHandlers = "MT_MoneyHandler"
+	//Buy menu
+	AddEventHandlers = "BuyMenuScript"
+	
+	//Crosshair
+	AddEventHandlers = "CrossHair_Display"
+}
+
 //clearskills 
 
 skill baby
@@ -48,27 +75,5 @@ skill veryhard
 	PlayerClassName = "Tank" , "Tank Schock!"
 }
 
-//------------------------------------------------------------------------------
-//Gameinfo
-//------------------------------------------------------------------------------
-gameinfo
-{
-	//HUD
-	//StatusBarClass = "MT_HUD"
-	//AddEventHandlers = "HUD_RetrieveInfo"
-	//Tables
-	AddEventHandlers = "Explosives_Table"	
-	//Classes
-	AddEventHandlers = "ClassSwitcher"
-	//Weapons
-	AddEventHandlers = "WeaponClass"
-	AddEventHandlers = "AmmoSwitcher"
-	AddEventHandlers = "LoadingTimer"
-	AddEventHandlers = "HUD_AmmoDisplay"
-	//Buy menu
-	AddEventHandlers = "HPICube_Func"
-	AddEventHandlers = "HPICube_Items"
-	//Crosshair
-	AddEventHandlers = "CrossHair_Display"
-}
+
 

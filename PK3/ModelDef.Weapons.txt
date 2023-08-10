@@ -216,28 +216,6 @@ Model "MT_50mmCannon"
    FrameIndex MCA1 L 1 12 
 }
 
-////----------------------------------------------------------------------------
-//Quad Machine Gun
-////----------------------------------------------------------------------------
-Model "MT_QuadMachineGun"
-{	
-   IGNORETRANSLATION
-   //NOINTERPOLATION
-   Path "MODELS\Items\Weapons\Main"
-   Model 0 "QuadMG.md3"
-   Skin  0 "QuadMachineGun"
-   Scale 2 2 2
-   Offset 2 -7 -8
-   //Idle
-   FrameIndex QUMG A 0 0  
-   //Cannon Fire
-   FrameIndex QUMG B 0 1  
-   FrameIndex QUMG C 0 2  
-   FrameIndex QUMG D 0 3  
-   FrameIndex QUMG E 0 4  
-   FrameIndex QUMG F 0 5   
-}
-
 ////////////////////Multi Purpose Device
 
 Model "Multi_Purpose_Device"

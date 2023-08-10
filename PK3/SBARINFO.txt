@@ -71,22 +71,7 @@ InInventory MT_ClassToken, 1
    	drawnumber 2147483647, BIGFONT2, WHITE, ammo2, drawshadow, -142, -118;	
 
    	drawimage ammoicon1, -105, -22, centerbottom;
-   	drawnumber 2147483647, BIGFONT2, WHITE, ammo1, drawshadow, -142, -55;
-  	
-	//Loading
-	IsSelected MT_105mmCannon
-	{
-		drawbar "MTHHC", "MTHHB", I_75mmReloadTimer1, horizontal, -258, -129, 0;
-	}
-		
-	InInventory MTU_FastCannon_2, 1
-	{
-		IsSelected MT_105mmCannon
-		{
-			drawbar "MTHHC", "MTHHB", I_75mmReloadTimer2, horizontal, -258, -129, 0;
-		}
-	}
-	
+   	drawnumber 2147483647, BIGFONT2, WHITE, ammo1, drawshadow, -142, -55;	
 
    	gamemode deathmatch
    	{

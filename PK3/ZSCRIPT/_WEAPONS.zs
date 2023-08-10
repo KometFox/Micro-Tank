@@ -4,4 +4,3 @@
 #Include "ZSCRIPT/Actor/Weapon/Common/Shell.zs"
 #Include "ZSCRIPT/Actor/Weapon/Heavy/Cannon.zs"
 #Include "ZSCRIPT/Actor/Weapon/Medium/Cannon.zs"
-#Include "ZSCRIPT/Actor/Weapon/Medium/Cannon_Proj.zs"

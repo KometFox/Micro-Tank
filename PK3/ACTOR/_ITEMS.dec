@@ -11,4 +11,3 @@
 #Include "Actor/Items/PodGrenades/ScudStrike.dec"
 #Include "Actor/Items/PodGrenades/Supplies.dec"
 #Include "Actor/Items/PodGrenades/Lights.dec"
-#Include "Actor/Items/Resource/Resource.dec"

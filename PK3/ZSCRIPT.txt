@@ -1,4 +1,4 @@
-version "4.2"
+version "4.5"
 #Include "ZSCRIPT/_INTERNAL.zs"
 #Include "ZSCRIPT/_CLASSES.zs"
 #Include "ZSCRIPT/_WEAPONS.zs"

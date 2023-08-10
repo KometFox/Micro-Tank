@@ -6,52 +6,52 @@ addkeysection "Micro Tank Commands" MicroTankCommands
 //------------------------------------------------------------------------------
 //Weapon
 //------------------------------------------------------------------------------
-  addmenukey "Switch Weapon Ammo (Left)" MTC_AmoSwcL
-  alias MTC_AmoSwcL "use MT_AmmoSwitcher"  
-  addmenukey "Switch Weapon Ammo (Right)" MTC_AmoSwcR
-  alias MTC_AmoSwcR "use MT_AmmoSwitcher_Reverse"  
+	addmenukey "Switch Weapon Ammo (Left)" MTC_AmoSwcL
+	alias MTC_AmoSwcL "use MT_AmmoSwitcher"  
+	addmenukey "Switch Weapon Ammo (Right)" MTC_AmoSwcR
+	alias MTC_AmoSwcR "use MT_AmmoSwitcher_Reverse"  
 
-  addmenukey "Switch Subgun (Left)" MTC_SubgunSwcL
-  alias MTC_SubgunSwcL "use MT_SubgunSwitcher"  
-  addmenukey "Switch Subgun (Right)" MTC_SubgunSwcR
-  alias MTC_SubgunSwcR "use MT_SubgunSwitcher_Reverse"  
-
+	addmenukey "Switch Subgun (Left)" MTC_SubgunSwcL
+	alias MTC_SubgunSwcL "use MT_SubgunSwitcher"  
+	addmenukey "Switch Subgun (Right)" MTC_SubgunSwcR
+	alias MTC_SubgunSwcR "use MT_SubgunSwitcher_Reverse"  
   
 //------------------------------------------------------------------------------
 //Menu
 //------------------------------------------------------------------------------
-  addmenukey "Open HPI Cube" MTC_UseHPICube
-  alias MTC_UseHPICube "use MT_HPICube_Item"
-  addmenukey "Open Class switcher menu" MTC_UseClassMenu
-  alias MTC_UseClassMenu "use MT_Classmenu_Item"
+	//Shop Menu
+	addmenukey "Open Shop Menu" MTC_ShopMenuOpen
+	alias MTC_ShopMenuOpen "NetEvent BUYMENU"
+	//Classes
+	addmenukey "Open Class switcher menu" MTC_UseClassMenu
+	alias MTC_UseClassMenu "use MT_Classmenu_Item"
   
 //------------------------------------------------------------------------------
 //Vehicle
 //------------------------------------------------------------------------------
-  addmenukey "Toggle Turret Searchlight" MTC_SLight
-  alias MTC_SLight "use MT_SearchLight"     
-  addmenukey "Toggle Nightvision device" MTC_NVLight
-  alias MTC_NVLight "use MT_Nightvision_MK1"     
-  addmenukey "Toggle Periscope" MT_PeriscopeMode
-  alias MT_PeriscopeMode "use MT_PeriscopeItem"
-  addmenukey "Toggle secondary crosshair" MTC_PRCamera
-  alias MTC_PRCamera "use MT_ChaseCamera_MK1"
-  addmenukey "Morph as Marine" MTC_MarineMorph
-  alias MTC_MarineMorph "pukename MT_MorphToMarine" 
-  //addmenukey "Turn off Engine" MTC_MarineMorph
-  //alias MTC_MarineMorph "pukename MT_MorphToMarine" 
-  addmenukey "Taunt" MTC_CMDTaunt
-  alias MTC_CMDTaunt "pukename cmd_taunt"
+	addmenukey "Toggle Turret Searchlight" MTC_SLight
+	alias MTC_SLight "use MT_SearchLight"     
+	addmenukey "Toggle Nightvision device" MTC_NVLight
+	alias MTC_NVLight "use MT_Nightvision_MK1"     
+	addmenukey "Toggle Periscope" MT_PeriscopeMode
+	alias MT_PeriscopeMode "use MT_PeriscopeItem"
+	addmenukey "Toggle secondary crosshair" MTC_PRCamera
+	alias MTC_PRCamera "use MT_ChaseCamera_MK1"
+	addmenukey "Morph as Marine" MTC_MarineMorph
+	alias MTC_MarineMorph "pukename MT_MorphToMarine" 
+	//addmenukey "Turn off Engine" MTC_MarineMorph
+	//alias MTC_MarineMorph "pukename MT_MorphToMarine" 
+	addmenukey "Taunt" MTC_CMDTaunt
+	alias MTC_CMDTaunt "pukename cmd_taunt"
    
 //------------------------------------------------------------------------------
 //Auxillary
 //------------------------------------------------------------------------------
 
-
 ////Cheats   
-   alias ironcurtain "god; Echo Permament Iron Curtain"
-   alias Credits "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Metal 1000000;"
-   alias CashItUp "Credits;Credits; Echo Full credits."
+	alias ironcurtain "god; Echo Permament Iron Curtain"
+	alias Credits "Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Credits 1000000; Give MT_Metal 1000000;"
+	alias CashItUp "Credits;Credits; Echo Full credits."
 
 
 

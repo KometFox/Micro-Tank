@@ -15,6 +15,8 @@ override void WorldLoaded(WorldEvent e)
 {
 	Crosshair = TexMan.CheckForTexture ("TNHSAA0", TexMan.Type_Any); 
 	Periscope = 0;
+	showpic = true;
+	toggle = 1;
 }
 
 // PLAY scope : collect data
@@ -80,17 +82,17 @@ static int CH_FindPeriscope(Actor self)
 	
 }
 
-static void CH_Display(Actor self)
+static void CH_Display(Actor mo)
 {
 
 	CrossHair_Display Event;
 	Event = CrossHair_Display(EventHandler.Find("CrossHair_Display"));
 	
-	if (self.CountInv("MT_ChaseCameraToken") == 1)
+	if (mo.CountInv("MT_ChaseCameraToken") == 1)
 	{
 		Event.toggle = 0; 
 	}
-	else if (self.CountInv("MT_ChaseCameraToken") == 2)
+	else if (mo.CountInv("MT_ChaseCameraToken") == 2)
 	{
 		Event.toggle = 1;
 	}

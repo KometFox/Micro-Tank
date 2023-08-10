@@ -1,0 +1,101 @@
+//The new entries for items
+
+//The class Container for containing items.
+Class BuyMenuItems : GraphicEntry
+{
+	string ID; //The actuall class name of the Item
+	string ItemName; //The Item name 
+	string Category; //The category it belongs to
+	//The Category is needed so to prevent that items like Health or Armor
+	//Gets bought too much, i.e you cannot purchase medium armor again if
+	//you just purchased one. 
+	Sound BuySound; //The sound to play when its bought
+	int Cost; //How much it cost
+    int Amount; //How much to give
+}
+
+Class BMItems 
+{
+	Array<BuyMenuItems> ArItems;
+	
+	//Empty function meant to be overrriden. 
+	virtual void AddItems()
+	{
+	
+	}	
+}
+
+
+//A Class that adds Ammo items
+Class BM_AmmoItems : BMItems 
+{
+
+		override void AddItems()
+		{
+			let Item = new("BuyMenuItems");
+
+			Item = new("BuyMenuItems");
+			Item.ID = "A_7u62x54mmR";
+			Item.ItemName = "Medium Bullets";
+			Item.Graphic = TexMan.CheckForTexture("HUBBA0", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/SMGBullet";
+			Item.Cost = 30;
+			Item.Amount = 200;
+			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "MT_75x500mmAP";
+			Item.ItemName = "50mm APHE Shell";
+			Item.Graphic = TexMan.CheckForTexture("APAMA0", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/SMGBullet";
+			Item.Cost = 750;
+			Item.Amount = 5;
+			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "MT_75x500mmAPCR";
+			Item.ItemName = "50mm APCR Shell";
+			Item.Graphic = TexMan.CheckForTexture("ACAMA0", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/SMGBullet";
+			Item.Cost = 750;
+			Item.Amount = 5;
+			ArItems.Push(Item);
+			
+			Item = new("BuyMenuItems");
+			Item.ID = "MT_75x500mmHE";
+			Item.ItemName = "50mm HE Shell";
+			Item.Graphic = TexMan.CheckForTexture("HEAMA0", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/SMGBullet";
+			Item.Cost = 750;
+			Item.Amount = 5;
+			ArItems.Push(Item);			
+		}
+}
+
+
+
+
+//A Class that adds Supplies items
+Class BM_Supplies : BMItems 
+{
+		override void AddItems()
+		{
+			let Item = new("BuyMenuItems");
+
+			Item = new("BuyMenuItems");
+			Item.ID = "MT_SpareParts";
+			Item.ItemName = "Spare Parts";
+			Item.Graphic = TexMan.CheckForTexture("MSPPA0", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/SMGBullet";
+			Item.Cost = 250;
+			Item.Amount = 50;
+			ArItems.Push(Item);		
+		}
+
+}
+

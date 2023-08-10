@@ -84,7 +84,7 @@ Class MT_BaseweaponZS : MT_PlayerWeapon
 
 		Super.GetDownState();
 		Return FindState('Deselect');
-	}
+	}	
 
 	Static void Set_Loaded_Projectile(object g_i, int set)
 	{

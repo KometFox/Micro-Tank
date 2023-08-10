@@ -1,0 +1,102 @@
+//-------------------------------------------------------------------------------
+//Ingot Stacks
+//------------------------------------------------------------------------------
+Class MT_CreditsSpawn_VerySmall : RandomSpawner
+{
+	Default
+	{
+		DropItem "MT_Credits_Small", 256, 1;
+	}
+}
+
+Class MT_CreditsSpawn_Small : RandomSpawner
+{
+	Default
+	{
+		DropItem "MT_Credits_Small", 256, 1;
+		DropItem "MT_Credits_Medium", 256, 5;
+	}
+}
+
+Class MT_CreditsSpawn_Medium : RandomSpawner
+{
+	Default
+	{
+		DropItem "MT_Credits_Medium", 256, 1;
+		DropItem "MT_Credits_OreCrate_Medium", 256, 6;
+	
+	}
+}
+
+Class MT_CreditsSpawn_Large : RandomSpawner
+{
+	Default
+	{
+		DropItem "MT_Credits_OreCrate_Medium", 256, 1;
+		DropItem "MT_Credits_OreCrate_Large", 256, 3;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Weapons
+//------------------------------------------------------------------------------
+Class Chainsaw_Replacer: MT_CreditsSpawn_Small Replaces Chainsaw {}
+Class Pistol_Replacer : MT_CreditsSpawn_Small Replaces Pistol {}
+
+Class Shotgun_Replacer : MT_CreditsSpawn_Medium Replaces Shotgun {}
+Class Chaingun_Replacer : MT_CreditsSpawn_Medium Replaces Chaingun {}
+Class SuperShotgun_Replacer : MT_CreditsSpawn_Medium Replaces SuperShotgun {}
+
+Class RocketLauncher_Replacer : MT_CreditsSpawn_Large Replaces RocketLauncher {}
+Class PlasmaRifle_Replacer : MT_CreditsSpawn_Large Replaces PlasmaRifle {}
+Class BFG9000_Replacer : MT_CreditsSpawn_Large Replaces BFG9000 {}
+
+//------------------------------------------------------------------------------
+//Ammo
+//------------------------------------------------------------------------------
+Class ClipReplacer : MT_CreditsSpawn_Small replaces Clip{}
+Class ClipBoxReplacer : MT_CreditsSpawn_Medium replaces ClipBox{}
+
+
+Class ShellReplacer : MT_CreditsSpawn_Small replaces Shell{}
+Class ShellBoxReplacer : MT_CreditsSpawn_Medium replaces ShellBox{}
+
+Class RocketAmmoReplacer : MT_CreditsSpawn_Medium replaces RocketAmmo{}
+Class RocketBoxReplacer : MT_CreditsSpawn_Medium replaces RocketBox{}
+
+
+Class CellReplacer : MT_CreditsSpawn_Medium replaces Cell{}
+Class CellPackReplacer : MT_CreditsSpawn_Large replaces CellPack{}
+
+
+//------------------------------------------------------------------------------
+//Health
+//------------------------------------------------------------------------------
+Class Medikit_Replacer : MT_CreditsSpawn_Medium Replaces Medikit {}
+Class Stimpack_Replacer : MT_CreditsSpawn_Small Replaces Stimpack {}
+Class SoulSphere_Replacer : MT_CreditsSpawn_Large Replaces SoulSphere {}
+
+//------------------------------------------------------------------------------
+//Armor
+//------------------------------------------------------------------------------
+Class GreenArmor_Replacer : MT_CreditsSpawn_Medium Replaces GreenArmor {}
+Class BlueArmor_Replacer : MT_CreditsSpawn_Large Replaces BlueArmor {}
+
+//------------------------------------------------------------------------------
+//Bonus
+//------------------------------------------------------------------------------
+Class HealthBonus_Replacer : MT_CreditsSpawn_Small Replaces HealthBonus {}
+Class ArmorBonus_Replacer : MT_CreditsSpawn_Small Replaces ArmorBonus {}
+
+
+
+//------------------------------------------------------------------------------
+//PowerUps
+//------------------------------------------------------------------------------
+Class BackpackReplacer : MT_CreditsSpawn_Large replaces Backpack {}
+//Class RadsuitReplacer : MT_CreditsSpawn_Medium replaces RadSuit {} 
+Class MegasphereReplacer : MT_CreditsSpawn_Large replaces Megasphere {}
+Class BlurSphereReplacer : MT_CreditsSpawn_Medium replaces BlurSphere {}	
+Class InvulnerabilitySphereReplacer : MT_CreditsSpawn_Large replaces InvulnerabilitySphere {}
+Class InfraredReplacer : MT_CreditsSpawn_Large replaces Infrared {}
+

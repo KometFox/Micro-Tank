@@ -5,12 +5,20 @@ Class MT_Actor : Actor
 
 Class MT_TimerBase : Inventory
 {
-Default
-{
-	-COUNTITEM;
-	Inventory.Amount 1;
+	Default
+	{
+		-COUNTITEM;
+		Inventory.Amount 1;
+	}
+
 }
 
+Class MT_Boolean : Inventory
+{
+	Default
+	{
+		Inventory.MaxAmount 1;
+	}
 }
 
 Class MT_PlayerWeapon : Weapon

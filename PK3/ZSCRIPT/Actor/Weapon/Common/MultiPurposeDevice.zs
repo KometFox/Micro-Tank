@@ -1,6 +1,23 @@
 //------------------------------------------------------------------------------
 ////Multi Purpose Device
 //------------------------------------------------------------------------------
+Class MT_MultiPurposeDevice_AmmoSlot : Inventory 
+{Default{inventory.maxamount 2;}}
+
+Class MT_MultiPurposeDevice_Repair  : MT_Boolean {}
+Class MT_MultiPurposeDevice_Reclaim : MT_Boolean {}
+
+Class MT_Power_RepairSlowdown : PowerSpeed
+{
+	Default
+	{
+		Powerup.Duration -5;
+		Speed 0.25;
+		Powerup.Color "0 0 200", 0.1;
+		Inventory.Icon "TNT1";
+	}
+}
+
 Class Multi_Purpose_Device : MT_BaseweaponZS
 {
 Mixin Cannon_Ammunition;

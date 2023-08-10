@@ -11,15 +11,17 @@ Struct S_Explosives
 
 Class Explosives_Table : EventHandler
 {
-	const C_ITEMS = 2;
+	const C_ITEMS = 3;
 	S_Explosives Explosives[C_ITEMS];
 	
 	override void WorldLoaded(WorldEvent e)
 	{
-		Explosives[0].Name_ = "TNT";
+		Explosives[0].Name_ = "TNT_v1";
 		Explosives[0].Amount = 1.0;
-		Explosives[1].Name_ = "Np10";
-		Explosives[1].Amount = 1.7;
+		Explosives[1].Name_ = "TNT_v2";
+		Explosives[1].Amount = 1.25;
+		Explosives[2].Name_ = "TNT_v3";
+		Explosives[2].Amount = 1.5;
 	}
 	
 	static double Get_Amount(string Item)

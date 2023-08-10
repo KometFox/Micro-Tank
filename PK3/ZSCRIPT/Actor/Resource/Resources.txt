@@ -1,0 +1,233 @@
+//Credits and Metals resources.
+Class MT_Credits : Ammo
+{ 
+	int Money; //How much money it has
+	int TTL;
+	bool Temp; //Temporary
+	int MagnetType;
+	Color ItemColor;
+	//0 = Collision
+	//1 = Magnet
+	
+	Property Money:Money;
+	Property MagnetType:MagnetType;
+	Property TimeToLife:TTL;
+	Property ItemColor:ItemColor;
+
+	Default
+	{
+		MT_Credits.Money 0;
+		MT_Credits.TimeToLife 3000; //3k Tics
+		MT_Credits.MagnetType 0;
+	
+		Height 6;
+		Radius 25;
+		Scale 1;
+		Inventory.Icon "RURMA0";
+		Inventory.PickupMessage "";
+		Inventory.PickupSound "Material/Pickup";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 100000;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 100000;
+		-COUNTITEM;
+		+INVENTORY.UNCLEARABLE;
+	}
+	
+	void SaveMoney()
+	{
+		let MoneyH = MT_MoneyHandler(StaticEventHandler.Find('MT_MoneyHandler'));
+		
+		MoneyH.SaveMoney();	
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+	
+		Angle = Random(0, 360);			
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		//Make dropped Money not last forever
+		if (!isFrozen())
+		{
+			if (Temp == True)
+			{
+				TTL--;
+			
+			
+				//Fadeout effect
+				if (TTL <= 10)
+				{
+					A_FadeOut(0.1);
+				}
+			
+				//When timer runs out, just die.
+				if (TTL <= 0)
+				{
+					Die(self, self);
+				}
+			}
+		}
+	}
+	
+	override bool TryPickup(in out Actor toucher)
+	{
+		bool Picked = Super.TryPickup(toucher);
+		
+		if (Picked == true)
+		{
+			SaveMoney();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+		return false;
+	}	
+	
+	States
+	{
+		Spawn:
+			AAAA A 2000;
+			goto Death;
+		Death:
+			TNT1 A 0;
+			Stop;
+		Pickup:
+			TNT1 A 0;
+			TNT1 A 0 A_GiveInventory("HealthBonus");
+			Stop;
+	}
+}
+
+Class MT_Metal : Ammo
+{ 
+	Default
+	{
+		Height 6;
+		Radius 25;
+		Scale 1;
+		Inventory.Icon "RURMA0";
+		Inventory.PickupMessage "";
+		Inventory.PickupSound "Material/Pickup";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 100000;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 100000;
+		-COUNTITEM;
+		+INVENTORY.UNCLEARABLE;
+	}
+	States
+	{
+		Spawn:
+			AAAA A 2000;
+			goto Death;
+		Death:
+			TNT1 A 0;
+			Stop;
+	}
+}
+//----------------------------------------------------------------------------**
+//Credits
+//----------------------------------------------------------------------------**
+Class MT_Credits_Small : MT_Credits
+{
+	Default
+	{
+		Inventory.Amount 25;
+	}
+	States
+	{
+		Spawn:
+			IDLE A -1;
+			Goto Death;
+	}
+}
+
+Class MT_OldAmmo : MT_Credits
+{   
+	Default
+	{
+		Inventory.Amount 50;
+	}
+	States
+	{
+		Spawn:
+			IDLE A -1;
+			Goto Death;
+	}
+}
+
+Class MT_Credits_Medium : MT_Credits_Small
+{    
+	Default
+	{
+		Inventory.Amount 25;
+	}
+}
+
+
+Class MT_Credits_Large : MT_Credits_Small
+{    
+	Default
+	{
+		Inventory.Amount 150;
+	}
+}
+
+
+Class MT_Credits_OreCrate_Small : MT_Credits_Small
+{   
+	Default
+	{
+		Inventory.Amount 250;
+	}
+}
+
+Class MT_Credits_OreCrate_Medium : MT_Credits_Small
+{    
+	Default
+	{
+		Inventory.Amount 500;
+	}
+}
+//----------------------------------------------------------------------------**
+//Metals
+//----------------------------------------------------------------------------**
+Class MT_Metals_Small : MT_Metal
+{      
+	Default
+	{
+		Inventory.Amount 20;
+	}
+	States
+	{
+		Spawn:
+			IDLE A -1;
+			Goto Death;
+	}
+}
+
+Class MT_Metals_Medium : MT_Metals_Small
+{    
+	Default
+	{
+		Inventory.Amount 40;
+	}
+}
+
+
+Class MT_Metals_Large : MT_Metals_Small
+{   
+	Default
+	{
+		Inventory.Amount 200;
+	}
+}

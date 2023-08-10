@@ -85,7 +85,6 @@ is unknown i.e no idea who made it and originaly found
 
 source found from models/gore/blood*.png belongs to and is 
 
-the mod is CC-BY-SA 4.0; for models,textures,sprites and graphics
-- DOT
-http://www.creativecommons.org/licenses/by-nc/4.0/
+the mod is CC-BY 4.0; for models,textures,sprites and graphics
+-DOT
 

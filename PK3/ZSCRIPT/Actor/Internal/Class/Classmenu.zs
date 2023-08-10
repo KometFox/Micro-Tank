@@ -10,17 +10,13 @@ Class ClassSwitcher : EventHandler
 	int Selected, Current_Selected; //Current Selection
 	Menuoption SMenuOption[3]; //Menu positions
 	S_MenuSize MenuSize[4]; //Maximum size of menu entries
-	Classes SClasses[3][5]; //Classes
+	Classes SClasses[1][1]; //Classes
 	Actor P_Chassis, P_Turret;
 	//Constants
 	//Array start
 	const MEDIUMTANKS_S = 0;
-	const HEAVYTANKS_S = 1;
-	const MBTTANKS_S = 2;
 	//Amount
-	const MEDIUMTANKS = 4;
-	const HEAVYTANKS = 2;
-	const MBTTANKS = 1;
+	const MEDIUMTANKS = 0;
 
 struct SCursor
 {
@@ -48,8 +44,6 @@ enum E_Categories
 {
 	CATEGORY = 0,
 	MEDIUM = 1,
-	HEAVY = 2,
-	MBT = 3,	
 }
 
 
@@ -60,71 +54,24 @@ override void WorldLoaded(Worldevent e)
 	Selected = CATEGORY;
 	Current_Selected = CATEGORY;
 	//CATEGORY
-	MenuSize[0].max_row = 2;
-	MenuSize[0].max_column = 0;
+	MenuSize[0].max_row = 1;
+	MenuSize[0].max_column = 1;
 	//MEDIUM
-	MenuSize[1].max_row = 0;
-	MenuSize[1].max_column = MEDIUMTANKS -1;
-	//HEAVY
-	MenuSize[2].max_row = 0;
-	MenuSize[2].max_column = HEAVYTANKS -1;
-	//MBT
-	MenuSize[3].max_row = 0;
-	MenuSize[3].max_column = 0;
+	MenuSize[1].max_row = 1;
+	MenuSize[1].max_column = 1;
 
 	//CATEGORIES
 	SMenuOption[0].pos_x = 230;
 	SMenuOption[0].pos_y = 100;
-	SMenuOption[0].Name_ = "Medium"; 
-	
-	SMenuOption[1].pos_x = 310;
-	SMenuOption[1].pos_y = 100;
-	SMenuOption[1].Name_ = "Heavy"; 
-	
-	SMenuOption[2].pos_x = 390;
-	SMenuOption[2].pos_y = 100;
-	SMenuOption[2].Name_ = "MBT"; 
+	SMenuOption[0].Name_ = "Medium";  
 
 	
 	//CLASSES
 	//Medium
 	SClasses[0][0].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[0][0].Class_ID = "MT_PanzerIIIJ";
-	SClasses[0][0].Name_ = "Panzer III J";
+	SClasses[0][0].Class_ID = "MT_Tiger1";
+	SClasses[0][0].Name_ = "Tiger 1";
 	SClasses[0][0].Type = "Medium";
-
-	SClasses[0][1].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[0][1].Class_ID = "MT_Tiger1";
-	SClasses[0][1].Name_ = "Panzer IV";
-	SClasses[0][1].Type = "Medium";
-
-	SClasses[0][2].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[0][2].Class_ID = "MT_Tiger1";
-	SClasses[0][2].Name_ = "Panther I";
-	SClasses[0][2].Type = "Medium";
-
-	SClasses[0][3].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[0][3].Class_ID = "MT_Tiger1";
-	SClasses[0][3].Name_ = "Panther II";
-	SClasses[0][3].Type = "Medium";
-
-	//Heavy
-	SClasses[1][0].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[1][0].Class_ID = "MT_Tiger1";
-	SClasses[1][0].Name_ = "Tiger I";
-	SClasses[1][0].Type = "Heavy";
-
-	SClasses[1][1].Image = TexMan.CheckForTexture ("TIGER1", TexMan.Type_Any); 
-	SClasses[1][1].Class_ID = "MT_Tiger1";
-	SClasses[1][1].Name_ = "Tiger II";
-	SClasses[1][1].Type = "Heavy";
-
-	//MBT
-	SClasses[2][0].Image = TexMan.CheckForTexture ("LEOPAR2", TexMan.Type_Any); 
-	SClasses[2][0].Class_ID = "MT_Leopard1";
-	SClasses[2][0].Name_ = "Leopard 1";
-	SClasses[2][0].Type = "MBT";
-
 }
 
 static void Change_Class(actor player)
@@ -134,10 +81,18 @@ static void Change_Class(actor player)
 	WeaponClass WC;
 	WC = WeaponClass(EventHandler.Find("WeaponClass"));
 
-	for (int i = 0; i < 3; i++)
+	//player.GiveInventory("MT_Tiger1", 1);
+	//player.GiveInventory("MT_105mmCannon", 1);
+	//player.GiveInventory("MT_75mmCannon", 1);
+
+	for (int i = 0; i < 1; i++)
 	{
-		player.TakeInventory(CS.SClasses[i][0].Class_ID, 999);
+		if (player.Checkinventory(CS.SClasses[i][0].Class_ID, 1))
+		{
+			player.TakeInventory(CS.SClasses[i][0].Class_ID, 999);
+		}
 	}
+	
 	
 	player.GiveInventory(CS.SClasses[CS.MCursor.Row][CS.MCursor.Column].Class_ID, 1);
 	//Tell the chassis and the player actor to switch its model.
@@ -221,7 +176,6 @@ int Cursor_Mover(string move_to, int max_row, int max_column)
 	return 0;
 }
 
-
 override void NetworkProcess(Consoleevent e)
 {		
 		int FO1, FO2;
@@ -236,11 +190,9 @@ override void NetworkProcess(Consoleevent e)
 		[MR1, MR2] = Bindings.GetKeysForCommand("+moveright");
 		[Con1, Con2] = Bindings.GetKeysForCommand("+use");
 
-
 			//Do not listen for input if the menu is not open.
 			if (showpic == true)
 			{
-
 
 			//Set the limit to prevent out of bound error
 			if (Selected == CATEGORY && Current_Selected == CATEGORY)
@@ -253,17 +205,6 @@ override void NetworkProcess(Consoleevent e)
 			{	
 				array_x_limit = MenuSize[1].max_row;
 				array_y_limit = MenuSize[1].max_column;
-			}
-
-			else if (Current_Selected == HEAVY)
-			{
-				array_x_limit = MenuSize[2].max_row;
-				array_y_limit = MenuSize[2].max_column;
-			}
-			else if (Current_Selected == MBT)
-			{
-				array_x_limit = MenuSize[3].max_row;
-				array_y_limit = MenuSize[3].max_column;
 			}
 			
 			if (Current_Selected == CATEGORY)
@@ -294,15 +235,7 @@ override void NetworkProcess(Consoleevent e)
 						if (MCursor.row == 0)
 						{
 							Current_Selected = MEDIUM;
-						}
-						else if (MCursor.row == 1)
-						{
-							Current_Selected = HEAVY;
-						}
-						else if (MCursor.row == 2)
-						{
-							Current_Selected = MBT;
-						}				
+						}			
 					}
 			
 				}
@@ -360,28 +293,10 @@ override void NetworkProcess(Consoleevent e)
 
 }
 
-	
-// PLAY scope : collect data
-override void WorldTick()	// PLAY scope
-{
-
-	if (toggle == 1)
-	{
-		showpic = true;
-	}
-	else
-	{
-		showpic = false;
-		MCursor.row = 0;
-		MCursor.column = 0;
-	}
-
-}
-
 //UI Scope: you cannot alter data here
 override void renderOverlay(RenderEvent e)	// UI scope
 {	
-			
+
 	if (showpic)
 	{	
 	
@@ -415,6 +330,7 @@ override void renderOverlay(RenderEvent e)	// UI scope
 			}		
 		}
 		
+		/*
 		if (Current_Selected == Heavy)
 		{
 			for (int i = 0; i < HEAVYTANKS; i++)
@@ -446,6 +362,7 @@ override void renderOverlay(RenderEvent e)	// UI scope
 				}			
 			}		
 		}
+		*/
 		
 	
 			
@@ -461,11 +378,18 @@ static void CM_OpenMenu(actor player)
 	{
 	case (1):
 		Event.toggle = 0; 
-		player.SetInventory("MT_Classmenu_Item", 2);
-		player.TakeInventory("ImCrafting", 99);	
+		Event.showpic = false;
+		Event.Mcursor.Row = 0;
+		Event.MCursor.Column = 0;
+		
+		player.SetInventory("MT_Classmenu_Item", 0);
+		if (player.CheckInventory("ImCrafting", 0))
+			player.TakeInventory("ImCrafting", 99);	
 		Break;
 	case (2):
 		Event.toggle = 1;
+		Event.showpic = true;
+		
 		player.SetInventory("MT_Classmenu_Item", 1);
 		player.GiveInventory("ImCrafting", 99);
 		Break;
@@ -547,13 +471,13 @@ override void WorldLoaded(WorldEvent e)
 	Weapons[0][0].WeaponID = "MT_50mmCannon";
 	Weapons[0][0].Class_ = "Medium";
 	
-	Weapons[1][0].WeaponID = "MT_75mmCannon";
+	Weapons[1][0].WeaponID = "MT_50mmCannon";
 	Weapons[1][0].Class_ = "Advanced_Medium";
 	
-	Weapons[2][0].WeaponID = "MT_90mmCannon";
+	Weapons[2][0].WeaponID = "MT_50mmCannon";
 	Weapons[2][0].Class_ = "Heavy";
 	
-	Weapons[3][0].WeaponID = "MT_105mmCannon";
+	Weapons[3][0].WeaponID = "MT_50mmCannon";
 	Weapons[3][0].Class_ = "MBT";
 }
 

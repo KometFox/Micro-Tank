@@ -484,12 +484,3 @@ Spawn:
   }
 }
 */
-
-ACTOR MT_Power_RepairSlowdown : PowerSpeed
-{
-  Powerup.Duration -5
-  Speed 0.25
-  Powerup.Color "0 0 200", 0.1
- // Powerup.Type Speed
-  Inventory.Icon "N15SA0"
-}

@@ -345,12 +345,14 @@ static void Set_ChassisAngle(actor mo, int angle)
 	//Function for switching model
 	Static void SwitchModel(actor mo)
 	{
-		if (mo.CheckInventory("MT_Leopard1", 1, AAPTR_TARGET))
-		{ mo.SetStateLabel("Leopard1"); }
-		else if (mo.CheckInventory("MT_Tiger1", 1, AAPTR_TARGET))
-		{ mo.SetStateLabel("Tiger1"); }	
-		else if (mo.CheckInventory("MT_PanzerIIIJ", 1, AAPTR_TARGET))
-		{ mo.SetStateLabel("PanzerIIIJ"); }
+		/*
+		if (mo.CheckInventory("MT_Tiger1", 1, AAPTR_TARGET))
+		{ 
+			mo.SetStateLabel("Tiger1"); 
+		}
+		*/
+		
+		mo.SetStateLabel("Tiger1"); 
 	}
 
 	//Execute functions
@@ -583,16 +585,17 @@ int user_chassisangle;
 		}
 	}
 
-
 	//Function for switching model
 	Static void SwitchModel(actor Player)
 	{
-		if (player.CheckInventory("MT_Leopard1", 1, AAPTR_DEFAULT))
-		{ player.SetStateLabel("Leopard1", true); }
-		else if (player.CheckInventory("MT_Tiger1", 1, AAPTR_DEFAULT))
-		{ player.SetStateLabel("Tiger1", true); }	
-		else if (player.CheckInventory("MT_PanzerIIIJ", 1, AAPTR_DEFAULT))
-		{ player.SetStateLabel("PanzerIIIJ", true); }
+		/*
+		if (player.CheckInventory("MT_Tiger1", 1, AAPTR_DEFAULT))
+		{ 
+			player.SetStateLabel("MT_Tiger1", true); 
+		}
+		*/
+		
+		player.SetStateLabel("Tiger1", true); 
 	}
 	
 	//Function to force switch weapon
@@ -612,7 +615,7 @@ player.sidemove 0;
 player.jumpz 0;
 player.face "TKF";
 player.maxhealth 1600;
-Player.DamageScreenColor "Yellow", 0.1;
+Player.DamageScreenColor "Black", 0.05;
 health 1600;
 Speed 0.0;
 Species "TankPlayer";
@@ -628,8 +631,18 @@ BloodType "TankBlood", "TankBlood", "TankBlood";
 +DONTRIP;
 Player.ColorRange 112, 127;
 //Internal stuff, very important
+/*
+Player.StartItem "MT_PitchToRear", 1;
+Player.StartItem "MT_PitchReset", 1;
+Player.StartItem "MT_PitchRearToken",1;
+Player.StartItem "MT_PitchFrontToken",1;
+Player.StartItem "MT_Tiger1", 1;
+Player.StartItem "TurnLeft", 1;
+Player.StartItem "TurnRight", 1;
+Player.StartItem "ImCrafting", 1;
+*/
+
 Player.StartItem "MT_ClassToken"              ,1;
-//Player.StartItem "MHTA1_Token"                ,1;
 Player.StartItem "MTU_SupplyBox_2"            ,1;
 Player.StartItem "MT_Subgun_Slot"             ,1;
 Player.StartItem "MT_AmmoSwitcher"            ,1;
@@ -641,20 +654,19 @@ Player.StartItem "MT_Nightvision_MK1"         ,1;
 Player.StartItem "MT_ChaseCamera_MK1"         ,1;
 Player.StartItem "MT_ChaseCameraToken"        ,2;
 Player.StartItem "MT_PeriscopeItem"           ,1;
-Player.StartItem "MT_HPICube_Item"            ,1;
 Player.StartItem "MT_Classmenu_Item"          ,1;
 //Lockers
 //Weapons
 Player.StartItem "Multi_Purpose_Device"       ,1;
 //Ammo
-Player.Startitem "MT_75x500mmHE"                ,20;
-Player.Startitem "MT_75x500mmAP"                ,40;
-Player.Startitem "A_7u62x54mmR"                 ,1200;
+Player.Startitem "MT_75x500mmHE"                ,30;
+Player.Startitem "MT_75x500mmAP"                ,60;
+Player.Startitem "A_7u62x54mmR"                 ,2000;
 //Items
 //  Player.startitem "Item_GrenadePod_Smoke"        ,8
 Player.startitem "Item_GrenadePod_SSS"          ,1;
-Player.startitem "MT_Item_GrenadePod_Flare"     ,6;
-Player.Startitem "MT_GrenadePod_Explosive"      ,4;
+Player.startitem "MT_Item_GrenadePod_Flare"     ,40;
+Player.Startitem "MT_GrenadePod_Explosive"      ,20;
   
 //MT Damage types
 DamageFactor "PiercingExplosive" ,0.75;
@@ -716,8 +728,8 @@ DamageFactor "Electric"          ,0.75;
 			ThrustThingZ(0, 100, -1, 1);
 			A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE);
 
-			SwitchModel(Self);
 			ClassSwitcher.Send_Actor(self, self, "turret");
+			SwitchModel(Self);
 			
 			A_SpawnItemEx("MT_Tank_Chassis", 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);			
 			

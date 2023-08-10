@@ -35,10 +35,10 @@ override void WorldLoaded(WorldEvent e)
 
 
 	//MBT
-	Weapons[0][0].WeaponID = "MT_90mmCannon";
+	Weapons[0][0].WeaponID = "MT_50mmCannon";
 	
 	//Heavy
-	Weapons[1][0].WeaponID = "MT_90mmCannon";
+	Weapons[1][0].WeaponID = "MT_50mmCannon";
 	
 	//Medium
 	Weapons[2][0].WeaponID = "MT_50mmCannon";

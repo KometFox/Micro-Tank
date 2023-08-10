@@ -1,0 +1,49 @@
+//Main Menu
+//------------------------------------------------------------------------------
+//COLUMN 0
+//------------------------------------------------------------------------------
+Extend Class BuyMenuScript
+{
+	void InitMenu()
+	{
+		let Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 250;
+		Elementy.rect_pos.y = 100;
+		Elementy.Text = "Items";
+		Elementy.Command = "Items";
+		Elementy.Column = 0;
+		AddElements(Elementy);
+	}
+
+
+}
+//------------------------------------------------------------------------------
+//COLUMN 1 (ITEMS)
+//------------------------------------------------------------------------------
+Extend Class BuyMenuScript 
+{
+	//The Weapon SubMenu
+	void OpenItemsMenu()
+	{
+		let Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130;
+		Elementy.Text = "Ammo";
+		Elementy.Command = "Ammo";
+		Elementy.Column = 1;
+		AddElements(Elementy);
+
+		Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 138;
+		Elementy.Text = "Supply";
+		Elementy.Command = "Supplies";
+		Elementy.Column = 2;
+		AddElements(Elementy);
+	}
+}
+
+//------------------------------------------------------------------------------
+//COLUMN 1 (WEAPONS)
+//------------------------------------------------------------------------------
+//Weapon Submenu

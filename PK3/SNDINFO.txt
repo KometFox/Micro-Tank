@@ -127,8 +127,8 @@ MG/FireA3  MGFireA3
 MG/MG42A MG42FIR1
 MG/MG42B MG42FIR2
 MG/MG42C MG42FIR3
-$random LMachinegun/Fire {MG/PKMFire}
-//$random LMachinegun/Fire {MG/FireA2 MG/FireB2 MG/FireC2}
+//$random LMachinegun/Fire {MG/PKMFire}
+$random LMachinegun/Fire {MG/FireA2 MG/FireB2 MG/FireC2}
 $random HMachinegun/Fire {MG/FireA3}
 $random QMachinegun/Fire {MG/Fire2}
 

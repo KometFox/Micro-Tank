@@ -1,3 +1,6 @@
+//Internal Usage
+user int MTCVAR_Credits = 2000; //Player Geld
+
 //
 //Default settings, Server/SP only
 server int mtcvar_creditstart = 5000;

@@ -7,7 +7,6 @@ Class AmmoSwitcher : EventHandler
 
 override void Networkprocess(ConsoleEvent e)
 {
-	
 		int ML1, ML2;
 		int MR1, MR2;
 		[ML1, ML2] = Bindings.GetKeysForCommand("MTC_AmoSwcL");
@@ -28,7 +27,6 @@ override void Networkprocess(ConsoleEvent e)
 			{
 				MT_BaseWeaponZS.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
 			}
-			//Console.PrintF("%d", Ammo_Selected);
 			
 		}
 		else if ((MR1 && MR1 == e.Args[0]) || (MR2 && MR2 == e.Args[0]))
@@ -46,7 +44,6 @@ override void Networkprocess(ConsoleEvent e)
 			{
 				MT_BaseWeaponZS.Set_Loaded_Projectile(gun_invoker, Ammo_Selected);
 			}
-			//Console.PrintF("%d", Ammo_Selected);
 		}
 
 

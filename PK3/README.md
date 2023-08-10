@@ -1,18 +1,11 @@
-Mod Version: 1V Git Development
+Mod Version: v1U Development
 
 OpenGL render is required!
 Software doesn't support 3D models.
-About the pk3:
-Adds in tank classes about the size of a mice.
+Description:
+Adds several tank classes.
 
-Author:
-DOT
+Author: DOT
 
-Supported Source Port: GZDoom 4.2.0
+Supported Sourceport: GZDoom 4.5.0
 Supported IWAD: freedoom*.wad, doom*.wad
-Modules: Enemies, Missionpack 1
-
-Contact::
-IRC:
-server: irc.zandronum.com:6667
-channel: #zandronum

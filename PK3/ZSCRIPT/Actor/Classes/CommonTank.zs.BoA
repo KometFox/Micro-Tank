@@ -1,0 +1,2962 @@
+//------------------------------------------------------------------------------
+//MAIN 
+//------------------------------------------------------------------------------
+
+/*
+Code taken from Blades of Agony
+*/
+
+//
+// Vehicle base class - handles trample effect and slope aware terrain following
+class VehicleBase : MT_Actor
+{
+	double trampleradius;
+
+	Property TrampleRadius:trampleradius;
+
+	Default
+	{
+		VehicleBase.TrampleRadius -1;
+	}
+
+	// Handling for terrain-based pitch/roll calculations...
+	static double SetPitchRoll(Actor mo, double xoffset = 0, double yoffset = 0, int cap = 80, bool force = false, double centerxoffset = 0, double centeryoffset = 0)
+	{
+		if (!mo) { return 0; }
+
+		double testwidth = mo.radius + yoffset;
+		double testlength;
+
+		if (mo is "TankTreadsBase") { testlength = TankTreadsBase(mo).length; }
+		if (!testlength) { testlength = mo.radius + xoffset; }
+
+		// Account for current pitch/roll when measuring corner heights
+		testwidth *= abs(cos(mo.roll));
+		testlength *= abs(cos(mo.pitch));
+
+		double points[4], minz = 0x7FFFFFFF, maxz = -0x7FFFFFFF;
+
+		// Get the relative z-height at the four corners of the tank
+		points[0] = mo.GetZAt(centerxoffset + testlength, centeryoffset + testwidth);
+		points[1] = mo.GetZAt(centerxoffset + testlength, centeryoffset - testwidth);
+		points[2] = mo.GetZAt(centerxoffset - testlength, centeryoffset + testwidth);
+		points[3] = mo.GetZAt(centerxoffset - testlength, centeryoffset - testwidth);
+
+		for (int i = 0; i < 4; i++)
+		{
+			double maxstep = mo.master ? mo.master.MaxStepHeight : mo.MaxStepHeight;
+			double maxdrop = mo.master ? mo.master.MaxDropoffHeight : mo.MaxDropoffHeight;
+
+			if (points[i] > mo.pos.z + maxstep) { points[i] = 0; } // Ignore the point if you can't climb that high
+			else if (points[i] < mo.pos.z - maxdrop) { points[i] = 0; } // Ignore the point if it's a dropoff
+			else { points[i] -= mo.floorz; }
+		}
+
+		// Use those values to calculate the pitch.roll amounts
+		double pitchinput = (points[0] + points[1]) / 2 - (points[2] + points[3]) / 2;
+		double rollinput = (points[1] + points[3]) / 2 - (points[0] + points[2]) / 2;
+
+		pitchinput = atan(pitchinput / (testlength * 2));
+		rollinput = atan(rollinput / (testwidth * 2));
+
+		// Interpolate to the new values
+		if (force || level.time && level.time < 15)
+		{
+			mo.pitch = clamp(-pitchinput, -cap, cap);
+			mo.roll = clamp(rollinput, -cap, cap);
+		}
+		else
+		{
+			if (mo.pitch > -pitchinput) { mo.pitch = max(mo.pitch - 1, -pitchinput); }
+			if (mo.pitch < -pitchinput) { mo.pitch = min(mo.pitch + 1, -pitchinput); }
+
+			if (mo.roll > rollinput) { mo.roll = max(mo.roll - 1, rollinput); }
+			if (mo.roll < rollinput) { mo.roll = min(mo.roll + 1, rollinput); }
+
+			mo.pitch = clamp(mo.pitch, -cap, cap);
+			mo.roll = clamp(mo.roll, -cap, cap);
+		}
+
+
+		if (mo.master)
+		{
+			// Return the amount that you need to adjust the model z position by in order to keep it looking like it's actually on the ground
+			double deltaz = testlength * sin(abs(mo.pitch)) + testwidth * sin(abs(mo.roll));
+
+			return deltaz; 
+		}
+
+		return 0;
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		//if (other is "FlattenableProp") { return false; }
+		//if (other is "Trample") { return false; }
+		return true;
+	}
+
+	override void Tick()
+	{
+		SetPitchRoll(self);
+		DoTrample();
+
+		Actor.Tick();
+	}
+
+	void DoTrample(bool always = false)
+	{
+		double movespeed = vel.length();
+
+		if (trampleradius == -1)
+		{
+			if (self is "TankBase" && TankTreadsBase(TankBase(self).treads))
+			{
+				trampleradius = TankBase(self).treads.radius;
+			}
+			else { trampleradius = radius; }
+		}
+
+		if (movespeed >= 1 || always)
+		{
+			double dmg = always ? 1 : movespeed * 0.625;
+			let treads = TankTreadsBase(TankBase(self).treads);
+
+			bool sp;
+			Actor t;
+
+			// The explosion should only stick out 16 units in front of the tank
+			double offset = trampleradius - radius + 16;
+			if (self is "TankBase" && treads) { offset = max(treads.length, radius) - trampleradius + 16; }
+
+			double angleoffset = treads ? treads.angle : 0;
+
+			[sp, t] = A_SpawnItemEx("Trample", offset, 0, 0, 0, 0, 0, angleoffset, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE | SXF_ABSOLUTEANGLE);
+
+			if (t)
+			{
+				t.target = self; // Set the vehicle as the Trample actor's target, because Trample uses A_Explode, which defaults to treating the actor's target as the originator (and doesn't damage it)
+				t.A_SetSize(trampleradius, Height / 3);
+				Trample(t).dmg = int(dmg);
+				if (treads) { t.angle = treads.angle; }
+			}
+		}
+	}
+}
+
+// Trample actor - basically an explosion that simulates the spawning actor running over actors within its radius
+// Used by tanks and by rail sequences
+class Trample : MT_Actor
+{
+	int dmg;
+	int flags;
+
+	Default
+	{
+		DamageType "Trample";
+		Damage 5;
+		Height 56;
+		Radius 56;
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+NOCLIP
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Death:
+			"####" # 20 {
+				A_Explode(dmg == 0 ? damage : dmg, int(Radius), flags, FALSE, int(Radius));
+			}
+			Stop;
+	}
+}
+
+// Target for tanks to aim at
+class TankInterceptTarget : Actor
+{
+	Default
+	{
+		+BRIGHT
+		+INVISIBLE
+		+NOINTERACTION
+		Alpha 0.5;
+		RenderStyle "Translucent";
+	}
+
+	States
+	{
+	Spawn:
+		EXCL A -1;
+		Stop;
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		if (developer >= 1)
+		{
+			bInvisible = false;
+		}
+		else
+		{
+			bInvisible = true;
+		}
+	}
+}
+
+// Base tank enemy actor.  Follows terrain, tramples.
+//  Calls:
+//   DoTurretTarget (when turret is aimed at the target)
+//   DoTurret (when all conditions are right to fire a turret missile)
+//   DoFrontWeapon (when conditions are right to fire straight ahead)
+//
+// See FriendlySherman below for use
+class TankBase : VehicleBase
+{
+	Actor ally, treads, turret, gun, gunspot, frontgunspot;
+	Class<Actor> body;
+	Class<Actor> TurretProjectile;
+	Class<Actor> FrontGunProjectile;
+	double minpitch, maxpitch, minp, maxp;
+	int missilecount, missiletimeout, bulletcount, bullettimeout, chasetimeout, turrettimeout, reversetimeout, targettimeout, turretdelay;
+	sound movesound, idlesound;
+	bool missiletargeted, wheeled;
+	double zoffset, turretanglerange, turretspeed;
+	bool user_static;
+	bool intercept;
+	Actor InterceptTarget; // Target for tank to aim at
+	
+	Property TankActor:body;
+	Property MoveSound:movesound;
+	Property IdleSound:idlesound;
+	Property TurretAngleRange:turretanglerange;
+	Property TurretSpeed:turretspeed;
+	Property WheeledMovement:wheeled;
+	Property MaxGunPitch:maxpitch;
+	Property MinGunPitch:minpitch;
+	Property TurretProjectile:TurretProjectile;
+	Property FrontGunProjectile:FrontGunProjectile;
+	Property TurretDelay:turretdelay;
+
+	Default
+	{
+		MaxDropoffHeight 24;
+		MaxStepHeight 24;
+		Height 20;
+		Radius 16;
+		Mass 0x7ffffff;
+		BloodType "TankSpark";
+		DamageFactor "Melee", 0.0;	// Knife, boot, etc.
+		DamageFactor "Bullet", 0.125;	// Most guns
+		DamageFactor "Pellet", 0.125;	// Shotguns
+		DamageFactor "Rifle", 0.5;	// Kar98, sniper rifle, chaingun
+		DamageFactor "Fire", 0.5;	// Flamer
+		DamageFactor "Trample", 0.1;	// Collision with another Tank/Vehicle
+		Monster;
+
+		Obituary "$TANKGUN";
+		Species "NaziTank";
+		MaxTargetRange 2048;
+		RenderStyle "None";
+		+AVOIDMELEE
+		+BOSS
+		+BOSSDEATH
+		+DONTMORPH
+		+FLOORCLIP
+		+ISMONSTER
+		+LOOKALLAROUND
+		+NOBLOOD
+		+NOBLOODDECALS
+		+NODROPOFF
+		+NOINFIGHTING
+		+PAINLESS
+		+SLIDESONWALLS
+		+SOLID
+		TankBase.TankActor "US_Sherman";
+		TankBase.MoveSound "TKMOVE";
+		TankBase.IdleSound "TKIDLE";
+		TankBase.MinGunPitch -10;
+		TankBase.MaxGunPitch 25;
+		TankBase.TurretSpeed 1.5;
+		TankBase.TurretProjectile "Rocket";
+		//TankBase.TurretProjectile "TankMissile";
+		TankBase.FrontGunProjectile "PlasmaBall";
+		//TankBase.FrontGunProjectile "EnemyChaingunTracer";
+		TankBase.TurretDelay 9;
+	}
+
+	States
+	{
+		Spawn:
+			MDLA A 35 {
+				target = FindEnemy();
+				if (target) { SetStateLabel("See"); }
+			}
+			Loop;
+		See:
+			TNT1 A 1 A_TankChase();
+			Goto See;
+		Death:
+			TNT1 A -1 DoDeath();
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		//A_GiveInventory("Z_DontShadeMe");
+
+		// Spawn everything in neutral orientation
+		pitch = 0;
+		roll = 0;
+
+		if (bFriendly) { Species = "AllyTank"; }
+		else { Species = "NaziTank"; }
+
+		bool sp;
+		while (!treads) { [sp, treads] = A_SpawnItemEx(body, 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		treads.master = self;
+		treads.bSolid = false;
+		treads.Species = Species;
+		treads.bFriendly = bFriendly;
+
+		if (!user_static) { A_StartSound(idlesound, CHAN_6, CHANF_LOOPING, 0.25); }
+		else { level.total_monsters--; }
+
+		targettimeout = Random(0, 35);
+		// Disable intercepting missiles on lower skill levels
+		intercept = G_SkillPropertyInt(SKILLP_ACSReturn) > 2;
+		InterceptTarget = Spawn("TankInterceptTarget", Pos, ALLOW_REPLACE);
+
+		Super.PostBeginPlay();
+	}
+
+	void DoDeath()
+	{
+		if (turret) { turret.Destroy(); }
+		InterceptTarget.Destroy();
+
+		A_StopSound(CHAN_6); //the idle sound
+		A_StopSound(CHAN_7);
+		A_StartSound("weapons/explode", CHAN_AUTO, 0, 1.0, ATTN_IDLE);
+		A_Scream();
+		A_NoBlocking();
+
+		if (treads)
+		{
+			Actor hulk = Spawn(TankTreadsBase(treads).deadclass, pos);
+
+			hulk.angle = treads.angle;
+			hulk.pitch = treads.pitch;
+			hulk.roll = treads.roll;
+
+			for (int i = 0; i < 30; i++)
+			{
+				A_SpawnItemEx(TankTreadsBase(treads).debris, random(88, 96), random(88, 96), random(88, 112), random(1, 3), random(1, 3), random(1, 3), random(0, 360), SXF_CLIENTSIDE);
+				//A_SpawnItemEx("Debris_GlassShard_Large", random(88, 96), random(88, 96), random(96, 128), random(1, 3), random(1, 3), random(1, 3), random(0, 360), SXF_CLIENTSIDE);
+			}
+		}
+
+		A_RemoveChildren(true, RMVF_EVERYTHING);
+		
+		//A_SpawnItemEx("Nuke", 0, 0, 5, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION);
+		//A_SpawnItemEx("KaBoomer", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS);
+		//A_SpawnItemEx("GeneralExplosion_Large", 56, 0, 32);
+	}
+
+	override void Tick()
+	{
+		Actor.Tick();
+
+		if (globalfreeze || level.Frozen || user_static) { return; }
+
+		if (missiletimeout > 0) { missiletimeout--; }
+		if (bullettimeout > 0) { bullettimeout--; }
+		if (chasetimeout > 0) { chasetimeout--; }
+		if (turrettimeout > 0) { turrettimeout--; }
+		if (reversetimeout > 0) { reversetimeout--; }
+		if (targettimeout > 0) { targettimeout--; }
+
+		if (!turret)
+		{
+			if (TankTreadsBase(treads))
+			{
+				turret = TankTreadsBase(treads).turret;
+
+				if (turret)
+				{
+					turret.master = self;
+					turret.angle = angle;
+					turret.bSolid = false;
+					turret.Species = Species;
+				}
+			}
+		}
+		
+
+		if (treads && turret)
+		{
+			double zoffset = VehicleBase.SetPitchRoll(treads);
+			double newz = pos.z - zoffset > GetZAt(0, 0) + MaxDropoffHeight ? pos.z - zoffset : GetZAt(0, 0);
+			treads.SetOrigin((pos.xy, newz), true);
+
+			double delta = deltaangle(treads.angle, turret.angle);
+
+			minp = treads.pitch * cos(delta) - maxpitch;
+			maxp = treads.pitch * cos(delta) - minpitch;
+
+			turret.SetOrigin(treads.pos + (RotateVector((treads.radius * sin(treads.pitch), -treads.radius * sin(treads.roll)), treads.angle), treads.height * cos(treads.roll)), true);
+
+			turret.pitch = treads.roll * sin(-delta) + treads.pitch * cos(delta);
+			turret.roll = treads.roll * cos(-delta) + treads.pitch * sin(delta);
+
+			if (!gun) { gun = TankTurretBase(turret).gun; }
+
+			if (gun)
+			{
+				gun.A_Face(target, 0, turretspeed, flags:FAF_MIDDLE);
+
+				// Force pitch clamping
+				if (turret.pitch + gun.pitch >= maxp) { gun.pitch = maxp; }
+				else if (turret.pitch + gun.pitch < minp)  { gun.pitch = minp; }
+
+				gun.roll = turret.roll;
+			}
+
+			if (!gunspot) { gunspot = TankTurretBase(turret).gunspot; }
+		}
+
+		if (!frontgunspot) { frontgunspot = TankTreadsBase(treads).gunspot; }
+
+		//if (bFriendly && (!ally || ally.health <= 0)) { ally = FindClosestPlayer(self, 360, 0, false); }
+
+		if (target && bAvoidMelee) { bFrightened = Distance2D(target) < 256; } // Keep distance from the target
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (IsFriend(other) || (other is "TankBlocker" && other.Species == Species)) { return false; }
+
+		if (!treads || (other.pos.z + height > treads.pos.z && other.pos.z < treads.pos.z + treads.height))
+		{
+			other.DamageMobj(self, self, int(vel.length() * 0.625), "Trample");
+		}
+
+		return Super.CanCollideWith(other, passive);
+	}
+
+	Actor FindEnemy()
+	{
+		Actor enemy = null;
+
+		if (bFriendly)
+		{
+			if (ally && ally.player.attacker && ally.player.attacker != ally && ally.player.attacker.health > 0)
+			{
+				if (Distance3D(ally.player.attacker) < MaxTargetRange) { enemy = ally.player.attacker; }
+			}
+		}
+		else
+		{
+			for (int p = 0; p < MAXPLAYERS; p++)
+			{ // Iterate through all of the players and find the closest one
+				Actor pl = players[p].mo;
+
+				if (pl)
+				{
+					if (!pl.bShootable || pl.health <= 0) { continue; }
+					if (players[p].cheats & CF_NOTARGET) { continue; }
+					if (isFriend(pl)) { continue; }
+					if (Distance3D(pl) > MaxTargetRange) { continue; }
+					if (enemy && Distance3d(pl) > Distance3d(enemy)) { continue; }
+
+					enemy = pl;
+				}
+			}
+		}
+
+		ThinkerIterator Finder;
+		//Base mo;
+		Actor mo;
+
+		// Only target sneakable actors if you are a friendly tank (so that enemy tanks won't target sneakable enemies)
+		/*
+		if (bFriendly)
+		{
+			Finder = ThinkerIterator.Create("Base", STAT_DEFAULT - 5);
+
+			while ( (mo = Base(Finder.Next())) )
+			{
+				if (!IsValidTarget(mo)) { continue; }
+				if (enemy && Distance3d(mo) > Distance3d(enemy)) { continue; }
+
+				enemy = mo;
+			}
+		}
+		*/
+
+		// A Second iterator to account for the non-sneakables...
+		//Finder = ThinkerIterator.Create("Base", STAT_DEFAULT);
+		Finder = ThinkerIterator.Create("MT_Actor", STAT_DEFAULT);
+
+		/*
+		while ( (mo = Base(Finder.Next())) )
+		{
+			if (!IsValidTarget(mo)) { continue; }
+			if (enemy && Distance3d(mo) > Distance3d(enemy)) { continue; }
+
+			enemy = mo;
+		}
+		*/
+
+		// A third iterator to account for the player followers...
+		/*
+		Finder = ThinkerIterator.Create("PlayerFollower", STAT_DEFAULT);
+		PlayerFollower pf;
+
+		while ( (pf = PlayerFollower(Finder.Next())) )
+		{
+			if (!IsValidTarget(pf)) { continue; }
+			if (enemy && Distance3d(pf) > Distance3d(enemy)) { continue; }
+
+			enemy = pf;
+		}
+		*/
+
+		return enemy;
+	}
+
+	bool IsValidTarget(Actor mo)
+	{
+		if (mo is "TankBase" && TankBase(mo).treads) { mo = TankBase(mo).treads; }
+
+		if (
+			!mo.bIsMonster ||
+			mo.health <= 0 ||
+			mo.bDormant ||
+			!IsHostile(mo) ||
+			mo == self ||
+			!CheckSight(mo) ||
+			Distance3D(mo) > MaxTargetRange //|| 
+			//mo is "StatistBarkeeper" || // Ignore NPCs...
+			//mo is "Camp_PrisonerBald" || // Ignore Camp Prisoners...
+			//(!bFriendly && Nazi(mo) && Nazi(mo).user_sneakable) // Ignore sneakables who are set via editor property
+		) { return false; }
+
+		return true;
+	}
+
+	virtual void A_TankChase(int flags = 0)
+	{
+		if (!treads || user_static) { return; }
+
+		if (bStandStill) { flags |= CHF_DONTMOVE | CHF_DONTTURN; }
+
+		if (!targettimeout && (!target || target.health <= 0 || !CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT, maxtargetrange) || !IsValidTarget(target))) { target = FindEnemy(); targettimeout = 70; }
+
+		if ((!chasetimeout || !wheeled) && !(flags & CHF_DONTTURN))
+		{
+			double diff = deltaangle(treads.angle, angle);
+
+			double turnamt = speed / (wheeled ? 3 : 5);
+
+			if (reversetimeout) { turnamt *= -1; }
+
+			if (abs(diff) > abs(turnamt) + 2)
+			{
+				if (diff < turnamt)
+				{
+					treads.angle -= turnamt;
+					flags |= CHF_DONTMOVE;
+					if (InStateSequence(treads.CurState, treads.SpawnState) && treads.FindState("Move")) { treads.SetStateLabel("Move"); }
+				}
+				else if (diff > -turnamt)
+				{
+					treads.angle += turnamt;
+					flags |= CHF_DONTMOVE;
+					if (InStateSequence(treads.CurState, treads.SpawnState) && treads.FindState("Move")) { treads.SetStateLabel("Move"); }
+				}
+				else
+				{
+					treads.angle = angle;
+				}
+			}
+
+			if (wheeled) { DoMove(); }
+		}
+
+		if (!target || !CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT, maxtargetrange, offsetforward: treads.radius))
+		{
+			missiletimeout = 70;
+			bullettimeout = 35;
+		}
+
+		Actor cannon = gunspot ? gunspot : (gun ? gun : turret);
+		if (turret && !missiletimeout && !turrettimeout && missiletargeted && CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT, maxtargetrange, offsetforward: treads.radius))
+		{
+			flags |= CHF_DONTMOVE | CHF_DONTTURN;
+
+			DoTurret(cannon);
+			missiletargeted = false;
+		}
+
+		if (turret && !turrettimeout)
+		{
+			if (target)
+			{
+				Actor aimAt = target;
+				if (intercept)
+				{
+					double interceptTime;
+					//interceptTime = ZScriptTools.GetInterceptTime4(Pos, Target.Pos, Target.Vel, GetDefaultSpeed(TurretProjectile));
+					interceptTime += turretdelay; // Account for pre-fire delay
+					Vector3 interceptPos = Target.Pos + Target.Vel * interceptTime;
+					InterceptTarget.SetOrigin(interceptPos, true);
+					aimAt = InterceptTarget;
+				}
+				if (turretanglerange > 0)
+				{
+					double delta = deltaangle(treads.angle, treads.AngleTo(aimAt));
+
+					if (abs(delta) <= turretanglerange) { turret.A_Face(aimAt, turretspeed); A_StartSound("MACHINE_LOOP_3", 8, CHANF_NOSTOP, 1.0); }
+					else { turret.angle = clamp(turret.angle, treads.angle - turretanglerange, treads.angle + turretanglerange); A_StartSound("MACHINE_LOOP_3", 8, CHANF_NOSTOP, 1.0); }
+				}
+				else { turret.A_Face(aimAt, turretspeed); }
+
+				if (int(turret.angle) == int(turret.AngleTo(aimAt)))
+				{
+					A_StopSound(8);
+					if (CheckLOF(CLOFF_JUMPENEMY | CLOFF_SKIPOBJECT, maxtargetrange, offsetforward: treads.radius) && (!gun || (gun.pitch - turret.pitch >= minp && gun.pitch - turret.pitch <= maxp)))
+					{
+						DoTurretTarget(cannon);
+					}
+				}
+			}
+			else
+			{
+				turret.angle = clamp(treads.angle, turret.angle - turretspeed, turret.angle + turretspeed);
+			}
+		}
+
+		if (!bullettimeout && frontgunspot && abs(deltaangle(frontgunspot.angle, frontgunspot.AngleTo(target))) <= 5 && CheckLOF(CLOFF_JUMPENEMY | CLOFF_MUSTBESOLID, maxtargetrange * 2 / 3, offsetforward: Radius * 2))
+		{
+			DoFrontWeapon(frontgunspot ? frontgunspot : treads);
+		}
+
+		if (chasetimeout)
+		{
+			flags |= CHF_DONTMOVE | CHF_DONTTURN;
+			A_StopSound(CHAN_7);
+		}
+		else if (!bStandStill)
+		{
+			DoMove();
+		}
+
+		A_Chase(null, null, flags);
+	}
+
+	void DoMove()
+	{
+		if (!treads) { return; }
+
+		if (reversetimeout <= 0 && speed != default.speed) { speed = Default.speed; }
+
+		if (!CheckPosition(pos.xy + RotateVector((reversetimeout ? -32 : 32, 0), treads.angle)))
+		{
+			if (wheeled || !BlockingMobj)
+			{
+				speed *= -0.5;
+				if (speed < 0) { reversetimeout = int((15 + Random(0, 35)) * Default.Speed); }
+				else { reversetimeout = 0; }
+			}
+		}
+
+		A_ChangeVelocity(cos(treads.angle) * speed, sin(treads.angle) * speed, vel.z, CVF_REPLACE);
+
+		if (InStateSequence(treads.CurState, treads.SpawnState) && treads.FindState("Move"))
+		{
+			 treads.SetStateLabel("Move");
+		}
+
+		DoTrample(true);
+
+		A_StartSound(movesound, CHAN_7, CHANF_LOOPING, 1.0);
+	}
+
+	// Fire the main cannon at the target. The main cannon is assumed to be
+	// already aiming at its target.
+	// origin - The main cannon actor
+	virtual void DoTurret(Actor origin)
+	{
+		missiletargeted = false;
+		bullettimeout = 20;
+		turrettimeout = 40;
+		chasetimeout = 5;
+	}
+
+	// Fire the turret at the target. The turret is not assumed to be aiming at
+	// its target, so you will need to make the turret aim at the target when.
+	// you override this method.
+	// origin - The turret actor
+	virtual void DoTurretTarget(Actor origin)
+	{
+		missiletargeted = true;
+		chasetimeout = 40;
+		turrettimeout = turretdelay;
+	}
+
+	// Fire the front weapon at the target. The front weapon is assumed to be
+	// aiming at the target.
+	// origin - The front weapon
+	virtual void DoFrontWeapon(Actor origin)
+	{
+		chasetimeout = 20;
+		missiletimeout = 70;
+	}
+
+	override String GetObituary(Actor victim, Actor inflictor, Name mod, bool playerattack)
+	{
+		if (mod == 'Trample')
+		{
+			return "$TRAMPLE";
+		}
+		else if (mod == 'Rocket')
+		{
+			return "$TANKSHELL";
+		}
+
+		return Super.GetObituary(victim, inflictor, mod, playerattack);
+	}
+
+	override void OnDestroy()
+	{
+		if (user_static) { level.total_monsters++; }
+
+		Super.OnDestroy();
+	}
+}
+
+// Blocker object for the front and back of the tank used to keep actors from walking inside the model
+class TankBlocker : Actor
+{
+	Vector3 spawnoffset;
+	Vector3 offset;
+	double oldpitch;
+	double oldroll;
+	double oldangle;
+
+	Default
+	{
+		+CANPASS
+		+NOGRAVITY
+		+SOLID
+		+SHOOTABLE
+		+NOBLOOD
+		+NODAMAGE
+		+NOTAUTOAIMED
+		+DONTTHRUST
+		Painchance 255;
+		Radius 32;
+		Height 64;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		if (scale.x == 1.0 && scale.y == 1.0)
+		{
+			scale.x = Radius * 2; 
+			scale.y = Height;
+		}
+
+		if (master)
+		{
+			spawnoffset = pos - master.pos;
+
+			Vector2 temp = RotateVector((spawnoffset.x, spawnoffset.y), -master.angle);
+			spawnoffset = (temp.x, temp.y, spawnoffset.z);
+
+			offset = spawnoffset;
+		}
+	}
+
+	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		if (master && master.master) // Ugh...
+		{
+			if (source != master.master)
+			{
+				master.master.DamageMobj(inflictor, source, damage, mod, flags, angle);  // Inflict the damage on the owner of the tank
+			}
+		}
+
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);
+	}
+
+	override bool Used(Actor user)
+	{
+		if (master) { return master.Used(user); }
+		return false;
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (master && master.master && other != master && other != master.master && !master.master.IsFriend(other))
+		{
+			other.DamageMobj(self, master.master, int(master.master.vel.length() * 0.625), "Trample");
+
+			return master.CanCollideWith(other, passive);
+		}
+
+		return Super.CanCollideWith(other, passive);
+	}
+
+
+	override void Tick()
+	{
+		Super.Tick();
+
+		if (master)
+		{
+			scale.x *= master.scale.x;
+			scale.y *= master.scale.y;
+
+			SetTag(master.GetTag());
+
+			Species = master.Species;
+		}
+
+		Rotate();
+	}
+
+	void Rotate()
+	{
+		Vector2 temp;
+
+		// Keep the blocks in the correct position, regardless of pitch/roll of the master actor
+		// Obviously not perfect, because the blocks are square, but close enough when you can't see them.
+		if (master && spawnoffset != (0, 0, 0)) {
+			temp = RotateVector((spawnoffset.y, spawnoffset.z), master.roll);
+			offset = (spawnoffset.x, temp.x, temp.y);
+
+			temp = RotateVector((offset.x, offset.z), 360 - master.pitch);
+			offset = (temp.x, offset.y, temp.y);
+
+			temp = RotateVector((offset.x, offset.y), master.angle);
+			offset = (temp.x, temp.y, offset.z);
+
+			offset.x *= master.scale.x;
+			offset.y *= master.scale.x;
+			offset.z *= master.scale.y;
+
+			SetOrigin(master.pos + offset, true);
+
+			angle = master.angle;
+
+			oldpitch = master.pitch;
+			oldroll = master.roll;
+			oldangle = master.angle;
+		}
+	}
+}
+
+// Base actor for tank treads
+class TankTreadsBase : Actor
+{
+	Actor turret, gunspot;
+	Class<Actor> turretclass, deadclass, debris;
+	Class<PowerMorph> morphpowerup;
+	int savedhealth;
+	int usetimeout;
+	double length;
+	Vector3 gunspotoffset;
+	double gunspotoffsetx, gunspotoffsety, gunspotoffsetz;
+
+	Property TurretClass:turretclass;
+	Property Length:length;
+	Property MorphPowerup:morphpowerup;
+	Property DeadActor:deadclass;
+	Property DebrisActor:debris;
+	Property GunSpotX:gunspotoffsetx;
+	Property GunSpotY:gunspotoffsety;
+	Property GunSpotZ:gunspotoffsetz;
+
+	Default
+	{
+		Radius 64; // Also used as half-width of model for slope tilt calculations
+		Height 64;
+		Mass 0x7ffffff;
+		Species "NaziTank";
+		+CANPASS
+		+SOLID
+		TankTreadsBase.DeadActor "";
+		TankTreadsBase.DebrisActor "";
+		//TankTreadsBase.DebrisActor "Debris_Tank";
+		TankTreadsBase.Length 96; // Half-length of model for slope calculation
+		TankTreadsBase.MorphPowerup "";
+		TankTreadsBase.GunSpotX 0;
+		TankTreadsBase.GunSpotY 0;
+		TankTreadsBase.GunSpotZ 0;
+	}
+
+	States
+	{
+		Spawn:
+			MDLA A -1;
+			Stop;
+		Move:
+			MDLA AB 5;
+			Goto Spawn;
+		Death:
+			TNT1 A 1 DoDeath();
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		bool sp = false;
+
+		while (!turret) { [sp, turret] = A_SpawnItemEx(turretclass, 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL); }
+		//while (!turret) { [sp, turret] = A_SpawnItemEx(turretclass, 0, 0, Height, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+
+		double r = radius / 2;
+
+		/*
+		A_SpawnItemEx("TankBlocker", length - r, -r, flags: SXF_SETMASTER);
+		A_SpawnItemEx("TankBlocker", length - r, r, flags: SXF_SETMASTER);
+		A_SpawnItemEx("TankBlocker", -(length - r), -r, flags: SXF_SETMASTER);
+		A_SpawnItemEx("TankBlocker", -(length - r), r, flags: SXF_SETMASTER);
+		*/
+
+		gunspotoffset = (gunspotoffsetx, gunspotoffsety, gunspotoffsetz);
+		while (!gunspot) { [sp, gunspot] = A_SpawnItemEx("WeaponSpot", gunspotoffset.x, gunspotoffset.y, gunspotoffset.z, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		gunspot.master = self;
+
+		//if (morphpowerup) { BoACompass.Add(self, "TANKICO"); }
+
+		Super.PostBeginPlay();
+	}
+
+	override void Tick()
+	{
+		if (usetimeout) { usetimeout--; }
+
+		if (master && master.player)
+		{
+			double moving = master.player.cmd.forwardmove;
+
+			if (moving != 0)
+			{
+				double movespeed = master.vel.length();
+
+				int dir = moving > 0 ? 1 : -1; // Trample both forward and backwards, depending on which direction you're moving
+				double dmg = movespeed * 0.625; // Top speed gives ~100 damage
+
+				bool sp;
+				Actor t;
+
+				[sp, t] = A_SpawnItemEx("Trample", scale.x * 128 * dir, 0, height / 2 - 16, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE);
+
+				if (t)
+				{
+					t.target = master; // Set the player as the Trample actor's target, because it uses A_Explode, which defaults to treating the actor's target as the originator (and doesn't damage it)
+					Trample(t).dmg = int(dmg);
+				}
+			}
+		}
+
+		if (turret)
+		{
+			turret.bSolid = bSolid;
+			turret.bInvisible = bInvisible;
+		}
+
+		Super.Tick();
+	}
+
+	override bool Used(Actor user)
+	{
+		if (!morphpowerup) { return false; }
+
+		if (usetimeout || bDormant || master && (master.player || master.bIsMonster)) { return false; }
+
+		let p = user.player;
+
+		if (p)
+		{
+			bSolid = False;
+
+			p.mo.SetOrigin(pos, false);
+
+			if (turret) { p.mo.angle = turret.angle; }
+			else { p.mo.angle = angle; }
+
+			p.mo.tracer = self;
+
+			user.GiveInventory(morphpowerup, 1);
+			return true;
+		}
+		return false;
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (master && other != master && !master.IsFriend(other))
+		{
+			other.DamageMobj(self, master, int(0.5 * master.vel.xy.length()), "Trample");
+
+			return master.CanCollideWith(other, passive);
+		}
+
+		return Super.CanCollideWith(other, passive);
+	}
+
+	void DoDeath()
+	{
+		if (turret) { turret.Destroy(); }
+
+		A_StartSound("weapons/explode", CHAN_AUTO, 0, 1.0, ATTN_IDLE);
+
+		Actor dead = Spawn(deadclass, pos);
+
+		dead.angle = angle;
+		dead.pitch = pitch;
+		dead.roll = roll;
+
+		A_RemoveChildren(true, RMVF_EVERYTHING);
+
+		for (int i = 0; i < 20; i++)
+		{
+			//A_SpawnItemEx(debris, random(88, 96), random(88, 96), random(88, 112), random(1, 3), random(1, 3), random(1, 3), random(0, 360), SXF_CLIENTSIDE);
+			//A_SpawnItemEx("Debris_GlassShard_Large", random(88, 96), random(88, 96), random(96, 128), random(1, 3), random(1, 3), random(1, 3), random(0, 360), SXF_CLIENTSIDE);
+		}
+		
+		//A_SpawnItemEx("Nuke", 0, 0, 5, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION);
+		//A_SpawnItemEx("KaBoomer", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS);
+		//A_SpawnItemEx("GeneralExplosion_Large", 56, 0, 32);
+	}		
+}
+
+class PairedTire : Actor
+{
+	Vector3 spawnoffset;
+	bool turning;
+	int rotated;
+
+	Default
+	{
+		+NOGRAVITY
+		+NOINTERACTION
+	}
+
+	States
+	{
+		Spawn:
+			MDLA A -1;
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		if (!master) { Destroy(); return; }
+
+		spawnoffset = pos - master.pos;
+
+		spawnoffset = (RotateVector(spawnoffset.xy, -master.angle), spawnoffset.z);
+
+		bSolid = false;
+		Species = master.Species;
+		bFriendly = master.bFriendly;
+		angle = master.angle + rotated;
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (master && other != master) { return master.CanCollideWith(other, passive); }
+
+		return Super.CanCollideWith(other, passive);
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+
+		if (globalfreeze || level.Frozen) { return; }
+
+		scale.x = default.scale.x / level.pixelstretch; // Forceably correct skewed models introduced by pixel ratio settings
+
+		if (master)
+		{
+			Vector3 offset;
+
+			if (spawnoffset != (0, 0, 0))
+			{
+				Vector2 temp = RotateVector((spawnoffset.y, spawnoffset.z), master.roll);
+				offset = (spawnoffset.x, temp.x, temp.y);
+
+				temp = RotateVector((offset.x, offset.z), 360 - master.pitch);
+				offset = (temp.x, offset.y, temp.y);
+
+				temp = RotateVector((offset.x, offset.y), master.angle);
+				offset = (temp.x, temp.y, offset.z);
+			}
+
+			SetOrigin(master.pos + offset, true);
+
+			if (master.InStateSequence(master.CurState, master.FindState("Move")))
+			{
+				let base = master.master;
+				double speed = base ? base.speed : 1;
+
+				speed *= 2;
+
+				if (rotated >= 180) { speed *= -1; }
+
+				pitch += speed;
+			}
+
+			if (master.master && turning)
+			{
+				let base = master.master;
+				double dir = base ? base.speed / abs(base.speed) : 1;
+
+				double delta = deltaangle(master.angle, base.angle);
+
+				double destangle = clamp(master.angle + rotated + delta * dir, master.angle - 30 + rotated, master.angle + 30 + rotated);
+
+				angle = clamp(destangle, angle - 5, angle + 5);
+			}
+			else { angle = master.angle + rotated; }
+		}
+		else { Destroy(); }
+	}
+}
+
+// Base actor for tank turret
+class TankTurretBase : Actor
+{
+	Actor gun, gunspot;
+	Class<Actor> gunclass;
+	Vector3 spawnoffset;
+	Vector3 offset;
+	double gunoffsetx, gunoffsetz, turretoffsetx;
+	Vector3 gunspotoffset;
+	double gunspotoffsetx, gunspotoffsety, gunspotoffsetz;
+
+	Property TurretOffsetX:turretoffsetx;
+	Property GunClass:gunclass;
+	Property GunOffsetX:gunoffsetx;
+	Property GunOffsetZ:gunoffsetz;
+	Property GunSpotX:gunspotoffsetx;
+	Property GunSpotY:gunspotoffsety;
+	Property GunSpotZ:gunspotoffsetz;
+
+	Default
+	{
+		Height 0;
+		Species "NaziTank";
+		+DONTSPLASH
+		+NOGRAVITY
+		+SOLID
+		TankTurretBase.GunOffsetX 32;
+		TankTurretBase.GunOffsetZ 18;
+		TankTurretBase.GunSpotX 0;
+		TankTurretBase.GunSpotY 0;
+		TankTurretBase.GunSpotZ 0;
+	}
+
+	States
+	{
+		Spawn:
+			MDLA A -1;
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		bool sp = false;
+
+		if (gunclass)
+		{
+			while (!gun) { [sp, gun] = A_SpawnItemEx(gunclass, gunoffsetx, 0, gunoffsetz, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+			gun.Species = Species;
+
+			spawnoffset = gun.pos - pos;
+
+			spawnoffset = (RotateVector(spawnoffset.xy, -angle), spawnoffset.z);
+		}
+
+		gunspotoffset = (gunspotoffsetx, gunspotoffsety, gunspotoffsetz);
+		while (!gunspot) { [sp, gunspot] = A_SpawnItemEx("WeaponSpot", gunspotoffset.x, gunspotoffset.y, gunspotoffset.z, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		if (gun) { gunspot.master = gun; }
+		else { gunspot.master = self; }
+
+		Super.PostBeginPlay();
+	}
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (master && other != master) { master.CanCollideWith(other, passive); }
+
+		return true;
+	}
+
+	override void Tick()
+	{
+		if (gun)
+		{
+			gun.angle = angle;
+
+			Vector2 temp = RotateVector((spawnoffset.y, spawnoffset.z), roll);
+			offset = (spawnoffset.x, temp.x, temp.y);
+
+			temp = RotateVector((offset.x, offset.z), 360 - pitch);
+			offset = (temp.x, offset.y, temp.y);
+
+			temp = RotateVector((offset.x, offset.y), angle);
+			offset = (temp.x, temp.y, offset.z);
+
+			gun.SetOrigin(self.pos + offset, true);
+
+			gun.bSolid = bSolid;
+			gun.bInvisible = bInvisible;
+		}
+
+		Actor.Tick();
+	}
+
+	override void OnDestroy()
+	{
+		if (gun) { gun.Destroy(); }
+	}
+}
+
+class TankCannonBase : Actor
+{
+	Default
+	{
+		+DONTSPLASH
+		+NOGRAVITY
+		Species "Tank";
+	}
+
+	States
+	{
+		Spawn:
+			MDLA A -1;
+			Stop;
+	}
+}
+
+class TankDeadBase : Actor
+{
+	Default
+	{
+		Radius 88;
+		Height 96;
+		Mass 0x7ffffff;
+		+FLOORCLIP
+		+NOBLOOD
+		+NOBLOODDECALS
+		+NODAMAGE
+		+NOTAUTOAIMED
+		+SHOOTABLE
+		+SOLID
+		BloodType "TankSpark";
+	}
+	
+	States
+	{
+	Spawn:
+		MDLA A 12; //A_SpawnProjectile("TankSmoke",58,0,random(0,360),2,random(70,130));
+		Loop;
+	}
+}
+
+class ActorPositionable : Actor
+{
+	enum RotationFlags
+	{
+		ROT_MatchAngle = 1,
+		ROT_MatchPitch = 2,
+		ROT_MatchRoll = 4,
+	};
+
+	Vector3 spawnoffset;
+	Vector3 offset;
+
+	override void PostBeginPlay()
+	{
+		if (!master) { Destroy(); return; }
+
+		spawnoffset = pos - master.pos;
+
+		Vector2 temp = RotateVector((spawnoffset.x, spawnoffset.y), -master.angle);
+		spawnoffset = (temp.x, temp.y, spawnoffset.z);
+
+		Species = master.Species;
+
+		Super.PostBeginPlay();
+	}
+
+	void RotateWithMaster(int flags = ROT_MatchAngle | ROT_MatchPitch | ROT_MatchRoll)
+	{
+		Vector2 temp;
+
+		// Keep the actor in the correct position, regardless of pitch/roll of the master actor
+		if (master)
+		{
+			if (spawnoffset != (0, 0, 0))
+			{
+				temp = RotateVector((spawnoffset.y, spawnoffset.z), master.roll);
+				offset = (spawnoffset.x, temp.x, temp.y);
+
+				temp = RotateVector((offset.x, offset.z), 360 - master.pitch);
+				offset = (temp.x, offset.y, temp.y);
+
+				temp = RotateVector((offset.x, offset.y), master.angle);
+				offset = (temp.x, temp.y, offset.z);
+			}
+
+			SetOrigin(master.pos + offset, true);
+
+			if (flags & ROT_MatchAngle) { angle = master.angle; }
+
+			double delta = deltaangle(master.angle, angle);
+
+			if (flags & ROT_MatchPitch) { pitch = master.roll * sin(-delta) + master.pitch * cos(delta); }
+			if (flags & ROT_MatchRoll) { roll = master.roll * cos(-delta) + master.pitch * sin(delta); }
+		}
+	}
+
+	override void Tick()
+	{
+		RotateWithMaster();
+
+		Super.Tick();
+	}
+}
+
+class WeaponSpot : ActorPositionable
+{
+	Default
+	{
+		Height 2;
+		Radius 1;
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+NOINTERACTION
+		+INVISIBLE
+	}
+
+	States
+	{
+		Spawn:
+			AMRK A -1;
+			Stop;
+	}
+
+	override void PostBeginPlay()
+	{
+		if (master) { Species = master.Species; }
+
+		Super.PostBeginPlay();
+	}
+}
+//------------------------------------------------------------------------------
+//TEMPORARY
+//------------------------------------------------------------------------------
+// Sherman Tank components (used by both FriendlySherman and ShermanPlayer)
+class US_Sherman : TankTreadsBase
+{
+	Default
+	{
+		Height 20;
+		Radius 16;
+		MaxStepHeight 1;
+		MaxDropoffHeight 1;
+		TankTreadsBase.DeadActor "US_ShermanDead";
+		TankTreadsBase.DebrisActor "";
+		//TankTreadsBase.DebrisActor "Debris_Tank2";
+		TankTreadsBase.MorphPowerup "Sherman";
+		TankTreadsBase.TurretClass "US_ShermanTurret";
+		TankTreadsBase.Length 32; 
+		TankTreadsBase.GunSpotX 0;
+		TankTreadsBase.GunSpotY 0;
+		TankTreadsBase.GunSpotZ 0;
+		+NOGRAVITY
+	}
+}
+
+class US_ShermanTurret : TankTurretBase
+{
+	Actor gunspot2;
+
+	Default
+	{
+		TankTurretBase.GunClass "US_ShermanCannon";
+		TankTurretBase.GunSpotX 0;
+		TankTurretBase.GunSpotY 0;
+		TankTurretBase.GunSpotZ 0;
+		TankTurretBase.TurretOffsetX 0;
+		Height 20;
+		Radius 16;
+		+NOGRAVITY
+	}
+
+	override void PostBeginPlay()
+	{
+		bool sp = false;
+
+		Vector3 gunspot2offset = (0, 0, 0);
+		//Vector3 gunspot2offset = (16, 20, 18);
+		while (!gunspot2) { [sp, gunspot2] = A_SpawnItemEx("WeaponSpot", gunspot2offset.x, gunspot2offset.y, gunspot2offset.z, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		gunspot2.master = self;
+
+		Super.PostBeginPlay();
+	}
+}
+
+class US_ShermanCannon : TankCannonBase {}
+class US_ShermanDead : TankDeadBase {}
+
+// Same as NebNuke, but does not spawn NebBoom and cause explosion damage; moved from panzers.txt --N00b
+class NebNukeHarmless: Actor
+{
+	Actor a, b;
+	default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+NOINTERACTION
+		Radius 0;
+		Height 0;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 Radius_Quake(3,8,0,24,0);
+		/*
+		"####" A 0 { a = Spawn("NebFlare", Pos, ALLOW_REPLACE); a.vel += self.vel; }
+		"####" A 3
+		{
+			a = Spawn("NebFloor", Pos, ALLOW_REPLACE); b = Spawn("NebSmokeFloor", Pos, ALLOW_REPLACE);
+			if (a) a.vel += self.vel; if (b) b.vel += self.vel;
+		}
+		"####" A 6 {
+			a = Spawn("NebSmokePillar", Pos, ALLOW_REPLACE); b = Spawn("NebSmokeMushroom", Pos, ALLOW_REPLACE);
+			if (a) a.vel += (self.vel + (0.0,0.0,2.0)); if (b) b.vel += self.vel;
+		}
+		*/
+		Stop;
+	}
+}
+
+Class BoAFindHitPointTracer : LineTracer
+{
+	Name skipspecies;
+	Actor skipactor;
+
+	override ETraceStatus TraceCallback() // Doesn't handle 3d Floors :-/
+	{
+		if (Results.HitType == TRACE_HitActor)
+		{
+			if (
+				Results.HitActor != skipactor && // Skip the player
+				!(Results.HitActor is "ShermanPlayer") &&
+				(!Results.HitActor.master || Results.HitActor.master != skipactor) && // And any children
+				Results.HitActor.species != skipspecies && // And any of the skipped species
+				(Results.HitActor.bSolid || Results.HitActor.bShootable) // And only return shootable actors
+			) { return TRACE_Continue; } // Fall through, but remember the actor that you hit
+
+			return TRACE_Skip;
+		}
+		else if (Results.HitType == TRACE_HitFloor || Results.HitType == TRACE_HitCeiling)
+		{
+			return TRACE_Stop;
+		}
+		else if (Results.HitType == TRACE_HitWall)
+		{
+			if (Results.HitLine.flags & (Line.ML_BLOCKING | Line.ML_BLOCKEVERYTHING)) { return TRACE_Stop; }
+			if (Results.HitTexture)
+			{
+				if (Results.Tier != TIER_Middle || Results.HitLine.flags & Line.ML_3DMIDTEX) // 3D Midtex check still isn't perfect...
+				{
+					return TRACE_Stop;
+				}
+				return TRACE_Skip;
+			}
+			return TRACE_Skip;
+		}
+
+		return TRACE_Stop;
+	}
+}
+
+class Nothing : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			Stop;
+	}
+}
+
+class Sherman : PowerMorph
+{
+	int armor;
+	int premorphhealth;
+	double savepercent;
+
+	Default
+	{
+		PowerMorph.MorphStyle MRF_LOSEACTUALWEAPON | MRF_NEWTIDBEHAVIOUR | MRF_UNDOBYDEATHSAVES;
+		PowerMorph.MorphFlash "Nothing"; // Why isn't there an option to NOT spawn fog at all?
+		PowerMorph.UnMorphFlash "Nothing";
+		PowerMorph.PlayerClass "ShermanPlayer";
+		Powerup.Duration 0x7FFFFFFF;
+	}
+
+	override void InitEffect() 
+	{
+		if (owner && owner.player)
+		{
+			owner.player.cheats |= CF_CHASECAM;
+
+			// Save the standard Doom-style armor values.  Doesn't support Hexen armor.
+			BasicArmor a = BasicArmor(owner.FindInventory("BasicArmor"));
+			if (a)
+			{
+				armor = a.Amount;
+				savepercent = a.SavePercent;
+			}
+
+			premorphhealth = owner.health;
+		}
+
+		Super.InitEffect();
+	}
+
+	override void EndEffect()
+	{
+		if (MorphedPlayer && MorphedPlayer.mo)
+		{
+			let tank = ShermanPlayer(MorphedPlayer.mo);
+
+			if (tank)
+			{
+				if  (tank.treads)
+				{
+					tank.treads.bSolid = true;
+					tank.treads.master = null;
+					if (US_Sherman(tank.treads))
+					{
+						US_Sherman(tank.treads).savedhealth = tank.health;
+						US_Sherman(tank.treads).usetimeout = 35;
+					}
+				}
+				if  (tank.turretcamera) { tank.turretcamera.Destroy(); }
+				if  (tank.povcamera) { tank.povcamera.Destroy(); }
+				MorphedPlayer.cheats &= ~CF_CHASECAM;
+
+				// Restore pitch clamping, since this doesn't get reset otherwise
+				MorphedPlayer.MinPitch = -90;
+				MorphedPlayer.MaxPitch = 90;
+
+				if (tank.health <= 0) { tank.treads.SetStateLabel("Death"); }
+
+				if (tank.turret) { MorphedPlayer.mo.SetOrigin(tank.turret.pos + (0, 0, tank.turret.height), false); } // Dump the player on top of the turret
+				else { MorphedPlayer.mo.SetOrigin(tank.pos + (0, 0, tank.height), false); } // Dump the player on top of the body of the tank
+
+				// Restore armor amount and savepercent
+				MorphedPlayer.mo.SetInventory("BasicArmor", armor);
+
+				BasicArmor a = BasicArmor(MorphedPlayer.mo.FindInventory("BasicArmor"));
+				if (a) { a.SavePercent = savepercent; }
+			}
+		}
+ 
+		Super.EndEffect();
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//NEW MAIN
+//------------------------------------------------------------------------------
+Class MT_BaseTank_old : PlayerPawn
+{
+const chassis_spawnflag = SXF_ABSOLUTEVELOCITY + SXF_ABSOLUTEANGLE + SXF_TRANSFERPITCH;
+const t_turnrate = 45; //tics turnrate
+const t_turnrate_move = 50; //tics turn rate + accel
+const turnrate = 4; 
+const turnrate_move = 3;
+const accelerate = 1;
+const reverse = 1;
+int user_chassisangle;
+Default
+{
+player.DisplayName "BASE TANK";
+player.viewheight 25;
+player.attackzoffset 13;
+player.forwardmove 0.0;
+player.sidemove 0;
+player.jumpz 0;
+player.face "TKF";
+player.maxhealth 1600;
+health 1600;
+Speed 0.0;
+Species "TankPlayer";
+Player.SoundClass "mt_vehicle";
+MaxStepHeight 24;
+Radius 16;
+Height 20;
+Mass 50000;
+PainChance 128;
+BloodType "TankBlood", "TankBlood", "TankBlood";
+-FLOORCLIP;
++FIXMAPTHINGPOS;
++DONTRIP;
+Player.ColorRange 112, 127;
+//Internal stuff, very important
+Player.StartItem "MT_ClassToken"              ,1;
+Player.StartItem "MHTA1_Token"                ,1;
+Player.StartItem "MTU_SupplyBox_2"            ,1;
+Player.StartItem "MT_Subgun_Slot"             ,1;
+Player.StartItem "MT_AmmoSwitcher"            ,1;
+Player.StartItem "MT_AmmoSwitcher_Reverse"    ,1;
+Player.StartItem "MT_SubgunSwitcher"          ,1;
+Player.Startitem "MT_SubgunSwitcher_Reverse"  ,1;
+Player.Startitem "MT_Searchlight"             ,1;
+Player.StartItem "MT_Nightvision_MK1"         ,1;
+Player.StartItem "MT_ChaseCamera_MK1"         ,1;
+Player.StartItem "MT_PeriscopeItem"           ,1;
+//Lockers
+//Weapons
+Player.StartItem "MT_105mmCannon"           ,1;
+Player.StartItem "Multi_Purpose_Device"       ,1;
+//Ammo
+Player.Startitem "MT_75x500mmHE"                ,20;
+Player.Startitem "MT_75x500mmAP"                ,40;
+Player.Startitem "A_7u62x54mmR"                 ,2000;
+//Items
+//  Player.startitem "Item_GrenadePod_Smoke"        ,8
+Player.startitem "Item_GrenadePod_SSS"          ,1;
+Player.startitem "Item_GrenadePod_Illuminating" ,2;
+Player.startitem "MT_Item_GrenadePod_Flare"     ,30;
+Player.Startitem "MT_GrenadePod_Explosive"      ,20;
+  
+//MT Damage types
+DamageFactor "PiercingExplosive" ,0.75;
+DamageFactor "Piercing"          ,0.8;
+DamageFactor "Frag"              ,0.05;
+DamageFactor "Bullet"            ,0.15;
+DamageFactor "Acid"              ,0.5;
+DamageFactor "Chemical"          ,0.5;
+DamageFactor "Build"             ,0;
+//Other Damage types
+DamageFactor "Normal"            ,0.8;
+DamageFactor "Extreme"           ,0.8;
+DamageFactor "Drowning"          ,0.0;
+DamageFactor "Falling"           ,0.1;
+DamageFactor "Ice"               ,0.2;
+DamageFactor "Fire"              ,0.1;
+Damagefactor "stomp"             ,0;
+DamageFactor "Energy"            ,0.85;
+DamageFactor "Radiation"         ,0.0;
+DamageFactor "Nuclear"           ,0.9;
+DamageFactor "Explosive"         ,0.25;
+DamageFactor "Buckshot"          ,0;
+DamageFactor "Reclaim"           ,0.9;
+DamageFactor "Poison"            ,0;
+DamageFactor "PoisonCloud"       ,0;
+DamageFactor "Electric"          ,0.75;
+}
+	States
+	{
+	Pain:
+		"####" A 0;
+		"####" A 1 A_Pain;
+		Goto CheckIfStillMoves;
+
+	Blank:
+		TNT1 A 0;
+		Goto Stay;
+
+	//
+	//INITALIZATION
+	//
+	Spawn:
+		TNK1 A 0;
+		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
+		TNK1 A 0 ThrustThingZ(0, 100, -1, 1);
+		TNK1 A 0 A_PlaySound("TankEngine/Start", 0, 0.8, 0, ATTN_IDLE);
+		TNK1 A 0 
+		{
+			if ( GetCVAR("mtccvar_startup_noise") == 1 )
+			{
+				A_PlaySound("GCrew/MissionStart");
+			}
+		}
+		TNK1 A 1;
+	Spawn2:
+		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MTACS_Chassis_Init"))
+		TNK1 A 0; //A_SetUserVar("user_chassisangle", CallACS("MT_SetVehicleRotation"))
+		TNK1 A 0 {int user_chassisangle = 0;}
+		//TNK1 A 0 A_SpawnItemEx ("MT_HeavyTank_Chassis" , 0, 0, 0, 0, 0, 0, user_chassisangle, chassis_spawnflag);
+		TNK1 A 1;
+		Goto Stay;
+	
+	DoNothing:
+		"####" A 1;
+		Goto Stay;
+		
+	//
+	//CHANGE MODEL/VISUAL
+	//
+
+
+	//
+	//DRIVE
+	//
+	CheckIfStillMoves:
+		"####" A 0;
+		"####" A 0 A_JumpIfInventory("ImCrafting", 1, "DoNothing");
+		"####" A 0 A_JumpIfInventory("Accelerate", 1, "Accelerate");
+		"####" A 0 A_JumpIfInventory("Reverse", 1, "Reverse");
+		"####" A 0 A_JumpIfInventory("TurnLeft", 1, "TurnLeft");
+		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight");
+		"####" AAA 1;
+		"####" A 0 A_StopSound(5);
+		"####" A 0 A_PlaySound("Treads/Mid", 2);
+		Goto Stay;	
+
+	CheckIfStillMoves2:
+		"####" A 0;
+		"####" A 0 A_JumpIfInventory("ImCrafting", 1, "DoNothing");
+		"####" A 0 A_JumpIfInventory("Accelerate", 1, "Accelerate");
+		"####" A 0 A_JumpIfInventory("Reverse", 1, "Reverse");
+		"####" A 0 A_JumpIfInventory("TurnLeft", 1, "TurnLeft");
+		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight");
+		"####" AAA 1;
+		"####" A 0 A_StopSound(5);
+		"####" A 0 A_PlaySound("Treads/Left", 2);
+		Goto Stay;	
+	
+	Stay:
+		"####" A 0 A_JumpIfInventory("Reverse", 1, "Reverse");
+		"####" A 0 A_JumpIfInventory("Accelerate", 1, "Accelerate");
+		"####" A 0 A_JumpIfInventory("TurnLeft", 1, "TurnLeft");
+		"####" A 0 A_JumpIfInventory("TurnRight", 1, "TurnRight");
+		"####" A 1;
+		Goto Stay;
+		
+	Accelerate:
+		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" A 0 A_PlaySound("Treads/Forward", 5, 1, 1);
+		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
+		"####" A 1;
+		Goto CheckIfStillMoves;
+
+	Reverse:
+		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" A 0 A_PlaySound("Treads/Backward", 5, 1, 1);
+		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
+		"####" A 1;
+		Goto CheckIfStillMoves;
+		
+	TurnRight:
+		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" A 0 A_PlaySound("Treads/Left", 5, 1, 1);
+		"####" A 0 A_TakeInventory("TurnLeft", 999);
+		"####" A 0 A_TakeInventory("TurnRight", 999);
+		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
+		"####" A 1;	
+		Goto CheckIfStillMoves2;
+
+	TurnLeft:		
+		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
+		"####" A 0 A_PlaySound("Treads/Right", 5, 1, 1);
+		"####" A 0 A_TakeInventory("TurnLeft", 999);
+		"####" A 0 A_TakeInventory("TurnRight", 999);
+		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
+		"####" A 1;
+		Goto CheckIfStillMoves2;
+
+
+	//
+	//FALLING
+	//			
+	Falling:
+		"####" A 0;
+		"####" A 0 A_CheckFloor("CheckIfStillMoves");
+	
+	FallingForReal:
+		"####" A 0;
+		"####" A 1;
+		"####" A 0 A_JumpIF(vel.z == 0, "CrashIntoGround");
+		"####" A 0 A_GiveInventory("VehicleFallingCount", 1);
+		Loop;
+		
+	CrashIntoGround:
+		"####" A 0;
+		"####" A 0 A_JumpIfinventory("VehicleFallingCount", 10, "CrashIntoGroundViolently");
+		"####" A 1;
+		//"####" A 0 A_SpawnItem("CrashTankIntotheGround1");
+		//"####" A 0 A_SpawnItem("CrashTankIntotheGround2");
+		"####" A 0; //A_SpawnItemEx ("LargeMassWaterImpact", 0, 0, -10)
+		"####" A 0; //Radius_Quake(1, 6, 0, 4, 0)
+		"####" A 0 A_PlaySound("V_LightCrash", 2);
+		"####" A 0 A_TakeInventory("VehicleFallingCount", 9999);
+		Goto Stay;
+		
+	CrashIntoGroundViolently:
+		"####" A 0;
+		"####" A 1;
+		//"####" A 0 A_SpawnItem("CrashTankIntotheGround1");
+		//"####" A 0 A_SpawnItem("CrashTankIntotheGround2");
+		
+		"####" A 0; //A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -10)
+		
+		"####" A 0; //Radius_Quake(8, 24, 0, 4, 0)
+		"####" A 0 A_PlaySound("V_LightCrash", 1);
+		"####" A 0 A_PlaySound("V_MediumCrash", 2);
+		"####" AAAA 0; //A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		"####" A 0 A_TakeInventory("VehicleFallingCount", 9999);
+		"####" A 0 A_SetPitch(-8.0 + pitch);
+		"####" A 1;
+		"####" A 0 A_SetPitch(4.0 + pitch);
+		"####" A 1;
+		"####" A 0 A_SetPitch(4.0 + pitch);
+		Goto Stay;		
+	//
+	//KILLED/DESTROYED
+	//	
+	Death:	
+	XDeath:
+		"####" A 1;
+		"####" A 0; //A_SpawnItem("BigExplosion1112")
+		"####" A 0 A_PlaySound("weapons/explode");
+		"####" A 0 A_PlaySound("EXPLOSIO", 3);
+		"####" A 0 A_Scream;
+		"####" A 0 A_NoBlocking;
+		"####" AAAAAA 0; // A_CustomMissile ("MetalTrashParticle1", 96, 0, random (0, 360), 2, random (0, 180))
+		"####" AAAAAA 0; // A_CustomMissile ("MetalTrashParticle2", 96, 0, random (0, 360), 2, random (0, 180))
+		"####" AAAAAAAAA 0; // A_CustomMissile ("GlassShard", 96, 0, random (0, 360), 2, random (0, 360))
+		"####" A 0 A_Explode(100, 250);
+		"####" A 5;
+		"####" A 100;
+		"####" A -1;
+		Stop;
+	}	
+	
+}
+//------------------------------------------------------------------------------
+//MODIFY
+//------------------------------------------------------------------------------
+//Common base tank for anything player related.
+class MT_CommonTank_New : PlayerPawn
+{
+Actor treads, turret, turretcamera, povcamera, gun;
+Actor ForcedHealthBar;
+transient FLineTraceData cameratrace;
+BoAFindHitPointTracer hittracer;
+double sndvol;
+Vector3 cameralocation;
+int useholdtime;
+Vector3 CrosshairPos;
+Actor CrosshairActor;
+double CrosshairDist;
+int altrefire;
+
+Default
+{
+//Internal stuff, very important
+Player.StartItem "MT_ClassToken"              ,1;
+Player.StartItem "MHTA1_Token"                ,1;
+Player.StartItem "MTU_SupplyBox_2"            ,1;
+Player.StartItem "MT_Subgun_Slot"             ,1;
+Player.StartItem "MT_AmmoSwitcher"            ,1;
+Player.StartItem "MT_AmmoSwitcher_Reverse"    ,1;
+Player.StartItem "MT_SubgunSwitcher"          ,1;
+Player.Startitem "MT_SubgunSwitcher_Reverse"  ,1;
+Player.Startitem "MT_Searchlight"             ,1;
+Player.StartItem "MT_Nightvision_MK1"         ,1;
+Player.StartItem "MT_ChaseCamera_MK1"         ,1;
+Player.StartItem "MT_PeriscopeItem"           ,1;
+//Lockers
+//Weapons
+Player.StartItem "MT_105mmCannon"           ,1;
+Player.StartItem "Multi_Purpose_Device"       ,1;
+//Ammo
+Player.Startitem "MT_75x500mmHE"                ,20;
+Player.Startitem "MT_75x500mmAP"                ,40;
+Player.Startitem "A_7u62x54mmR"                 ,2000;
+//Items
+//Player.startitem "Item_GrenadePod_Smoke"        ,8
+Player.startitem "Item_GrenadePod_SSS"          ,1;
+Player.startitem "Item_GrenadePod_Illuminating" ,2;
+Player.startitem "MT_Item_GrenadePod_Flare"     ,30;
+Player.Startitem "MT_GrenadePod_Explosive"      ,20;
+
+player.DisplayName "BASE TANK";
+player.viewheight 25;
+player.attackzoffset 13;
+Health 1600;
+Height 20;
+Radius 16;
+//Height 96;
+//Radius 64;
+Mass 0x7ffffff;
+Speed 1.25;
+BloodType "TankSpark";
+//MaxStepHeight 48;
+//MaxDropoffHeight 48;
+MaxStepHeight 24;
+MaxDropoffHeight 24;
+Species "Tank";
++NOBLOOD
+}
+
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+		Pain:
+			TNT1 A 1 A_Pain;
+			Goto Spawn;
+		Death:
+			TNT1 A 1 {
+				A_Scream();
+				A_StopSound(30);
+				A_StopSound(31);
+				A_StopSound(32);
+			}
+			TNT1 A 0;
+			Stop;
+		
+	}
+
+	override void MovePlayer ()
+	{
+		let player = self.player;
+		UserCmd cmd = player.cmd;
+
+		double moveangle = angle;
+
+		if (cmd.yaw) { angle += cmd.yaw * (360./65536.); } 
+		if (treads) { moveangle = treads.angle; }
+
+		player.onground = (pos.z <= floorz) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
+
+		double newsndvol = 0;
+
+		if (cmd.forwardmove | cmd.sidemove)
+		{
+			double forwardmove, sidemove;
+			double friction, movefactor;
+			double fm, sm;
+
+			[friction, movefactor] = GetFriction();
+
+			if (!player.onground && !bNoGravity && !waterlevel)
+			{
+				// [RH] allow very limited movement if not on ground.
+				movefactor *= level.aircontrol;
+			}
+
+			fm = cmd.forwardmove;
+			sm = cmd.sidemove;
+			[fm, sm] = TweakSpeeds (fm, sm);
+			fm *= Speed / 256;
+			sm *= Speed / 256;
+
+			// The tank always moves at normal speed, regardless of cl_run setting or shift being held
+			// This basically cancels out the run speed additions handled in g_game.cpp.
+			if (cl_run && player.cmd.buttons & BT_SPEED)
+			{
+				sm /= 1.25;
+				fm /= 1.25;
+			}
+			else if (cl_run ^ player.cmd.buttons & BT_SPEED)
+			{
+				sm /= 2;
+				fm /= 2;
+			}
+
+			forwardmove = fm * movefactor * (35 / TICRATE);
+			sidemove = sm * movefactor * (35 / TICRATE);
+
+			CVar boa_autosteer = CVar.FindCVar('boa_autosteer');
+			bool shift = !(player.cmd.buttons & BT_SPEED) != !boa_autosteer.GetInt(); // If shift is being held or boa_autosteer cvar is true
+
+			// Handle "auto-steering" the tank to wherever you are aiming
+			if (forwardmove && shift && treads && turret && treads.angle != turret.angle) // If holding SHIFT, auto-steer the tracks to align with the turret
+			{
+				double diff = deltaangle(treads.angle, angle);
+
+				if (diff < -1)
+				{
+					treads.angle -= 2;
+					forwardmove /= 5;
+					A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+				}
+				else if (diff > 1)
+				{
+					treads.angle += 2;
+					forwardmove /= 5;
+					A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+				}
+				else
+				{
+					treads.angle = angle;
+					A_StopSound(30);
+				}
+
+				newsndvol += 0.5;
+			}
+			else if (sidemove) // Only do separate sidemove handling if not auto-steering or not moving forward
+			{
+				if (forwardmove >= 0) { sidemove *= -1; }
+
+				if (!forwardmove) { sidemove *= 2.5; } // Turn faster if you're not moving forward
+
+				angle += sidemove;
+
+				if (treads)
+				{
+					treads.angle += sidemove;
+					if (turret) { turret.angle += sidemove; }
+				}
+
+				//A_SetInventory("ShakeShaderControl", 1 + int(sidemove));
+
+				newsndvol += abs(sidemove);
+			}
+
+			if (forwardmove)
+			{
+				ForwardThrust(forwardmove, moveangle);
+			}
+
+			if (!(player.cheats & CF_PREDICTING) && (forwardmove != 0 || sidemove != 0))
+			{
+				PlayRunning ();
+				if (treads)
+				{
+					if (InStateSequence(treads.CurState, treads.SpawnState) && treads.FindState("Move"))
+					{
+						 treads.SetStateLabel("Move");
+					}
+				}
+			}
+
+			if (player.cheats & CF_REVERTPLEASE)
+			{
+				player.cheats &= ~CF_REVERTPLEASE;
+				player.camera = player.mo;
+			}
+		}
+
+		double movespeed = vel.xy.length();
+		if (movespeed)
+		{
+			//A_SetInventory("ShakeShaderControl", 1 + int(movespeed) * 65536);
+			newsndvol += movespeed;
+		}
+
+		if (sndvol > newsndvol) { sndvol = max(sndvol - 0.25, newsndvol); }
+		if (sndvol < newsndvol) { sndvol = min(sndvol + 0.25, newsndvol); }
+
+		A_SoundVolume(CHAN_7, sndvol);
+	}
+
+	override void CheckJump() {} // Tanks can't jump
+
+	
+	override void CheckPitch()
+	{
+		let player = self.player;
+		// [RH] Look up/down stuff
+		if (!level.IsFreelookAllowed())
+		{
+			Pitch = 0.;
+		}
+		else
+		{
+			// The player's view pitch is clamped between -32 and +56 degrees,
+			// which translates to about half a screen height up and (more than)
+			// one full screen height down from straight ahead when view panning
+			// is used.
+			int clook = player.cmd.pitch;
+			if (clook != 0)
+			{
+				if (clook == -32768)
+				{ // center view
+					player.centering = true;
+				}
+				else if (!player.centering)
+				{
+					// no more overflows with floating point. Yay! :)
+					Pitch = clamp(Pitch - clook * (360. / 65536.), (turret ? -turret.pitch : 0) + player.MinPitch, (turret ? -turret.pitch : 0) + player.MaxPitch);
+				}
+			}
+		}
+		if (player.centering)
+		{
+			if (abs(Pitch) > 2.)
+			{
+				Pitch *= (2. / 3.);
+			}
+			else
+			{
+				Pitch = 0.;
+				player.centering = false;
+				if (PlayerNumber() == consoleplayer)
+				{
+					LocalViewPitch = 0;
+				}
+			}
+		}
+	}
+	
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (other is "TankBlocker" && other.Species == Species) { return false; }
+
+		if (other.bSpecial) { other.Touch(self); }
+
+		return true;
+	}
+
+	/*
+	override void FireWeaponAlt (State stat)
+	{
+		let weapn = player.ReadyWeapon;
+		if (weapn == null || weapn.FindState('AltFire') == null || !weapn.CheckAmmo (Weapon.AltFire, true))
+		{
+			return;
+		}
+
+		player.WeaponState &= ~WF_WEAPONBOBBING;
+		PlayAttacking ();
+		weapn.bAltFire = true;
+
+		if (stat == null)
+		{
+			int refire = player.refire;
+
+			if (player.mo is "ShermanPlayer") { refire = ShermanPlayer(player.mo).altrefire; }
+
+			stat = weapn.GetAltAtkState(!!refire);
+		}
+
+		player.SetPsprite(PSP_WEAPON, stat);
+		if (!weapn.bNoAlert)
+		{
+			SoundAlert (self, false);
+		}
+	}
+	*/
+
+	override void PostBeginPlay()
+	{
+		//TakeInventory("BoATilt", 1);
+
+		hittracer = new("BoAFindHitPointTracer");
+
+		// Spawn everything in neutral orientation
+		pitch = 0;
+		roll = 0;
+
+		bool sp = false;
+
+		if (tracer && US_Sherman(tracer))
+		{
+			treads = tracer;
+			tracer = null;
+		}
+
+		while (!treads) 
+		{ 
+		[sp, treads] = A_SpawnItemEx("US_Sherman", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); 
+		}
+		treads.master = self;
+		treads.bSolid = false;
+		treads.Species = Species;
+
+		while (!turretcamera) { [sp, turretcamera] = A_SpawnItemEx("SecurityCamera", -2.5 * radius, 0, treads.height + 32, 0, 0, 0, 0, SXF_TRANSFERSCALE); }
+		turretcamera.master = self;
+
+		sndvol = 0.7;
+
+		A_StartSound("TKIDLE", 31, CHANF_LOOPING, 0.25);
+		A_StartSound("TNK1LOOP", 32, CHANF_LOOPING, 0.7);
+
+		Super.PostBeginPlay();
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+
+		bool chasecam = player.cheats & CF_CHASECAM;
+
+		if (health == Default.Health && US_Sherman(treads).savedhealth)
+		{
+			A_SetHealth(US_Sherman(treads).savedhealth);
+			US_Sherman(treads).savedhealth = 0;
+		}
+
+		if (!turret) // Since turret is spawned by treads actor, check for it here since it'll be spawned after PostBeginPlay is called
+		{
+			if (US_Sherman(treads))
+			{
+				turret = US_Sherman(treads).turret;
+
+				if (turret)
+				{
+					turret.master = self;
+					turret.angle = angle;
+					turret.bSolid = false;
+
+					bool sp;
+					while (!povcamera) { [sp, povcamera] = turret.A_SpawnItemEx("SecurityCamera", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+					povcamera.master = self;
+				}
+			}
+		}
+		
+
+		if (Level.time % (35 * 5) == 0) { ForcedHealthBar = GetClosestForcedHealthBar(); } // Only run this check occasionally
+
+		if (player && turretcamera && treads && turret && povcamera)
+		{
+			double zoffset = VehicleBase.SetPitchRoll(treads, 10, 10, 80, true);
+			double newz = pos.z - zoffset > GetZAt(0, 0) + MaxDropoffHeight ? pos.z - zoffset : GetZAt(0, 0);
+			treads.SetOrigin((pos.xy, newz), true);
+
+			double delta = deltaangle(treads.angle, turret.angle);
+
+
+			Player.MinPitch = treads.pitch * cos(delta) - 80;
+			Player.MaxPitch = treads.pitch * cos(delta) + 80;
+
+			turret.SetOrigin(treads.pos, true);
+			//turret.SetOrigin(treads.pos + (RotateVector((treads.radius * sin(treads.pitch), -treads.radius * sin(treads.roll)), treads.angle), treads.height * cos(treads.roll)), true);
+
+			turret.pitch = treads.roll * sin(-delta) + treads.pitch * cos(delta);
+			turret.roll = treads.roll * cos(-delta) + treads.pitch * sin(delta);
+
+			if (turret.angle != angle)
+			{
+			 	turret.angle = !chasecam ? angle : clamp(angle, turret.angle - 1.5, turret.angle + 1.5);
+				A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+			}
+			else
+			{
+				A_StopSound(30);
+			}
+
+			// Force pitch clamping
+			if (turret.pitch + pitch >= player.MaxPitch || turret.pitch + pitch <= player.MinPitch)
+			{
+				player.cmd.pitch = 0;
+			}
+
+			if (!gun) { gun = US_ShermanTurret(turret).gun; }
+
+			if (gun)
+			{
+				DoTrace(gun, turret.angle, 2048, turret.pitch + pitch, 0, 0, hittracer);
+
+				CrosshairPos = hittracer.Results.HitPos;
+				CrosshairActor = hittracer.Results.HitActor;
+				CrosshairDist = hittracer.Results.Distance;
+
+				gun.pitch = turret.pitch + pitch;
+				gun.roll = turret.roll;
+			}
+
+			/*
+			if (!chasecam)
+			{
+				if (povcamera)
+				{
+					//Vector3 povoffset = (48, -24, 48);
+					Vector3 povoffset = (48, -24, 48);
+
+					povcamera.angle = turret.angle;
+					povcamera.pitch = gun.pitch;
+
+					Vector2 temp = RotateVector((povoffset.y, povoffset.z), turret.roll);
+					Vector3 offset = (povoffset.x, temp.x, temp.y);
+
+					temp = RotateVector((offset.x, offset.z), 360 - turret.pitch);
+					offset = (temp.x, offset.y, temp.y);
+
+					temp = RotateVector((offset.x, offset.y), turret.angle);
+					offset = (temp.x, temp.y, offset.z);
+
+					povcamera.SetOrigin(turret.pos + offset, true);
+
+					povcamera.roll = turret.roll;
+
+					povcamera.CameraFOV = player.fov * 1.2;
+
+					player.camera = povcamera;
+				}
+			}
+			else
+			{
+				double modifier, pitchmodifier;
+
+				if (pitch < 0) { modifier = 48 * sin(-pitch); } // Aiming up moves the camera up so you can keep the aimpoint on screen
+				else { modifier = 96 * sin(pitch * 3); } // Aiming down actually moves the camera *up*, so that you can see the aimpoint over the top of the turret
+
+				modifier += (turret.pitch > 0 ? 96 : 128) * sin(turret.pitch); // Move the camera up/down when going up/downhill
+				pitchmodifier = (turret.pitch > 0 ? -15 : 10) * sin(turret.pitch); // Pitch the camera up/down when going up/downhill
+
+				turret.LineTrace(angle + 180, 2.5 * radius, pitchmodifier, TRF_THRUHITSCAN | TRF_THRUACTORS, turret.height + 32 + modifier, 0.0, 0.0, cameratrace);
+
+				turretcamera.SetOrigin(cameratrace.HitLocation + AngleToVector(angle, 2), true);
+				turretcamera.angle = angle;
+				turretcamera.pitch = turret.pitch;
+
+				turretcamera.CameraFOV = player.fov;
+
+				player.camera = turretcamera;
+			}
+			*/
+		
+		}
+		else
+		{
+			player.camera = player.mo;
+		}
+
+		if (player.usedown)
+		{
+			useholdtime++;
+			if (useholdtime == 1) { Level.ExecuteSpecial(80, self, null, false, -int(Name("TankExitMessage")), 0); }
+		}
+		else { useholdtime = 0; }
+
+
+		if (useholdtime >= 35)
+		{
+			//A_SetInventory("ShakeShaderControl", 1);
+			if (treads && US_Sherman(treads)) { US_Sherman(treads).usetimeout = 35; }
+			TakeInventory("Sherman", 1);
+		}
+	}
+
+	Actor GetClosestForcedHealthBar()
+	{
+		ThinkerIterator Finder = ThinkerIterator.Create("MT_Actor", Thinker.STAT_DEFAULT - 3);
+		//ThinkerIterator Finder = ThinkerIterator.Create("Base", Thinker.STAT_DEFAULT - 3);
+		//Base it;
+		MT_Actor it;
+		Actor mo;
+
+		/*
+		while ( it = Base(Finder.Next()) )
+		{
+			if (!it.user_DrawHealthBar == True) { continue; } // Only process actors with the AlwaysDrawHealthBar flag set
+			if (
+				it.health <= 0 ||
+				!it.bShootable ||
+				it.bDormant
+			) { continue; }
+			if (mo && Distance3D(it) > Distance3D(mo)) { continue; } // Only draw health bar for the closest one
+
+			mo = it;
+		}
+		*/
+
+		return mo;
+	}
+
+	void DoTrace(Actor origin, double angle, double dist, double pitch, int flags, double zoffset, BoAFindHitPointTracer thistracer)
+	{
+		if (!origin) { origin = self; }
+
+		thistracer.skipspecies = origin.species;
+		thistracer.skipactor = origin;
+		Vector3 tracedir = (cos(angle) * cos(pitch), sin(angle) * cos(pitch), -sin(pitch));
+		thistracer.Trace(origin.pos + (0, 0, zoffset), origin.CurSector, tracedir, dist, 0);
+	}
+
+	override bool UndoPlayerMorph(playerinfo activator, int unmorphflag, bool force)
+	{
+		if (!activator || !activator.mo) { return false; }
+
+		int premorphhealth;
+
+		for (Inventory i = activator.mo.inv; i != null; i = i.Inv)
+		{
+			if (i is "Sherman")
+			{
+				if (Sherman(i).premorphhealth) { premorphhealth = Sherman(i).premorphhealth; }
+				break;
+			}
+		}
+
+		bool ret = Super.UndoPlayerMorph(activator, unmorphflag, force); // This call forces the player health to full Spawn Health
+
+		activator.health = activator.mo.health = premorphhealth;
+
+		return ret;
+	}
+}
+
+
+// Sherman Tank Player Class
+class ShermanPlayer : PlayerPawn
+{
+	Actor treads, turret, turretcamera, povcamera, gun;
+	Actor ForcedHealthBar;
+	transient FLineTraceData cameratrace;
+	BoAFindHitPointTracer hittracer;
+	double sndvol;
+	Vector3 cameralocation;
+	int useholdtime;
+	Vector3 CrosshairPos;
+	Actor CrosshairActor;
+	double CrosshairDist;
+	int altrefire;
+
+	Default
+	{
+		Health 10000;
+		Height 96;
+		Mass 0x7ffffff;
+		Radius 64;
+		Speed 1;
+		BloodType "TankSpark";
+		DamageFactor "Electric", 0.8;
+		DamageFactor "Fire", 0.5;
+		DamageFactor "MutantPoison", 0.1;
+		DamageFactor "Normal", 0.5;
+		DamageFactor "Rocket", 0.5;
+		DamageFactor "Rocket2", 1.5; //enemypanzerrocket only, for panzerguards  - ozy81
+		DamageFactor "UndeadPoison", 0.1;
+		MaxStepHeight 48;
+		MaxDropoffHeight 48;
+		Species "Tank";
+		Player.MorphWeapon "Cannon75mm";
+		Player.StartItem "Cannon75mm";
+		Player.UseRange 0;
+		Player.WeaponSlot 1, "Cannon75mm";
+		Renderstyle 'None'; // Ensure that the actual player actor stays invisible, just in case it reverts to PLAYA0 sprites
+		+NOBLOOD
+		-PICKUP // Don't pick up powerups while in the tank
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+		Pain:
+			TNT1 A 1 A_Pain;
+			Goto Spawn;
+		Death:
+			TNT1 A 1 {
+				A_Scream();
+				A_StopSound(30);
+				A_StopSound(31);
+				A_StopSound(32);
+			}
+			TNT1 A -1;
+			Stop;
+	}
+
+	override void MovePlayer ()
+	{
+		let player = self.player;
+		UserCmd cmd = player.cmd;
+
+		double moveangle = angle;
+
+		if (cmd.yaw) { angle += cmd.yaw * (360./65536.); } 
+		if (treads) { moveangle = treads.angle; }
+
+		player.onground = (pos.z <= floorz) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
+
+		double newsndvol = 0;
+
+		if (cmd.forwardmove | cmd.sidemove)
+		{
+			double forwardmove, sidemove;
+			double friction, movefactor;
+			double fm, sm;
+
+			[friction, movefactor] = GetFriction();
+
+			if (!player.onground && !bNoGravity && !waterlevel)
+			{
+				// [RH] allow very limited movement if not on ground.
+				movefactor *= level.aircontrol;
+			}
+
+			fm = cmd.forwardmove;
+			sm = cmd.sidemove;
+			[fm, sm] = TweakSpeeds (fm, sm);
+			fm *= Speed / 256;
+			sm *= Speed / 256;
+
+			// The tank always moves at normal speed, regardless of cl_run setting or shift being held
+			// This basically cancels out the run speed additions handled in g_game.cpp.
+			if (cl_run && player.cmd.buttons & BT_SPEED)
+			{
+				sm /= 1.25;
+				fm /= 1.25;
+			}
+			else if (cl_run ^ player.cmd.buttons & BT_SPEED)
+			{
+				sm /= 2;
+				fm /= 2;
+			}
+
+			forwardmove = fm * movefactor * (35 / TICRATE);
+			sidemove = sm * movefactor * (35 / TICRATE);
+
+			CVar boa_autosteer = CVar.FindCVar('boa_autosteer');
+			bool shift = !(player.cmd.buttons & BT_SPEED) != !boa_autosteer.GetInt(); // If shift is being held or boa_autosteer cvar is true
+
+			// Handle "auto-steering" the tank to wherever you are aiming
+			if (forwardmove && shift && treads && turret && treads.angle != turret.angle) // If holding SHIFT, auto-steer the tracks to align with the turret
+			{
+				double diff = deltaangle(treads.angle, angle);
+
+				if (diff < -1)
+				{
+					treads.angle -= 2;
+					forwardmove /= 5;
+					A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+				}
+				else if (diff > 1)
+				{
+					treads.angle += 2;
+					forwardmove /= 5;
+					A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+				}
+				else
+				{
+					treads.angle = angle;
+					A_StopSound(30);
+				}
+
+				newsndvol += 0.5;
+			}
+			else if (sidemove) // Only do separate sidemove handling if not auto-steering or not moving forward
+			{
+				if (forwardmove >= 0) { sidemove *= -1; }
+
+				if (!forwardmove) { sidemove *= 2.5; } // Turn faster if you're not moving forward
+
+				angle += sidemove;
+
+				if (treads)
+				{
+					treads.angle += sidemove;
+					if (turret) { turret.angle += sidemove; }
+				}
+
+				//A_SetInventory("ShakeShaderControl", 1 + int(sidemove));
+
+				newsndvol += abs(sidemove);
+			}
+
+			if (forwardmove)
+			{
+				ForwardThrust(forwardmove, moveangle);
+			}
+
+			if (!(player.cheats & CF_PREDICTING) && (forwardmove != 0 || sidemove != 0))
+			{
+				PlayRunning ();
+				if (treads)
+				{
+					if (InStateSequence(treads.CurState, treads.SpawnState) && treads.FindState("Move"))
+					{
+						 treads.SetStateLabel("Move");
+					}
+				}
+			}
+
+			if (player.cheats & CF_REVERTPLEASE)
+			{
+				player.cheats &= ~CF_REVERTPLEASE;
+				player.camera = player.mo;
+			}
+		}
+
+		double movespeed = vel.xy.length();
+		if (movespeed)
+		{
+			//A_SetInventory("ShakeShaderControl", 1 + int(movespeed) * 65536);
+			newsndvol += movespeed;
+		}
+
+		if (sndvol > newsndvol) { sndvol = max(sndvol - 0.25, newsndvol); }
+		if (sndvol < newsndvol) { sndvol = min(sndvol + 0.25, newsndvol); }
+
+		A_SoundVolume(CHAN_7, sndvol);
+	}
+
+	override void CheckJump() {} // Tanks can't jump
+
+	override void CheckPitch()
+	{
+		let player = self.player;
+		// [RH] Look up/down stuff
+		if (!level.IsFreelookAllowed())
+		{
+			Pitch = 0.;
+		}
+		else
+		{
+			// The player's view pitch is clamped between -32 and +56 degrees,
+			// which translates to about half a screen height up and (more than)
+			// one full screen height down from straight ahead when view panning
+			// is used.
+			int clook = player.cmd.pitch;
+			if (clook != 0)
+			{
+				if (clook == -32768)
+				{ // center view
+					player.centering = true;
+				}
+				else if (!player.centering)
+				{
+					// no more overflows with floating point. Yay! :)
+					Pitch = clamp(Pitch - clook * (360. / 65536.), (turret ? -turret.pitch : 0) + player.MinPitch, (turret ? -turret.pitch : 0) + player.MaxPitch);
+				}
+			}
+		}
+		if (player.centering)
+		{
+			if (abs(Pitch) > 2.)
+			{
+				Pitch *= (2. / 3.);
+			}
+			else
+			{
+				Pitch = 0.;
+				player.centering = false;
+				if (PlayerNumber() == consoleplayer)
+				{
+					LocalViewPitch = 0;
+				}
+			}
+		}
+	}
+
+	/*
+	override bool UseInventory(Inventory item)
+	{
+		if (
+			item is "RepairKit" ||
+			item is "BoACompass"
+		)
+		{
+			return Super.UseInventory(item);
+		}
+
+		return false;
+	}
+	*/
+
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (other is "TankBlocker" && other.Species == Species) { return false; }
+
+		if (other.bSpecial) { other.Touch(self); }
+
+		return true;
+	}
+
+	override void FireWeaponAlt (State stat)
+	{
+		let weapn = player.ReadyWeapon;
+		if (weapn == null || weapn.FindState('AltFire') == null || !weapn.CheckAmmo (Weapon.AltFire, true))
+		{
+			return;
+		}
+
+		player.WeaponState &= ~WF_WEAPONBOBBING;
+		PlayAttacking ();
+		weapn.bAltFire = true;
+
+		if (stat == null)
+		{
+			int refire = player.refire;
+
+			if (player.mo is "ShermanPlayer") { refire = ShermanPlayer(player.mo).altrefire; }
+
+			stat = weapn.GetAltAtkState(!!refire);
+		}
+
+		player.SetPsprite(PSP_WEAPON, stat);
+		if (!weapn.bNoAlert)
+		{
+			SoundAlert (self, false);
+		}
+	}
+
+	override void PostBeginPlay()
+	{
+		//TakeInventory("BoATilt", 1);
+
+		hittracer = new("BoAFindHitPointTracer");
+
+		// Spawn everything in neutral orientation
+		pitch = 0;
+		roll = 0;
+
+		bool sp = false;
+
+		if (tracer && US_Sherman(tracer))
+		{
+			treads = tracer;
+			tracer = null;
+		}
+
+		while (!treads) { [sp, treads] = A_SpawnItemEx("US_Sherman", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		treads.master = self;
+		treads.bSolid = false;
+		treads.Species = Species;
+
+		while (!turretcamera) { [sp, turretcamera] = A_SpawnItemEx("SecurityCamera", -2.5 * radius, 0, treads.height + 128, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+		turretcamera.master = self;
+
+		sndvol = 0.7;
+
+		A_StartSound("TKIDLE", 31, CHANF_LOOPING, 0.25);
+		A_StartSound("TNK1LOOP", 32, CHANF_LOOPING, 0.7);
+
+		Super.PostBeginPlay();
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+
+		bool chasecam = player.cheats & CF_CHASECAM;
+
+		if (health == Default.Health && US_Sherman(treads).savedhealth)
+		{
+			A_SetHealth(US_Sherman(treads).savedhealth);
+			US_Sherman(treads).savedhealth = 0;
+		}
+
+		if (!turret) // Since turret is spawned by treads actor, check for it here since it'll be spawned after PostBeginPlay is called
+		{
+			if (US_Sherman(treads))
+			{
+				turret = US_Sherman(treads).turret;
+
+				if (turret)
+				{
+					turret.master = self;
+					turret.angle = angle;
+					turret.bSolid = false;
+
+					bool sp;
+					while (!povcamera) { [sp, povcamera] = turret.A_SpawnItemEx("SecurityCamera", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPITCH | SXF_TRANSFERROLL | SXF_TRANSFERSCALE); }
+					povcamera.master = turret;
+				}
+			}
+		}
+
+		if (Level.time % (35 * 5) == 0) { ForcedHealthBar = GetClosestForcedHealthBar(); } // Only run this check occasionally
+
+		if (player && turretcamera && treads && turret && povcamera)
+		{
+			double zoffset = VehicleBase.SetPitchRoll(treads);
+			double newz = pos.z - zoffset > GetZAt(0, 0) + MaxDropoffHeight ? pos.z - zoffset : GetZAt(0, 0);
+			treads.SetOrigin((pos.xy, newz), true);
+
+			double delta = deltaangle(treads.angle, turret.angle);
+
+			Player.MinPitch = treads.pitch * cos(delta) - 25;
+			Player.MaxPitch = treads.pitch * cos(delta) + 10;
+
+			turret.SetOrigin(treads.pos + (RotateVector((treads.radius * sin(treads.pitch), -treads.radius * sin(treads.roll)), treads.angle), treads.height * cos(treads.roll)), true);
+
+			turret.pitch = treads.roll * sin(-delta) + treads.pitch * cos(delta);
+			turret.roll = treads.roll * cos(-delta) + treads.pitch * sin(delta);
+
+			if (turret.angle != angle)
+			{
+			 	turret.angle = !chasecam ? angle : clamp(angle, turret.angle - 1.5, turret.angle + 1.5);
+				A_StartSound("MACHINE_LOOP_3", 30, CHANF_NOSTOP, 0.5);
+			}
+			else
+			{
+				A_StopSound(30);
+			}
+
+			// Force pitch clamping
+			if (turret.pitch + pitch >= player.MaxPitch || turret.pitch + pitch <= player.MinPitch)
+			{
+				player.cmd.pitch = 0;
+			}
+
+			if (!gun) { gun = US_ShermanTurret(turret).gun; }
+
+			if (gun)
+			{
+				DoTrace(gun, turret.angle, 2048, turret.pitch + pitch, 0, 0, hittracer);
+
+				CrosshairPos = hittracer.Results.HitPos;
+				CrosshairActor = hittracer.Results.HitActor;
+				CrosshairDist = hittracer.Results.Distance;
+
+				gun.pitch = turret.pitch + pitch;
+				gun.roll = turret.roll;
+			}
+
+			if (!chasecam)
+			{
+				if (povcamera)
+				{
+					Vector3 povoffset = (48, -24, 48);
+
+					povcamera.angle = turret.angle;
+					povcamera.pitch = gun.pitch;
+
+					Vector2 temp = RotateVector((povoffset.y, povoffset.z), turret.roll);
+					Vector3 offset = (povoffset.x, temp.x, temp.y);
+
+					temp = RotateVector((offset.x, offset.z), 360 - turret.pitch);
+					offset = (temp.x, offset.y, temp.y);
+
+					temp = RotateVector((offset.x, offset.y), turret.angle);
+					offset = (temp.x, temp.y, offset.z);
+
+					povcamera.SetOrigin(turret.pos + offset, true);
+
+					povcamera.roll = turret.roll;
+
+					povcamera.CameraFOV = player.fov * 1.2;
+
+					player.camera = povcamera;
+				}
+			}
+			else
+			{
+				double modifier, pitchmodifier;
+
+				if (pitch < 0) { modifier = 48 * sin(-pitch); } // Aiming up moves the camera up so you can keep the aimpoint on screen
+				else { modifier = 96 * sin(pitch * 3); } // Aiming down actually moves the camera *up*, so that you can see the aimpoint over the top of the turret
+
+				modifier += (turret.pitch > 0 ? 96 : 128) * sin(turret.pitch); // Move the camera up/down when going up/downhill
+				pitchmodifier = (turret.pitch > 0 ? -15 : 10) * sin(turret.pitch); // Pitch the camera up/down when going up/downhill
+
+				turret.LineTrace(angle + 180, 2.5 * radius, pitchmodifier, TRF_THRUHITSCAN | TRF_THRUACTORS, turret.height + 32 + modifier, 0.0, 0.0, cameratrace);
+
+				turretcamera.SetOrigin(cameratrace.HitLocation + AngleToVector(angle, 2), true);
+				turretcamera.angle = angle;
+				turretcamera.pitch = turret.pitch;
+
+				turretcamera.CameraFOV = player.fov;
+
+				player.camera = turretcamera;
+			}
+		}
+		else
+		{
+			player.camera = player.mo;
+		}
+
+		if (player.usedown)
+		{
+			useholdtime++;
+			if (useholdtime == 1) { Level.ExecuteSpecial(80, self, null, false, -int(Name("TankExitMessage")), 0); }
+		}
+		else { useholdtime = 0; }
+
+
+		if (useholdtime >= 35)
+		{
+			//A_SetInventory("ShakeShaderControl", 1);
+			if (treads && US_Sherman(treads)) { US_Sherman(treads).usetimeout = 35; }
+			TakeInventory("Sherman", 1);
+		}
+	}
+
+	Actor GetClosestForcedHealthBar()
+	{
+		ThinkerIterator Finder = ThinkerIterator.Create("MT_Actor", Thinker.STAT_DEFAULT - 3);
+		MT_Actor it;
+		Actor mo;
+
+		/*
+		while ( it = MT_Actor(Finder.Next()) )
+		{
+			if (!it.user_DrawHealthBar == True) { continue; } // Only process actors with the AlwaysDrawHealthBar flag set
+			if (
+				it.health <= 0 ||
+				!it.bShootable ||
+				it.bDormant
+			) { continue; }
+			if (mo && Distance3D(it) > Distance3D(mo)) { continue; } // Only draw health bar for the closest one
+
+			mo = it;
+		}
+		*/
+
+		return mo;
+	}
+
+	void DoTrace(Actor origin, double angle, double dist, double pitch, int flags, double zoffset, BoAFindHitPointTracer thistracer)
+	{
+		if (!origin) { origin = self; }
+
+		thistracer.skipspecies = origin.species;
+		thistracer.skipactor = origin;
+		Vector3 tracedir = (cos(angle) * cos(pitch), sin(angle) * cos(pitch), -sin(pitch));
+		thistracer.Trace(origin.pos + (0, 0, zoffset), origin.CurSector, tracedir, dist, 0);
+	}
+
+	override bool UndoPlayerMorph(playerinfo activator, int unmorphflag, bool force)
+	{
+		if (!activator || !activator.mo) { return false; }
+
+		int premorphhealth;
+
+		for (Inventory i = activator.mo.inv; i != null; i = i.Inv)
+		{
+			if (i is "Sherman")
+			{
+				if (Sherman(i).premorphhealth) { premorphhealth = Sherman(i).premorphhealth; }
+				break;
+			}
+		}
+
+		bool ret = Super.UndoPlayerMorph(activator, unmorphflag, force); // This call forces the player health to full Spawn Health
+
+		activator.health = activator.mo.health = premorphhealth;
+
+		return ret;
+	}
+}
