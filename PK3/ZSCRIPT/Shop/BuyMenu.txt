@@ -223,14 +223,21 @@ Class BuyMenuScript : EventHandler
 		InitMenu();
 	}
 	
+	bool CheckElementSize()
+	{
+		//Double check is double safety
+		if (ElementsSel >= 0 && ElementsSel < Elements.Size())	
+			return true;
+		
+		return false;
+	}
+	
 	//Handle the Enter stuff
 	void PressEnter()
 	{
-		//Double check is double safety
-		if (!ElementsSel > 0 && !ElementsSel < Elements.Size())
-		{			
+	
+		if (CheckElementSize() == false)
 			return;
-		}		
 		
 		let Item = Entry(Elements[ElementsSel]);		
 		string CMD = Item.Command;
@@ -272,14 +279,14 @@ Class BuyMenuScript : EventHandler
 		else if (CMD == "Buy")
 		{
 			//Double check is double safety
-			if (ElementsSel > 0 && ElementsSel < Elements.Size())
+			if (CheckElementSize() == false)
+				return;
+	
+			if (Elements[ElementsSel] is "BuyMenuItems")
 			{
-				if (Elements[ElementsSel] is "BuyMenuItems")
-				{
-					let Item = BuyMenuItems(Elements[ElementsSel]);
+				let Item = BuyMenuItems(Elements[ElementsSel]);
 				
-					Purchase(Item);
-				}
+				Purchase(Item);
 			}
 		}
 		
