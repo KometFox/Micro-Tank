@@ -33,7 +33,7 @@ Class MT_CreditsSpawn_Large : RandomSpawner
 	Default
 	{
 		DropItem "MT_Credits_OreCrate_Medium", 256, 1;
-		DropItem "MT_Credits_OreCrate_Large", 256, 3;
+		DropItem "MT_Credits_OreCrate_Medium", 256, 3;
 	}
 }
 

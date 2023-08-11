@@ -3,42 +3,6 @@
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-//50mm Cannon
-//------------------------------------------------------------------------------
-Model "MT_50mmAPHE_Shell"
-{
-   Path "MODELS\Projectiles\Cannon"
-   Model 0 "GenericShell.md3"
-   Skin  0 "GenericShell.dds"
-   PITCHFROMMOMENTUM
-   Scale 4 4 4
-   AngleOffset 0
-   FrameIndex PROJ A 0 0
-}
-
-Model "MT_50mmAPCR_Shell"
-{
-   Path "MODELS\Projectiles\Cannon"
-   Model 0 "GenericShell.md3"
-   Skin  0 "GenericShell.dds"
-   PITCHFROMMOMENTUM
-   Scale 4 4 4
-   AngleOffset 0
-   FrameIndex PROJ A 0 0
-}
-
-Model "MT_50mmHE_Shell"
-{
-   Path "MODELS\Projectiles\Cannon"
-   Model 0 "GenericShell.md3"
-   Skin  0 "GenericShell.dds"
-   PITCHFROMMOMENTUM
-   Scale 4 4 4
-   AngleOffset 0
-   FrameIndex PROJ A 0 0
-}
-
-//------------------------------------------------------------------------------
 //MACHINE GUNS
 //------------------------------------------------------------------------------
 Model "7.62x54mm AP"

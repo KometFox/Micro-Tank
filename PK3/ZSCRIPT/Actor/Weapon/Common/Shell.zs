@@ -42,6 +42,16 @@ Mixin Class Base_Shell
 				{
 					Return A_Jump(256, "TrailOn");
 				}
+				
+				
+				Actor Flare;
+				Flare = Spawn("CEG_BasebulletFlare", Pos, ALLOW_REPLACE);
+						
+				If (Flare)
+				{
+					Flare.Target = Self;
+					Flare.SetShade("ffba1d");
+				}	
 			
 				Return A_Jump(0, "TrailOff");
 			}
@@ -134,6 +144,7 @@ Class MT_Projectile : Actor
 		DamageFactor (0);
 		DeathSound "Weapon/37mmblas";
 		Obituary "%k killed %o";
+		RenderStyle "Add";
 	}
 
 }
@@ -147,7 +158,7 @@ Class MT_FastProjectile : FastProjectile
 	{
 		Radius 7;
 		Height 7;
-		Speed 60;
+		Speed 85;
 		//DamageType Normal;
 		Projectile;
 		+BLOODSPLATTER;
@@ -156,6 +167,7 @@ Class MT_FastProjectile : FastProjectile
 		DamageFactor (0);
 		DeathSound "Weapon/37mmblas";
 		Obituary "%k killed %o";
+		RenderStyle "Add";
 	}
 
 }

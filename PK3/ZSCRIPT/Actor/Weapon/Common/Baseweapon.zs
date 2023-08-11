@@ -237,18 +237,7 @@ AltFire_LMG_N:
 Altfire_LMG_Fire:
 	"####" A 0 
 	{
-		if (CheckInventory("MTU_APShot_2", 0) == 2)
-		{
-			A_FireProjectile("7.62x54mm AP 3",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
-		else if (CheckInventory("MTU_APShot_2", 0) == 1)
-		{
-			A_FireProjectile("7.62x54mm AP 2",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
-		else	
-		{
-			A_FireProjectile("7.62x54mm AP",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
+		A_FireProjectile("MT_MediumMGBullet",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
 	}
 	"####" A 0 A_WeaponReady;
 	"####" A 0 A_ReFire;
@@ -272,18 +261,7 @@ AltFire_HMG_N:
 Altfire_HMG_Fire:
 	"####" A 0 
 	{
-		if (CheckInventory("MTU_APShot_2", 0) == 2)
-		{
-			A_FireProjectile("12.7x99mm_AP3",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
-		else if (CheckInventory("MTU_APShot_2", 0) == 1)
-		{
-			A_FireProjectile("12.7x99mm_AP2",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
-		else	
-		{
-			A_FireProjectile("12.7x99mm_AP",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
-		}
+		A_FireProjectile("MT_HeavyMGBullet",+frandom(-0.15,0.15),1,0,0,0,+frandom(-0.15,0.15));
 	}
     "####" H 2;
 	"####" I 2;

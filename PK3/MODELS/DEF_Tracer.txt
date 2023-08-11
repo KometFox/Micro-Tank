@@ -1,0 +1,58 @@
+Model "MT_50mmAPHE_Shell"
+{
+	Path "MODELS\Tracer"
+	Model 0 "Tracer.md3"
+	Skin 0 "Orange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.5 1.8 1.8
+
+	FrameIndex PROJ A 0 0
+}
+
+Model "MT_50mmAPCR_Shell"
+{
+	Path "MODELS\Tracer"
+	Model 0 "Tracer.md3"
+	Skin 0 "Orange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.5 1.8 1.8
+
+	FrameIndex PROJ A 0 0
+}
+
+Model "MT_50mmHE_Shell"
+{
+	Path "MODELS\Tracer"
+	Model 0 "Tracer.md3"
+	Skin 0 "Orange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.5 1.8 1.8
+
+	FrameIndex PROJ A 0 0
+}
+
+Model "MT_MediumMGBullet"
+{
+	Path "MODELS\Tracer"
+	Model 0 "Tracer.md3"
+	Skin 0 "Orange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.25 1.5 1.5
+
+	FrameIndex PROJ A 0 0
+}
+
+Model "MT_HeavyMGBullet"
+{
+	Path "MODELS\Tracer"
+	Model 0 "Tracer.md3"
+	Skin 0 "Orange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.5 2.0 2.0
+	
+	FrameIndex PROJ A 0 0
+}
+
+
+
+

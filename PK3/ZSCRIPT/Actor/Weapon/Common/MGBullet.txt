@@ -1,0 +1,195 @@
+//------------------------------------------------------------------------------
+//Dynamic Damage Falloff effect
+//------------------------------------------------------------------------------
+Class RMD_DamageFalloff 
+{
+	static float Calc(int SpawnHealth)
+	{	
+		return RMD_Math.Log(5, 3);
+	}
+}
+
+//------------------------------------------------------------------------------
+//Base Bullet
+//------------------------------------------------------------------------------
+Class MT_BaseBullet : FastProjectile
+{
+	int ImpDamage; //Impact Damage
+	int HealthDamage; //At which point the DamageMin overtakes normal damage
+	float DamageRand; //The randomizer value
+	bool ExtremeDeath;
+
+	//Properties
+	property ImpactDamage:ImpDamage;
+	property HealthDamage:HealthDamage;
+	property DamageRand:DamageRand;
+	property ExtremeDeath:ExtremeDeath;
+
+	Default
+	{
+		Height 6;
+		Radius 3;
+		Speed 150;
+		MissileHeight 8;
+		//MissileType "RMD_BulletSmoke";
+		ProjectileKickBack 22;
+		PROJECTILE;
+		Decal "Bulletchip";
+		RenderStyle "Add";
+		-NOEXTREMEDEATH;
+		+BRIGHT;
+	}
+	
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		//float CVAR_BulletDamage = CVar.FindCVar("RMDC_BulletDamage").GetFloat();
+		
+		ImpDamage *= FRandom(1.0, DamageRand);	
+		//ImpDamage *= CVAR_BulletDamage;
+	}
+	
+	
+	
+	//Add damage fall off effect against strong monsters
+	Override int SpecialMissileHit (Actor Victim)
+	{
+		int VictimHP = Victim.SpawnHealth();
+		int GibHealth = Victim.GibHealth;
+		
+		Class<Actor> BloodEffect = Victim.GetBloodType(0);
+		Actor Blood;
+		
+		//Magic numbers are bad...
+		if (GibHealth == -2147483648)
+		{
+			GibHealth = Victim.SpawnHealth();
+		}
+		
+	
+		if (!Victim.player && Victim.BShootable)
+		{
+			float Logart = 1.0;
+			int NewDamage = ImpDamage;
+			
+			if (VictimHP >= HealthDamage)
+				Logart = RMD_DamageFalloff.Calc(VictimHP);
+			
+			NewDamage = ImpDamage / Logart;
+
+			//Prevent the blood spawning.
+			if (!Victim.BNoblood && BloodEffect)
+			{
+				Blood = Spawn(BloodEffect, Pos);
+			}
+		
+			//TODO: Add support for "non bleeding" blood actors
+			else if (!BloodEffect || Victim.BNoblood)
+			{
+				Spawn("MT_BulletPuff", Pos);
+			}
+
+			//Prevent overkill from small arms
+			bool DamageCheck = (Victim.BIsMonster &&
+								NewDamage >= GibHealth &&
+								NewDamage >= VictimHP);
+						
+			if (DamageCheck && ExtremeDeath == False)
+			{
+				victim.DamageMobj(self, target, GibHealth, damagetype, 0);
+			}
+			else
+			{
+				victim.DamageMobj(self, target, NewDamage, damagetype, 0);
+			}
+				
+			return 0;
+		}
+
+		//Pass through objects that cannot be shooted down.
+		else if (!Victim.Player || !Victim.BShootable)
+		{
+			return 1;
+		}
+
+		//Else return something else.
+		return -1;
+	}
+		
+	
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0
+		{
+			Actor Flare;
+				
+			Flare = Spawn("CEG_BasebulletFlare", Pos, ALLOW_REPLACE);
+						
+			If (Flare)
+			{
+				Flare.Target = Self;
+				Flare.SetShade("ffba1d");
+			}			
+		}
+	
+	Spawn1:
+		PROJ A 1;
+		Loop;
+	Death: //Wall
+		TNT1 A 0 A_SpawnItemEx("MT_BulletPuff", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/Impact");
+		Stop;
+	Crash: //Non Bleeding
+		TNT1 A 0 A_SpawnItemEx("MT_BulletPuff", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/Impact");
+		Stop;
+	XDeath: //Bleeding
+		TNT1 A 0 A_SpawnItemEx("MT_BulletPuff", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/OrganImpact");
+		Stop;
+	}
+	
+}
+
+
+Class MT_MediumMGBullet : MT_BaseBullet
+{
+	Default
+	{
+		Radius 8;
+		Height 8;
+		Speed 200;
+		DamageType "Bullet";
+		
+		//Normal Damage
+		MT_BaseBullet.ImpactDamage 15; 
+		MT_BaseBullet.DamageRand 1.5;
+		//Nerfed Damage
+		MT_BaseBullet.HealthDamage 200;	
+	}
+}
+
+
+Class MT_HeavyMGBullet : MT_BaseBullet
+{
+	Default
+	{
+		Radius 8;
+		Height 8;
+		Speed 150;
+		DamageType "Bullet";
+		
+		//Normal Damage
+		MT_BaseBullet.ImpactDamage 22; 
+		MT_BaseBullet.DamageRand 2.25;
+		//Nerfed Damage
+		MT_BaseBullet.HealthDamage 400;	
+	 }
+}
+
+
+

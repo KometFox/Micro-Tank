@@ -1,3 +1,4 @@
+#Include "ZSCRIPT/Actor/Weapon/Common/MGBullet.txt"
 #Include "ZSCRIPT/Actor/Weapon/Common/Baseweapon.zs"
 #Include "ZSCRIPT/Actor/Weapon/Common/MultiPurposeDevice.zs"
 #Include "ZSCRIPT/Actor/Weapon/Common/Cannon.zs"

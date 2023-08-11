@@ -62,7 +62,6 @@ Static void Reload_Weapon(actor player)
 			else if (player.CountInv(LT.TimerList[i].Item) == LT.TimerList[i].duration)
 			{
 				player.TakeInventory(LT.TimerList[i].item, 9999);
-				//player.GiveInventory("75mmReloaded", 1);
 				MT_BaseweaponZS.Play_LoadingSound(player, LT.TimerList[i].LoadedSound);
 			}
 			

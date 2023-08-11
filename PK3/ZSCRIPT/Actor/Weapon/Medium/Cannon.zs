@@ -20,8 +20,6 @@ Class MT_50mmCannon : MT_BaseCannon
 {
 
 	Mixin Cannon_Ammunition;
-	//Mixin Cannon_Def;
-	//Mixin HUD_Ammo;
 	Mixin HUD_Ammo;
 
 	S_AmmoDef AmmoTypes[3];
@@ -161,23 +159,23 @@ Loaded:
 	ExplosiveType = Np.10
 */
 
-Class MT_50mmAPHE_Shell : MT_Projectile
+Class MT_50mmAPHE_Shell : MT_FastProjectile
 {
 	
 	Default
 	{
 		DamageFunction (546);
 		DeathSound "Medium/APExplosion";
-		MT_Projectile.SplashDamage 80;
-		MT_Projectile.SplashRadius 75;
-		MT_Projectile.SplashFRadius 55;
-		MT_Projectile.SoftEffect "MTCEG_MediumExplosion_APHE"; 
-		MT_Projectile.HardEffect "MTCEG_MediumExplosion_APHE";
-		MT_Projectile.ImpactEffect "MTCEG_MediumExplosion_APHE";
+		MT_FastProjectile.SplashDamage 150;
+		MT_FastProjectile.SplashRadius 100;
+		MT_FastProjectile.SplashFRadius 75;
+		MT_FastProjectile.SoftEffect "CFG_MediumShell_APHE"; 
+		MT_FastProjectile.HardEffect "CFG_MediumShell_APHE";
+		MT_FastProjectile.ImpactEffect "CFG_MediumShell_APHE";
 	}
 }
 
-Class MT_50mmAPCR_Shell : MT_Projectile
+Class MT_50mmAPCR_Shell : MT_FastProjectile
 {
 	Mixin MultiPiercing;
 
@@ -185,28 +183,28 @@ Class MT_50mmAPCR_Shell : MT_Projectile
 	{
 		DamageFunction (790);
 		DeathSound "Medium/APExplosion";
-		MT_Projectile.SplashDamage 60;
-		MT_Projectile.SplashRadius 30;
-		MT_Projectile.SplashFRadius 15;	
-		MT_Projectile.SoftEffect "MTCEG_MediumExplosion_APHE"; 
-		MT_Projectile.HardEffect "MTCEG_MediumExplosion_APHE";
-		MT_Projectile.ImpactEffect "MTCEG_MediumExplosion_APHE";
+		MT_FastProjectile.SplashDamage 60;
+		MT_FastProjectile.SplashRadius 30;
+		MT_FastProjectile.SplashFRadius 15;	
+		MT_FastProjectile.SoftEffect "CFG_MediumShell_APHE"; 
+		MT_FastProjectile.HardEffect "CFG_MediumShell_APHE";
+		MT_FastProjectile.ImpactEffect "CFG_MediumShell_APHE";
 	}
 }
 
-Class MT_50mmHE_Shell : MT_Projectile
+Class MT_50mmHE_Shell : MT_FastProjectile
 {
 
 	Default
 	{
 		DamageFunction (42);
 		DeathSound "Medium/Explosion";
-		MT_Projectile.SplashDamage 499;
-		MT_Projectile.SplashRadius 150;
-		MT_Projectile.SplashFRadius 100;	
-		MT_Projectile.SoftEffect "MTCEG_MediumExplosion_HEShell"; 
-		MT_Projectile.HardEffect "MTCEG_MediumExplosion_HEShell";
-		MT_Projectile.ImpactEffect "MTCEG_MediumExplosion_HEShell";
+		MT_FastProjectile.SplashDamage 300;
+		MT_FastProjectile.SplashRadius 200;
+		MT_FastProjectile.SplashFRadius 130;	
+		MT_FastProjectile.SoftEffect "CFG_MediumShell_HE"; 
+		MT_FastProjectile.HardEffect "CFG_MediumShell_HE";
+		MT_FastProjectile.ImpactEffect "CFG_MediumShell_HE";
 	}
 }
 

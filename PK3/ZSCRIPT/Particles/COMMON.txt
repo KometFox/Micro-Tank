@@ -1,0 +1,170 @@
+//------------------------------------------------------------------------------
+//Yellow Explosion
+//------------------------------------------------------------------------------
+Class CFG_YellowExplosion : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 1.0;
+		Scale 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.13, Scale.Y * 1.13);
+			A_FadeOut(0.065);
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			YXPL A 14;
+			Stop;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Red Explosion
+//------------------------------------------------------------------------------
+Class CFG_RedExplosion : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 1.0;
+		Scale 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.13, Scale.Y * 1.13);
+			A_FadeOut(0.065);
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			RXPL A 14;
+			Stop;
+	}
+}
+
+//------------------------------------------------------------------------------
+//White Smoke
+//------------------------------------------------------------------------------
+Class CFG_WhiteSmoke : RMD_BaseParticle
+{
+	Const FadeAlpha = 0.04;
+
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.4;
+		Scale 0.335;
+	}
+	
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = frandom(0, 360);	
+		Angle = Random[FX](0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			WSMK A 18;
+			WSMK AAAAAAAAAA 1 A_FadeOut(FadeAlpha);
+			Stop;
+		Smoke2:
+			WSMK B 18;
+			WSMK BBBBBBBBBB 1 A_FadeOut(FadeAlpha);
+			Stop;
+		Smoke3:
+			WSMK C 18;
+			WSMK CCCCCCCCCC 1 A_FadeOut(FadeAlpha);
+			Stop;
+		Smoke4:
+			WSMK D 18;
+			WSMK DDDDDDDDDD 1 A_FadeOut(FadeAlpha);
+			Stop;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Shockwave
+//------------------------------------------------------------------------------
+Class CFG_Shockwave : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.15, Scale.Y * 1.15);	
+			A_FadeOut(0.035);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			WSHK A 7; 
+			Stop;
+
+	}
+}
