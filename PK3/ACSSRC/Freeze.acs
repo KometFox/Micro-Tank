@@ -1,0 +1,41 @@
+#library "Freeze"
+#include "zcommon.acs"
+
+//Frezees the player
+//TODO: Use ZScript for this instead
+bool PlayerFrozen = false;
+
+
+Script "ACS_FreezePlayer" (void)
+{
+	SetPlayerProperty(TRUE, TRUE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, TRUE, PROP_FROZEN);
+	//HudMessage(s:"\cfPlayer Frozen.";HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+	PlayerFrozen = true;
+	GiveInventory("ImCrafting", 1);
+}
+
+Script "ACS_UnfreezePlayer" (void)
+{
+	SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+	PlayerFrozen = false;
+	TakeInventory("ImCrafting", 999);
+	//HudMessage(s:"\cfPlayer Unfrozen.";HUDMSG_FADEOUT,PlayerNumber(),CR_Blue,0.5,0.7,2.0,2.0);
+}
+
+Script "ACS_IsPlayerFrozen" (void)
+{
+	SetResultValue(PlayerFrozen);
+}
+
+
+Script "ACS_MapOpen" OPEN
+{
+	//Make sure the player is unfrozen on next map.
+	SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+	PlayerFrozen = false;
+	TakeInventory("ImCrafting", 999);
+}
+

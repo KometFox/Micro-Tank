@@ -1,6 +1,6 @@
 //ACS code credit: Sgt. Mark IV
 #library "MTank"
-//#Include "MCom.acs"
+#include "Freeze.acs"
 #include "zcommon/gzdoom.acs"
 
 /*

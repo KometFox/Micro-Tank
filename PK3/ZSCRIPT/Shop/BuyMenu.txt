@@ -490,13 +490,11 @@ Class BuyMenuScript : EventHandler
 	void FreezePlayer(ConsoleEvent E)
 	{
 		VPlayer = Players[E.Player].mo;
-		VPlayer.A_GiveInventory("ImCrafting", 999);
 	}
 
 	void UnfreezePlayer(ConsoleEvent E)
 	{
 		VPlayer = Players[E.Player].mo;
-		VPlayer.A_TakeInventory("ImCrafting", 999);
 	}
 
 	//The networking processing.
@@ -518,7 +516,7 @@ Class BuyMenuScript : EventHandler
 
 				Enabled = True;
 				FreezePlayer(E);
-				CallACS("RMD_FreezePlayer");
+				CallACS("ACS_FreezePlayer");
 			}
 			else
 			{
@@ -527,7 +525,7 @@ Class BuyMenuScript : EventHandler
 
 				Enabled = False;
 				UnfreezePlayer(E);
-				CallACS("RMD_UnfreezePlayer");
+				CallACS("ACS_UnfreezePlayer");
 			}
 			
 		}

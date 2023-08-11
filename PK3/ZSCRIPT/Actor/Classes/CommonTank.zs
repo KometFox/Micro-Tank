@@ -400,6 +400,10 @@ static void Set_ChassisAngle(actor mo, int angle)
 		}
 		Goto Stay;
 		
+	DoNothing:
+		"####" "##" 4;
+		Goto Stay;
+		
 	Stay:
 		"####" "#" 0 A_JumpIfInventory("MT_MorphVCrewToken", 1, "Blank", AAPTR_TARGET);
 		//PITCH CHECK
@@ -442,7 +446,7 @@ static void Set_ChassisAngle(actor mo, int angle)
 			}
 						
 			
-			
+			return A_Jump(0, "Stay");
 		}		
 		//END PITCH CHECK
 	Movement:
@@ -742,6 +746,15 @@ DamageFactor "Electric"          ,0.75;
 	
 	DoNothing:
 		"####" A 1;
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen"))
+					{
+						Return A_Jump(256, "CheckIfStillMoves2");	
+					}
+					
+					Return A_Jump(256, "Stay");
+				}
 		Goto Stay;
 		
 	//
@@ -749,6 +762,13 @@ DamageFactor "Electric"          ,0.75;
 	//
 	CheckIfStillMoves:
 		"####" A 0;
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen"))
+						Return A_Jump(256, "DoNothing");
+						
+					Return A_Jump(0, "Stay");
+				}
 		"####" A 0 A_JumpIfInventory("ImCrafting", 1, "DoNothing");
 		"####" A 0 A_JumpIfInventory("Accelerate", 1, "Accelerate");
 		"####" A 0 A_JumpIfInventory("Reverse", 1, "Reverse");
@@ -780,33 +800,66 @@ DamageFactor "Electric"          ,0.75;
 		Goto Stay;
 		
 	Accelerate:
-		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Forward", 4, 1, 1);
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen") == true)
+						Return A_Jump(256, "DoNothing");
+											
+					user_chassisangle = CallACS("MT_GetVehicleRotation");
+					A_PlaySound("Treads/Forward", 4, 1, 1);
+					
+					Return A_Jump(0, "Stay");
+				}
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;
 		Goto CheckIfStillMoves;
 
 	Reverse:
-		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Backward", 4, 1, 1);
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen") == true)
+						Return A_Jump(256, "DoNothing");
+						
+					user_chassisangle = CallACS("MT_GetVehicleRotation");
+					A_PlaySound("Treads/Backward", 4, 1, 1);
+					
+					Return A_Jump(0, "Stay");
+				}
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;
 		Goto CheckIfStillMoves;
 		
 	TurnRight:
-		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Left", 4, 1, 1);
-		"####" A 0 A_TakeInventory("TurnLeft", 999);
-		"####" A 0 A_TakeInventory("TurnRight", 999);
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen") == true)
+						Return A_Jump(256, "DoNothing");
+												
+					user_chassisangle = CallACS("MT_GetVehicleRotation");
+					A_PlaySound("Treads/Left", 4, 1, 1);
+					A_TakeInventory("TurnLeft", 999);
+					A_TakeInventory("TurnRight", 999);	
+					
+					Return A_Jump(0, "Stay");
+				}
+		
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;	
 		Goto CheckIfStillMoves2;
 
 	TurnLeft:		
-		"####" A 0 {user_chassisangle = CallACS("MT_GetVehicleRotation");}
-		"####" A 0 A_PlaySound("Treads/Right", 4, 1, 1);
-		"####" A 0 A_TakeInventory("TurnLeft", 999);
-		"####" A 0 A_TakeInventory("TurnRight", 999);
+		"####" A 0 
+				{
+					if (ACS_NamedExecuteWithResult("ACS_IsPlayerFrozen") == true)
+						Return A_Jump(256, "DoNothing");
+
+					user_chassisangle = CallACS("MT_GetVehicleRotation");
+					A_PlaySound("Treads/Right", 4, 1, 1);
+					A_TakeInventory("TurnLeft", 999);
+					A_TakeInventory("TurnRight", 999);
+					
+					Return A_Jump(0, "Stay");
+				}
 		"####" A 0 A_JumpIf(vel.z < 0, "Falling");
 		"####" A 1;
 		Goto CheckIfStillMoves2;

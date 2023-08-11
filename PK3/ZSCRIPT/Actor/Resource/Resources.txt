@@ -27,9 +27,9 @@ Class MT_Credits : Ammo
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "Material/Pickup";
 		Inventory.Amount 1;
-		Inventory.MaxAmount 100000;
+		Inventory.MaxAmount 2000000000;
 		Ammo.BackpackAmount 0;
-		Ammo.BackpackMaxAmount 100000;
+		Ammo.BackpackMaxAmount 2000000000;
 		-COUNTITEM;
 		+INVENTORY.UNCLEARABLE;
 	}
@@ -118,9 +118,9 @@ Class MT_Metal : Ammo
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "Material/Pickup";
 		Inventory.Amount 1;
-		Inventory.MaxAmount 100000;
+		Inventory.MaxAmount 2000000000;
 		Ammo.BackpackAmount 0;
-		Ammo.BackpackMaxAmount 100000;
+		Ammo.BackpackMaxAmount 2000000000;
 		-COUNTITEM;
 		+INVENTORY.UNCLEARABLE;
 	}
